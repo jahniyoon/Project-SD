@@ -1,0 +1,127 @@
+{
+    "name": "Player",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "37edeb5b-9f55-4f32-b45e-b0ac7eb78478",
+            "actions": [
+                {
+                    "name": "Camera Look",
+                    "type": "PassThrough",
+                    "id": "a3cb1e74-bce1-4181-ab82-a5a44f6bf98d",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "RightTrigger",
+                    "type": "Button",
+                    "id": "adf2f27a-6594-4fbe-9a95-40a852be1b23",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SelectButton",
+                    "type": "Button",
+                    "id": "ed2ebb31-dd3e-4a8a-aabd-be4f8415a085",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ShopButton",
+                    "type": "Button",
+                    "id": "1b3a2494-c86d-4c26-8a3b-e55b1cabdf02",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "03a6a0cc-570a-4f6e-a2ee-6c0d689e1aef",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Camera Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "847667a0-0b7a-4f31-9bcb-cb6acfdc11dd",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightTrigger",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cf294b8c-e003-4261-8e85-12e0fc99325f",
+                    "path": "<XRController>{RightHand}/triggerPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightTrigger",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "97444346-d428-42a7-90ca-702ad5ef2725",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8a7f04f6-015d-4fe2-9984-d530040d7cb8",
+                    "path": "<XRController>{RightHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dbe5335c-8c32-4078-96bf-ea759d206b29",
+                    "path": "<Mouse>/middleButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShopButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "441ba46d-61d9-4167-82ad-b8710a9f8f55",
+                    "path": "<XRController>{LeftHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShopButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
