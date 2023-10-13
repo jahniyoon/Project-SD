@@ -49,7 +49,7 @@ public class CSVReader
                         for (int j = 0; j < values.Length; j++)
                         {
                             // 헤더(행) 리스트에 값 추가
-                            dataDictionary[headers[j]].Add(values[j]);
+                            dataDictionary[headers[j].Trim()].Add(values[j]);
                         }
                     }
                 }

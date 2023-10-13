@@ -7,20 +7,19 @@ public class DataManager
     [Header("Choi")]
     // 데이터를 보관하는 변수
     private static Dictionary<int, Dictionary<string, List<string>>>
-        dataTable = default;
+        dataTable = new Dictionary<int, Dictionary<string, List<string>>>();
     // dataTable에 ID로 접근하기 위해
     // ID에 해당하는 인덱스를 보관하는 변수
     // idTable[ID][DATA_KEY] = dataTable에 저장된 순서
     // idTable[ID][DATA_INDEX] = 실제 데이터의 인덱스
     private static Dictionary<int, List<int>> idTable = default;
-    // ID의 기본 인덱스
+    // dataTable의 고정 상수
     private const string ID_HEADER = "ID";
     private const int DATA_KEY = 0;
     private const int DATA_INDEX = 1;
-    // CSV Reader로 불러온 Dictionary<string, List<string>를
-    // dataTable에 저장하는 함수
 
     #region [외부 메서드]
+    // CSV Reader로 불러온 Dictionary<string, List<string>를
     // dataTable에 데이터를 저장하는 함수
     public static void SetData(Dictionary<string, List<string>> data)
     {
@@ -34,10 +33,10 @@ public class DataManager
 
     // dataTable에 저장된 데이터를 가져오는 함수
     // 기본 반환 값은 string이다.
-    public static string GetData(int id, string category)
+    public static object GetData(int id, string category)
     {
         // dataTable을 검색하는 함수 호출
-        string data = FindDataTable(id, category);
+        object data = FindDataTable(id, category);
 
         return data;
     }
@@ -58,10 +57,12 @@ public class DataManager
     // ID 값을 idTable에 저장하는 함수
     private static void SetIDTable(Dictionary<string, List<string>> data)
     {
-        // dataTable의 길이를 인덱스로 설정
-        int index = dataTable.Count;
-        // 딕셔너리의 길이 만큼 순회
-        for (int i = 0; i < data.Count; i++)
+        Debug.Log("SetIDTable호출");
+        // dataTable의 길이 - 1 를 딕셔너리 접근 인덱스로 설정
+        int index = dataTable.Count - 1;
+        Debug.Log($"카운트{data["ID"][0]}");
+        // data[ID_HEADER]의 길이 만큼 순회
+        for (int i = 0; i < data[ID_HEADER].Count; i++)
         {
             int id = int.Parse(data[ID_HEADER][i]);
             int index2 = i;
@@ -70,6 +71,7 @@ public class DataManager
             idTable.Add(id, new List<int>());
             idTable[id].Add(index);
             idTable[id].Add(index2);
+            Debug.Log(idTable);
         }
     }
 
@@ -113,5 +115,12 @@ public class DataManager
         // temp_DataTable 반환
         return temp_DataTable;
     }
+
+    // string으로 저장된 data 값의 데이터 타입을
+    // 조건식을 통해 찾아내는 함수
+    //private static string ConvertDataType(string data)
+    //{
+    //    //if (int.TryParse(Key))
+    //}
     #endregion
 }
