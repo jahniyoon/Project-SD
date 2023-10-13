@@ -41,7 +41,10 @@ public class CSVReader
 
                     // 첫번째 행[0]을 헤더로 사용하고 두 번째[1] 부터 데이터 행으로 사용하기 위해
                     // index를 1 부터 시작
-                    for (int i = 1; i < lines.Length; i++)
+                    // 열에 있는 데이터의 공백을 제거하지 않아 공백으로
+                    // 한 줄더 생성되는 문제를 해결하기 위해 Length - 1을 한다.
+                    int count = lines.Length - 1;
+                    for (int i = 1; i < count; i++)
                     {
                         string line = lines[i];
                         string[] values = line.Split(DELIMITER);
