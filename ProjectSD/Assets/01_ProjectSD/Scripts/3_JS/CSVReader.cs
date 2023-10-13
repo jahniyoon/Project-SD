@@ -8,8 +8,8 @@ public class CSVReader
     // CSV 파일을 읽어와서 딕셔너리로 반환하는 함수
     // 반환될 딕셔너리는 Dictionary<string, List<string>> 이다.
     // csvFileName에 "CSVFiles"와 같은 Resources 안에 있는 디렉토리명과
-    // WheelList.csv"과 같이 csv 파일의 이름을 입력한다.
-    // ReadCSVFile(CSVFiles/WheelList)와 같은 형태로 CSV파일을 불러온다.
+    // "WheelList"과 같이 csv 파일의 이름을 입력한다.
+    // CSVReader.ReadCSVFile("CSVFiles/WheelList")와 같은 형태로 CSV파일을 불러온다.
     public static Dictionary<string, List<string>> ReadCSVFile(string csvFileName)
     {
         // csv 파일의 정보를 행과 열로 구분하여 저장할 딕셔너리
