@@ -166,6 +166,7 @@ public class DataManager
             }
         }
 
+        else
         // 정상적으로 접근하지 못했을 경우
         {
             // 디버그 메세지 출력
