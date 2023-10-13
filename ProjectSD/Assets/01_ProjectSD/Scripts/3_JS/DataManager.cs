@@ -18,6 +18,8 @@ using UnityEngine;
 //! 2. DataManager에 저장된 데이터를 불러온다.
 //! 2-1. 하나의 데이터 값만 가져올 때
 //! DataManager.GetData(아이디, 카테고리);
+//! 값을 받을 때 int num = (int)DataManager.GetData();
+//! 위와 같은 형태로 맞는 데이터 타입으로 형변환 해야 한다.
 //! *what? 아이디 = CSV파일 참조
 //! *what? 카테고리 = CSV파일의 행 참조
 //!
@@ -25,6 +27,9 @@ using UnityEngine;
 //! DataManager.GetData(아이디);
 //! *what? 반환타입 = Dictionary<string, string> 이며,
 //! 가져올 변수를 같은 타입으로 선언해야 한다.
+//!
+//! 아이디가 들어있는 CSV파일의 카운트를 가져온다.
+//! DataManager.GetCount(아이디);
 public class DataManager
 {
     [Header("Choi")]
@@ -81,6 +86,17 @@ public class DataManager
         return temp_DataTable;
     }
 
+    // 아이디를 매개변수로 받고 아이디가 들어 있는 CSV파일의
+    // 열 갯수를 가져오는 함수.
+    public static int GetCount(int id)
+    {
+        // 키 값과 키 값을 사용해 카운트를 가져온다.
+        int key = GetDataKey(id);
+        int count = dataTable[key][ID_HEADER].Count;
+
+        // 찾은 카운트 반환
+        return count;
+    }
     #endregion
 
     #region [내부 메서드]
@@ -228,6 +244,15 @@ public class DataManager
             default:
                 return data;
         }
+    }
+
+    // 아이디로 해당 아이디가 위치한 CSV파일의 위치를 받아오는 함수
+    private static int GetDataKey(int id)
+    {
+        int index = idTable[id][DATA_KEY];
+        
+        // 찾은 위치 인덱스 반환
+        return index;
     }
     #endregion
 }
