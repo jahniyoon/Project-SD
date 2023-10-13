@@ -13,7 +13,6 @@ public class PlayerShop : MonoBehaviour
     public State state { get; private set; }
 
     public GameObject shopUI;
-    public GameObject exitBtn;
     public bool isBtnEnable;
 
     public string btnName;
