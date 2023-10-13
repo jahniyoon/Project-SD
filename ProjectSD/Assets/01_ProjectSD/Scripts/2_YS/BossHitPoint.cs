@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class BossHitPoint : MonoBehaviour
 {
-    //private BoxCollider boxCollider;
+    private BoxCollider boxCollider;
 
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("히트포인트 동작");
-        //boxCollider = GetComponent<BoxCollider>();
+        boxCollider = GetComponent<BoxCollider>();
     }
 
     // Update is called once per frame
@@ -19,16 +19,16 @@ public class BossHitPoint : MonoBehaviour
         
     }
 
-    //IEnumerator HitPoint()
-    //{
-    //    boxCollider.enabled = false;
-    //    Debug.Log("비활성화");
-    //    yield return new WaitForSeconds(5.0f);
-    //    boxCollider.enabled = true;
-    //    Debug.Log("활성화");
-    //}
+    IEnumerator HitPoint()
+    {
+        boxCollider.enabled = false;
+        Debug.Log("비활성화");
+        yield return new WaitForSeconds(5.0f);
+        boxCollider.enabled = true;
+        Debug.Log("활성화");
+    }
 
-    ////임시 데미지 함수
+    //임시 데미지 함수
     //public void OnDamage(float damage)
     //{
     //    //Weapon weapon = other.GetComponent<Weapon>();
@@ -36,29 +36,16 @@ public class BossHitPoint : MonoBehaviour
     //}
 
     //boxCollider.transform.localScale = new Vector3(3.0f, 3.0f, 3.0f); //객체 커지는거
+    
+    //사이즈 조절 관련(아직 모르겠어서 보류)
     //boxCollider.size = new Vector3(3.0f, 3.0f, 3.0f);
 
     private void OnTriggerEnter(Collider other)
     {
-
-        if(other.CompareTag("Test"))
-        {
-            Debug.Log("큐브에 닿음");
-        }
-
         if(other.CompareTag("Bullet"))
         {
-            Debug.Log("불렛에 트리거 댐");
-            //StartCoroutine(HitPoint());     
-        }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.collider.CompareTag("Test"))
-        {
-            Debug.Log("큐브에 닿음");
-
+            
+            StartCoroutine(HitPoint());     
         }
     }
 
