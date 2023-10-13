@@ -31,6 +31,11 @@ public class PlayerShop : MonoBehaviour
     void Update()
     {
         PlayerInput();  // 플레이어 입력
+
+        if(btnName != null)
+        {
+            Debug.Log(btnName);
+        }
     }
 
     //플레이어 입력
@@ -77,6 +82,8 @@ public class PlayerShop : MonoBehaviour
     //  btnName : Ray에 충돌한 오브젝트의 Layer가 8번일 경우에 해당 gameObject.name을 PlayerShooter로부터 전달 받음
     public void PushButton(string btnName)
     {
+        Debug.LogFormat("함수로 받아온 매개변수 -> {0}", btnName);
+
         if (btnName == null)    // 이름이 없으면 리턴
         {
             return;
