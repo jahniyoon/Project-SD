@@ -7,12 +7,17 @@ public class PlayerShooter : MonoBehaviour
     private PlayerInputs input;
     private PlayerShop shop;
 
-    [Header("Laser")]
     int buttonLayerMask = (1 << 8);
+    [Header("Laser Point")]
     public LineRenderer laserPoint;
     public Transform laserStartPoint;
     public Transform laserEndPoint;
     public GameObject laserHit;
+
+    [Header("Bullet")]
+    public GameObject bulletPrefab;
+
+    [Header("Button")]
     public string btnName;
 
     // Start is called before the first frame update
@@ -62,7 +67,8 @@ public class PlayerShooter : MonoBehaviour
         if(input.shoot)
         {
             Debug.Log("발사한다.");
-
+            GameObject bullet =
+            Instantiate(bulletPrefab, laserStartPoint.position, laserStartPoint.rotation);
             input.shoot = false;
         }
     }
