@@ -53,6 +53,8 @@ public class Boss : MonoBehaviour
         StartCoroutine(CheckMonsterState());
 
         StartCoroutine(MonsterAction());
+
+        StartCoroutine(SkillCounter());
     }
 
     // Update is called once per frame
@@ -67,7 +69,7 @@ public class Boss : MonoBehaviour
     {
         while (!isDie)
         {
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.1f);
 
 
             if (state == State.DIE) yield break;
@@ -118,8 +120,9 @@ public class Boss : MonoBehaviour
                     agent.isStopped = false;
 
                     //임의의 시간 후 투사체
-                    StartCoroutine(SkillCounter());
-                    
+                    //StartCoroutine(SkillCounter());
+
+                   
                     //anim.SetBool(hashTrace, true);
 
 
@@ -128,9 +131,6 @@ public class Boss : MonoBehaviour
 
 
                 case State.ATTACK:
-
-
-                    
                     break;
            
 
@@ -143,9 +143,7 @@ public class Boss : MonoBehaviour
                     //anim.SetTrigger(hashDie);
 
                     //몬스터의 Collider 컴포넌트 비활성화
-                    GetComponent<BoxCollider>().enabled = false;
-
-                    StopAllCoroutines();
+                    //GetComponent<BoxCollider>().enabled = false;
 
                     break;
             }
@@ -155,7 +153,7 @@ public class Boss : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        //추적 사정거리 표시
+        
         if (state == State.TRACE)
         {
             Gizmos.color = Color.red;
@@ -176,15 +174,23 @@ public class Boss : MonoBehaviour
         while(!isDie)
         {
             yield return new WaitForSeconds(4.0f);
-            SkillAttack();
+
+            if (state == State.TRACE)
+            {
+                SkillAttack();
+
+            }
         }
        
     }
 
     void SkillAttack()
     {
-        GameObject instantBulletA = Instantiate(bossBullet, bulletPort.position, bulletPort.rotation);
-        BossBullet bossbulletA = instantBulletA.GetComponent<BossBullet>();     //미사일 스크립트까지 접근하여 목표물 설정(유도)
-        bossbulletA.target = target;
+
+        GameObject instantBullet = Instantiate(bossBullet, bulletPort.position, bulletPort.rotation);
+
+        instantBullet.transform.LookAt(target);
+        transform.LookAt(target);
+
     }
 }
