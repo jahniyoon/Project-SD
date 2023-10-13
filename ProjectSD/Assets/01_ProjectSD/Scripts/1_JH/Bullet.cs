@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     private Rigidbody rigid = default;
-    private CapsuleCollider collider;
+    private CapsuleCollider bulletCollider;
     
     [Header("Bullet Damage")]
     public float bulletDamage = 1f;         // 총알 데미지
@@ -28,8 +28,8 @@ public class Bullet : MonoBehaviour
         rigid = GetComponent<Rigidbody>();
         rigid.velocity = transform.forward * bulletSpeed;
 
-        collider = this.transform.GetChild(0).GetComponent<CapsuleCollider>();
-        collider.radius = bulletSize;
+        bulletCollider = this.transform.GetChild(0).GetComponent<CapsuleCollider>();
+        bulletCollider.radius = bulletSize;
 
         DamageCalculate();
         Destroy(gameObject, bulletLifeTime);
@@ -43,7 +43,7 @@ public class Bullet : MonoBehaviour
 
         if(clit < critProbability)
         {
-            collider.radius = 2f;
+            bulletCollider.radius = 2f;
             mat.material.color = Color.red;
             finalDamage = bulletDamage * (clit / 100);
         }
