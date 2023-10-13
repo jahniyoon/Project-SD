@@ -2,19 +2,29 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class Boss : MonoBehaviour
 {
     public Transform target;
+    public Transform boss;
     public NavMeshAgent agent;
+    public GameObject bossBullet;
 
+    public Transform bulletPort;
+
+    public float traceDist = 100.0f; //추적 거리
+    public float attackDist = 1.0f; // 공격 사정거리
+
+
+    
     public enum State
     {
         IDLE,
         TRACE,
-        ATTAC,
+        ATTACK,
         DIE
     }
 
@@ -48,9 +58,9 @@ public class Boss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
 
-        
+
+
     }
 
     IEnumerator CheckMonsterState()
@@ -59,27 +69,27 @@ public class Boss : MonoBehaviour
         {
             yield return new WaitForSeconds(0.3f);
 
-       
+
             if (state == State.DIE) yield break;
 
-            
-            //float distance = Vector3.Distance(playerTr.position, monsterTr.position);
 
-        
-            //if (distance <= attackDist)
+            float distance = Vector3.Distance(target.position, boss.position);
+
+
+            if (distance <= attackDist)
+            {
+                state = State.ATTACK;
+            }
+            else if (distance >= traceDist)     //추적 사정거리 외부에서 추적 시작
+            {
+                state = State.TRACE;
+            }
+            //else if (distance <= traceDist)
             //{
-            //    state = State.ATTACK;
-            //}
-            //else if (distance >= traceDist)     //추적 사정거리 외부에서 추적 시작
-            //{
+            //    traceStart = true;
             //    state = State.TRACE;
             //}
-            //else if (distance <= traceDist)     
-            //{
-            //    traceStart = true;             
-            //    state = State.TRACE;
-            //}
-            //else if (!traceStart)              
+            //else if (!traceStart)
             //{
             //    state = State.IDLE;
             //}
@@ -92,132 +102,37 @@ public class Boss : MonoBehaviour
         {
             switch (state)
             {
-             
+
                 case State.IDLE:
-                   
+
                     agent.isStopped = true;
 
-                    
+
                     //anim.SetBool(hashTrace, false);
                     break;
 
-         
+
                 case State.TRACE:
-                    
-                    //agent.SetDestination(playerTr.position);
+
+                    agent.SetDestination(target.position);
                     agent.isStopped = false;
 
-                   
+                    //임의의 시간 후 투사체
+                    StartCoroutine(SkillCounter());
+                    
                     //anim.SetBool(hashTrace, true);
 
-                    
+
                     //anim.SetBool(hashAttack, false);
                     break;
 
-                
-                //case State.ATTACK:
+
+                case State.ATTACK:
+
+
                     
-
-                //    switch (monsterType)
-                //    {
-                //        case Type.A:
-                //            anim.SetBool(hashAttack, true);
-                //            break;
-
-                //        case Type.B:
-
-                //            anim.SetBool(hashAttack, true);
-                //            yield return new WaitForSeconds(0.65f);
-
-                //            Vector3 fireBallTransform = new Vector3(transform.position.x, transform.position.y + 0.25f, transform.position.z);
-                //            GameObject instantBullet = Instantiate(bullet, fireBallTransform, transform.rotation);
-                //            Rigidbody rigidBullet = instantBullet.GetComponent<Rigidbody>();
-                //            rigidBullet.velocity = transform.forward * 3;
-
-                //            GameObject leftInstantBullet = Instantiate(bullet, fireBallTransform, Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0, -15, 0)));
-                //            Rigidbody rigidLeftBullet = leftInstantBullet.GetComponent<Rigidbody>();
-                //            rigidLeftBullet.velocity = leftInstantBullet.transform.forward * 3;
-
-
-                //            GameObject rightInstantBullet = Instantiate(bullet, fireBallTransform, Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0, 15, 0)));
-                //            Rigidbody rigidRightBullet = rightInstantBullet.GetComponent<Rigidbody>();
-                //            rigidRightBullet.velocity = rightInstantBullet.transform.forward * 3;
-
-                //            yield return new WaitForSeconds(1.5f);
-                //            break;
-
-                //        case Type.C:
-
-                //            int knight = Random.Range(0, 3);
-
-                //            switch (knight)
-                //            {
-                //                case 0:
-                //                    anim.SetBool(hashAttack, true);
-                //                    yield return new WaitForSeconds(2.0f);
-                //                    anim.SetBool(hashAttack, false);
-                //                    yield return new WaitForSeconds(0.1f);
-                //                    break;
-
-                //                case 1:
-                //                    anim.SetBool(hashAttack1, true);
-                //                    yield return new WaitForSeconds(2.0f);
-                //                    anim.SetBool(hashAttack1, false);
-                //                    yield return new WaitForSeconds(0.1f);
-                //                    break;
-
-                //                case 2:
-                //                    anim.SetBool(hashSpawn, true);
-                //                    yield return new WaitForSeconds(1.5f);
-
-                //                    GameObject instantSpawnA = Instantiate(monsterPrefab, spawnA.position, spawnA.rotation);
-                //                    GameObject instantSpawnB = Instantiate(monsterPrefab, spawnB.position, spawnB.rotation);
-                //                    GameObject instantSpawnC = Instantiate(monsterPrefab, spawnC.position, spawnC.rotation);
-                //                    anim.SetBool(hashSpawn, false);
-
-                //                    yield return new WaitForSeconds(1.0f);
-                //                    break;
-                //            }
-                //            break;
-
-                //        case Type.D:
-
-                //            int dog = Random.Range(0, 2);
-
-                //            switch (dog)
-                //            {
-                //                case 0:
-                //                    anim.SetBool(hashAttack, true);
-                //                    yield return new WaitForSeconds(2.5f);
-                //                    anim.SetBool(hashAttack, false);
-                //                    yield return new WaitForSeconds(0.1f);
-                //                    break;
-                //                case 1:
-                //                    anim.SetBool(hashRock, true);
-                //                    yield return new WaitForSeconds(0.76f);
-
-                //                    GameObject instantSpawnA = Instantiate(rock, rockSpawnA.position, rockSpawnA.rotation);
-                //                    Rigidbody rigidRock = instantSpawnA.GetComponent<Rigidbody>();
-                //                    rigidRock.velocity = transform.forward * 4;
-
-                //                    GameObject leftInstantSpawnB = Instantiate(rock, rockSpawnB.position, Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0, -30, 0)));
-                //                    Rigidbody rigidLeftrock = leftInstantSpawnB.GetComponent<Rigidbody>();
-                //                    rigidRock.velocity = leftInstantSpawnB.transform.forward * 4;
-
-                //                    GameObject rightInstantSpawnC = Instantiate(rock, rockSpawnC.position, Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0, 30, 0)));
-                //                    Rigidbody rigidRightrock = rightInstantSpawnC.GetComponent<Rigidbody>();
-                //                    rigidRock.velocity = rightInstantSpawnC.transform.forward * 4;
-
-
-                                  
-
-                                    //anim.SetBool(hashRock, false);
-                    //                yield return new WaitForSeconds(1.0f);
-                    //                break;
-                    //        }
-                    //        break;
-                    //}
-                    //break;
+                    break;
+           
 
                 //사망
                 case State.DIE:
@@ -226,12 +141,50 @@ public class Boss : MonoBehaviour
                     agent.isStopped = true;
                     //사망 애니메이션 실행
                     //anim.SetTrigger(hashDie);
+
                     //몬스터의 Collider 컴포넌트 비활성화
                     GetComponent<BoxCollider>().enabled = false;
+
+                    StopAllCoroutines();
 
                     break;
             }
             yield return new WaitForSeconds(0.3f);
         }
+    }
+
+    void OnDrawGizmos()
+    {
+        //추적 사정거리 표시
+        if (state == State.TRACE)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, traceDist);
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.tag.Equals("Enemy"))
+        {
+            //TODO:졸개 몬스터 소환 로직
+        }
+    }
+
+    IEnumerator SkillCounter()
+    {
+        while(!isDie)
+        {
+            yield return new WaitForSeconds(4.0f);
+            SkillAttack();
+        }
+       
+    }
+
+    void SkillAttack()
+    {
+        GameObject instantBulletA = Instantiate(bossBullet, bulletPort.position, bulletPort.rotation);
+        BossBullet bossbulletA = instantBulletA.GetComponent<BossBullet>();     //미사일 스크립트까지 접근하여 목표물 설정(유도)
+        bossbulletA.target = target;
     }
 }
