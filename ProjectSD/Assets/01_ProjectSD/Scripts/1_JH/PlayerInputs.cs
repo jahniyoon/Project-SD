@@ -7,18 +7,29 @@ using UnityEngine.InputSystem;
 public class PlayerInputs : MonoBehaviour
 {
     [Header("Player Input Values")]
-    public bool shoot;   // 사격
-    public bool select;    // 결정
-    public bool shop;    // 상점
+    public bool leftShoot;   // 왼쪽 사격
+    public bool rightShoot;  // 오른쪽 사격
+    public bool select;      // 결정
+    public bool shop;        // 상점
+
+    // 사격 버튼 입력 : 왼쪽 마우스, 왼쪽 트리거
+    public void OnLeftTrigger(InputValue value)
+    {
+        LeftTriggerInput(value.isPressed);
+    }
+    public void LeftTriggerInput(bool input)
+    {
+        leftShoot = input;
+    }
 
     // 사격 버튼 입력 : 왼쪽 마우스, 오른쪽 트리거
     public void OnRightTrigger(InputValue value)
     {
-        RightTrggerInput(value.isPressed);
+        RightTriggerInput(value.isPressed);
     }
-    public void RightTrggerInput(bool input)
+    public void RightTriggerInput(bool input)
     {
-        shoot = input;
+        rightShoot = input;
     }
 
     // 결정 버튼 입력 : 오른쪽 마우스, A버튼
