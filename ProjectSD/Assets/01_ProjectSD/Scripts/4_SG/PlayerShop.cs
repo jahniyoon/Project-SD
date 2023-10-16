@@ -34,7 +34,7 @@ public class PlayerShop : MonoBehaviour
 
         if(btnName != null)
         {
-            //Debug.Log(btnName);
+            Debug.Log(btnName);
         }
     }
 
