@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4637644259196677652}
   - component: {fileID: 4637644259196678122}
   - component: {fileID: 4637644259196678123}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: ItemCountText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 4637644259214422427}
   - component: {fileID: 4637644259214422404}
   - component: {fileID: 4637644259214422425}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -270,3 +270,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fca670f4530b6d43bdd493297509cb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonNum: 0
