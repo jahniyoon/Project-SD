@@ -45,3 +45,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: ShopBackGround
+    uniqueID: 377760001
+    locked: 0
+  - name: CheckBuy
+    uniqueID: 2546846905
+    locked: 0

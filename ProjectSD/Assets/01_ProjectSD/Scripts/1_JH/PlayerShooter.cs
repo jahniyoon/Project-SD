@@ -1,75 +1,60 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Windows;
 
 public class PlayerShooter : MonoBehaviour
 {
     private PlayerInputs input;
     private PlayerShop shop;
 
-    int buttonLayerMask = (1 << 8);
-    [Header("Laser Point")]
-    public LineRenderer laserPoint;
-    public Transform laserStartPoint;
-    public Transform laserEndPoint;
-    public GameObject laserHit;
-
-    [Header("Bullet")]
-    public GameObject bulletPrefab;
-
-    [Header("Button")]
-    public string btnName;
+    [Header("Weapon")]
+    public Weapon leftGun;
+    public Weapon rightGun;
 
     // Start is called before the first frame update
     void Start()
     {
         input = GetComponent<PlayerInputs>();
         shop = GetComponent<PlayerShop>();
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
     void Update()
     {
-        LaserPointer();
-        Shoot();
+        Fire();
+        ButtonCheck();
     }
 
-    public void LaserPointer()
+    // 사격 관련
+    public void Fire()
     {
-        laserPoint.SetPosition(0, laserStartPoint.position);
-
-        RaycastHit rayHit;
-        if (Physics.Raycast(laserStartPoint.position, laserStartPoint.forward, out rayHit, Mathf.Infinity, buttonLayerMask))
+        if(input.rightShoot)
         {
-            laserHit.gameObject.SetActive(true);   
-            laserHit.transform.position = rayHit.point;
-
-            laserPoint.SetPosition(1, rayHit.point);
-            
-            shop.btnName = rayHit.transform.name;
-            shop.isBtnEnable = true;
+            rightGun.Shoot();
         }
-        else
+        if (input.leftShoot)
         {
-            laserPoint.SetPosition(1, laserEndPoint.position);
-
-            shop.btnName = null;
-            shop.isBtnEnable = false;
-
-            laserHit.gameObject.SetActive(false);
+            leftGun.Shoot();
         }
-
     }
-    public void Shoot()
+
+
+
+public void ButtonCheck()
     {
-        if(input.shoot)
+        if (rightGun.isBtnEnable)
         {
-            Debug.Log("발사한다.");
-            GameObject bullet =
-            Instantiate(bulletPrefab, laserStartPoint.position, laserStartPoint.rotation);
-            input.shoot = false;
+            shop.isBtnEnable = rightGun.isBtnEnable;
+            shop.btnName = rightGun.btnName;
+            leftGun.isBtnEnable = false;
+        }
+        else if (leftGun.isBtnEnable)
+        {
+            shop.isBtnEnable = leftGun.isBtnEnable;
+            shop.btnName = leftGun.btnName;
+            rightGun.isBtnEnable = false;
         }
     }
 }

@@ -1,0 +1,3 @@
+ID,Description,PlusSpeed,Seconds,WeakPoint
+4000,공격속도 증가 효과값들,1.5,7.5,0
+4001,보스몬스터의 약점이 커지는 효과값,0,7.5,1.5

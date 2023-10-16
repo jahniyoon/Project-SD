@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     private Rigidbody rigid = default;
-    private CapsuleCollider bulletCollider;
+    private SphereCollider bulletCollider;
     
     [Header("Bullet Damage")]
     public float bulletDamage = 1f;         // 총알 데미지
@@ -28,11 +28,10 @@ public class Bullet : MonoBehaviour
         rigid = GetComponent<Rigidbody>();
         rigid.velocity = transform.forward * bulletSpeed;
 
-        bulletCollider = this.transform.GetChild(0).GetComponent<CapsuleCollider>();
+        bulletCollider = GetComponent<SphereCollider>();
         bulletCollider.radius = bulletSize;
 
         DamageCalculate();
-        Destroy(gameObject, bulletLifeTime);
     }
 
     // 데미지 계산
@@ -49,5 +48,11 @@ public class Bullet : MonoBehaviour
         }
         else
         finalDamage = bulletDamage;
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("닿았나?");
+        Destroy(gameObject);
     }
 }

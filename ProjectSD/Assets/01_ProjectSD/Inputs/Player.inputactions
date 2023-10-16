@@ -15,8 +15,17 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "LeftTrigger",
+                    "type": "PassThrough",
+                    "id": "1e3bcb97-a246-4916-85b5-086424297ee6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "RightTrigger",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "adf2f27a-6594-4fbe-9a95-40a852be1b23",
                     "expectedControlType": "Button",
                     "processors": "",
@@ -25,7 +34,7 @@
                 },
                 {
                     "name": "SelectButton",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "ed2ebb31-dd3e-4a8a-aabd-be4f8415a085",
                     "expectedControlType": "Button",
                     "processors": "",
@@ -90,7 +99,18 @@
                 {
                     "name": "",
                     "id": "8a7f04f6-015d-4fe2-9984-d530040d7cb8",
-                    "path": "<XRController>{RightHand}/primaryButton",
+                    "path": "<XRController>{RightHand}/gripPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "45e12df1-2b26-4040-b8a1-7d56a44c4263",
+                    "path": "<XRController>{LeftHand}/gripPressed",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -117,6 +137,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "ShopButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7a375c33-a43d-41c9-9d2b-be8f1ab7c149",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftTrigger",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a2b5e790-6874-485e-acfe-41cacef974e8",
+                    "path": "<XRController>{LeftHand}/triggerPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftTrigger",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
