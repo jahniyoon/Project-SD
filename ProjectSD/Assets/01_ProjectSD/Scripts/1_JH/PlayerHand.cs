@@ -11,7 +11,11 @@ public class PlayerHand : MonoBehaviour
     public OculusController LeftHand;
     public OculusController RightHand;
 
-   
+    public OVRControllerHelper leftHelper;
+    public OVRControllerHelper rightHelper;
+
+
+
     // Start is called before the first frame update
     void Start()
     {

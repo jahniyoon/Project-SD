@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.10064494, g: 0.07367198, b: 0.13477609, a: 1}
+  m_IndirectSpecularColor: {r: 0.10064437, g: 0.07366231, b: 0.13478464, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -494,6 +494,7 @@ MonoBehaviour:
   PC: {fileID: 414766354}
   Golem: {fileID: 534559349}
   isGameOver: 0
+  isVR: 0
   titlePanel: {fileID: 1918028162}
   shopPanel: {fileID: 293159910}
   gameOverPanel: {fileID: 0}
@@ -573,10 +574,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8255814611675511845, guid: 523ab95688cff794b9f3d193fcbc45fb, type: 3}
       propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 8255814611675511845, guid: 523ab95688cff794b9f3d193fcbc45fb, type: 3}
-      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8255814611675511854, guid: 523ab95688cff794b9f3d193fcbc45fb, type: 3}

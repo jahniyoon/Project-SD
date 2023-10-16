@@ -98,9 +98,9 @@ public class OVRControllerHelper : MonoBehaviour
 
     private GameObject m_activeController;
 
-    private bool m_controllerModelsInitialized = false;
+    public bool m_controllerModelsInitialized = false;
 
-    private bool m_hasInputFocus = true;
+    public bool m_hasInputFocus = true;
     private bool m_hasInputFocusPrev = false;
 
     private enum ControllerType

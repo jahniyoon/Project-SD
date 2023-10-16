@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1fb252095c9a88459c57c17896d8f3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponID: 0
   isUpgrade: 0
   bulletDamage: 0
   critIncrease: 0
@@ -147,7 +148,7 @@ GameObject:
   - component: {fileID: 6099112765664025396}
   m_Layer: 0
   m_Name: Bullet
-  m_TagString: Bullet
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

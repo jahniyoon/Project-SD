@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     public GameObject PC;           // 플레이어
     public GameObject Golem;
     public bool isGameOver;         // 게임오버 상태
+    public bool isVR;
 
     [Header("Panel")]
     public GameObject titlePanel;   // 타이틀 패널
@@ -45,9 +46,9 @@ public class GameManager : MonoBehaviour
 
     #region 골드관련 변수
     [Header("Gold")]
-    private int playerGold;      // 플레이어가 소지한 골드
     public int secondsGold;     // 초당 얻게될 골드
     public int attackGold;      // 공격을 맞출때에 얻게될 골드
+    private int playerGold;      // 플레이어가 소지한 골드
     private float goldGetSeconds;
 
     public int PlayerGold       // UI 상에서 상시 Update 하지 않게하기위한 Gold 프로퍼티 변수
@@ -103,21 +104,31 @@ public class GameManager : MonoBehaviour
 
     }       // Update()
 
+
+
     #region GameSystem
     public void DebugPC()
     {
         if (isPCMODE)
         {
-            PC.transform.GetChild(0).GetComponent<CamRotate>().enabled = true;
+            PC.transform.GetChild(0).GetChild(0).GetComponent<CamRotate>().enabled = true;
             PC.transform.position = new Vector3(PC.transform.position.x, PC.transform.position.y, PC.transform.position.z);
 
             Transform leftHand = PC.transform.GetComponent<PlayerHand>().LeftHand.transform;
             Transform rightHand = PC.transform.GetComponent<PlayerHand>().RightHand.transform;
 
+            // VR 컨트롤러 헬퍼 종료
+            PC.transform.GetComponent<PlayerHand>().leftHelper.enabled = false;
+            PC.transform.GetComponent<PlayerHand>().rightHelper.enabled = false;
+
+            leftHand.gameObject.SetActive(true);
+            rightHand.gameObject.SetActive(true);
+
+
             leftHand.transform.position = PC.transform.GetComponent<PlayerHand>().LeftPosition.position;
             leftHand.transform.rotation = PC.transform.GetComponent<PlayerHand>().LeftPosition.rotation;
             rightHand.transform.position = PC.transform.GetComponent<PlayerHand>().RightPosition.position;
-            leftHand.transform.rotation = PC.transform.GetComponent<PlayerHand>().RightPosition.rotation;
+            rightHand.transform.rotation = PC.transform.GetComponent<PlayerHand>().RightPosition.rotation;
         }
         if(isShopTest)
         {
@@ -132,21 +143,32 @@ public class GameManager : MonoBehaviour
         Golem.GetComponent<Boss>().GameStart();
 
         PC.transform.GetComponent<PlayerHand>().enabled = false;
+        // VR 컨트롤러 헬퍼 종료
+        PC.transform.GetComponent<PlayerHand>().leftHelper.enabled = false;
+        PC.transform.GetComponent<PlayerHand>().rightHelper.enabled = false;
+        PC.transform.GetComponent<PlayerHand>().LeftHand.gameObject.SetActive(false);
+        PC.transform.GetComponent<PlayerHand>().RightHand.gameObject.SetActive(false);
+
         PC.transform.GetComponent<PlayerShooter>().enabled = true;
         PC.transform.GetComponent<PlayerShop>().enabled = true;
 
-        PC.transform.GetComponent<PlayerHand>().LeftHand.gameObject.SetActive(false);
-        PC.transform.GetComponent<PlayerHand>().RightHand.gameObject.SetActive(false);
+        
 
         Transform leftGun = PC.transform.GetComponent<PlayerShooter>().leftGun.transform;
         Transform rightGun = PC.transform.GetComponent<PlayerShooter>().rightGun.transform;
         leftGun.gameObject.SetActive(true);
         rightGun.gameObject.SetActive(true);
 
-        leftGun.transform.position = PC.transform.GetComponent<PlayerHand>().LeftPosition.position;
-        leftGun.transform.rotation = PC.transform.GetComponent<PlayerHand>().LeftPosition.rotation;
-        rightGun.transform.position = PC.transform.GetComponent<PlayerHand>().RightPosition.position;
-        rightGun.transform.rotation = PC.transform.GetComponent<PlayerHand>().RightPosition.rotation;
+        if (isPCMODE)
+        {
+            leftGun.transform.position = PC.transform.GetComponent<PlayerHand>().LeftPosition.position;
+            leftGun.transform.rotation = PC.transform.GetComponent<PlayerHand>().LeftPosition.rotation;
+            rightGun.transform.position = PC.transform.GetComponent<PlayerHand>().RightPosition.position;
+            rightGun.transform.rotation = PC.transform.GetComponent<PlayerHand>().RightPosition.rotation;
+        }
+
+
+
     }
     public void GameOver()
     {
