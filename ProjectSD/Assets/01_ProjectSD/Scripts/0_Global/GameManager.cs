@@ -22,8 +22,9 @@ public class GameManager : MonoBehaviour
     private static GameManager m_instance; // 싱글톤이 할당될 static 변수
 
     [Header("Player")]
-    public GameObject playerPrefab;
+    public GameObject PC;
     public int gold;
+    public GameObject shop;
 
     [Header("Title")]
     public GameObject titlePanel;
@@ -41,8 +42,8 @@ public class GameManager : MonoBehaviour
     }
     public void Retry()
     {
-        playerPrefab.SetActive(false);
-        playerPrefab.SetActive(true);
+        PC.SetActive(false);
+        PC.SetActive(true);
     }
 
 
@@ -51,19 +52,50 @@ public class GameManager : MonoBehaviour
     {
         if (isPCMODE)
         {
-            GameObject PC = playerPrefab.transform.GetChild(0).gameObject;
-            PC.GetComponent<CamRotate>().enabled = true;
-            PC.transform.position = new Vector3(PC.transform.position.x, PC.transform.position.y+0.8f, PC.transform.position.z);
-            Transform leftGun = playerPrefab.transform.GetComponent<PlayerShooter>().leftGun.transform;
-            Transform rightGun = playerPrefab.transform.GetComponent<PlayerShooter>().rightGun.transform;
-            leftGun.transform.position = new Vector3(-0.6f, 1.5f, 0.8f);
-            rightGun.transform.position = new Vector3(0.5f, 1.5f, 0.8f);
+            PC.transform.GetChild(0).GetComponent<CamRotate>().enabled = true;
+            PC.transform.position = new Vector3(PC.transform.position.x, PC.transform.position.y, PC.transform.position.z);
+
+            Transform leftHand = PC.transform.GetComponent<PlayerHand>().LeftHand.transform;
+            Transform rightHand = PC.transform.GetComponent<PlayerHand>().RightHand.transform;
+
+            leftHand.transform.position = PC.transform.GetComponent<PlayerHand>().LeftPosition.position;
+            leftHand.transform.rotation = PC.transform.GetComponent<PlayerHand>().LeftPosition.rotation;
+            rightHand.transform.position = PC.transform.GetComponent<PlayerHand>().RightPosition.position;
+            leftHand.transform.rotation = PC.transform.GetComponent<PlayerHand>().RightPosition.rotation;
+
+           
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GameStart();
+        }
     }
+
+    public void GameStart()
+    {
+        Debug.Log("게임 시작");
+        titlePanel.SetActive(false);
+
+        PC.transform.GetComponent<PlayerShooter>().enabled = true;
+        PC.transform.GetComponent<PlayerShop>().enabled = true;
+
+        PC.transform.GetComponent<PlayerHand>().LeftHand.gameObject.SetActive(false);
+        PC.transform.GetComponent<PlayerHand>().RightHand.gameObject.SetActive(false);
+
+        Transform leftGun = PC.transform.GetComponent<PlayerShooter>().leftGun.transform;
+        Transform rightGun = PC.transform.GetComponent<PlayerShooter>().rightGun.transform;
+        leftGun.gameObject.SetActive(true);
+        rightGun.gameObject.SetActive(true);
+
+        leftGun.transform.position = PC.transform.GetComponent<PlayerHand>().LeftPosition.position;
+        leftGun.transform.rotation = PC.transform.GetComponent<PlayerHand>().LeftPosition.rotation;
+        rightGun.transform.position = PC.transform.GetComponent<PlayerHand>().RightPosition.position;
+        rightGun.transform.rotation = PC.transform.GetComponent<PlayerHand>().RightPosition.rotation;
+    }
+ 
+   
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,19 +11,8 @@ public class PlayerHealth : MonoBehaviour
 
     public void OnEnable()
     {
+        GetData();
         health = startHealth;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void OnDamage(float damage)
@@ -32,6 +22,12 @@ public class PlayerHealth : MonoBehaviour
         {
             GameManager.instance.GameOver();
         }
+    }
+    public void GetData()
+    {
+        Dictionary<string, List<string>> dataDictionary = default;
+        dataDictionary = CSVReader.ReadCSVFile("CSVFiles/PC_Table");
+        startHealth = float.Parse(dataDictionary["HP"][0]);
     }
   
 }

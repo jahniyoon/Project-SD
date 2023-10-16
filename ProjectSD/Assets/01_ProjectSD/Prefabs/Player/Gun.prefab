@@ -1,36 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &171153624
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 171153625}
-  m_Layer: 0
-  m_Name: EndPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &171153625
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 171153624}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.65, z: 500}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8268655459893591979}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1525315831
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,13 +223,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2163099256674612115}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: -20, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8268655459893591979}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4800947057185987781
 MeshFilter:
@@ -1030,7 +999,6 @@ Transform:
   - {fileID: 4646056332067786030}
   - {fileID: 1604217662206288253}
   - {fileID: 1525315832}
-  - {fileID: 171153625}
   - {fileID: 3678964444008205738}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -1047,12 +1015,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8f23db5b38c13d41bd09d420f879e61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponID: 0
   isUpgrade: 0
   fireRate: 0.2
   lastFireTime: 0
   firePoint: {fileID: 1525315832}
   hitPoint: {fileID: 2163099256674612115}
   bulletPrefab: {fileID: 6099112765664025399, guid: ef7a01023dde2c646a413eebb5113de5, type: 3}
+  particle: 0
   isBtnEnable: 0
   btnName: 
 --- !u!120 &7912874188063724735

@@ -6,6 +6,7 @@ using UnityEngine.Windows;
 public class Weapon : MonoBehaviour
 {
     [Header("Weapon")]
+    public int weaponID;
     public bool isUpgrade;         // 업그레이드 확인
     public float fireRate = 0.2f;         // 발사 속도
     public float lastFireTime;     // 마지막 발사시간
@@ -18,6 +19,7 @@ public class Weapon : MonoBehaviour
 
     [Header("Bullet")]
     public GameObject bulletPrefab;
+    public float particle;
 
     [Header("Shop")]
     public bool isBtnEnable;
@@ -25,7 +27,7 @@ public class Weapon : MonoBehaviour
 
     public void OnEnable()
     {
-        isUpgrade = false;
+        GetData(isUpgrade);
         lastFireTime = 0;       // 시간 초기화
     }
 
@@ -75,6 +77,8 @@ public class Weapon : MonoBehaviour
 
             GameObject bullet =
              Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            bullet.transform.GetChild(0).GetComponent<Bullet>().isUpgrade = isUpgrade;
+
             Destroy(bullet, bullet.transform.GetChild(0).GetComponent<Bullet>().bulletLifeTime);
         }
     }
@@ -84,6 +88,23 @@ public class Weapon : MonoBehaviour
         if(!isUpgrade)
         {
             isUpgrade = true;
+            GetData(isUpgrade);
         }
+    }
+
+    public void GetData(bool isUpgrade)
+    {
+        int index = 0;
+        if (isUpgrade)
+        {
+            index = 1;
+        }
+
+        Dictionary<string, List<string>> dataDictionary = default;
+        dataDictionary = CSVReader.ReadCSVFile("CSVFiles/Weapon_Table");
+        
+        weaponID = int.Parse(dataDictionary["ID"][index]);
+        fireRate = float.Parse(dataDictionary["Firerate"][index]);
+        particle = float.Parse(dataDictionary["Particle"][index]);
     }
 }

@@ -1,16 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Windows;
 
 public class Bullet : MonoBehaviour
 {
     private Rigidbody rigid = default;
     private SphereCollider bulletCollider;
-    
+
+    public float weaponID;
+    public bool isUpgrade;
+
     [Header("Bullet Damage")]
-    public float bulletDamage = 1f;         // 총알 데미지
-    public float critIncrease = 200f;        // 총알 치명타율
-    public float critProbability = 0.1f;   // 총알 치명타 확률
+    public float bulletDamage;         // 총알 데미지
+    public float critIncrease;        // 총알 치명타율
+    public float critProbability;   // 총알 치명타 확률
     public float finalDamage;               // 최종 데미지
 
     public MeshRenderer mat;
@@ -25,6 +29,8 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GetData();
+
         rigid = GetComponent<Rigidbody>();
         rigid.velocity = transform.forward * bulletSpeed;
 
@@ -52,7 +58,26 @@ public class Bullet : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        Debug.Log("닿았나?");
-        Destroy(gameObject);
+        GameObject bullet = this.transform.parent.gameObject;
+        Debug.Log(bullet);
+        Destroy(bullet);
+    }
+
+    public void GetData()
+    {
+        int index = 0;
+        if(isUpgrade)    // 2000이면 강화무기
+        { 
+            index = 1; 
+        }
+
+        Dictionary<string, List<string>> dataDictionary = default;
+        dataDictionary = CSVReader.ReadCSVFile("CSVFiles/Projectile_Table");
+
+        bulletDamage = float.Parse(dataDictionary["Damage"][index]);
+        critIncrease = float.Parse(dataDictionary["Crit_Increase"][index]);
+        critProbability = float.Parse(dataDictionary["Crit_Probability"][index]);
+        bulletSpeed = float.Parse(dataDictionary["Speed"][index]);
+        bulletLifeTime = float.Parse(dataDictionary["LifeTime"][index]);
     }
 }

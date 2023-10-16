@@ -21,6 +21,7 @@ public class PlayerShop : MonoBehaviour
     void Start()
     {
         input = GetComponent<PlayerInputs>();
+        shopUI = GameManager.instance.shop; // 상점 가져와주기
 
         // 상점과 버튼은 비활성화
         state = State.Close; 
@@ -34,7 +35,7 @@ public class PlayerShop : MonoBehaviour
 
         if(btnName != null)
         {
-            Debug.Log(btnName);
+            //Debug.Log(btnName);
         }
     }
 

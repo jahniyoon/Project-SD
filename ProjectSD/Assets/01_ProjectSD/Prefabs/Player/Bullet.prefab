@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2030710128737328156}
   - component: {fileID: 6802345842911687455}
   - component: {fileID: 2205949758695090605}
-  - component: {fileID: 5126168435898683192}
+  - component: {fileID: 1733622425695093752}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -115,7 +115,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &5126168435898683192
+--- !u!114 &1733622425695093752
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,9 +127,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1fb252095c9a88459c57c17896d8f3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletDamage: 1
-  critIncrease: 200
-  critProbability: 0.1
+  isUpgrade: 0
+  bulletDamage: 0
+  critIncrease: 0
+  critProbability: 0
   finalDamage: 0
   mat: {fileID: 2030710128737328156}
   bulletSpeed: 10
