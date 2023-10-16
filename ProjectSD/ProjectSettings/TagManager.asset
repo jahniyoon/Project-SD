@@ -7,6 +7,8 @@ TagManager:
   - SamplesInfoPanel
   - RoomLight
   - Bullet
+  - Test
+  - Boss
   layers:
   - Default
   - TransparentFX

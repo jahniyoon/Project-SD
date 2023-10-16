@@ -44,7 +44,7 @@ public class Bullet : MonoBehaviour
     public void DamageCalculate()
     {
         float clit = Random.Range(0f, 1f);
-        Debug.Log("치명타율 : " + clit);
+        //Debug.Log("치명타율 : " + clit);
 
         if(clit < critProbability)
         {

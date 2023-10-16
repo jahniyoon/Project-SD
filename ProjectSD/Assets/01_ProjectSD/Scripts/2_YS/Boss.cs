@@ -13,6 +13,12 @@ public class Boss : MonoBehaviour
     public NavMeshAgent agent;
     public GameObject bossBullet;
 
+    //csv
+    public int hp = default;
+    public float weakPoint = default;
+    public float actTime = default;
+
+
     public Transform bulletPort;
 
     public float traceDist = 100.0f; //추적 거리
@@ -47,12 +53,16 @@ public class Boss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //GetData();
+
         target = GameObject.FindWithTag("Player").GetComponent<Transform>();
         agent = GetComponent<NavMeshAgent>();
 
         StartCoroutine(CheckMonsterState());
 
         StartCoroutine(MonsterAction());
+
+        StartCoroutine(SkillCounter());
     }
 
     // Update is called once per frame
@@ -63,11 +73,21 @@ public class Boss : MonoBehaviour
 
     }
 
+    //public void GetData()
+    //{
+    //    Dictionary<string, List<string>> dataDictionary = default;
+    //    dataDictionary = CSVReader.ReadCSVFile("CSVFiles/Golem_Table"); //이름으로 가져옴
+    //    DataManager.SetData(dataDictionary);
+    //    hp = (int)DataManager.GetData(10000, "HP"); //이름으로 가져오는거라서 순서상관 X 0번째 행  //변수 선언은 해야함
+    //    weakPoint = (float)DataManager.GetData(10000, "WeakpointRate");
+    //    actTime = (float)DataManager.GetData(10000, "ActTime");
+    //}
+
     IEnumerator CheckMonsterState()
     {
         while (!isDie)
         {
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.1f);
 
 
             if (state == State.DIE) yield break;
@@ -118,8 +138,9 @@ public class Boss : MonoBehaviour
                     agent.isStopped = false;
 
                     //임의의 시간 후 투사체
-                    StartCoroutine(SkillCounter());
-                    
+                    //StartCoroutine(SkillCounter());
+
+                   
                     //anim.SetBool(hashTrace, true);
 
 
@@ -128,9 +149,6 @@ public class Boss : MonoBehaviour
 
 
                 case State.ATTACK:
-
-
-                    
                     break;
            
 
@@ -143,9 +161,7 @@ public class Boss : MonoBehaviour
                     //anim.SetTrigger(hashDie);
 
                     //몬스터의 Collider 컴포넌트 비활성화
-                    GetComponent<BoxCollider>().enabled = false;
-
-                    StopAllCoroutines();
+                    //GetComponent<BoxCollider>().enabled = false;
 
                     break;
             }
@@ -155,7 +171,7 @@ public class Boss : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        //추적 사정거리 표시
+        
         if (state == State.TRACE)
         {
             Gizmos.color = Color.red;
@@ -163,12 +179,29 @@ public class Boss : MonoBehaviour
         }
     }
 
+    //IEnumerator HitPoint()
+    //{
+        
+
+    //    //boxCollider.enabled = false;
+    //    //Debug.Log("비활성화");
+    //    yield return new WaitForSeconds(5.0f);
+    //    //boxCollider.enabled = true;
+    //    //Debug.Log("활성화");
+    //}
+
+
     void OnTriggerEnter(Collider other)
     {
         if(other.tag.Equals("Enemy"))
         {
             //TODO:졸개 몬스터 소환 로직
         }
+
+        //if(other.tag.Equals("Bullet"))
+        //{
+        //    //StartCoroutine(HitPoint());
+        //}
     }
 
     IEnumerator SkillCounter()
@@ -176,15 +209,21 @@ public class Boss : MonoBehaviour
         while(!isDie)
         {
             yield return new WaitForSeconds(4.0f);
-            SkillAttack();
+
+            if (state == State.TRACE)
+            {
+                SkillAttack();
+            }
         }
        
     }
 
     void SkillAttack()
     {
-        GameObject instantBulletA = Instantiate(bossBullet, bulletPort.position, bulletPort.rotation);
-        BossBullet bossbulletA = instantBulletA.GetComponent<BossBullet>();     //미사일 스크립트까지 접근하여 목표물 설정(유도)
-        bossbulletA.target = target;
+        GameObject instantBullet = Instantiate(bossBullet, bulletPort.position, bulletPort.rotation);
+
+        bulletPort.transform.LookAt(target);
+        instantBullet.transform.LookAt(target);
+        
     }
 }
