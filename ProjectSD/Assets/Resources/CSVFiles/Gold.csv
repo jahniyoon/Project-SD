@@ -1,0 +1,4 @@
+ID,Description,MinCount,CurrentGold,SecondsGold,AttackGold
+6000,현재 플레이어 골드,0,5000,0,0
+6001,초당 얻게될 골드,0,0,1,0
+6002,상대를 맞출시 얻게될 골드,0,0,0,1

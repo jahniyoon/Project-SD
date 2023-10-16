@@ -43,7 +43,6 @@ public class CSVReader
                     // index를 1 부터 시작
 
                     int count = lines.Length;
-                    Debug.Log($"count = {lines.Length}");
                     for (int i = 1; i < count; i++)
                     {
                         string line = lines[i];

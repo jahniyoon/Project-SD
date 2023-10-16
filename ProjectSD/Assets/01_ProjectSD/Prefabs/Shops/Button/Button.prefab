@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 4637644259214422427}
   - component: {fileID: 4637644259214422404}
   - component: {fileID: 4637644259214422425}
+  - component: {fileID: 959492351278279969}
   m_Layer: 8
   m_Name: Button
   m_TagString: Untagged
@@ -271,3 +272,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonNum: 0
+  nowItemValue: 0
+  maxItemValue: 0
+  price: 0
+  coolTime: 0
+  defaultScale: {x: 0, y: 0, z: 0}
+  expansionScale: {x: 0, y: 0, z: 0}
+--- !u!65 &959492351278279969
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4637644259214422406}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

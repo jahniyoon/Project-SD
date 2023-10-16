@@ -1,3 +1,3 @@
-ID,Description,Price,MinBuyCount,MaxBuyCount
-100,공격속도 증가시켜주는 아이템,100,0,1
-101,보스의 약점 확대해주는 아이템,150,0,1
+ID,Description,Price,MinBuyCount,MaxBuyCount,NowCount,CoolTime
+100,공격속도 증가시켜주는 아이템,100,0,1,0,5
+101,보스의 약점 확대해주는 아이템,150,0,1,0,10
