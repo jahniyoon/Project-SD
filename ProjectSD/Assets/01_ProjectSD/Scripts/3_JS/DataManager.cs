@@ -78,7 +78,7 @@ public class DataManager
 
     // 매개 변수에 id만 넣을 경우 Dictionary<string, string>로 반환한다.
     public static Dictionary<string, string> GetData(
-        int id, string category = default, bool isMultiple = false)
+        int id)
     {
         // dataTable을 검색하는 함수 호출
         Dictionary<string, string> temp_DataTable = FindDataTable(id);
@@ -182,6 +182,7 @@ public class DataManager
             }
         }
 
+        else
         // 정상적으로 접근하지 못했을 경우
         {
             // 디버그 메세지 출력
