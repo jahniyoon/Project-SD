@@ -97,6 +97,15 @@ public class DataManager
         // 찾은 카운트 반환
         return count;
     }
+
+    // 아이디가 위치한 실제 인덱스를 가져오는 함수
+    public static int GetIndex(int id)
+    {
+        // 아이디의 실제 인덱스를 가져오는 함수 호출
+        id = GetDataKey(id);
+
+        return id;
+    }
     #endregion
 
     #region [내부 메서드]
