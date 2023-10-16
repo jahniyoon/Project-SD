@@ -55,6 +55,10 @@ public class Boss : MonoBehaviour
     {
         GetData();
 
+       
+    }
+    public void GameStart()
+    {
         target = GameObject.FindWithTag("Player").GetComponent<Transform>();
         agent = GetComponent<NavMeshAgent>();
 

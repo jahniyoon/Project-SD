@@ -11,6 +11,7 @@ public class PlayerInputs : MonoBehaviour
     public bool rightShoot;  // 오른쪽 사격
     public bool select;      // 결정
     public bool shop;        // 상점
+    public bool deleteUnit;      // 유닛제거
 
     // 사격 버튼 입력 : 왼쪽 마우스, 왼쪽 트리거
     public void OnLeftTrigger(InputValue value)
@@ -51,4 +52,15 @@ public class PlayerInputs : MonoBehaviour
     {
         shop = input;
     }
+
+    // 유닛제거 버튼 입력 : 왼쪽 마우스, 왼쪽 트리거
+    public void OnDelete(InputValue value)
+    {
+        DeleteButtonInput(value.isPressed);
+    }
+    public void DeleteButtonInput(bool input)
+    {
+        deleteUnit = input;
+    }
+
 }
