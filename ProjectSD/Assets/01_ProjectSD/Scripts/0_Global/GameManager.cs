@@ -24,9 +24,12 @@ public class GameManager : MonoBehaviour
 
     [Header("Player")]
     public GameObject PC;           // 플레이어
-    public GameObject Golem;
     public bool isGameOver;         // 게임오버 상태
     public bool isVR;
+
+    [Header("Golem")]
+    public GameObject Golem;
+    public Vector3 golemPosition;
 
     [Header("Panel")]
     public GameObject titlePanel;   // 타이틀 패널
@@ -94,6 +97,12 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        // 플레이어를 세팅한다.
+        SetPlayer(true);
+
+        // 골렘의 초기 위치 저장한다.
+        golemPosition = Golem.transform.position;
+
         DebugPC();  // PC로 플레이 할 경우의 세팅
     }       // Start()
 
@@ -102,39 +111,70 @@ public class GameManager : MonoBehaviour
     {
         GetTimeGold();      // 일정시간이 된다면 골드를 올려주는 함수
 
+        // 게임오버 테스트
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            GameOver();
+        }
+
     }       // Update()
 
 
-
     #region GameSystem
-    public void DebugPC()
+    public void SetPlayer(bool setHand)
     {
+        // PC 모드면 카메라 조작 On
+        PC.transform.GetChild(0).GetChild(0).GetComponent<CamRotate>().enabled = isPCMODE;
+        
+        // Shooter와 Shop 은 게임중에만 사용하기에 OFF
+        PC.GetComponent<PlayerShooter>().enabled = !setHand;
+        PC.GetComponent<PlayerShop>().enabled = !setHand;
+
+        // ture면 컨트롤러를 켠다.
+        PC.transform.GetComponent<PlayerHand>().enabled = setHand;
+
+        // 플레이어의 손
+        Transform leftHand = PC.transform.GetComponent<PlayerHand>().LeftHand.transform;
+        Transform rightHand = PC.transform.GetComponent<PlayerHand>().RightHand.transform;
+        // 플레이어의 총
+        Transform leftGun = PC.transform.GetComponent<PlayerShooter>().leftGun.transform;
+        Transform rightGun = PC.transform.GetComponent<PlayerShooter>().rightGun.transform;
+
+        if(!isPCMODE)
+        {
+            // PC 모드라면, VR 컨트롤러 헬퍼 종료
+            PC.transform.GetComponent<PlayerHand>().leftHelper.enabled = setHand;
+            PC.transform.GetComponent<PlayerHand>().rightHelper.enabled = setHand;
+        }
+
+        // SetHand 가 true면 컨트롤러가 켜진다.
+        leftHand.gameObject.SetActive(setHand);
+        rightHand.gameObject.SetActive(setHand);
+        // SetHand 가 false면 총이 켜진다.
+        leftGun.gameObject.SetActive(!setHand);
+        rightGun.gameObject.SetActive(!setHand);
+
+        // PC모드일 경우
         if (isPCMODE)
         {
-            PC.transform.GetChild(0).GetChild(0).GetComponent<CamRotate>().enabled = true;
-            PC.transform.position = new Vector3(PC.transform.position.x, PC.transform.position.y, PC.transform.position.z);
-
-            Transform leftHand = PC.transform.GetComponent<PlayerHand>().LeftHand.transform;
-            Transform rightHand = PC.transform.GetComponent<PlayerHand>().RightHand.transform;
-
-            // VR 컨트롤러 헬퍼 종료
+            // PC 모드라면, VR 컨트롤러 헬퍼 종료
             PC.transform.GetComponent<PlayerHand>().leftHelper.enabled = false;
             PC.transform.GetComponent<PlayerHand>().rightHelper.enabled = false;
 
-            leftHand.gameObject.SetActive(true);
-            rightHand.gameObject.SetActive(true);
-
-
+            // 만약 PC 모드라면, 카메라 앞으로 손 위치 지정
             leftHand.transform.position = PC.transform.GetComponent<PlayerHand>().LeftPosition.position;
             leftHand.transform.rotation = PC.transform.GetComponent<PlayerHand>().LeftPosition.rotation;
             rightHand.transform.position = PC.transform.GetComponent<PlayerHand>().RightPosition.position;
             rightHand.transform.rotation = PC.transform.GetComponent<PlayerHand>().RightPosition.rotation;
+
+            leftGun.transform.position = PC.transform.GetComponent<PlayerHand>().LeftPosition.position;
+            leftGun.transform.rotation = PC.transform.GetComponent<PlayerHand>().LeftPosition.rotation;
+            rightGun.transform.position = PC.transform.GetComponent<PlayerHand>().RightPosition.position;
+            rightGun.transform.rotation = PC.transform.GetComponent<PlayerHand>().RightPosition.rotation;
         }
-        if(isShopTest)
-        {
-            GameStart();
-        }
+       
     }
+
     public void GameStart()
     {
         Debug.Log("게임 시작");
@@ -142,42 +182,43 @@ public class GameManager : MonoBehaviour
 
         Golem.GetComponent<Boss>().GameStart();
 
-        PC.transform.GetComponent<PlayerHand>().enabled = false;
-        // VR 컨트롤러 헬퍼 종료
-        PC.transform.GetComponent<PlayerHand>().leftHelper.enabled = false;
-        PC.transform.GetComponent<PlayerHand>().rightHelper.enabled = false;
-        PC.transform.GetComponent<PlayerHand>().LeftHand.gameObject.SetActive(false);
-        PC.transform.GetComponent<PlayerHand>().RightHand.gameObject.SetActive(false);
-
-        PC.transform.GetComponent<PlayerShooter>().enabled = true;
-        PC.transform.GetComponent<PlayerShop>().enabled = true;
-
-        
-
-        Transform leftGun = PC.transform.GetComponent<PlayerShooter>().leftGun.transform;
-        Transform rightGun = PC.transform.GetComponent<PlayerShooter>().rightGun.transform;
-        leftGun.gameObject.SetActive(true);
-        rightGun.gameObject.SetActive(true);
-
-        if (isPCMODE)
-        {
-            leftGun.transform.position = PC.transform.GetComponent<PlayerHand>().LeftPosition.position;
-            leftGun.transform.rotation = PC.transform.GetComponent<PlayerHand>().LeftPosition.rotation;
-            rightGun.transform.position = PC.transform.GetComponent<PlayerHand>().RightPosition.position;
-            rightGun.transform.rotation = PC.transform.GetComponent<PlayerHand>().RightPosition.rotation;
-        }
-
-
-
+        SetPlayer(false);
     }
     public void GameOver()
     {
-        gameOverPanel.SetActive(true);
+        if (!isGameOver)
+        {
+            Golem.GetComponent<Boss>().agent.isStopped = true;
+
+            isGameOver = true;
+
+            shopPanel.SetActive(false);
+            gameOverPanel.SetActive(true);
+            SetPlayer(true);
+        }
     }
+    
+    // 다시시작
     public void Retry()
     {
+        Golem.transform.position = golemPosition;
         PC.SetActive(false);
         PC.SetActive(true);
+        Golem.SetActive(false);
+        Golem.SetActive(true);
+
+        isGameOver = false;
+
+        gameOverPanel.SetActive(false);
+        titlePanel.SetActive(true);
+    }
+
+    public void DebugPC()
+    {
+        if (isShopTest)
+        {
+            GameStart();
+        }
     }
     #endregion
 

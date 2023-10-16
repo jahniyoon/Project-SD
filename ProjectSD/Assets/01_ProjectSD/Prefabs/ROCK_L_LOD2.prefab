@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1491206565248921925}
   m_Layer: 0
   m_Name: ROCK_L_LOD2
-  m_TagString: Untagged
+  m_TagString: BossBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128,4 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 8255814611675511854, guid: 523ab95688cff794b9f3d193fcbc45fb, type: 3}
+  hp: 10
+  lifeTime: 0
+  damage: 0
   speed: 20

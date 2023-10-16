@@ -6,15 +6,21 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     PlayerShooter shooter;
+    CharacterController playerController;
     public float health;
     public float startHealth;
 
     public void OnEnable()
     {
         GetData();
+        GameManager.instance.SetPlayer(true);
         health = startHealth;
     }
-
+    private void Start()
+    {
+        shooter=GetComponent<PlayerShooter>();
+        playerController = gameObject.GetComponent<CharacterController>();  
+    }
     public void OnDamage(float damage)
     {
         health -= damage;
@@ -29,5 +35,12 @@ public class PlayerHealth : MonoBehaviour
         dataDictionary = CSVReader.ReadCSVFile("CSVFiles/PC_Table");
         startHealth = float.Parse(dataDictionary["HP"][0]);
     }
-  
+    public void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Finish"))
+        {
+            GameManager.instance.GameOver();
+        }
+    }
+
 }

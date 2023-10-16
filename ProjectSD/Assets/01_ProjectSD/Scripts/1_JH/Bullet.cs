@@ -58,9 +58,14 @@ public class Bullet : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        GameObject bullet = this.transform.parent.gameObject;
-        Debug.Log(bullet);
-        Destroy(bullet);
+        if (other.CompareTag("BossBullet"))
+        {
+            GameObject bossBullet = other.gameObject;
+            bossBullet.GetComponent<BossBullet>().OnDamage(Mathf.FloorToInt(finalDamage));
+
+            GameObject bullet = this.transform.parent.gameObject;
+            Destroy(bullet);
+        }
     }
 
     public void GetData()

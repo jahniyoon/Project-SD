@@ -9,6 +9,7 @@ TagManager:
   - Bullet
   - Test
   - Boss
+  - BossBullet
   layers:
   - Default
   - TransparentFX

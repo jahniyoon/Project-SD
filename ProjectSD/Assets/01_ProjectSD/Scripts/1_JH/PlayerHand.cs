@@ -46,6 +46,21 @@ public class PlayerHand : MonoBehaviour
                 GameManager.instance.GameStart();
                 LeftHand.isBtnEnable = false;
             }
+
+            if (RightHand.isBtnEnable && RightHand.btnName == "Retry")
+            {
+                input.select = false;
+                input.shop = false;
+                GameManager.instance.Retry();
+                RightHand.isBtnEnable = false;
+            }
+            else if (LeftHand.isBtnEnable && LeftHand.btnName == "Retry")
+            {
+                input.select = false;
+                input.shop = false;
+                GameManager.instance.Retry();
+                LeftHand.isBtnEnable = false;
+            }
             input.select = false;
         }
 

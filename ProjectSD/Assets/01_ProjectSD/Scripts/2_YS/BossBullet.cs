@@ -8,6 +8,7 @@ public class BossBullet : MonoBehaviour
 {
     public Transform target;
     private Rigidbody rigid;
+    private MeshRenderer mesh;
     
 
     //csv
@@ -23,7 +24,7 @@ public class BossBullet : MonoBehaviour
         GetData();
 
         rigid = GetComponent<Rigidbody>();
-
+        mesh = GetComponent<MeshRenderer>();    // 지환 : 데미지 확인을 위한 메시
         rigid.velocity = transform.forward * speed;
     }
 
@@ -58,4 +59,25 @@ public class BossBullet : MonoBehaviour
             
         }
     }
+    // 보스 총알이 데미지를 입는 함수
+    public void OnDamage(int damage)
+    {
+        hp -= damage;
+        StartCoroutine("DamageColor");
+
+        // 체력이 0이되면 파괴
+        if(hp <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    IEnumerator DamageColor()
+    {
+        mesh.GetComponent<MeshRenderer>().material.color = Color.red;
+        yield return new WaitForSeconds(0.25f);
+        mesh.GetComponent<MeshRenderer>().material.color = Color.white;
+
+    }
+
 }
