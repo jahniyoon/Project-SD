@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Player")]
     public GameObject PC;           // 플레이어
+    public GameObject Golem;
     public bool isGameOver;         // 게임오버 상태
 
     [Header("Panel")]
@@ -31,6 +32,9 @@ public class GameManager : MonoBehaviour
     public GameObject shopPanel;         // 상점
     public GameObject gameOverPanel;// 게임오버 패널
 
+    [Header("Upgrade")]
+    public bool isGunUpgrade;
+    public bool isWeakpointUpgrade;
 
     [Header("Debug")]
     public bool isPCMODE;   // PC 모드로 테스트 할 경우 (VR 아닐 때)
@@ -125,6 +129,8 @@ public class GameManager : MonoBehaviour
         Debug.Log("게임 시작");
         titlePanel.SetActive(false);
 
+        Golem.GetComponent<Boss>().GameStart();
+
         PC.transform.GetComponent<PlayerHand>().enabled = false;
         PC.transform.GetComponent<PlayerShooter>().enabled = true;
         PC.transform.GetComponent<PlayerShop>().enabled = true;
@@ -151,6 +157,18 @@ public class GameManager : MonoBehaviour
         PC.SetActive(false);
         PC.SetActive(true);
     }
+    #endregion
+
+    #region Upgrade
+    public void UpgradeGun()
+    {
+
+    }
+    public void UpgradeWeakPoint()
+    {
+
+    }
+
     #endregion
 
     // Gold관련 CSV를 읽어와서 변수에 해당하는 값을 넣어주는 함수

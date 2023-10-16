@@ -427,6 +427,10 @@ MonoBehaviour:
   shopUI: {fileID: 0}
   isBtnEnable: 0
   btnName: 
+  pShoter: {fileID: 0}
+  buttonMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &8255814611675511848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1095,4 +1099,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dc91897842c1564894152cdfc51be1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivity: 200
+  sensitivity: 900
