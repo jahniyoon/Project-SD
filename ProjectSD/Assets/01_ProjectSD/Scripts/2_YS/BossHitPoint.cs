@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class BossHitPoint : MonoBehaviour
 {
+   
     private BoxCollider boxCollider;
 
     // Start is called before the first frame update
     void Start()
     {
+        
         //Debug.Log("히트포인트 동작");
         boxCollider = GetComponent<BoxCollider>();
     }
@@ -28,25 +30,33 @@ public class BossHitPoint : MonoBehaviour
         //Debug.Log("활성화");
     }
 
+    
+
     //임시 데미지 함수
-    //public void OnDamage(float damage)
-    //{
-    //    //Weapon weapon = other.GetComponent<Weapon>();
-    //    hp -= damage * 1.5f;
-    //}
+    public void OnDamage(float damage)
+    {
+        Boss boss = GetComponentInParent<Boss>();
+        boss.hp -= (int)(damage * 1.5f);
+        Debug.Log(boss.hp);
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.tag.Equals("Bullet"))
+        {
+            Bullet bullet = other.GetComponent<Bullet>();
+            OnDamage(bullet.bulletDamage);
+            
+            StartCoroutine(HitPoint());
+        }
+    }
+
 
     //boxCollider.transform.localScale = new Vector3(3.0f, 3.0f, 3.0f); //객체 커지는거
-    
+
     //사이즈 조절 관련(아직 어떻게 조절할지 조건을 모르겠어서 보류)
     //boxCollider.size = new Vector3(3.0f, 3.0f, 3.0f);
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.CompareTag("Bullet"))
-        {
-            
-            StartCoroutine(HitPoint());     
-        }
-    }
+
 
 }

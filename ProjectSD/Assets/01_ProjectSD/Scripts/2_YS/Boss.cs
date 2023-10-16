@@ -13,6 +13,12 @@ public class Boss : MonoBehaviour
     public NavMeshAgent agent;
     public GameObject bossBullet;
 
+    //csv
+    public int hp = default;
+    public float weakPoint = default;
+    public float actTime = default;
+
+
     public Transform bulletPort;
 
     public float traceDist = 100.0f; //추적 거리
@@ -47,6 +53,8 @@ public class Boss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //GetData();
+
         target = GameObject.FindWithTag("Player").GetComponent<Transform>();
         agent = GetComponent<NavMeshAgent>();
 
@@ -64,6 +72,16 @@ public class Boss : MonoBehaviour
 
 
     }
+
+    //public void GetData()
+    //{
+    //    Dictionary<string, List<string>> dataDictionary = default;
+    //    dataDictionary = CSVReader.ReadCSVFile("CSVFiles/Golem_Table"); //이름으로 가져옴
+    //    DataManager.SetData(dataDictionary);
+    //    hp = (int)DataManager.GetData(10000, "HP"); //이름으로 가져오는거라서 순서상관 X 0번째 행  //변수 선언은 해야함
+    //    weakPoint = (float)DataManager.GetData(10000, "WeakpointRate");
+    //    actTime = (float)DataManager.GetData(10000, "ActTime");
+    //}
 
     IEnumerator CheckMonsterState()
     {
