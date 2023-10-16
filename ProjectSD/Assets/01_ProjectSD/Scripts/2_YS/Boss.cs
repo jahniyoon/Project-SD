@@ -161,12 +161,29 @@ public class Boss : MonoBehaviour
         }
     }
 
+    //IEnumerator HitPoint()
+    //{
+        
+
+    //    //boxCollider.enabled = false;
+    //    //Debug.Log("비활성화");
+    //    yield return new WaitForSeconds(5.0f);
+    //    //boxCollider.enabled = true;
+    //    //Debug.Log("활성화");
+    //}
+
+
     void OnTriggerEnter(Collider other)
     {
         if(other.tag.Equals("Enemy"))
         {
             //TODO:졸개 몬스터 소환 로직
         }
+
+        //if(other.tag.Equals("Bullet"))
+        //{
+        //    //StartCoroutine(HitPoint());
+        //}
     }
 
     IEnumerator SkillCounter()
@@ -178,7 +195,6 @@ public class Boss : MonoBehaviour
             if (state == State.TRACE)
             {
                 SkillAttack();
-
             }
         }
        
@@ -186,11 +202,10 @@ public class Boss : MonoBehaviour
 
     void SkillAttack()
     {
-
         GameObject instantBullet = Instantiate(bossBullet, bulletPort.position, bulletPort.rotation);
 
+        bulletPort.transform.LookAt(target);
         instantBullet.transform.LookAt(target);
-        transform.LookAt(target);
-
+        
     }
 }

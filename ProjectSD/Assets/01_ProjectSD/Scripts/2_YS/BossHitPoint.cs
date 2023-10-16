@@ -9,7 +9,7 @@ public class BossHitPoint : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("히트포인트 동작");
+        //Debug.Log("히트포인트 동작");
         boxCollider = GetComponent<BoxCollider>();
     }
 
@@ -22,10 +22,10 @@ public class BossHitPoint : MonoBehaviour
     IEnumerator HitPoint()
     {
         boxCollider.enabled = false;
-        Debug.Log("비활성화");
+        //Debug.Log("비활성화");
         yield return new WaitForSeconds(5.0f);
         boxCollider.enabled = true;
-        Debug.Log("활성화");
+        //Debug.Log("활성화");
     }
 
     //임시 데미지 함수
@@ -37,7 +37,7 @@ public class BossHitPoint : MonoBehaviour
 
     //boxCollider.transform.localScale = new Vector3(3.0f, 3.0f, 3.0f); //객체 커지는거
     
-    //사이즈 조절 관련(아직 모르겠어서 보류)
+    //사이즈 조절 관련(아직 어떻게 조절할지 조건을 모르겠어서 보류)
     //boxCollider.size = new Vector3(3.0f, 3.0f, 3.0f);
 
     private void OnTriggerEnter(Collider other)
