@@ -30,7 +30,7 @@ using UnityEngine;
 //!
 //! 아이디가 들어있는 CSV파일의 카운트를 가져온다.
 //! DataManager.GetCount(아이디);
-public class DataManager
+public static class DataManager
 {
     [Header("Choi")]
     // 데이터를 보관하는 변수

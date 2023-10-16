@@ -31,16 +31,19 @@ public class PlayerHand : MonoBehaviour
             if (RightHand.isBtnEnable && RightHand.btnName == "GameStart")
             {
                 input.select = false;
+                input.shop = false;
                 GameManager.instance.GameStart();
                 RightHand.isBtnEnable = false;
             }
             else if (LeftHand.isBtnEnable && LeftHand.btnName == "GameStart")
             {
                 input.select = false;
+                input.shop = false;
                 GameManager.instance.GameStart();
                 LeftHand.isBtnEnable = false;
             }
             input.select = false;
         }
+
     }
 }

@@ -15,7 +15,7 @@ public class Weapon : MonoBehaviour
     [Header("Laser Point")]
     public Transform firePoint;
     public GameObject hitPoint;
-    private LineRenderer laserRenderer;
+    public LineRenderer laserRenderer;
 
     [Header("Bullet")]
     public GameObject bulletPrefab;

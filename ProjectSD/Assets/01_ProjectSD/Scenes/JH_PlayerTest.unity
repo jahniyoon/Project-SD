@@ -729,12 +729,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PC: {fileID: 414766354}
-  gold: 0
-  shop: {fileID: 944671629}
-  titlePanel: {fileID: 1918028162}
-  gameOverPanel: {fileID: 0}
   isGameOver: 0
+  titlePanel: {fileID: 1918028162}
+  shopPanel: {fileID: 944671629}
+  gameOverPanel: {fileID: 0}
   isPCMODE: 1
+  isShopTest: 0
+  secondsGold: 0
+  attackGold: 0
 --- !u!1001 &1354138724
 PrefabInstance:
   m_ObjectHideFlags: 0

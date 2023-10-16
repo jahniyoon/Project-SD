@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -22,33 +23,84 @@ public class GameManager : MonoBehaviour
     private static GameManager m_instance; // 싱글톤이 할당될 static 변수
 
     [Header("Player")]
-    public GameObject PC;
-    public int gold;
-    public GameObject shop;
+    public GameObject PC;           // 플레이어
+    public bool isGameOver;         // 게임오버 상태
 
-    [Header("Title")]
-    public GameObject titlePanel;
+    [Header("Panel")]
+    public GameObject titlePanel;   // 타이틀 패널
+    public GameObject shopPanel;         // 상점
+    public GameObject gameOverPanel;// 게임오버 패널
 
-    [Header("GameOver")]
-    public GameObject gameOverPanel;
-    public bool isGameOver;
 
     [Header("Debug")]
-    public bool isPCMODE;
+    public bool isPCMODE;   // PC 모드로 테스트 할 경우 (VR 아닐 때)
+    public bool isShopTest;
 
-    public void GameOver()
+
+
+
+    #region 골드관련 변수
+    [Header("Gold")]
+    private int playerGold;      // 플레이어가 소지한 골드
+    public int secondsGold;     // 초당 얻게될 골드
+    public int attackGold;      // 공격을 맞출때에 얻게될 골드
+    private float goldGetSeconds;
+
+    public int PlayerGold       // UI 상에서 상시 Update 하지 않게하기위한 Gold 프로퍼티 변수
     {
-        gameOverPanel.SetActive(true);
+        get { return playerGold; }
+
+        set
+        {
+            if(playerGold != value)
+            {
+                playerGold = value;
+                playerGoldUpdateEvent?.Invoke();     // 골드가 올라올떄마다 이벤트 구독해놓은 얘들을 Invoke()
+            }
+        }
     }
-    public void Retry()
+
+    #endregion 골드관련 변수
+
+    #region 이벤트 관련
+    public delegate void playerGoldUpdateDelegate();
+    public event playerGoldUpdateDelegate playerGoldUpdateEvent;
+
+
+    #endregion 이벤트 관련
+
+    #region 상점 관련
+    public static List<ShopItemButton> buttonsList;
+    #endregion 상점 관련
+
+
+    private void Awake()
     {
-        PC.SetActive(false);
-        PC.SetActive(true);
-    }
+        ButtonsListMake(); // button들을 총 관리해줄 static List를 선언
+        ReadGoldCSVFile(); // Gold관련 CSV를 읽어와서 변수에 해당하는 값을 넣어주는 함수
 
 
-    // Start is called before the first frame update
+
+
+    }       // Awake()
+
+
+
+
     void Start()
+    {
+        DebugPC();  // PC로 플레이 할 경우의 세팅
+    }       // Start()
+
+    
+    void Update()
+    {
+        GetTimeGold();      // 일정시간이 된다면 골드를 올려주는 함수
+
+    }       // Update()
+
+    #region GameSystem
+    public void DebugPC()
     {
         if (isPCMODE)
         {
@@ -62,24 +114,18 @@ public class GameManager : MonoBehaviour
             leftHand.transform.rotation = PC.transform.GetComponent<PlayerHand>().LeftPosition.rotation;
             rightHand.transform.position = PC.transform.GetComponent<PlayerHand>().RightPosition.position;
             leftHand.transform.rotation = PC.transform.GetComponent<PlayerHand>().RightPosition.rotation;
-
-           
         }
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if(isShopTest)
         {
             GameStart();
         }
     }
-
     public void GameStart()
     {
         Debug.Log("게임 시작");
         titlePanel.SetActive(false);
 
+        PC.transform.GetComponent<PlayerHand>().enabled = false;
         PC.transform.GetComponent<PlayerShooter>().enabled = true;
         PC.transform.GetComponent<PlayerShop>().enabled = true;
 
@@ -96,6 +142,52 @@ public class GameManager : MonoBehaviour
         rightGun.transform.position = PC.transform.GetComponent<PlayerHand>().RightPosition.position;
         rightGun.transform.rotation = PC.transform.GetComponent<PlayerHand>().RightPosition.rotation;
     }
- 
-   
-}
+    public void GameOver()
+    {
+        gameOverPanel.SetActive(true);
+    }
+    public void Retry()
+    {
+        PC.SetActive(false);
+        PC.SetActive(true);
+    }
+    #endregion
+
+    // Gold관련 CSV를 읽어와서 변수에 해당하는 값을 넣어주는 함수
+    private void ReadGoldCSVFile()
+    {        
+        Dictionary<string, List<string>> goldCSV;
+        goldCSV = CSVReader.ReadCSVFile("CSVFiles/gold");
+
+        DataManager.SetData(goldCSV);
+
+        playerGold = (int)DataManager.GetData(6000, "CurrentGold");
+        secondsGold = (int)DataManager.GetData(6001, "SecondsGold");
+        attackGold = (int)DataManager.GetData(6002, "AttackGold");
+        
+    }       // ReadGoldCSVFile()
+
+    // 일정 시간이 된다면 골드를 올려주는 함수
+    private void GetTimeGold()
+    {
+        goldGetSeconds += Time.deltaTime;
+        if (goldGetSeconds >= 1)
+        {
+            PlayerGold += secondsGold;            
+            
+            goldGetSeconds = 0;
+        }
+        else { /*PASS*/ }
+    }       // GetTimeGold()
+
+    public void ButtonsListMake()       // 버튼 확대를 위해 버튼들을 static List선언
+    {
+        if (buttonsList == null || buttonsList == default)
+        {
+            buttonsList = new List<ShopItemButton>();
+        }
+        else { /*PASS*/ }
+    }       //ButtonsListMake()
+
+
+}       // ClassEnd
