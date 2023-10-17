@@ -31,7 +31,7 @@ public class DrawCircles : MonoBehaviour
             float x = player.transform.position.x + circleRadius * Mathf.Cos(Mathf.Deg2Rad * angle);
             float z = player.transform.position.z + circleRadius * Mathf.Sin(Mathf.Deg2Rad * angle);
             float playerPosZ = player.transform.position.z * 2;
-            Vector3 point = new Vector3(x, player.transform.position.y, -z + playerPosZ);
+            Vector3 point = new Vector3(x, player.transform.position.y, z + playerPosZ);
             lineRenderer.SetPosition(i, point);
 
             // 각 꼭짓점의 위치 디버그 출력

@@ -1,0 +1,34 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class EnemyNormal : MonoBehaviour
+{
+    [Header("EnemyNormal")]
+    private const int ID = 2000;
+    private const float SCALE_FACTOR = 3f;
+    Enemy enemy;
+    NavMoveable navMoveable;
+
+    // OnEnable 할 때 마다 객체 초기화
+    private void OnEnable()
+    {
+        // ID로 Enemy클래스의 객체를 생성하고 기본설정을 한다.
+        enemy = new Enemy(ID, gameObject, SCALE_FACTOR);
+        navMoveable = GetComponent<NavMoveable>();
+        navMoveable.speed = enemy.speed;
+    }
+
+    // 공격용 콜라이더 함수
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log($"공격범위 내 감지{other.name}");
+        if (other.tag.Equals("Player"))
+        {
+            Debug.Log("플레이어 공격");
+            other.GetComponent<PlayerHealth>().OnDamage(enemy.damage);
+
+            Debug.Log("자폭 공격");
+        }
+    }
+}

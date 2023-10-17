@@ -26,7 +26,7 @@ public class DrawRadius
             float x = playerPos.x + radius * Mathf.Cos(Mathf.Deg2Rad * angle);
             float z = playerPos.z + radius * Mathf.Sin(Mathf.Deg2Rad * angle);
             float playerPosZ = playerPos.z * 2f;
-            Vector3 point = new Vector3(x, playerPos.y, -z + playerPosZ);
+            Vector3 point = new Vector3(x, playerPos.y, z + playerPosZ);
 
             // 각 꼭짓점의 위치 디버그 출력
             Debug.Log("Point " + i + " position: " + point);
