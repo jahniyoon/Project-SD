@@ -18,6 +18,8 @@ public class CSVReader
             new Dictionary<string, List<string>>();
         // 매개 변수로 받아온 파일 이름으로 파일을 불러온다.
         TextAsset filePath = Resources.Load<TextAsset>(csvFileName);
+
+        Debug.LogFormat("filePath -> {0}", filePath.text);
         // 디버그용 변수
         bool isCSVReadSuccessful = false;
         // CSV 파일을 가져왔을 경우

@@ -26,14 +26,16 @@ public class ItemButtonInstance : MonoBehaviour
     {
         AwakeInIt();                // Awake 단계에서 할 작업
         ButtonInstantitate();       // 버튼을 인스턴트해주는 함수
-        
+
+
     }
 
     private void Start()
     {
         // TODO : 자식오브젝트로 묶어놓은 버튼들을 배열속에 집어넣기
-        buttons = GetComponentsInChildren<ShopItemButton>();
+        buttons = GetComponentsInChildren<ShopItemButton>();   
         InItButtonNum();            // 버튼의 고유번호를 넣어주는 함수
+
 
     }
 
@@ -44,9 +46,10 @@ public class ItemButtonInstance : MonoBehaviour
         Dictionary<string, List<string>> buttonCSV;
         // TODO : 여기서 CSV를 읽어서 열의 갯수를 채크   
         buttonCSV = CSVReader.ReadCSVFile("CSVFiles/Shop/Shop");
+        Debug.LogFormat("buttonCSV -> {0}", buttonCSV);
         DataManager.SetData(buttonCSV);
-        childCount = DataManager.GetCount(100);     // ID 수치 변경시 매개변수값 변경
-
+        Debug.Log("SetData 이후로 내려오나?");
+        childCount = DataManager.GetCount(8001);     // ID 수치 변경시 매개변수값 변경       
         buttonSclae = new Vector3(1f, 2f, 1f);
 
         
@@ -66,7 +69,8 @@ public class ItemButtonInstance : MonoBehaviour
     }
 
     private void InItButtonNum()        // 버튼들의 고유번호를 넣어주는 함수
-    {        
+    {
+        Debug.Log(buttons.Length);
         for(int i = 0; i < buttons.Length; i++)
         {
             buttons[i].buttonNum = i;

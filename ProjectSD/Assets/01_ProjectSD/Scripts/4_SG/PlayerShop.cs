@@ -109,11 +109,17 @@ public class PlayerShop : MonoBehaviour
                     tempClass.IsRayHit = true;
 
                     if (input.select)
-                    {
-                    Debug.Log("눌리나?");
-                        if (tempClass.IsRayHit == true && tempClass.IsUseItem == false)
+                    {                        
+                        // LEGACY IF : if (tempClass.IsRayHit == true && tempClass.IsUseItem == false)
+                        if (tempClass.IsRayHit == true)
                         {
-                            tempClass.BuyItem();
+                            //TEST
+                            if (tempClass.NowItemValue < tempClass.maxItemValue)
+                            {
+                                Debug.Log("아이템 갯수조건이 충족한가?");
+                                tempClass.BuyItem();
+                            }
+                            //TEST
                         }
                         input.select = false;       // 입력을 해제한다.
                     }       // if end : 선택 버튼을 눌렀을 경우
