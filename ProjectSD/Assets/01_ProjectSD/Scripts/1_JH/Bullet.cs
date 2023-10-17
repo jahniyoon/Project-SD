@@ -68,13 +68,16 @@ public class Bullet : MonoBehaviour
         }
         else if (other.CompareTag("Boss"))
         {
+            Debug.Log("보스를 맞췄다.");
+            other.transform.root.GetComponent<Boss>().OnDamage(Mathf.FloorToInt(finalDamage));
             //other.GetComponent<Boss>().OnDamage();
         }
-        //else if (other.CompareTag("WeakPoint"))
-        //{
-        //    //other.GetComponent<WeakPoint>().OnDamage();
+        else if (other.CompareTag("WeakPoint"))
+        {
+            other.transform.GetComponent<BossHitPoint>().OnDamage(Mathf.FloorToInt(finalDamage));
+            //other.transform.root.GetComponent<Boss>().OnWeakPointDamage(Mathf.FloorToInt(finalDamage));
 
-        //}
+        }
 
     }
 

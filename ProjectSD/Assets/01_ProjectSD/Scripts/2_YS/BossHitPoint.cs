@@ -5,17 +5,18 @@ using UnityEngine;
 public class BossHitPoint : MonoBehaviour
 {
     public float critical = 1.5f;
-    private BoxCollider boxCollider;
+    private SphereCollider sphereCollider;
     public float weakPointScale = 3.0f;
 
-    public float lifeTime = 5.0f;
+    public float disableTime = 5.0f;   // 한대 맞았을 때 꺼지는 시간 넣을 변수
+    public float upgradeTime = 7.0f;   // 업그레이드 했을 때 지속되는 시간 변수
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
         //Debug.Log("히트포인트 동작");
-        boxCollider = GetComponent<BoxCollider>();
+        sphereCollider = GetComponent<SphereCollider>();
     }
 
     // Update is called once per frame
@@ -26,10 +27,10 @@ public class BossHitPoint : MonoBehaviour
 
     IEnumerator HitPoint()
     {
-        boxCollider.enabled = false;
+        sphereCollider.enabled = false;
         //Debug.Log("비활성화");
-        yield return new WaitForSeconds(5.0f);
-        boxCollider.enabled = true;
+        yield return new WaitForSeconds(disableTime);
+        sphereCollider.enabled = true;
         //Debug.Log("활성화");
     }
 
@@ -38,32 +39,35 @@ public class BossHitPoint : MonoBehaviour
     //임시 데미지 함수
     public void OnDamage(float damage)
     {
-        GameManager.instance.Golem.GetComponent<Boss>().OnDamage(damage * critical);
+        //GameManager.instance.Golem.GetComponent<Boss>().OnDamage(damage * critical);
         //boss.hp -= (int)(damage * 1.5f);
         //Debug.Log(boss.hp);
+        transform.root.GetComponent<Boss>().OnDamage(damage * critical);
+        StartCoroutine(HitPoint());
     }
 
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.tag.Equals("Bullet"))
-        {
-            Bullet bullet = other.GetComponent<Bullet>();
-            OnDamage(bullet.bulletDamage);
+    //public void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.tag.Equals("Bullet"))
+    //    {
+    //        Bullet bullet = other.GetComponent<Bullet>();
+    //        OnDamage(bullet.bulletDamage);
             
-            StartCoroutine(HitPoint());
-        }
-    }
+    //        StartCoroutine(HitPoint());
+    //    }
+    //}
 
     public void UpgraedWeakPoint()
     {
-        this.transform.localScale = new Vector3(weakPointScale, weakPointScale, weakPointScale);
+        float upgradeScale = 0.2f * weakPointScale;
+        this.transform.localScale = new Vector3(upgradeScale, upgradeScale, upgradeScale);
 
-        Invoke("ResetWeakPoint", lifeTime);
+        Invoke("ResetWeakPoint", upgradeTime);
     }
 
     public void ResetWeakPoint()
     {
-        this.transform.localScale = Vector3.one;
+        this.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
     }
 
     //boxCollider.transform.localScale = new Vector3(3.0f, 3.0f, 3.0f); //객체 커지는거

@@ -579,7 +579,7 @@ GameObject:
   - component: {fileID: 5283839515891445973}
   - component: {fileID: 5283839515891445930}
   m_Layer: 0
-  m_Name: GOLEM
+  m_Name: GOLEM_Regacy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

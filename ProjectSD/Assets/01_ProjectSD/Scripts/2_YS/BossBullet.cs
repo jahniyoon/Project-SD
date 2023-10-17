@@ -32,7 +32,15 @@ public class BossBullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        DestroyBullet();
+    }
+
+    public void DestroyBullet()
+    {
+        if(GameManager.instance.isGameOver)
+        {
+            Destroy(gameObject);    
+        }
     }
 
     public void GetData()

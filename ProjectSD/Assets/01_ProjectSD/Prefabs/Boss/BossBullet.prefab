@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4253727343179740725}
   - component: {fileID: 1491206565248921925}
   m_Layer: 0
-  m_Name: ROCK_L_LOD2
+  m_Name: BossBullet
   m_TagString: BossBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

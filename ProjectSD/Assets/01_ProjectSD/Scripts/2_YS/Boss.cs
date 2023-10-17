@@ -5,6 +5,9 @@ using System.ComponentModel;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
+using static OVRPlugin;
+
 
 public class Boss : MonoBehaviour
 {
@@ -13,13 +16,15 @@ public class Boss : MonoBehaviour
     public NavMeshAgent agent;
     public GameObject bossBullet;
 
+    public SkinnedMeshRenderer mesh;
+
     public GameObject[] weakPoint = default;
+    public Slider bossHPSlider;
 
     //csv
     public float hp = default;
     
     public float actTime = default;
-
 
     public Transform bulletPort;
 
@@ -56,11 +61,11 @@ public class Boss : MonoBehaviour
     void Start()
     {
         GetData();
-
-       
     }
+
     public void GameStart()
     {
+        SetMaxHealth(hp);   // 생성되고나서 HP 슬라이더를 업데이트한다.
         target = GameObject.FindWithTag("Player").GetComponent<Transform>();
         agent = GetComponent<NavMeshAgent>();
 
@@ -78,6 +83,17 @@ public class Boss : MonoBehaviour
 
 
     }
+
+    public void SetMaxHealth(float newHealth)
+    {
+        bossHPSlider.maxValue = newHealth;
+        bossHPSlider.value = newHealth;
+    }
+    public void SetHealth(float newHealth)
+    { 
+        bossHPSlider.value = newHealth;
+    }
+
 
     public void GetData()
     {
@@ -219,6 +235,19 @@ public class Boss : MonoBehaviour
     public void OnDamage(float damage)
     {
         hp -= damage;
+        SetHealth(hp);
+        StartCoroutine("DamageColor");
+    }
+
+    IEnumerator DamageColor()
+    {
+        mesh.materials[0].color = Color.red;
+        //mesh.GetComponent<MeshRenderer>().material.color = Color.red;
+        yield return new WaitForSeconds(0.25f);
+        mesh.materials[0].color = Color.white;
+
+        //mesh.GetComponent<MeshRenderer>().material.color = Color.white;
+
     }
 
     IEnumerator SkillCounter()
