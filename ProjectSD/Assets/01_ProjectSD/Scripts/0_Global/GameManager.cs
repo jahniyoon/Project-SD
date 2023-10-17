@@ -225,7 +225,8 @@ public class GameManager : MonoBehaviour
     #region Upgrade
     public void UpgradeGun()
     {
-
+        PC.GetComponent<PlayerShooter>().leftGun.GetComponent<Weapon>().WeaponUpgrade();
+        PC.GetComponent<PlayerShooter>().rightGun.GetComponent<Weapon>().WeaponUpgrade();
     }
     public void UpgradeWeakPoint()
     {

@@ -1019,8 +1019,20 @@ MonoBehaviour:
   isUpgrade: 0
   fireRate: 0.2
   lastFireTime: 0
+  meshes:
+  - {fileID: 6483193675092509449}
+  - {fileID: 3814071358089078252}
+  - {fileID: 6857054805117463932}
+  - {fileID: 5229651680756253060}
+  - {fileID: 8657796303988903783}
+  - {fileID: 5688494342078725298}
+  - {fileID: 4579763964151526011}
+  - {fileID: 7215554484845842205}
+  - {fileID: 7725182026367712539}
+  - {fileID: 2174200018951657830}
   firePoint: {fileID: 1525315832}
   hitPoint: {fileID: 2163099256674612115}
+  laserRenderer: {fileID: 0}
   bulletPrefab: {fileID: 6099112765664025399, guid: ef7a01023dde2c646a413eebb5113de5, type: 3}
   particle: 0
   isBtnEnable: 0

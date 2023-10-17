@@ -50,13 +50,7 @@ public class BossBullet : MonoBehaviour
     {
         if(other.tag.Equals("Player"))
         {
-            hp--;
-
-            if(hp == 0)
-            {
-                Destroy(this.gameObject, lifeTime);
-            }
-            
+            other.GetComponent<PlayerHealth>().OnDamage(damage);
         }
     }
     // 보스 총알이 데미지를 입는 함수

@@ -11,6 +11,10 @@ public class Weapon : MonoBehaviour
     public float fireRate = 0.2f;         // 발사 속도
     public float lastFireTime;     // 마지막 발사시간
 
+    public float upgradeDuration;
+
+    public MeshRenderer[] meshes;   // 디버그용 메시
+
     int buttonLayerMask = (1 << 8);
     [Header("Laser Point")]
     public Transform firePoint;
@@ -89,7 +93,26 @@ public class Weapon : MonoBehaviour
         {
             isUpgrade = true;
             GetData(isUpgrade);
+
+            int index = meshes.Length;
+            for (int i = 0; i < index; i++)
+            {
+                meshes[i].material.color = Color.red;
+            }
+            Invoke("ResetUpgrade", upgradeDuration);
         }
+    }
+
+    public void ResetUpgrade()
+    {
+        GetData(!isUpgrade);
+        int index = meshes.Length;
+        for (int i = 0; i < index; i++)
+        {
+            meshes[i].material.color = Color.white;
+        }
+        isUpgrade = false;
+
     }
 
     public void GetData(bool isUpgrade)
@@ -104,6 +127,7 @@ public class Weapon : MonoBehaviour
         dataDictionary = CSVReader.ReadCSVFile("CSVFiles/Weapon_Table");
         
         weaponID = int.Parse(dataDictionary["ID"][index]);
+        upgradeDuration = float.Parse(dataDictionary["Duration"][index]);
         fireRate = float.Parse(dataDictionary["Firerate"][index]);
         particle = float.Parse(dataDictionary["Particle"][index]);
     }

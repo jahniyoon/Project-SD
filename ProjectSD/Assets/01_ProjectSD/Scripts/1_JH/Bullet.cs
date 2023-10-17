@@ -66,6 +66,11 @@ public class Bullet : MonoBehaviour
             GameObject bullet = this.transform.parent.gameObject;
             Destroy(bullet);
         }
+        else if (other.CompareTag("Boss"))
+        {
+
+        }
+
     }
 
     public void GetData()
