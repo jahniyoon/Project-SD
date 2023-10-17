@@ -96,6 +96,7 @@ public class Boss : MonoBehaviour
 
     public void GetData()
     {
+        Debug.Log("호출");
         Dictionary<string, List<string>> dataDictionary = default;
         dataDictionary = CSVReader.ReadCSVFile("CSVFiles/Golem_Table"); //이름으로 가져옴
         DataManager.SetData(dataDictionary);

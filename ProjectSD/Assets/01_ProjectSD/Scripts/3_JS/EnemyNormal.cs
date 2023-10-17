@@ -5,9 +5,9 @@ using UnityEngine;
 public class EnemyNormal : MonoBehaviour
 {
     [Header("EnemyNormal")]
-    private const int ID = 2000;
+    private const int ID = 5001;
     private const float SCALE_FACTOR = 3f;
-    Enemy enemy;
+    public Enemy enemy;
     NavMoveable navMoveable;
 
     // OnEnable 할 때 마다 객체 초기화

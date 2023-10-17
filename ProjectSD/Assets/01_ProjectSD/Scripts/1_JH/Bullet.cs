@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Windows;
 
@@ -66,7 +67,7 @@ public class Bullet : MonoBehaviour
             GameObject bossBullet = other.gameObject;
             bossBullet.GetComponent<BossBullet>().OnDamage(Mathf.FloorToInt(finalDamage));
 
-            DamageEffect();
+            DamageEffect(false);
 
             GameObject bullet = this.transform.parent.gameObject;
             Destroy(bullet);
@@ -75,7 +76,7 @@ public class Bullet : MonoBehaviour
         {
             Debug.Log("보스를 맞췄다.");
             other.transform.root.GetComponent<Boss>().OnDamage(Mathf.FloorToInt(finalDamage));
-            DamageEffect();
+            DamageEffect(false);
             GameObject bullet = this.transform.parent.gameObject;
             Destroy(bullet);
             //other.GetComponent<Boss>().OnDamage();
@@ -84,21 +85,44 @@ public class Bullet : MonoBehaviour
         {
             Debug.Log("약점을 맞췄다.");
             other.transform.GetComponent<BossHitPoint>().OnDamage(Mathf.FloorToInt(finalDamage));
-            DamageEffect();
+            DamageEffect(false);
             GameObject bullet = this.transform.parent.gameObject;
             Destroy(bullet);
 
             //other.transform.root.GetComponent<Boss>().OnWeakPointDamage(Mathf.FloorToInt(finalDamage));
 
         }
+        else if (other.CompareTag("Enemy"))
+        {
+            Debug.Log("적을 맞췄다.");
 
+            if (other.transform.GetComponent<EnemyNormal>() != null)
+            {
+                other.transform.GetComponent<EnemyNormal>().enemy.
+                    OnDamage(Mathf.FloorToInt(finalDamage));
+            }
+            else if (other.transform.GetComponent<EnemyFast>() != null)
+            {
+                other.transform.GetComponent<EnemyFast>().enemy.
+                OnDamage(Mathf.FloorToInt(finalDamage));
+            }
+
+            DamageEffect(true);
+            GameObject bullet = this.transform.parent.gameObject;
+            Destroy(bullet);
+            //other.transform.root.GetComponent<Boss>().OnWeakPointDamage(Mathf.FloorToInt(finalDamage));
+
+        }
     }
 
 
-    public void DamageEffect()
+    public void DamageEffect(bool isEnemy)
     {
         Vector3 effectPos = this.transform.position;
-        effectPos.z -= 20f; 
+        if (!isEnemy)
+        {
+            effectPos.z -= 20f;
+        }
         float distance =  Vector3.Distance(effectPos, GameManager.instance.PC.transform.position);
         GameObject damageFX =
              Instantiate(damageEffect, effectPos, Quaternion.identity);

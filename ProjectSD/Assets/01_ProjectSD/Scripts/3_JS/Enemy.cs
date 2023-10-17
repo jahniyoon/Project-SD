@@ -30,11 +30,11 @@ public class Enemy
         modelInfo = (string)DataManager.GetData(id, "Model_Info");
         type = (int)DataManager.GetData(id, "Type");
         hp = (int)DataManager.GetData(id, "HP");
-        damage = (float)DataManager.GetData(id, "Damage");
-        speed = (float)DataManager.GetData(id, "Speed");
-        rangeRec = (float)DataManager.GetData(id, "Range_Rec");
-        rangeAtt = (float)DataManager.GetData(id, "Range_Att");
-        rangeEx = (float)DataManager.GetData(id, "Range_Ex");
+        damage = (int)DataManager.GetData(id, "Damage");
+        speed = (int)DataManager.GetData(id, "Speed");
+        rangeRec = (int)DataManager.GetData(id, "Range_Rec");
+        rangeAtt = (int)DataManager.GetData(id, "Range_Att");
+        rangeEx = (int)DataManager.GetData(id, "Range_Ex");
         this.scaleFactor = scaleFactor;
 
         // 공격범위 초기화 함수 호출

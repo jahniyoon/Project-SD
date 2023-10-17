@@ -14,7 +14,7 @@ public class EnemySpawn : MonoBehaviour
     // 플레이어와 보스의 현재 거리를 저장
     private float currentDistance;
     // Spawn CSV파일의 초기 ID
-    private const int DEFAULT_ID = 3000;
+    private const int DEFAULT_ID = 6001;
     // ID / 스폰 조건 / 범위 / 각도 /
     // enemy 타입 / 스폰 갯수 리스트
     private List<int> spawnIDs = new List<int>();
@@ -39,7 +39,7 @@ public class EnemySpawn : MonoBehaviour
         // Enemy_Spawn CSV파일을 불러온 후
         // DataManager에 Init 한다.
         Dictionary<string, List<string>> spawnData = 
-            CSVReader.ReadCSVFile("CSVFiles/Enemy_Spawn");
+            CSVReader.ReadCSVFile("CSVFiles/Minion_Spawn_Table");
         DataManager.SetData(spawnData);
 
         // Enemy CSV파일을 불러온 후
@@ -104,7 +104,7 @@ public class EnemySpawn : MonoBehaviour
         currentDistance = (Vector3.Distance(a, b) / startDistance);
 
         // 디버그용 출력
-        Debug.Log(currentDistance);
+        //Debug.Log(currentDistance);
     }
 
     // 플레이어와 보스의 거리가 스폰 조건에 일치하는지 계산하는 함수

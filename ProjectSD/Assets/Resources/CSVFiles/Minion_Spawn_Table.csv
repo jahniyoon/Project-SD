@@ -1,0 +1,4 @@
+﻿ID,Description,Spawn_Condition,Spawn_Location1,Spawn_Location2,Angle,Minion_Type1,Type1_Amount,Minion_Type2,Type2_Amount
+6001,스폰 조건 1,0.9,90,70,30,5001,5,5002,5
+6002,스폰 조건 2,0.7,50,30,30,5001,5,5002,5
+6003,스폰 조건 3,0.5,30,10,30,5001,5,5002,5

@@ -119,6 +119,11 @@ public class GameManager : MonoBehaviour
         {
             GameOver();
         }
+        // 게임오버 테스트
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            GameStart();
+        }
 
     }       // Update()
 
