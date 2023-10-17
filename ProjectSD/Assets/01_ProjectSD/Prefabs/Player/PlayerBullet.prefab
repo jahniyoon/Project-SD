@@ -129,6 +129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponID: 0
   isUpgrade: 0
+  damageEffect: {fileID: 2147918905323947473, guid: 66a853dc1183b114b9b71045d0b4b992, type: 3}
   bulletDamage: 0
   critIncrease: 0
   critProbability: 0

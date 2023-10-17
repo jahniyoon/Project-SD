@@ -1,0 +1,4 @@
+ID,Description,Model,Texture,Effect,Icon,Value1,Key
+,덫 유닛 본체,Model_Unit_Trap001,-,-,-,-,
+,덫 유닛을 밟았을때 나오는 방벽,-,TX_Unit_Stun_Wall001,FX_Unit_Stun_Elec001,-,5,
+,방벽에 닿았을 때 걸리는 스턴 효과,-,,-,Icon_C_Unit_Stun001,10,-

@@ -9,6 +9,7 @@ public class PlayerShooter : MonoBehaviour
     private PlayerInputs input;
     private PlayerShop shop;
 
+
     [Header("Weapon")]
     public Weapon leftGun;
     public Weapon rightGun;
@@ -57,4 +58,6 @@ public void ButtonCheck()
             rightGun.isBtnEnable = false;
         }
     }
+
+   
 }

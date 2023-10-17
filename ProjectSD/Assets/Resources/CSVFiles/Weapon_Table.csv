@@ -1,3 +1,3 @@
-ID,Description,Firerate,Particle,Duration
-1000,기본무기,0.2,10,7
-2000,강화무기,0.15,11,7
+ID,Description,Projectile_ID,Shot_Delay
+1001,기본무기,2001,0.5
+1002,강화무기,2002,0.2

@@ -34,7 +34,7 @@ public class PlayerHealth : MonoBehaviour
     public void GetData()
     {
         Dictionary<string, List<string>> dataDictionary = default;
-        dataDictionary = CSVReader.ReadCSVFile("CSVFiles/PC_Table");
+        dataDictionary = CSVReader.ReadCSVFile("CSVFiles/Player_Table");
         startHealth = float.Parse(dataDictionary["HP"][0]);
     }
     public void OnTriggerEnter(Collider other)

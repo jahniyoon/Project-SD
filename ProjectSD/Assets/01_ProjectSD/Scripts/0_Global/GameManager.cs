@@ -181,8 +181,10 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("게임 시작");
         titlePanel.SetActive(false);
+        shopPanel.SetActive(true);
 
         Golem.GetComponent<Boss>().GameStart();
+        
 
         SetPlayer(false);
     }

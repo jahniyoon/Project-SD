@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,7 +24,7 @@ public class Weapon : MonoBehaviour
 
     [Header("Bullet")]
     public GameObject bulletPrefab;
-    public float particle;
+    public float bulletID;
 
     [Header("Shop")]
     public bool isBtnEnable;
@@ -31,6 +32,7 @@ public class Weapon : MonoBehaviour
 
     public void OnEnable()
     {
+        isUpgrade = false;
         GetData(isUpgrade);
         lastFireTime = 0;       // 시간 초기화
     }
@@ -121,14 +123,16 @@ public class Weapon : MonoBehaviour
         if (isUpgrade)
         {
             index = 1;
+            Dictionary<string, List<string>> upgradeDataDictionary = default;
+            upgradeDataDictionary = CSVReader.ReadCSVFile("CSVFiles/Unit_Weapon_Upgrade_Table");
+            upgradeDuration = float.Parse(upgradeDataDictionary["ActTime"][0]);
         }
-
         Dictionary<string, List<string>> dataDictionary = default;
         dataDictionary = CSVReader.ReadCSVFile("CSVFiles/Weapon_Table");
-        
         weaponID = int.Parse(dataDictionary["ID"][index]);
-        upgradeDuration = float.Parse(dataDictionary["Duration"][index]);
-        fireRate = float.Parse(dataDictionary["Firerate"][index]);
-        particle = float.Parse(dataDictionary["Particle"][index]);
+
+        fireRate = float.Parse(dataDictionary["Shot_Delay"][index]);
+
+      
     }
 }
