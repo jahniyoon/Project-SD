@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -38,11 +39,18 @@ public class BossBullet : MonoBehaviour
     {
         Dictionary<string, List<string>> dataDictionary = default;
         dataDictionary = CSVReader.ReadCSVFile("CSVFiles/Golem_Projectile"); //이름으로 가져옴
-        DataManager.SetData(dataDictionary);
-        hp = (int)DataManager.GetData(2004, "HP");//이름으로 가져오는거라서 순서상관 X 0번째 행  //변수 선언은 해야함
-        lifeTime = (float)DataManager.GetData(2004, "Projectile_Lifetime");
-        damage = (int)DataManager.GetData(2004, "Damage");
-        speed = (float)DataManager.GetData(2004, "Speed");
+
+        //DataManager.SetData(dataDictionary);
+        //hp = (int)DataManager.GetData(2004, "HP");//이름으로 가져오는거라서 순서상관 X 0번째 행  //변수 선언은 해야함
+        //lifeTime = (float)DataManager.GetData(2004, "Projectile_Lifetime");
+        //damage = (int)DataManager.GetData(2004, "Damage");
+        //speed = (float)DataManager.GetData(2004, "Speed");
+
+        hp = int.Parse(dataDictionary["HP"][0]);
+        lifeTime = float.Parse(dataDictionary["Projectile_Lifetime"][0]);
+        damage = int.Parse(dataDictionary["Damage"][0]);
+        speed = float.Parse(dataDictionary["Speed"][0]);
+
     }
 
 
@@ -50,9 +58,10 @@ public class BossBullet : MonoBehaviour
     {
         if(other.tag.Equals("Player"))
         {
-            other.GetComponent<PlayerHealth>().OnDamage(damage);
+            other.GetComponent<PlayerHealth>().OnDamage(damage);            
         }
     }
+
     // 보스 총알이 데미지를 입는 함수
     public void OnDamage(int damage)
     {

@@ -70,11 +70,11 @@ public class Bullet : MonoBehaviour
         {
             //other.GetComponent<Boss>().OnDamage();
         }
-        else if (other.CompareTag("WeakPoint"))
-        {
-            //other.GetComponent<WeakPoint>().OnDamage();
+        //else if (other.CompareTag("WeakPoint"))
+        //{
+        //    //other.GetComponent<WeakPoint>().OnDamage();
 
-        }
+        //}
 
     }
 
