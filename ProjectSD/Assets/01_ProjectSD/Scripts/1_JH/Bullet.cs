@@ -74,6 +74,7 @@ public class Bullet : MonoBehaviour
         }
         else if (other.CompareTag("Boss"))
         {
+            GameManager.instance.BossAttackGetGold();
             Debug.Log("보스를 맞췄다.");
             other.transform.root.GetComponent<Boss>().OnDamage(Mathf.FloorToInt(finalDamage));
             DamageEffect(false);

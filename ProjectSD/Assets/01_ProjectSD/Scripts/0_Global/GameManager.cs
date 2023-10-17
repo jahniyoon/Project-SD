@@ -294,6 +294,18 @@ public class GameManager : MonoBehaviour
         else { /*PASS*/ }
     }       // GetTimeGold()
 
+    public void DIeMonsterGetGold()
+    {
+        // 졸개가 죽으면 골드를 획득
+        playerGold += monsterKillGold;
+    }
+
+    public void BossAttackGetGold()
+    {
+        // 플레이어가 보스를 맞추면 골드를 획득
+        playerGold += 1;
+    }
+
     public void ButtonsListMake()       // 버튼 확대를 위해 버튼들을 static List선언
     {
         if (buttonsList == null || buttonsList == default)

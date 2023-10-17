@@ -85,6 +85,8 @@ public class Enemy
         // 공격 범위를 폭발 범위로 조정
         SetBoxColliderSize(boxCollider, rangeEx);
 
+        GameManager.instance.DIeMonsterGetGold();
+
         // 3초 후에 Enemy 비활성화
         EnemyManager.instance.ChangeActive(enemyObject, 0f, false);
     }
