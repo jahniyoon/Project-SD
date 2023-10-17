@@ -19,21 +19,20 @@ public class EnemySpawn : MonoBehaviour
     // enemy 타입 / 스폰 갯수 리스트
     private List<int> spawnIDs = new List<int>();
     private List<float> spawnConditions = new List<float>();
-    private List<int> spawnLocations1 = new List<int>();
-    private List<int> spawnLocations2 = new List<int>();
+    private List<float> spawnLocations1 = new List<float>();
+    private List<float> spawnLocations2 = new List<float>();
     private List<int> angles = new List<int>();
     private List<int> minionTypes1 = new List<int>();
     private List<int> minionTypes2 = new List<int>();
     private List<int> type1Amounts = new List<int>();
     private List<int> type2Amounts = new List<int>();
-    // 스폰 카운트
+    // 중복 스폰 방지용 스폰 카운트
     private int spawnCount = 0;
 
     [Header("Test")]
     public GameObject[] testObj_1;
     public GameObject[] testObj_2;
     public GameObject[] testMonster;
-
 
     private void Awake()
     {
@@ -42,6 +41,12 @@ public class EnemySpawn : MonoBehaviour
         Dictionary<string, List<string>> spawnData = 
             CSVReader.ReadCSVFile("CSVFiles/Enemy_Spawn");
         DataManager.SetData(spawnData);
+
+        // Enemy CSV파일을 불러온 후
+        // DataManager에 Init 한다.
+        Dictionary<string, List<string>> enemyData =
+            CSVReader.ReadCSVFile("CSVFiles/Enemy");
+        DataManager.SetData(enemyData);
 
         // 플레이어 / 보스의 초기 거리를 저장
         startDistance = Vector3.Distance(
@@ -53,18 +58,6 @@ public class EnemySpawn : MonoBehaviour
         //DataManager에 있는 Enemy_Spawn 데이터를 가져와서
         // 리스트에 추가하는 함수를 호출
         Initialize();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     private void FixedUpdate()
@@ -87,8 +80,14 @@ public class EnemySpawn : MonoBehaviour
             int id = DEFAULT_ID + i;
             spawnIDs.Add(id);
             spawnConditions.Add((float)DataManager.GetData(id, "Spawn_Condition"));
-            spawnLocations1.Add((int)DataManager.GetData(id, "Spawn_Location1"));
-            spawnLocations2.Add((int)DataManager.GetData(id, "Spawn_Location2"));
+            float spawnLocation1 = (int)DataManager.GetData(id, "Spawn_Location1");
+            float spawnLocation2 = (int)DataManager.GetData(id, "Spawn_Location2");
+            spawnLocation1 = spawnLocation1 / 100f;
+            spawnLocation2 = spawnLocation2 / 100f;
+            spawnLocations1.Add(spawnLocation1);
+            spawnLocations2.Add(spawnLocation2);
+            //Debug.Log($"spawnLocation1[{i}] = {spawnLocation1}, " +
+            //    $"spawnLocatipn2[{i}] = {spawnLocation2}");
             angles.Add((int)DataManager.GetData(id, "Angle"));
             minionTypes1.Add((int)DataManager.GetData(id, "Minion_Type1"));
             minionTypes2.Add((int)DataManager.GetData(id, "Minion_Type2"));
@@ -129,13 +128,14 @@ public class EnemySpawn : MonoBehaviour
     // enemy를 지정한 범위 내에서 생성되게 하는 함수
     private void SpawnRandomMonsterInArea(int index)
     {
-        // 최소 크기 반지름을 생성(ex:70)
-        int radius = spawnLocations2[index];
-        Debug.Log($"min radius:{radius}");
+        // 최소 크기 반지름을 생성(ex:0.7 * startDistance(초기 보스&플레이어 거리)
+        float radius = startDistance * spawnLocations2[index];
+        //Debug.Log($"startDistance: {startDistance}, spawnLocation2: {spawnLocations2[index]}");
+        //Debug.Log($"min radius:{radius}");
         DrawRadius drawMinRadius = new DrawRadius(radius, playerPos);
 
         // 최대 크기 반지름을 생성(ex:90)
-        radius = spawnLocations1[index];
+        radius = startDistance * spawnLocations1[index];
         Debug.Log($"max radius:{radius}");
         DrawRadius drawMaxRadius = new DrawRadius(radius, playerPos);
 
@@ -143,22 +143,28 @@ public class EnemySpawn : MonoBehaviour
         List<Vector3> spawnMinPositions = drawMinRadius.GetCirclePositions();
         List<Vector3> spawnMaxPositions = drawMaxRadius.GetCirclePositions();
 
-        // 디버그용
-        // 테스트용 포지션 변경
-        for (int i = 0; i < testObj_1.Length; i++)
-        {
-            testObj_2[i].transform.position = spawnMinPositions[i];
-            testObj_1[i].transform.position = spawnMaxPositions[i];
-        }
+        //// 디버그용
+        //// 테스트용 포지션 변경
+        //for (int i = 0; i < testObj_1.Length; i++)
+        //{
+        //    testObj_2[i].transform.position = spawnMinPositions[i];
+        //    testObj_1[i].transform.position = spawnMaxPositions[i];
+        //}
 
         // [0]번 범위 내에서 랜덤 포지션 배치
         for (int i = 0; i < testMonster.Length; i++)
         {
-            Vector3 point0Min = spawnMinPositions[0];
-            Vector3 point0Max = spawnMinPositions[1];
-            Vector3 point1Min = spawnMaxPositions[0];
-            Vector3 point1Max = spawnMaxPositions[1];
+            int posIndex = i / 10;
+            int posIndex2 = (i / 10) + 1;
+            Vector3 point0Min = spawnMinPositions[posIndex];
+            Vector3 point0Max = spawnMinPositions[posIndex2];
+            Vector3 point1Min = spawnMaxPositions[posIndex];
+            Vector3 point1Max = spawnMaxPositions[posIndex2];
 
+            // 활성화 상태로 변경
+            testMonster[i].SetActive(true);
+
+            // 포지션 변경
             testMonster[i].transform.position =
                 GetRandomPositionInAreas(point0Min, point0Max, point1Min, point1Max);
         }
@@ -167,6 +173,7 @@ public class EnemySpawn : MonoBehaviour
     // 매개변수로 받은 4개의 포지션(점) 범위 내에서 x좌표에 따라
     // z좌표의 랜덤 범위를 조정하여 네개의 점 사이에서 벗어나지 않게
     // 랜덤하게 포지션을 계산해주는 함수
+    // GPT 형님이 도와주심
     private Vector3 GetRandomPositionInAreas(Vector3 point0Min, Vector3 point0Max, Vector3 point1Min, Vector3 point1Max)
     {
         // 무작위로 x 좌표를 선택합니다.
