@@ -13,9 +13,9 @@ public class BossBullet : MonoBehaviour
     
 
     //csv
-    public int hp = default;
+    public float hp = default;
     public float lifeTime = default;  //destroy할때 사라지는 시간?
-    public int damage = default;
+    public float damage = default;
     public float speed = default;
 
 
@@ -46,19 +46,18 @@ public class BossBullet : MonoBehaviour
     public void GetData()
     {
         Dictionary<string, List<string>> dataDictionary = default;
-        dataDictionary = CSVReader.ReadCSVFile("CSVFiles/Golem_Projectile"); //이름으로 가져옴
+        dataDictionary = CSVReader.ReadCSVFile("CSVFiles/GolemPattern01_Table"); //이름으로 가져옴
 
-        //DataManager.SetData(dataDictionary);
+        DataManager.SetData(dataDictionary);
         //hp = (int)DataManager.GetData(2004, "HP");//이름으로 가져오는거라서 순서상관 X 0번째 행  //변수 선언은 해야함
         //lifeTime = (float)DataManager.GetData(2004, "Projectile_Lifetime");
         //damage = (int)DataManager.GetData(2004, "Damage");
         //speed = (float)DataManager.GetData(2004, "Speed");
 
-        hp = int.Parse(dataDictionary["HP"][0]);
-        lifeTime = float.Parse(dataDictionary["Projectile_Lifetime"][0]);
-        damage = int.Parse(dataDictionary["Damage"][0]);
-        speed = float.Parse(dataDictionary["Speed"][0]);
-
+        hp = (float)DataManager.GetData(4001, "HP");
+        lifeTime = (float)DataManager.GetData(4001, "Lifetime");
+        damage = (float)DataManager.GetData(4001, "Damage");
+        speed = (float)DataManager.GetData(4001, "Speed");
     }
 
 
