@@ -13,9 +13,11 @@ public class Boss : MonoBehaviour
     public NavMeshAgent agent;
     public GameObject bossBullet;
 
+    public GameObject[] weakPoint = default;
+
     //csv
-    public int hp = default;
-    public float weakPoint = default;
+    public float hp = default;
+    
     public float actTime = default;
 
 
@@ -83,7 +85,7 @@ public class Boss : MonoBehaviour
         dataDictionary = CSVReader.ReadCSVFile("CSVFiles/Golem_Table"); //이름으로 가져옴
         DataManager.SetData(dataDictionary);
         hp = (int)DataManager.GetData(10000, "HP"); //이름으로 가져오는거라서 순서상관 X 0번째 행  //변수 선언은 해야함
-        weakPoint = (float)DataManager.GetData(10000, "WeakpointRate");
+        //weakPoint = (float)DataManager.GetData(10000, "WeakpointRate");
         actTime = (float)DataManager.GetData(10000, "ActTime");
     }
 
@@ -204,8 +206,19 @@ public class Boss : MonoBehaviour
 
         //if(other.tag.Equals("Bullet"))
         //{
+        //    Bullet bullet = other.GetComponent<Bullet>();
+        //    OnDamage(bullet.bulletDamage);
+        //}
+
+        //if(other.tag.Equals("Bullet"))
+        //{
         //    //StartCoroutine(HitPoint());
         //}
+    }
+
+    public void OnDamage(float damage)
+    {
+        hp -= damage;
     }
 
     IEnumerator SkillCounter()

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -229,7 +230,11 @@ public class GameManager : MonoBehaviour
     }
     public void UpgradeWeakPoint()
     {
-
+        int weakPointCount = Golem.GetComponent<Boss>().weakPoint.Length;
+        for(int i = 0; i < weakPointCount; i ++)
+        {
+            Golem.GetComponent<Boss>().weakPoint[i].GetComponent<BossHitPoint>().UpgraedWeakPoint();
+        }
     }
 
     #endregion

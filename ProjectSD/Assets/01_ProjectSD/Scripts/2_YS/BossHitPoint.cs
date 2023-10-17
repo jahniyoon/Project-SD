@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class BossHitPoint : MonoBehaviour
 {
-   
+    public float critical = 1.5f;
     private BoxCollider boxCollider;
+    public float weakPointScale = 3.0f;
+
+    public float lifeTime = 5.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -35,9 +38,9 @@ public class BossHitPoint : MonoBehaviour
     //임시 데미지 함수
     public void OnDamage(float damage)
     {
-        Boss boss = GetComponentInParent<Boss>();
-        boss.hp -= (int)(damage * 1.5f);
-        Debug.Log(boss.hp);
+        GameManager.instance.Golem.GetComponent<Boss>().OnDamage(damage * critical);
+        //boss.hp -= (int)(damage * 1.5f);
+        //Debug.Log(boss.hp);
     }
 
     public void OnTriggerEnter(Collider other)
@@ -51,6 +54,17 @@ public class BossHitPoint : MonoBehaviour
         }
     }
 
+    public void UpgraedWeakPoint()
+    {
+        this.transform.localScale = new Vector3(weakPointScale, weakPointScale, weakPointScale);
+
+        Invoke("ResetWeakPoint", lifeTime);
+    }
+
+    public void ResetWeakPoint()
+    {
+        this.transform.localScale = Vector3.one;
+    }
 
     //boxCollider.transform.localScale = new Vector3(3.0f, 3.0f, 3.0f); //객체 커지는거
 
