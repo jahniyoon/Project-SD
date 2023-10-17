@@ -9,15 +9,25 @@ public class ShopItemButton : MonoBehaviour
 {
     GameManager gameManager;
 
-
+    [Header("Button_Num")]
     public int buttonNum;
 
+    [Header("CSV_Value")]
     public int nowItemValue;        // 현재 아이템의 갯수
     public int maxItemValue;        // 구매할수 있는 최대치
     public int price;               // 아이템의 가격
-    public int coolTime;            // 구매의 쿨타임
+    public float coolTime;            // 구매의 쿨타임
 
+    private enum itemTag            // 가독성을 위해 만든 Enum 아이템 구매할때조건으로 사용
+    {
+        UpgradeGun,                 // 0
+        UpgradeWeakPoint            // 1
+    }
+
+    [Header("NonTag")]
+    private float nowCoolTime;       // 쿨타임이 현재 얼마나 흘렀는지 알려줄 변수
     private bool isRayHit;           // 자신이 레이를 맞았는지 판단할 Bool 변수
+    private Coroutine buyCooltimeCoroutine;     // Start 코루틴 해줄 변수
 
     private bool isUseItem;          // 현재 해당 버튼의 아이템을 사용중인지 판단할 bool변수
     public bool IsUseItem
@@ -32,6 +42,7 @@ public class ShopItemButton : MonoBehaviour
                 if (isUseItem == true)
                 {
                     // TODO : CoolTime Coroutine 실행
+                    buyCooltimeCoroutine = StartCoroutine(BuyCoolTime());
                 }
                 else { /*PASS*/ }
             }
@@ -69,8 +80,9 @@ public class ShopItemButton : MonoBehaviour
     public Vector3 defaultScale;    // 원래의 스케일값
     public Vector3 expansionScale;  // Player가 레이를 맞추었을때에 커질만큼의 값
 
-    private Color32 defaultColor;
-    private Color32 choiceColor;
+    private Color32 defaultColor;   // 기본색
+    private Color32 choiceColor;    // 아이템을 Ray로 맞추었을때에 바뀔 색
+    private Color32 buyColor;       // 아이템 쿨타임이 돌고있을때에 바뀔 색
 
 
     private void Awake()
@@ -91,10 +103,6 @@ public class ShopItemButton : MonoBehaviour
     }
 
 
-    void Update()
-    {
-
-    }
 
     private void GameManagerInIt()      // 게임 메니저를 넣어줌 PlayerGold 처리를 위해
     {
@@ -107,10 +115,11 @@ public class ShopItemButton : MonoBehaviour
     }
 
 
+
     private void CSVReadInIt()      // CSV파일을 Read해와서 변수에 필요한 값을 넣어주는 함수
     {
 
-        if (buttonNum == 0)      // 첫번째 아이템
+        if (buttonNum == (int)itemTag.UpgradeGun)      // 첫번째 아이템
         {
             //Debug.LogFormat("ButtonNum = {0} 가 첫번째 아이템으로 들어옴 ", buttonNum);
             nowItemValue = (int)DataManager.GetData(100, "NowCount");
@@ -119,7 +128,7 @@ public class ShopItemButton : MonoBehaviour
             coolTime = (int)DataManager.GetData(100, "CoolTime");
         }
 
-        else if (buttonNum == 1) // 두번째 아이템
+        else if (buttonNum == (int)itemTag.UpgradeWeakPoint) // 두번째 아이템
         {
             //Debug.LogFormat("ButtonNum = {0} 가 두번째 아이템으로 들어옴 ", buttonNum);
             nowItemValue = (int)DataManager.GetData(101, "NowCount");
@@ -140,6 +149,7 @@ public class ShopItemButton : MonoBehaviour
     {
         defaultColor = new Color32(255, 255, 255, 255);
         choiceColor = new Color32(200, 200, 200, 255);
+        buyColor = new Color32(80, 20, 30, 255);
     }       // ColorInIt()
 
     // ------------------------------------------ 텍스트 관련 함수 ------------------------------------------
@@ -222,14 +232,19 @@ public class ShopItemButton : MonoBehaviour
 
     public void ColorController()       // isRayHit의 bool값을 따라서 색을 변경해줄 함수
     {
-        if (isRayHit == true)
+        if (isRayHit == true && IsUseItem == false)
         {
             ChangeChoiceColor();
         }
-        else if (isRayHit == false)
+        else if (isRayHit == false && IsUseItem == false)
         {
             ChangeDefaultColor();
         }
+        else if(IsUseItem == true)
+        {
+            ChangeBuyItemColor();
+        }
+
 
     }      // ColorController()
 
@@ -243,6 +258,10 @@ public class ShopItemButton : MonoBehaviour
     private void ChangeDefaultColor()    // Ray가 밖으로 나가면 원래색으로 바꾸어줄 함수
     {
         thisBackGroundImage.color = defaultColor;
+    }
+    private void ChangeBuyItemColor()
+    {
+        thisBackGroundImage.color = buyColor;
     }
 
 
@@ -259,16 +278,40 @@ public class ShopItemButton : MonoBehaviour
         if (gameManager.PlayerGold >= price)
         {   //if : 플레이어소지골드가 가격과 같거나 골드가 더많을때에
             gameManager.PlayerGold -= price;
-            IsUseItem = true;       
+            IsUseItem = true;
             UseItemEffect();
         }
         else { Debug.Log("가격부족!"); }
-    }
+    }       // GoldCalculation()
+
     private void UseItemEffect()        // 아이템 효과 적용
     {
         // TODO : 아이템 효과를 적용하는 것을 만들어야함
-    }
+        if (buttonNum == (int)itemTag.UpgradeGun)
+        {
+            gameManager.UpgradeGun();
+        }
+        else if(buttonNum == (int)itemTag.UpgradeWeakPoint)
+        {
+            gameManager.UpgradeWeakPoint();
+        }
+    }       // UseItemEffect()
 
+
+    private IEnumerator BuyCoolTime()   // 구매 쿨타임
+    {
+        ColorController();      // 쿨타임 돌떄에 색을 바꾸어줌
+        while (nowCoolTime < coolTime)
+        {
+            nowCoolTime += Time.deltaTime;
+            yield return null;
+        }
+
+        nowCoolTime = 0f;
+        IsUseItem = false;
+
+        ColorController();      // 쿨타임이 끝날때에 색을 바꾸어줌
+    }       // BuyCoolTime()
 
 
 
