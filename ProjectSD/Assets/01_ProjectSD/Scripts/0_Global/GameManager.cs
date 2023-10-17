@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Player")]
     public GameObject PC;           // 플레이어
+    public Slider hpSlider;
     public bool isGameOver;         // 게임오버 상태
     public bool isVR;
 
@@ -231,6 +232,18 @@ public class GameManager : MonoBehaviour
     public void UpgradeWeakPoint()
     {
 
+    }
+
+    #endregion
+    #region Player
+    public void SetMaxHealth(float newHealth)
+    {
+        hpSlider.maxValue = newHealth;
+        hpSlider.value = newHealth;
+    }
+    public void SetHealth(float newHealth)
+    {
+        hpSlider.value = newHealth;
     }
 
     #endregion

@@ -13,6 +13,7 @@ public class PlayerHealth : MonoBehaviour
     public void OnEnable()
     {
         GetData();
+        GameManager.instance.SetMaxHealth(startHealth);
         GameManager.instance.SetPlayer(true);
         health = startHealth;
     }
@@ -24,6 +25,7 @@ public class PlayerHealth : MonoBehaviour
     public void OnDamage(float damage)
     {
         health -= damage;
+        GameManager.instance.SetHealth(health);
         if (0 <= health)
         {
             GameManager.instance.GameOver();

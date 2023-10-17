@@ -68,6 +68,11 @@ public class Bullet : MonoBehaviour
         }
         else if (other.CompareTag("Boss"))
         {
+            //other.GetComponent<Boss>().OnDamage();
+        }
+        else if (other.CompareTag("WeakPoint"))
+        {
+            //other.GetComponent<WeakPoint>().OnDamage();
 
         }
 

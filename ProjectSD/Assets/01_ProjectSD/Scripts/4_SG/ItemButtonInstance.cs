@@ -18,6 +18,7 @@ public class ItemButtonInstance : MonoBehaviour
 
     private GameObject prefabClone;         // 클론을 이용해서 인스턴트할 예정
     private RectTransform rect;
+    public RectTransform shopRect;
 
     private Vector3 buttonSclae;            // 버튼의 크기를 정해줄 변수
 
@@ -59,7 +60,8 @@ public class ItemButtonInstance : MonoBehaviour
             prefabClone.transform.SetParent(this.transform);
             prefabClone.transform.localScale = buttonSclae;
             rect = prefabClone.GetComponent<RectTransform>();
-            rect.anchoredPosition3D = Vector3.zero;     // AnchoredPosition3D 로 인스턴트 후 포지션 이상한것을 해결
+            rect.anchoredPosition3D = shopRect.anchoredPosition3D;     // AnchoredPosition3D 로 인스턴트 후 포지션 이상한것을 해결
+            rect.rotation = shopRect.rotation;     // AnchoredPosition3D 로 인스턴트 후 포지션 이상한것을 해결
         }
     }
 

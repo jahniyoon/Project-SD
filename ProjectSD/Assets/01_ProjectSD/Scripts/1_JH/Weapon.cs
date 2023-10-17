@@ -109,7 +109,7 @@ public class Weapon : MonoBehaviour
         int index = meshes.Length;
         for (int i = 0; i < index; i++)
         {
-            meshes[i].material.color = Color.white;
+            meshes[i].material.color = Color.black;
         }
         isUpgrade = false;
 
