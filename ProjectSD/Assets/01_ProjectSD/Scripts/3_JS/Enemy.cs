@@ -55,8 +55,15 @@ public class Enemy
     public void OnDamage(float damage)
     {
         // 자신에게 데미지 처리
-        hp -= Mathf.FloorToInt(damage);
+        hp -= (int)damage;
 
+        // hp가 0 이하인 경우 처리
+        if (hp <= 0)
+        {
+            isDead();
+        }
+
+         Debug.Log($"hp:{hp}");
         // 죽음을 체크하는 함수 호출
         isDead();
     }
@@ -74,11 +81,12 @@ public class Enemy
     // 죽음 처리를 하는 함수
     public void OnDead()
     {
+        Debug.Log("죽는다.");
         // 공격 범위를 폭발 범위로 조정
         SetBoxColliderSize(boxCollider, rangeEx);
 
         // 3초 후에 Enemy 비활성화
-        EnemyManager.instance.ChangeActive(enemyObject, 3f, false);
+        EnemyManager.instance.ChangeActive(enemyObject, 0f, false);
     }
 
     // 오브젝트를 비활성화하는 함수

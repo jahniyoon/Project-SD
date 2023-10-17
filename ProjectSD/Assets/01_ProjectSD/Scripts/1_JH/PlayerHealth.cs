@@ -26,7 +26,7 @@ public class PlayerHealth : MonoBehaviour
     {
         health -= damage;
         GameManager.instance.SetHealth(health);
-        if (0 <= health)
+        if (0 >= health)
         {
             GameManager.instance.GameOver();
         }

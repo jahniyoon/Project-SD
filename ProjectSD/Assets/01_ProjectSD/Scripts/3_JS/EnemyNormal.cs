@@ -29,6 +29,7 @@ public class EnemyNormal : MonoBehaviour
             other.GetComponent<PlayerHealth>().OnDamage(enemy.damage);
 
             Debug.Log("자폭 공격");
+            enemy.OnDead();
         }
     }
 }

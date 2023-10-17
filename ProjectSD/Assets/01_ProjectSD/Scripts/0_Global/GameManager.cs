@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -211,16 +212,19 @@ public class GameManager : MonoBehaviour
     // 다시시작
     public void Retry()
     {
-        Golem.transform.position = golemPosition;
-        PC.SetActive(false);
-        PC.SetActive(true);
-        Golem.SetActive(false);
-        Golem.SetActive(true);
+        // 현재 씬의 이름을 가져와서 로드
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(currentSceneName);
+        //Golem.transform.position = golemPosition;
+        //PC.SetActive(false);
+        //PC.SetActive(true);
+        //Golem.SetActive(false);
+        //Golem.SetActive(true);
 
-        isGameOver = false;
+        //isGameOver = false;
 
-        gameOverPanel.SetActive(false);
-        titlePanel.SetActive(true);
+        //gameOverPanel.SetActive(false);
+        //titlePanel.SetActive(true);
     }
 
     public void DebugPC()

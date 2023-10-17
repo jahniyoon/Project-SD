@@ -27,6 +27,9 @@ public class EnemyFast : MonoBehaviour
         {
             Debug.Log("플레이어 공격");
             other.GetComponent<PlayerHealth>().OnDamage(enemy.damage);
+
+            Debug.Log("자폭 공격");
+            enemy.OnDead();
         }
     }
 }
