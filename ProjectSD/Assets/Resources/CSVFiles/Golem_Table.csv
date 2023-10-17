@@ -1,2 +1,2 @@
-ID,Description,WeakpointRate,ActTime,HP,MoveSpeed
-10000,±âº»°ñ·½,1.5,5.0,500,3.2
+ID,Description,HP,MoveSpeed,Cooltime,ActTime,WeakPointRate
+3001,±âº» °ñ·½,2000,0.55,15.0,2.0,0.5

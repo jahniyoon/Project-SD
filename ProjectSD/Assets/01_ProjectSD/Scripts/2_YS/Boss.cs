@@ -29,7 +29,7 @@ public class Boss : MonoBehaviour
     public Transform bulletPort;
 
     public float traceDist = 100.0f; //추적 거리
-    public float attackDist = 1.0f; // 공격 사정거리
+    public float attackDist = 3.0f; // 공격 사정거리
 
 
     
@@ -80,8 +80,7 @@ public class Boss : MonoBehaviour
     void Update()
     {
 
-
-
+       
     }
 
     public void SetMaxHealth(float newHealth)
@@ -100,9 +99,9 @@ public class Boss : MonoBehaviour
         Dictionary<string, List<string>> dataDictionary = default;
         dataDictionary = CSVReader.ReadCSVFile("CSVFiles/Golem_Table"); //이름으로 가져옴
         DataManager.SetData(dataDictionary);
-        hp = (int)DataManager.GetData(10000, "HP"); //이름으로 가져오는거라서 순서상관 X 0번째 행  //변수 선언은 해야함
+        hp = (int)DataManager.GetData(3001, "HP"); //이름으로 가져오는거라서 순서상관 X 0번째 행  //변수 선언은 해야함
         //weakPoint = (float)DataManager.GetData(10000, "WeakpointRate");
-        actTime = (float)DataManager.GetData(10000, "ActTime");
+        actTime = (float)DataManager.GetData(3001   , "ActTime");
     }
 
     IEnumerator CheckMonsterState()
@@ -126,6 +125,12 @@ public class Boss : MonoBehaviour
             {
                 state = State.TRACE;
             }
+            else if (distance == traceDist)
+            {
+                state = State.DIE;
+            }
+
+
             //else if (distance <= traceDist)
             //{
             //    traceStart = true;
@@ -147,6 +152,7 @@ public class Boss : MonoBehaviour
 
                 case State.IDLE:
 
+                    
                     agent.isStopped = true;
 
 
@@ -176,7 +182,7 @@ public class Boss : MonoBehaviour
 
                 //사망
                 case State.DIE:
-                    isDie = true;
+                    //isDie = true;
                     //추적 중지
                     agent.isStopped = true;
                     //사망 애니메이션 실행
@@ -219,6 +225,7 @@ public class Boss : MonoBehaviour
         {
             //TODO:졸개 몬스터 소환 로직
         }
+
 
         //if(other.tag.Equals("Bullet"))
         //{
