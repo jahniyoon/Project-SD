@@ -51,10 +51,11 @@ public class GameManager : MonoBehaviour
 
     #region 골드관련 변수
     [Header("Gold")]
-    public int secondsGold;     // 초당 얻게될 골드
-    public int attackGold;      // 공격을 맞출때에 얻게될 골드
-    private int playerGold;      // 플레이어가 소지한 골드
-    private float goldGetSeconds;
+    private int playerGold;         // 플레이어가 소지한 골드
+    private float getGoldTime;      // 이 변수가 1이되면 시간골드 상승
+    public int secondsGold;         // 초당 얻게될 골드
+    public float bossAttackGold;      // 공격을 맞출때에 얻게될 골드
+    public int monsterKillGold;     // 졸개몬스터를 잡았을때 얻게될 골드
 
     public int PlayerGold       // UI 상에서 상시 Update 하지 않게하기위한 Gold 프로퍼티 변수
     {
@@ -261,21 +262,23 @@ public class GameManager : MonoBehaviour
 
         DataManager.SetData(goldCSV);
 
-        playerGold = (int)DataManager.GetData(6000, "CurrentGold");
-        secondsGold = (int)DataManager.GetData(6001, "SecondsGold");
-        attackGold = (int)DataManager.GetData(6002, "AttackGold");
-        
+        playerGold = (int)DataManager.GetData(9001, "Value");
+        secondsGold = (int)DataManager.GetData(9002, "Value");
+        bossAttackGold = (float)DataManager.GetData(9003, "Value");
+        monsterKillGold = (int)DataManager.GetData(9004, "Value");
+
+
     }       // ReadGoldCSVFile()
 
     // 일정 시간이 된다면 골드를 올려주는 함수
     private void GetTimeGold()
     {
-        goldGetSeconds += Time.deltaTime;
-        if (goldGetSeconds >= 1)
+        getGoldTime += Time.deltaTime;
+        if (getGoldTime >= 1)
         {
-            PlayerGold += secondsGold;            
-            
-            goldGetSeconds = 0;
+            PlayerGold += secondsGold;
+
+            getGoldTime = 0;
         }
         else { /*PASS*/ }
     }       // GetTimeGold()

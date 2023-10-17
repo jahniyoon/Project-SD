@@ -13,10 +13,16 @@ public class ShopItemButton : MonoBehaviour
     public int buttonNum;
 
     [Header("CSV_Value")]
-    public int nowItemValue;        // 현재 아이템의 갯수
+    
     public int maxItemValue;        // 구매할수 있는 최대치
     public int price;               // 아이템의 가격
     public float coolTime;            // 구매의 쿨타임
+    public string description;      // 아이템 설명
+
+    [Header("CSV_ITEM_ID")]
+
+    public int upgradeGunID;        // 가독성을위해 CSV아이템 ID 매핑
+    public int upgradeWaekPointID;
 
     private enum itemTag            // 가독성을 위해 만든 Enum 아이템 구매할때조건으로 사용
     {
@@ -26,7 +32,25 @@ public class ShopItemButton : MonoBehaviour
 
     [Header("NonTag")]
     private float nowCoolTime;       // 쿨타임이 현재 얼마나 흘렀는지 알려줄 변수
-    private bool isRayHit;           // 자신이 레이를 맞았는지 판단할 Bool 변수
+
+
+    private int nowItemValue;        // 현재 아이템의 갯수
+
+    //아이템 갯수 증가,감소때마다 현재 아이템 갯수와 최대 아이템 갯수 텍스트 업데이트해주기위한 프로퍼티
+    public int NowItemValue
+    {
+        get { return nowItemValue; }
+        set
+        {
+            if (nowItemValue != value)
+            {
+                nowItemValue = value;
+                UpdateItemCountText();
+            }
+        }
+    }       
+
+
     private Coroutine buyCooltimeCoroutine;     // Start 코루틴 해줄 변수
 
     private bool isUseItem;          // 현재 해당 버튼의 아이템을 사용중인지 판단할 bool변수
@@ -50,6 +74,7 @@ public class ShopItemButton : MonoBehaviour
     }       // IsUseItem 프로퍼티 End
 
 
+    private bool isRayHit;           // 자신이 레이를 맞았는지 판단할 Bool 변수
     public bool IsRayHit
     {
         get { return isRayHit; }
@@ -73,6 +98,7 @@ public class ShopItemButton : MonoBehaviour
     private TextMeshProUGUI itemCountText;      // 아이템 현재갯수,최대 갯수를 표기해줄 텍스트
     private TextMeshProUGUI priceText;          // 가격텍스트
     private TextMeshProUGUI cooltimeText;       // 아이템 쿨타임 텍스트
+    private TextMeshProUGUI descriptionText;    // 아이템 설명 텍스트
 
     private Image itemSprite;       // 아이템 이미지가 들어갈 변수
     private Image thisBackGroundImage;  // 컴포넌트를 가지고 있는 Button 자신의 이미지 변수
@@ -87,15 +113,18 @@ public class ShopItemButton : MonoBehaviour
 
     private void Awake()
     {
-        GameManagerInIt();
+        ItemIDInIt();
+        GameManagerInIt();          // 게임메니저 인스턴스하는 함수
         ImageComponentInIt();       // 이미지 컴포넌트 넣어주는 함수
         GetChildTextObj();          // Text들을 찾아서 바로바로 넣어주는 함수
         Vector3InIt();              // 아이템 UI 확대 축소를 위한 Vector3 변수에 값을 기입해주는 함수
-        ColorInIt();
+        ColorInIt();                // 처음 컬러값 new 할당해주는 함수
     }
 
     void Start()
     {
+        Debug.LogFormat("ID In?  WINum -> {0} , WPINum - > {1}",upgradeGunID,upgradeWaekPointID);
+        Debug.LogFormat("ItemTag : WPTag -> {0}, WPITag -> {1}", itemTag.UpgradeGun, itemTag.UpgradeWeakPoint);
         CSVReadInIt();              // 필요한 변수를 ButtonCount에 따라서 기입해주는 함수
         UpdateItemCountText();      // 현재 아이템 갯수와 최대 아이템 갯수 텍스트를 업데이트 하는 함수
         FirstTextInIt();            // 처음 모든 Text에 CSV의 값을 넣어주는 함수
@@ -114,27 +143,34 @@ public class ShopItemButton : MonoBehaviour
         GameManager.buttonsList.Add(this);
     }
 
+    private void ItemIDInIt()       // CSV속 아이템 ID를 매핑해주는 함수
+    {
+        upgradeGunID = 8001;
+        upgradeWaekPointID = 8002;
+    }       
 
 
     private void CSVReadInIt()      // CSV파일을 Read해와서 변수에 필요한 값을 넣어주는 함수
     {
-
+        Debug.LogFormat("ButtonNum -> {0}", buttonNum);
         if (buttonNum == (int)itemTag.UpgradeGun)      // 첫번째 아이템
         {
             //Debug.LogFormat("ButtonNum = {0} 가 첫번째 아이템으로 들어옴 ", buttonNum);
-            nowItemValue = (int)DataManager.GetData(100, "NowCount");
-            maxItemValue = (int)DataManager.GetData(100, "MaxBuyCount");
-            price = (int)DataManager.GetData(100, "Price");
-            coolTime = (int)DataManager.GetData(100, "CoolTime");
+            nowItemValue = 0;
+            maxItemValue = (int)DataManager.GetData(upgradeGunID,"Max");
+            price = (int)DataManager.GetData(upgradeGunID,"Gold");
+            coolTime = (int)DataManager.GetData(upgradeGunID,"Time");
+            description = (string)DataManager.GetData(upgradeGunID,"Description");
         }
 
         else if (buttonNum == (int)itemTag.UpgradeWeakPoint) // 두번째 아이템
         {
             //Debug.LogFormat("ButtonNum = {0} 가 두번째 아이템으로 들어옴 ", buttonNum);
-            nowItemValue = (int)DataManager.GetData(101, "NowCount");
-            maxItemValue = (int)DataManager.GetData(101, "MaxBuyCount");
-            price = (int)DataManager.GetData(101, "Price");
-            coolTime = (int)DataManager.GetData(101, "CoolTime");
+            nowItemValue = 0;
+            maxItemValue = (int)DataManager.GetData(upgradeWaekPointID, "Max");
+            price = (int)DataManager.GetData(upgradeWaekPointID, "Gold");
+            coolTime = (int)DataManager.GetData(upgradeWaekPointID, "Time");
+            description = (string)DataManager.GetData(upgradeWaekPointID, "Description");
         }
 
     }
@@ -168,6 +204,9 @@ public class ShopItemButton : MonoBehaviour
         countTextObj = transform.GetChild(5);
         priceText = countTextObj.GetComponent<TextMeshProUGUI>();
 
+        // Item Description Text
+        countTextObj = transform.GetChild(6);
+        descriptionText = countTextObj.GetComponent<TextMeshProUGUI>();
 
     }       // GetChildTextObj()
 
@@ -178,6 +217,7 @@ public class ShopItemButton : MonoBehaviour
         UpdateItemCountText();      //  nowCount,MaxCount Update
         UpdatePriceText();          // PriceText Update
         UpdateItemCoolTime();       // CoolTimeText Update
+        UpdateDescriptionText();    // DescriptionText Update
 
     }       // FirstTextInIt()
 
@@ -186,7 +226,7 @@ public class ShopItemButton : MonoBehaviour
         // TODO : 게임메니저,플레이어 가 가지고 있는 bool 값을 이용하던지
         //          무언가를 이용해서 텍스트를 업데이트 해주어야함
 
-        itemCountText.text = nowItemValue + " / " + maxItemValue;
+        itemCountText.text = NowItemValue + " / " + maxItemValue;
     }
 
     public void UpdateItemCoolTime()        // 쿨타임 텍스트 업데이트
@@ -197,6 +237,12 @@ public class ShopItemButton : MonoBehaviour
     public void UpdatePriceText()       // 가격 텍스트 업데이트
     {
         priceText.text = price.ToString();
+    }
+    public void UpdateDescriptionText()
+    {
+        //Debug.LogWarning("ㅎ한글은 나오나?");
+        descriptionText.text = description; // 아이템 설명 업데이트
+        
     }
 
     //-------------------------------------------- Ray가 닿았을때를 위한 함수들 --------------------------
@@ -300,6 +346,8 @@ public class ShopItemButton : MonoBehaviour
 
     private IEnumerator BuyCoolTime()   // 구매 쿨타임
     {
+        NowItemValue++; // 현재 아이템 갯수 증가
+
         ColorController();      // 쿨타임 돌떄에 색을 바꾸어줌
         while (nowCoolTime < coolTime)
         {
@@ -311,6 +359,8 @@ public class ShopItemButton : MonoBehaviour
         IsUseItem = false;
 
         ColorController();      // 쿨타임이 끝날때에 색을 바꾸어줌
+
+        NowItemValue--; // 현재 아이템 갯수 감소
     }       // BuyCoolTime()
 
 

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.10064494, g: 0.07367198, b: 0.13477609, a: 1}
+  m_IndirectSpecularColor: {r: 0.100646876, g: 0.07367326, b: 0.13477811, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -352,6 +352,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7378178939818117160, guid: b85074a4a81990b4e87f05a71d198b70, type: 3}
+      propertyPath: shopRect
+      value: 
+      objectReference: {fileID: 956693139}
     - target: {fileID: 7378178941472741498, guid: b85074a4a81990b4e87f05a71d198b70, type: 3}
       propertyPath: m_Name
       value: ShopPanel
@@ -455,6 +459,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7378178941472741498, guid: b85074a4a81990b4e87f05a71d198b70, type: 3}
   m_PrefabInstance: {fileID: 956693134}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &956693139 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7378178941472741502, guid: b85074a4a81990b4e87f05a71d198b70, type: 3}
+  m_PrefabInstance: {fileID: 956693134}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1013624468
 GameObject:
   m_ObjectHideFlags: 0
@@ -500,6 +509,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PC: {fileID: 414766354}
+  hpSlider: {fileID: 0}
   isGameOver: 0
   isVR: 0
   Golem: {fileID: 534559349}
