@@ -3216,37 +3216,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 358462ee285e64740adaeca6f4b1658a, type: 3}
---- !u!1 &912908126 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4596508834244230350, guid: 833c90fad5734914bb783a9cb25462c8, type: 3}
-  m_PrefabInstance: {fileID: 1911326487}
-  m_PrefabAsset: {fileID: 0}
---- !u!61 &912908131
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 912908126}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!1 &914132572
 GameObject:
   m_ObjectHideFlags: 0
@@ -3545,7 +3514,7 @@ MonoBehaviour:
   isGunUpgrade: 0
   isWeakpointUpgrade: 0
   isPCMODE: 1
-  isShopTest: 1
+  isShopTest: 0
   secondsGold: 0
   bossAttackGold: 0
   monsterKillGold: 0
@@ -4878,6 +4847,38 @@ PrefabInstance:
       propertyPath: testMonster.Array.data[59]
       value: 
       objectReference: {fileID: 1202457936}
+    - target: {fileID: 653538007, guid: 523ab95688cff794b9f3d193fcbc45fb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.079
+      objectReference: {fileID: 0}
+    - target: {fileID: 1725330096, guid: 523ab95688cff794b9f3d193fcbc45fb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.078999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 2208805942432531192, guid: 523ab95688cff794b9f3d193fcbc45fb, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2208805942432531192, guid: 523ab95688cff794b9f3d193fcbc45fb, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2208805942432531192, guid: 523ab95688cff794b9f3d193fcbc45fb, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261785487908408173, guid: 523ab95688cff794b9f3d193fcbc45fb, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261785487908408173, guid: 523ab95688cff794b9f3d193fcbc45fb, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261785487908408173, guid: 523ab95688cff794b9f3d193fcbc45fb, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5912596140159576387, guid: 523ab95688cff794b9f3d193fcbc45fb, type: 3}
       propertyPath: m_Name
       value: BloodScreen
@@ -4904,7 +4905,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8255814611675511854, guid: 523ab95688cff794b9f3d193fcbc45fb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.842
       objectReference: {fileID: 0}
     - target: {fileID: 8255814611675511854, guid: 523ab95688cff794b9f3d193fcbc45fb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6634,50 +6635,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1295455839026142043, guid: 833c90fad5734914bb783a9cb25462c8, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1013624470}
-    - target: {fileID: 1295455839026142043, guid: 833c90fad5734914bb783a9cb25462c8, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GameStart
-      objectReference: {fileID: 0}
-    - target: {fileID: 1295455839026142043, guid: 833c90fad5734914bb783a9cb25462c8, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: GameManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 1295455839026142043, guid: 833c90fad5734914bb783a9cb25462c8, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 2447244079968419884, guid: 833c90fad5734914bb783a9cb25462c8, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2447244079968419884, guid: 833c90fad5734914bb783a9cb25462c8, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0.124
-      objectReference: {fileID: 0}
-    - target: {fileID: 3875034741060087137, guid: 833c90fad5734914bb783a9cb25462c8, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4596508834244230350, guid: 833c90fad5734914bb783a9cb25462c8, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4596508834244230350, guid: 833c90fad5734914bb783a9cb25462c8, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5208557793206750212, guid: 833c90fad5734914bb783a9cb25462c8, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6666948769242198794, guid: 833c90fad5734914bb783a9cb25462c8, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7161123512094332900, guid: 833c90fad5734914bb783a9cb25462c8, type: 3}
       propertyPath: m_Name
       value: TitlePanel
@@ -6724,14 +6681,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7161123512094332901, guid: 833c90fad5734914bb783a9cb25462c8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7161123513265748442, guid: 833c90fad5734914bb783a9cb25462c8, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7161123513680375597, guid: 833c90fad5734914bb783a9cb25462c8, type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

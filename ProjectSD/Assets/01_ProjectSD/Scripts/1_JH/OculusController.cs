@@ -20,10 +20,15 @@ public class OculusController : MonoBehaviour
     public RaycastHit rayHit;
     public GameObject buttonObj;
 
+    Vector3 originScale = Vector3.one * 0.02f;
+    public Transform pointUI;
+
     // Start is called before the first frame update
     void Start()
     {
         laserRenderer = GetComponent<LineRenderer>();
+        pointUI.gameObject.SetActive(false);
+
     }
 
     // Update is called once per frame
@@ -38,23 +43,27 @@ public class OculusController : MonoBehaviour
 
         if (Physics.Raycast(firePoint.position, firePoint.forward, out rayHit, Mathf.Infinity, buttonLayerMask))
         {
-            hitPoint.gameObject.SetActive(true);
-            hitPoint.transform.position = rayHit.point;
+            //hitPoint.gameObject.SetActive(true);
+            //hitPoint.transform.position = rayHit.point;
+            pointUI.gameObject.SetActive(true);
+            pointUI.transform.position = rayHit.point;
+            pointUI.localScale = originScale * Mathf.Max(1, rayHit.distance);
 
             laserRenderer.SetPosition(1, rayHit.point);
+
 
             btnName = rayHit.transform.name;
             isBtnEnable = true;
         }
-        else if (Physics.Raycast(firePoint.position, firePoint.forward, out rayHit, Mathf.Infinity, uiLayerMask))
-        {
-            hitPoint.gameObject.SetActive(true);
-            hitPoint.transform.position = rayHit.point;
+        //else if (Physics.Raycast(firePoint.position, firePoint.forward, out rayHit, Mathf.Infinity, uiLayerMask))
+        //{
+        //    hitPoint.gameObject.SetActive(true);
+        //    hitPoint.transform.position = rayHit.point;
 
-            laserRenderer.SetPosition(1, rayHit.point);
-            btnName = rayHit.transform.name;
-            buttonObj = rayHit.transform.gameObject;
-        }
+        //    laserRenderer.SetPosition(1, rayHit.point);
+        //    btnName = rayHit.transform.name;
+        //    buttonObj = rayHit.transform.gameObject;
+        //}
         else
         {
             laserRenderer.SetPosition(1, firePoint.forward * 2000);
@@ -63,7 +72,9 @@ public class OculusController : MonoBehaviour
             btnName = null;
             isBtnEnable = false;
 
-            hitPoint.gameObject.SetActive(false);
+            //hitPoint.gameObject.SetActive(false);
+            pointUI.gameObject.SetActive(false);
+
         }
     }
 }

@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.Windows;
 
@@ -16,11 +17,16 @@ public class Weapon : MonoBehaviour
 
     public MeshRenderer[] meshes;   // 디버그용 메시
 
+
     int buttonLayerMask = (1 << 8);
     [Header("Laser Point")]
     public Transform firePoint;
     public GameObject hitPoint;
     public LineRenderer laserRenderer;
+
+    Vector3 originScale = Vector3.one * 0.02f;
+    public Transform pointUI;
+
 
     [Header("Bullet")]
     public GameObject bulletPrefab;
@@ -32,6 +38,7 @@ public class Weapon : MonoBehaviour
 
     public void OnEnable()
     {
+        pointUI.gameObject.SetActive(false);
         isUpgrade = false;
         GetData(isUpgrade);
         lastFireTime = 0;       // 시간 초기화
@@ -56,8 +63,12 @@ public class Weapon : MonoBehaviour
         RaycastHit rayHit;
         if (Physics.Raycast(firePoint.position, firePoint.forward, out rayHit, Mathf.Infinity, buttonLayerMask))
         {
-            hitPoint.gameObject.SetActive(true);
-            hitPoint.transform.position = rayHit.point;
+            //hitPoint.gameObject.SetActive(true);
+            //hitPoint.transform.position = rayHit.point;
+            pointUI.gameObject.SetActive(true);
+            pointUI.transform.position = rayHit.point;
+            pointUI.localScale = originScale * Mathf.Max(1, rayHit.distance);
+
 
             laserRenderer.SetPosition(1, rayHit.point);
 
@@ -71,7 +82,8 @@ public class Weapon : MonoBehaviour
             btnName = null;
             isBtnEnable = false;
 
-            hitPoint.gameObject.SetActive(false);
+            //hitPoint.gameObject.SetActive(false);
+            pointUI.gameObject.SetActive(false);
         }
     }
 
