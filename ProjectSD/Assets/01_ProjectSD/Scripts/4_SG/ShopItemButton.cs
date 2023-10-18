@@ -24,6 +24,9 @@ public class ShopItemButton : MonoBehaviour
     public int upgradeGunID;        // 가독성을위해 CSV아이템 ID 매핑
     public int upgradeWaekPointID;
 
+    [Header("TEST_Parameter")]
+    public PlayerShop pSC;
+
     private enum itemTag            // 가독성을 위해 만든 Enum 아이템 구매할때조건으로 사용
     {
         UpgradeGun,                 // 0
@@ -83,6 +86,7 @@ public class ShopItemButton : MonoBehaviour
         {
             if (isRayHit != value)
             {
+                Debug.LogFormat("RayHit 값바뀜");
                 isRayHit = value;
                 buttonController();     // 버튼 색과 확대,축소등 관리해줄 함수
             }
@@ -118,13 +122,14 @@ public class ShopItemButton : MonoBehaviour
         ImageComponentInIt();       // 이미지 컴포넌트 넣어주는 함수
         GetChildTextObj();          // Text들을 찾아서 바로바로 넣어주는 함수
         Vector3InIt();              // 아이템 UI 확대 축소를 위한 Vector3 변수에 값을 기입해주는 함수
-        ColorInIt();                // 처음 컬러값 new 할당해주는 함수
+        //ColorInIt();                // 그리드 상점일때에 컬러기입 처음 컬러값 new 할당해주는 함수
+        ScrollerColorInIt();        // 스크롤러 상점일때에 컬러기입
     }
 
     void Start()
     {
-        Debug.LogFormat("ID In?  WINum -> {0} , WPINum - > {1}",upgradeGunID,upgradeWaekPointID);
-        Debug.LogFormat("ItemTag : WPTag -> {0}, WPITag -> {1}", itemTag.UpgradeGun, itemTag.UpgradeWeakPoint);
+        //Debug.LogFormat("ID In?  WINum -> {0} , WPINum - > {1}",upgradeGunID,upgradeWaekPointID);
+        //Debug.LogFormat("ItemTag : WPTag -> {0}, WPITag -> {1}", itemTag.UpgradeGun, itemTag.UpgradeWeakPoint);
         CSVReadInIt();              // 필요한 변수를 ButtonCount에 따라서 기입해주는 함수
         UpdateItemCountText();      // 현재 아이템 갯수와 최대 아이템 갯수 텍스트를 업데이트 하는 함수
         FirstTextInIt();            // 처음 모든 Text에 CSV의 값을 넣어주는 함수
@@ -152,7 +157,7 @@ public class ShopItemButton : MonoBehaviour
 
     private void CSVReadInIt()      // CSV파일을 Read해와서 변수에 필요한 값을 넣어주는 함수
     {
-        Debug.LogFormat("ButtonNum -> {0}", buttonNum);
+        //Debug.LogFormat("ButtonNum -> {0}", buttonNum);
         if (buttonNum == (int)itemTag.UpgradeGun)      // 첫번째 아이템
         {
             //Debug.LogFormat("ButtonNum = {0} 가 첫번째 아이템으로 들어옴 ", buttonNum);
@@ -178,7 +183,11 @@ public class ShopItemButton : MonoBehaviour
     // ----------------------------------------- 이미지 관련 함수 -------------------------------------------
     private void ImageComponentInIt()       // 이미지 컴포넌트 넣어주는 함수
     {
-        thisBackGroundImage = this.transform.GetComponent<Image>();
+        // 그리드일때에
+        //thisBackGroundImage = this.transform.GetComponent<Image>();
+
+        // 스크롤러일때에
+        thisBackGroundImage = transform.GetChild(7).GetComponent<Image>();
     }       // ImageComponentInIt()
 
     private void ColorInIt()        // 컬러값 넣어주는 함수
@@ -187,6 +196,13 @@ public class ShopItemButton : MonoBehaviour
         choiceColor = new Color32(200, 200, 200, 255);
         buyColor = new Color32(80, 20, 30, 255);
     }       // ColorInIt()
+
+    private void ScrollerColorInIt()
+    {
+        defaultColor = new Color32(255, 255, 255, 0);
+        choiceColor = new Color32(200, 200, 200, 50);
+        buyColor = new Color32(80, 20, 30, 50);
+    }
 
     // ------------------------------------------ 텍스트 관련 함수 ------------------------------------------
 

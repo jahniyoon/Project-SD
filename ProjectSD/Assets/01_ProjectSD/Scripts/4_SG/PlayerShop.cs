@@ -25,6 +25,11 @@ public class PlayerShop : MonoBehaviour
 
     #endregion Test변수
 
+    private void Awake()
+    {
+        pShoter = GetComponent<PlayerShooter>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -95,32 +100,34 @@ public class PlayerShop : MonoBehaviour
     public void TestRay()
     {
         if (shopUI.gameObject.activeSelf == true)
-        {
-
-            pShoter.rightGun.laserRenderer.SetPosition(0, pShoter.rightGun.firePoint.position);
-
+        { 
             RaycastHit rayHit;
             if (Physics.Raycast(pShoter.rightGun.firePoint.position, pShoter.rightGun.firePoint.forward, out rayHit, Mathf.Infinity, buttonMask))
             {
+                //Debug.LogFormat("상점이 열리면 레이를 쏘나?");
                 if (rayHit.transform.GetComponent<ShopItemButton>())
                 {
+                    //Debug.LogFormat("레이맞은것이 Class를 가지고있나?");
                     // if : 맞은 레이의 ShopItemButton을 얻었다면
                     tempClass = rayHit.transform.GetComponent<ShopItemButton>();
                     tempClass.IsRayHit = true;
+                    //Debug.LogFormat("IsRayHit -> {0}, objName -> {1}", tempClass.IsRayHit,tempClass.gameObject.name);
 
                     if (input.select)
-                    {                        
+                    {
+                        Debug.LogFormat("Select버튼 누름");
                         // LEGACY IF : if (tempClass.IsRayHit == true && tempClass.IsUseItem == false)
                         if (tempClass.IsRayHit == true)
                         {
                             //TEST
                             if (tempClass.NowItemValue < tempClass.maxItemValue)
                             {
-                                Debug.Log("아이템 갯수조건이 충족한가?");
+                                //Debug.Log("아이템 갯수조건이 충족한가?");
                                 tempClass.BuyItem();
                             }
                             //TEST
                         }
+                        Debug.Log("선택버튼 false");
                         input.select = false;       // 입력을 해제한다.
                     }       // if end : 선택 버튼을 눌렀을 경우
 
