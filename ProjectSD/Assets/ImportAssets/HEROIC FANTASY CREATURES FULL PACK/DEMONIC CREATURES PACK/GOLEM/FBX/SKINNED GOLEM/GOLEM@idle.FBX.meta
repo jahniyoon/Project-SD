@@ -1,176 +1,464 @@
 fileFormatVersion: 2
 guid: 7f5ed87d7b7616a4abb92cb580b96eec
 ModelImporter:
-  serializedVersion: 18
-  fileIDToRecycleName:
-    100000: GOLEM_ Spine1
-    100002: GOLEM_ R Forearm
-    100004: GOLEM_ R Finger41
-    100006: GOLEM_ L Finger41
-    100008: GOLEM_ R Finger0
-    100010: GOLEM_ L Finger2
-    100012: GOLEM_ L Finger02
-    100014: GOLEM_ L Finger31
-    100016: GOLEM_ R Finger12
-    100018: GOLEM_ L Finger1
-    100020: GOLEM_ L Finger01
-    100022: GOLEM_ L Finger21
-    100024: GOLEM_ Head
-    100026: GOLEM_ R Finger42
-    100028: GOLEM_ R Finger1
-    100030: GOLEM_ R Finger21
-    100032: GOLEM_ R Finger4
-    100034: GOLEM_ L Finger12
-    100036: GOLEM_ R Finger11
-    100038: GOLEM_ Queue de cheval 1
-    100040: GOLEM_ R Finger3
-    100042: GOLEM_ R Clavicle
-    100044: GOLEM_ L Calf
-    100046: GOLEM_ R UpperArm
-    100048: GOLEM_ L Finger4
-    100050: GOLEM_ L Toe0
-    100052: GOLEM_ L Finger22
-    100054: GOLEM_ L Thigh
-    100056: GOLEM_ R Toe0
-    100058: GOLEM_ Pelvis
-    100060: GOLEM_ L Finger11
-    100062: GOLEM_
-    100064: GOLEM_ Neck
-    100066: GOLEM_ R Hand
-    100068: GOLEM_ L Clavicle
-    100070: GOLEM_ R Finger2
-    100072: GOLEM_ L Finger0
-    100074: GOLEM_ R Thigh
-    100076: GOLEM_ R Foot
-    100078: GOLEM_ R Calf
-    100080: GOLEM_ L Finger42
-    100082: GOLEM_ L Finger32
-    100084: GOLEM_ L UpperArm
-    100086: GOLEM_ R Finger01
-    100088: GOLEM_ R Finger32
-    100090: GOLEM_ R Finger31
-    100092: GOLEM_ L Finger3
-    100094: GOLEM_ R Finger02
-    100096: GOLEM_ L Forearm
-    100098: //RootNode
-    100100: GOLEM_ R Finger22
-    100102: GOLEM_ Spine
-    100104: GOLEM_ L Hand
-    100106: GOLEM_ L Foot
-    400000: GOLEM_ Spine1
-    400002: GOLEM_ R Forearm
-    400004: GOLEM_ R Finger41
-    400006: GOLEM_ L Finger41
-    400008: GOLEM_ R Finger0
-    400010: GOLEM_ L Finger2
-    400012: GOLEM_ L Finger02
-    400014: GOLEM_ L Finger31
-    400016: GOLEM_ R Finger12
-    400018: GOLEM_ L Finger1
-    400020: GOLEM_ L Finger01
-    400022: GOLEM_ L Finger21
-    400024: GOLEM_ Head
-    400026: GOLEM_ R Finger42
-    400028: GOLEM_ R Finger1
-    400030: GOLEM_ R Finger21
-    400032: GOLEM_ R Finger4
-    400034: GOLEM_ L Finger12
-    400036: GOLEM_ R Finger11
-    400038: GOLEM_ Queue de cheval 1
-    400040: GOLEM_ R Finger3
-    400042: GOLEM_ R Clavicle
-    400044: GOLEM_ L Calf
-    400046: GOLEM_ R UpperArm
-    400048: GOLEM_ L Finger4
-    400050: GOLEM_ L Toe0
-    400052: GOLEM_ L Finger22
-    400054: GOLEM_ L Thigh
-    400056: GOLEM_ R Toe0
-    400058: GOLEM_ Pelvis
-    400060: GOLEM_ L Finger11
-    400062: GOLEM_
-    400064: GOLEM_ Neck
-    400066: GOLEM_ R Hand
-    400068: GOLEM_ L Clavicle
-    400070: GOLEM_ R Finger2
-    400072: GOLEM_ L Finger0
-    400074: GOLEM_ R Thigh
-    400076: GOLEM_ R Foot
-    400078: GOLEM_ R Calf
-    400080: GOLEM_ L Finger42
-    400082: GOLEM_ L Finger32
-    400084: GOLEM_ L UpperArm
-    400086: GOLEM_ R Finger01
-    400088: GOLEM_ R Finger32
-    400090: GOLEM_ R Finger31
-    400092: GOLEM_ L Finger3
-    400094: GOLEM_ R Finger02
-    400096: GOLEM_ L Forearm
-    400098: //RootNode
-    400100: GOLEM_ R Finger22
-    400102: GOLEM_ Spine
-    400104: GOLEM_ L Hand
-    400106: GOLEM_ L Foot
-    7400000: Take 001
-    11100000: //RootNode
+  serializedVersion: 21300
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: GOLEM_ Spine1
+  - first:
+      1: 100002
+    second: GOLEM_ R Forearm
+  - first:
+      1: 100004
+    second: GOLEM_ R Finger41
+  - first:
+      1: 100006
+    second: GOLEM_ L Finger41
+  - first:
+      1: 100008
+    second: GOLEM_ R Finger0
+  - first:
+      1: 100010
+    second: GOLEM_ L Finger2
+  - first:
+      1: 100012
+    second: GOLEM_ L Finger02
+  - first:
+      1: 100014
+    second: GOLEM_ L Finger31
+  - first:
+      1: 100016
+    second: GOLEM_ R Finger12
+  - first:
+      1: 100018
+    second: GOLEM_ L Finger1
+  - first:
+      1: 100020
+    second: GOLEM_ L Finger01
+  - first:
+      1: 100022
+    second: GOLEM_ L Finger21
+  - first:
+      1: 100024
+    second: GOLEM_ Head
+  - first:
+      1: 100026
+    second: GOLEM_ R Finger42
+  - first:
+      1: 100028
+    second: GOLEM_ R Finger1
+  - first:
+      1: 100030
+    second: GOLEM_ R Finger21
+  - first:
+      1: 100032
+    second: GOLEM_ R Finger4
+  - first:
+      1: 100034
+    second: GOLEM_ L Finger12
+  - first:
+      1: 100036
+    second: GOLEM_ R Finger11
+  - first:
+      1: 100038
+    second: GOLEM_ Queue de cheval 1
+  - first:
+      1: 100040
+    second: GOLEM_ R Finger3
+  - first:
+      1: 100042
+    second: GOLEM_ R Clavicle
+  - first:
+      1: 100044
+    second: GOLEM_ L Calf
+  - first:
+      1: 100046
+    second: GOLEM_ R UpperArm
+  - first:
+      1: 100048
+    second: GOLEM_ L Finger4
+  - first:
+      1: 100050
+    second: GOLEM_ L Toe0
+  - first:
+      1: 100052
+    second: GOLEM_ L Finger22
+  - first:
+      1: 100054
+    second: GOLEM_ L Thigh
+  - first:
+      1: 100056
+    second: GOLEM_ R Toe0
+  - first:
+      1: 100058
+    second: GOLEM_ Pelvis
+  - first:
+      1: 100060
+    second: GOLEM_ L Finger11
+  - first:
+      1: 100062
+    second: GOLEM_
+  - first:
+      1: 100064
+    second: GOLEM_ Neck
+  - first:
+      1: 100066
+    second: GOLEM_ R Hand
+  - first:
+      1: 100068
+    second: GOLEM_ L Clavicle
+  - first:
+      1: 100070
+    second: GOLEM_ R Finger2
+  - first:
+      1: 100072
+    second: GOLEM_ L Finger0
+  - first:
+      1: 100074
+    second: GOLEM_ R Thigh
+  - first:
+      1: 100076
+    second: GOLEM_ R Foot
+  - first:
+      1: 100078
+    second: GOLEM_ R Calf
+  - first:
+      1: 100080
+    second: GOLEM_ L Finger42
+  - first:
+      1: 100082
+    second: GOLEM_ L Finger32
+  - first:
+      1: 100084
+    second: GOLEM_ L UpperArm
+  - first:
+      1: 100086
+    second: GOLEM_ R Finger01
+  - first:
+      1: 100088
+    second: GOLEM_ R Finger32
+  - first:
+      1: 100090
+    second: GOLEM_ R Finger31
+  - first:
+      1: 100092
+    second: GOLEM_ L Finger3
+  - first:
+      1: 100094
+    second: GOLEM_ R Finger02
+  - first:
+      1: 100096
+    second: GOLEM_ L Forearm
+  - first:
+      1: 100098
+    second: //RootNode
+  - first:
+      1: 100100
+    second: GOLEM_ R Finger22
+  - first:
+      1: 100102
+    second: GOLEM_ Spine
+  - first:
+      1: 100104
+    second: GOLEM_ L Hand
+  - first:
+      1: 100106
+    second: GOLEM_ L Foot
+  - first:
+      4: 400000
+    second: GOLEM_ Spine1
+  - first:
+      4: 400002
+    second: GOLEM_ R Forearm
+  - first:
+      4: 400004
+    second: GOLEM_ R Finger41
+  - first:
+      4: 400006
+    second: GOLEM_ L Finger41
+  - first:
+      4: 400008
+    second: GOLEM_ R Finger0
+  - first:
+      4: 400010
+    second: GOLEM_ L Finger2
+  - first:
+      4: 400012
+    second: GOLEM_ L Finger02
+  - first:
+      4: 400014
+    second: GOLEM_ L Finger31
+  - first:
+      4: 400016
+    second: GOLEM_ R Finger12
+  - first:
+      4: 400018
+    second: GOLEM_ L Finger1
+  - first:
+      4: 400020
+    second: GOLEM_ L Finger01
+  - first:
+      4: 400022
+    second: GOLEM_ L Finger21
+  - first:
+      4: 400024
+    second: GOLEM_ Head
+  - first:
+      4: 400026
+    second: GOLEM_ R Finger42
+  - first:
+      4: 400028
+    second: GOLEM_ R Finger1
+  - first:
+      4: 400030
+    second: GOLEM_ R Finger21
+  - first:
+      4: 400032
+    second: GOLEM_ R Finger4
+  - first:
+      4: 400034
+    second: GOLEM_ L Finger12
+  - first:
+      4: 400036
+    second: GOLEM_ R Finger11
+  - first:
+      4: 400038
+    second: GOLEM_ Queue de cheval 1
+  - first:
+      4: 400040
+    second: GOLEM_ R Finger3
+  - first:
+      4: 400042
+    second: GOLEM_ R Clavicle
+  - first:
+      4: 400044
+    second: GOLEM_ L Calf
+  - first:
+      4: 400046
+    second: GOLEM_ R UpperArm
+  - first:
+      4: 400048
+    second: GOLEM_ L Finger4
+  - first:
+      4: 400050
+    second: GOLEM_ L Toe0
+  - first:
+      4: 400052
+    second: GOLEM_ L Finger22
+  - first:
+      4: 400054
+    second: GOLEM_ L Thigh
+  - first:
+      4: 400056
+    second: GOLEM_ R Toe0
+  - first:
+      4: 400058
+    second: GOLEM_ Pelvis
+  - first:
+      4: 400060
+    second: GOLEM_ L Finger11
+  - first:
+      4: 400062
+    second: GOLEM_
+  - first:
+      4: 400064
+    second: GOLEM_ Neck
+  - first:
+      4: 400066
+    second: GOLEM_ R Hand
+  - first:
+      4: 400068
+    second: GOLEM_ L Clavicle
+  - first:
+      4: 400070
+    second: GOLEM_ R Finger2
+  - first:
+      4: 400072
+    second: GOLEM_ L Finger0
+  - first:
+      4: 400074
+    second: GOLEM_ R Thigh
+  - first:
+      4: 400076
+    second: GOLEM_ R Foot
+  - first:
+      4: 400078
+    second: GOLEM_ R Calf
+  - first:
+      4: 400080
+    second: GOLEM_ L Finger42
+  - first:
+      4: 400082
+    second: GOLEM_ L Finger32
+  - first:
+      4: 400084
+    second: GOLEM_ L UpperArm
+  - first:
+      4: 400086
+    second: GOLEM_ R Finger01
+  - first:
+      4: 400088
+    second: GOLEM_ R Finger32
+  - first:
+      4: 400090
+    second: GOLEM_ R Finger31
+  - first:
+      4: 400092
+    second: GOLEM_ L Finger3
+  - first:
+      4: 400094
+    second: GOLEM_ R Finger02
+  - first:
+      4: 400096
+    second: GOLEM_ L Forearm
+  - first:
+      4: 400098
+    second: //RootNode
+  - first:
+      4: 400100
+    second: GOLEM_ R Finger22
+  - first:
+      4: 400102
+    second: GOLEM_ Spine
+  - first:
+      4: 400104
+    second: GOLEM_ L Hand
+  - first:
+      4: 400106
+    second: GOLEM_ L Foot
+  - first:
+      74: 7400000
+    second: idle
+  - first:
+      111: 11100000
+    second: //RootNode
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
+    resampleCurves: 1
     optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 0
-    animationRotationError: .5
-    animationPositionError: .5
-    animationScaleError: .5
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
     animationWrapMode: 2
     extraExposedTransformPaths: []
-    clipAnimations: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: idle
+      takeName: Take 001
+      internalID: 7400000
+      firstFrame: 0
+      lastFrame: 60
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 1
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: .00999999978
+    globalScale: 0.01
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    nodeNameCollisionStrategy: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 0
   tangentSpace:
     normalSmoothAngle: 60
-    splitTangentsAcrossUV: 1
     normalImportMode: 0
-    tangentImportMode: 1
+    tangentImportMode: 4
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
+    serializedVersion: 3
     human: []
     skeleton: []
-    armTwist: .5
-    foreArmTwist: .5
-    upperLegTwist: .5
-    legTwist: .5
-    armStretch: .0500000007
-    legStretch: .0500000007
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
     feetSpacing: 0
+    globalScale: 0.01
     rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 1
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  remapMaterialsIfMaterialImportModeIsNone: 1
   additionalBone: 1
   userData: 
   assetBundleName: 
