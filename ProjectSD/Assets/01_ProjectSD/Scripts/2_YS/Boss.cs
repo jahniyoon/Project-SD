@@ -16,6 +16,7 @@ public class Boss : MonoBehaviour
     public Transform boss;
     public NavMeshAgent agent;
     public GameObject bossBullet;
+    public Animator anim;
 
     public SkinnedMeshRenderer mesh;
 
@@ -71,6 +72,7 @@ public class Boss : MonoBehaviour
     {
         SetMaxHealth(hp);   // 생성되고나서 HP 슬라이더를 업데이트한다.
         target = GameObject.FindWithTag("Player").GetComponent<Transform>();
+        anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
 
         StartCoroutine(CheckMonsterState());
@@ -130,7 +132,7 @@ public class Boss : MonoBehaviour
             {
                 state = State.TRACE;
             }
-            else if (distance == traceDist)
+            else if (hp <= 0)
             {
                 state = State.DIE;
             }
@@ -161,7 +163,7 @@ public class Boss : MonoBehaviour
                     agent.isStopped = true;
 
 
-                    //anim.SetBool(hashTrace, false);
+                    anim.SetBool("IsWalk", false);
                     break;
 
 
@@ -173,8 +175,8 @@ public class Boss : MonoBehaviour
                     //임의의 시간 후 투사체
                     //StartCoroutine(SkillCounter());
 
-                   
-                    //anim.SetBool(hashTrace, true);
+
+                    anim.SetBool("IsWalk", true);
 
 
                     //anim.SetBool(hashAttack, false);
@@ -187,9 +189,10 @@ public class Boss : MonoBehaviour
 
                 //사망
                 case State.DIE:
-                    //isDie = true;
+                    isDie = true;
                     //추적 중지
                     agent.isStopped = true;
+                    GameManager.instance.GameOver();
                     //사망 애니메이션 실행
                     //anim.SetTrigger(hashDie);
 
