@@ -540,7 +540,6 @@ MonoBehaviour:
   isGameOver: 0
   isVR: 0
   Golem: {fileID: 534559349}
-  golemPosition: {x: 0, y: 0, z: 0}
   titlePanel: {fileID: 1911326488}
   shopPanel: {fileID: 2498817135358697694}
   gameOverPanel: {fileID: 1486348962}
@@ -1127,9 +1126,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 610386725896611169, guid: 358462ee285e64740adaeca6f4b1658a, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 610386725896611169, guid: 358462ee285e64740adaeca6f4b1658a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 610386725896611169, guid: 358462ee285e64740adaeca6f4b1658a, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 610386726333953008, guid: 358462ee285e64740adaeca6f4b1658a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -175.49966
+      value: -175.49998
       objectReference: {fileID: 0}
     - target: {fileID: 610386726403220495, guid: 358462ee285e64740adaeca6f4b1658a, type: 3}
       propertyPath: m_AnchorMax.x
