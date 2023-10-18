@@ -6,6 +6,8 @@ using System.Text.RegularExpressions;
 
 public class JsonToCSVConverter
 {
+    private const char QUOTATION_MARK = '"';
+
     public static string ConvertJsonToCSV(string json)
     {
         Debug.Log($"받은json = {json}");
@@ -51,8 +53,7 @@ public class JsonToCSVConverter
             string data = jsonObj["values"].ToString();
 
             Debug.Log($"data: {data}");
-            // 받아온 jsonObj 데이터가 정상이어서
-            // "values" 키가 있을 경우
+
             if (jsonObj.ContainsKey("values"))
             {
                 Debug.Log($"ConatinsKey True");
@@ -66,26 +67,28 @@ public class JsonToCSVConverter
 
                 Debug.Log($"matches: {matches.Count}");
 
+                string resultText = "";
+
+                int index = 0;
                 foreach (Match match in matches)
                 {
                     if (match.Success)
                     {
                         Debug.Log("Match True");
-                        // 정규 표현식에 일치하는 부분은 match.Groups[1]에 저장됨
-                        string valueInsideBrackets = match.Groups[1].Value;
-                        string text = RemoveBracketsAndNewlines(match.ToString());
-                        //text = RemoveSpaceLines(text);
-                        Debug.Log($"{CountQuotes(text)} > {text}");
-                        text = ExtractTextBetweenQuotes(text);
-                        Debug.Log($"value: {text}");
-
-                       
+                        string text = match.ToString();
+                        text = extractBetweenDelimiters(text);
+                        Debug.Log($"text: {text}");
+                        Debug.Log($"Value = {resultText}");
+                        resultText += text + "\n";
                     }
                     else
                     {
                         Debug.Log("Match False");
                     }
+                    index++;
                 }
+
+                Debug.Log($"resultText: {resultText}");
 
                 //MatchCollection matches = Regex.Matches(input, pattern);
 
@@ -138,51 +141,59 @@ public class JsonToCSVConverter
         return result;
     }
 
-    public static string RemoveSpaceLines(string input)
-    {
-        string text = input.Replace(" ", "");
-        return text;
-    }
+    //public static string RemoveSpaceLines(string input)
+    //{
+    //    string text = input.Replace(" ", "");
+    //    return text;
+    //}
 
-    private const char QUOTATION_MARK = '"';
-    // "와 " 사이에 있는 텍스트를 추출하는 함수
-    // ex) "텍스트"
-    public static string ExtractTextBetweenQuotes(string input)
-    {
-        // " 2 개당 카운트 1번 설정
-        int count = CountQuotes(input) / 2;
-        string text = "";
-        //Debug.Log(CountQuotes(input));
+    //// "와 " 사이에 있는 텍스트를 추출하는 함수
+    //// ex) "텍스트"
+    //public static string ExtractTextBetweenQuotes(string input)
+    //{
+    //    // " 2 개당 카운트 1번 설정
+    //    int count = CountQuotes(input) / 2;
+    //    string text = input;
+    //    string resultText = "";
+    //    //Debug.Log(CountQuotes(input));
 
-        for(int i = 0; i < count; i++)
-        {
-            int startIndex = input.IndexOf(QUOTATION_MARK);
-            // 시작 따옴표를 찾은 경우
-            if (startIndex >= 0)
-            {
-                int endIndex = input.IndexOf(QUOTATION_MARK, startIndex + 1);
+    //    for(int i = 0; i < count; i++)
+    //    {
+    //        int startIndex = text.IndexOf(QUOTATION_MARK);
+    //        // 시작 따옴표를 찾은 경우
+    //        if (startIndex >= 0)
+    //        {
+    //            int endIndex = text.IndexOf(QUOTATION_MARK, startIndex + 1);
+    //            int length = (endIndex - startIndex);
+    //            // 시작 따옴표 이후에 끝 따옴표를 찾은 경우
+    //            if (endIndex > startIndex)
+    //            {
+    //                // "와 " 사이의 텍스트를 추출
+    //                string tempText = QUOTATION_MARK + input.Substring(startIndex + 1, endIndex - startIndex - 1)
+    //                    + QUOTATION_MARK;
+    //                // i 값이 마지막이 아닐 경우
+    //                if (i != (count - 1))
+    //                {
+    //                    // , 쉼표 추가
+    //                    tempText += ",";
+    //                }
+    //                // tesultText에 tempText 추가
+    //                resultText += tempText;
 
-                // 시작 따옴표 이후에 끝 따옴표를 찾은 경우
-                if (endIndex > startIndex)
-                {
-                    // "와 " 사이의 텍스트를 추출
-                    string tempText = QUOTATION_MARK + input.Substring(startIndex + 1, endIndex - startIndex - 1)
-                        + QUOTATION_MARK;
-                    // i 값이 마지막이 아닐 경우
-                    if (i != (count - 1))
-                    {
-                        // , 쉼표 추가
-                        tempText += ",";
-                    }
-                    // text에 tempText 추가
-                    text += tempText;
-                }
-            }
+    //                // text에 추가된 텍스트 제거
+    //                text = RemoveSubstring(text, startIndex, length);
 
-        }
+    //                Debug.Log($"tempText = {tempText}");
 
-        return text;
-    }
+    //                Debug.Log($"text= {text}");
+
+    //            }
+    //        }
+
+    //    }
+
+    //    return resultText;
+    //}
 
     // " 문자열의 갯수를 세는 함수
     public static int CountQuotes(string input)
@@ -191,7 +202,7 @@ public class JsonToCSVConverter
 
         foreach (char c in input)
         {
-            if (c == '"')
+            if (c == QUOTATION_MARK)
             {
                 count++;
             }
@@ -199,4 +210,53 @@ public class JsonToCSVConverter
 
         return count;
     }
+
+    //// 문자열의 특정 범위를 삭제하는 함수
+    //private static string RemoveSubstring(string originalText, int startIndex,
+    //    int length)
+    //{
+    //    // 매개 변수로 받은 범위 내 텍스트 제거
+    //    string text = originalText.Remove(startIndex, length);
+
+    //    return text;
+    //}
+
+    // 반복되는 특정 문자(")의 안에 있는 문자열들을
+    // 찾아서 하나로 합친 후 리턴하는 함수
+    // Split() 기본 값으로 QUOTATION_MARK 사용중.
+    private static string extractBetweenDelimiters(string input)
+    {
+        // (")이 들어있는 문자열을 자름
+        string[] elements = input.Split(QUOTATION_MARK);
+
+        string text = "";
+        int count = CountQuotes(input) / 2;
+        for (int i = 0; i < count; i++)
+        {
+            // targetOrder의 경우 2의 배수마다 인덱스 1로
+            // 인식한다. [0] = 2, [1] = 4, [2] = 6 이런식이다.
+            int targetOrder = (i + 1) * 2;
+            if (targetOrder >= 1 && targetOrder <= elements.Length)
+            {
+                // 찾은 텍스트를 " + elements + " 로 변환
+                text += QUOTATION_MARK + elements[targetOrder - 1]
+                    + QUOTATION_MARK;
+            }
+            else                             
+            {
+                Console.WriteLine("문자열을 찾지 못했습니다. 올바른 인덱스 값 혹은 문자열을 " +
+                    "입력해주세요.");
+            }
+
+            // i 값이 마지막이 아닐 경우
+            if (i != (count - 1))
+            {
+                // , 쉼표 추가
+                text += ",";
+            }
+        }
+
+        return text;
+    }
+
 }
