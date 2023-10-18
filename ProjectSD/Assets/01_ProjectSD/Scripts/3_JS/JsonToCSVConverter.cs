@@ -4,198 +4,86 @@ using System.Text;
 using UnityEngine;
 using System.Text.RegularExpressions;
 
-public class JsonToCSVConverter
+public class JsonToCsvConverter
 {
+    // " 문자 상수
     private const char QUOTATION_MARK = '"';
 
-    public static string ConvertJsonToCSV(string json)
+    // JSON 문자열을 CSV 형식 문자열로 변경해주는 함수
+    public static string ConvertJsonToCsv(string json)
     {
-        Debug.Log($"받은json = {json}");
-        // JSON 데이터를 파싱하여 배열로 변환
-        var jsonArray = JsonParser(json);
+        // JSON 데이터를 파싱하여 CSV 형식으로 변환
+        string csvData = JsonParser(json);
 
-        if (jsonArray == null)
+        // 변환된 csvData가 null 값일 경우
+        if (csvData == null)
         {
-            Debug.Log("NULL");
+            Debug.Log("ConvertJsonToCsv(): 출력 결과 NULL, json 문자열을 확인해주세요.");
+
+            // 빈 문자열 반환
             return string.Empty;
         }
 
-        // CSV 문자열을 빌드하기 위한 StringBuilder 생성
-        var csvBuilder = new StringBuilder();
-
-        // 각 배열 요소를 CSV 행으로 변환
-        foreach (var row in jsonArray)
-        {
-            // 각 배열 요소의 요소를 쉼표로 구분된 CSV 열로 변환
-            var csvRow = string.Join(",", row);
-            csvBuilder.AppendLine(csvRow);
-        }
-
-        return csvBuilder.ToString();
+        return csvData;
     }
 
-    private static List<List<string>> JsonParser(string json)
+    private static string JsonParser(string json)
     {
-        try
+        // JSON 데이터 파싱
+        var jsonObj = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
+
+        // 결과 반환용 텍스트 선언
+        string resultText = "";
+
+        // JSON 데이터 파싱이 올바르게 되어서
+        // jsonObj에 values키가 있을 경우
+        if (jsonObj.ContainsKey("values"))
         {
-            // JSON 데이터 파싱
-            var jsonObj = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
-            Debug.Log($"파싱된 데이터: {jsonObj}");
-
-            // 디버그
-            foreach(var item in jsonObj)
-            {
-                Debug.Log($"item: {item}");
-            }
-
-            Debug.Log($"jsonObj Value = {jsonObj["values"]}");
-
+            // JSON내에 있는 values 데이터 추출
             string data = jsonObj["values"].ToString();
 
-            Debug.Log($"data: {data}");
+            // 정규 표현식 패턴: "["로 시작하고 "]"로 끝나는 모든 내용을 가져옴
+            string pattern = @"\[[^\]]*\]";
 
-            if (jsonObj.ContainsKey("values"))
+            // pattern에 일치하는 모든 문자열을 객체로 저장
+            // 리스트 같은 느낌이라고 보면 된다.
+            MatchCollection matches = Regex.Matches(data, pattern);
+
+            // foreach에 사용할 index 선언
+            int index = 0;
+            // matches 내에 있는 모든 객체 수만큼 순회
+            foreach (Match match in matches)
             {
-                Debug.Log($"ConatinsKey True");
-                //var csvRows = new List<List<string>>();
-
-                //var jsonArray = jsonObj["values"] as string;
-
-                string pattern = @"\[[^\]]*\]"; // 정규 표현식 패턴: "["로 시작하고 "]"로 끝나는 모든 내용을 가져옴
-
-                MatchCollection matches = Regex.Matches(data, pattern);
-
-                Debug.Log($"matches: {matches.Count}");
-
-                string resultText = "";
-
-                int index = 0;
-                foreach (Match match in matches)
+                // match에 성공했을 경우
+                // 패턴에 일치하는 문자열을 찾았을 경우
+                if (match.Success)
                 {
-                    if (match.Success)
-                    {
-                        Debug.Log("Match True");
-                        string text = match.ToString();
-                        text = extractBetweenDelimiters(text);
-                        Debug.Log($"text: {text}");
-                        Debug.Log($"Value = {resultText}");
-                        resultText += text + "\n";
-                    }
-                    else
-                    {
-                        Debug.Log("Match False");
-                    }
-                    index++;
+                    Debug.Log("Match True");
+
+                    // match를 string으로 형변환
+                    string text = match.ToString();
+
+                    // 반복되는 특정 문자(")의 안에 있는 문자열들을
+                    // 찾아서 하나로 합친 후 리턴하는 함수 호출
+                    text = extractBetweenDelimiters(text);
+
+                    // 행 구분을 위해 문자열 "\n" 추가
+                    resultText += text + "\n";
                 }
-
-                Debug.Log($"resultText: {resultText}");
-
-                //MatchCollection matches = Regex.Matches(input, pattern);
-
-
-                //foreach (Match match in matches)
-                //{
-                //    if (match.Success)
-                //    {
-                //        // 정규 표현식에 일치하는 부분은 match.Groups[1]에 저장됨
-                //        string valueInsideBrackets = match.Groups[1].Value;
-                //        Debug.Log(valueInsideBrackets);
-                //    }
-                //}
-
-                //Debug.Log("AA");
-                //Debug.Log(jsonArray);
-
-                // 각 배열 요소를 CSV 행으로 변환
-                //foreach (var row in jsonArray)
-                //{
-                //Debug.Log($"row: {row}");
-                //if (row is List<object> rowList)
-                //{
-                //    var csvRow = new List<string>();
-
-                //    // 각 배열 요소의 요소를 문자열로 변환하여 추가
-                //    foreach (var cell in rowList)
-                //    {
-                //        csvRow.Add(cell.ToString());
-                //    }
-
-                //    csvRows.Add(csvRow);
-                //}
-                //}
-
-                //return csvRows;
+                // match에 실패했을 경우
+                else
+                {
+                    Debug.Log("Match False");
+                }
+                index++;
             }
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"JSON parsing error: {ex.Message}");
-        }
 
-        return null;
+        // 결과 반환
+        return resultText;
     }
 
-    private static string RemoveBracketsAndNewlines(string input)
-    {
-        string result = input.Replace("[", "").Replace("]", "").Replace("\n", "");
-        return result;
-    }
-
-    //public static string RemoveSpaceLines(string input)
-    //{
-    //    string text = input.Replace(" ", "");
-    //    return text;
-    //}
-
-    //// "와 " 사이에 있는 텍스트를 추출하는 함수
-    //// ex) "텍스트"
-    //public static string ExtractTextBetweenQuotes(string input)
-    //{
-    //    // " 2 개당 카운트 1번 설정
-    //    int count = CountQuotes(input) / 2;
-    //    string text = input;
-    //    string resultText = "";
-    //    //Debug.Log(CountQuotes(input));
-
-    //    for(int i = 0; i < count; i++)
-    //    {
-    //        int startIndex = text.IndexOf(QUOTATION_MARK);
-    //        // 시작 따옴표를 찾은 경우
-    //        if (startIndex >= 0)
-    //        {
-    //            int endIndex = text.IndexOf(QUOTATION_MARK, startIndex + 1);
-    //            int length = (endIndex - startIndex);
-    //            // 시작 따옴표 이후에 끝 따옴표를 찾은 경우
-    //            if (endIndex > startIndex)
-    //            {
-    //                // "와 " 사이의 텍스트를 추출
-    //                string tempText = QUOTATION_MARK + input.Substring(startIndex + 1, endIndex - startIndex - 1)
-    //                    + QUOTATION_MARK;
-    //                // i 값이 마지막이 아닐 경우
-    //                if (i != (count - 1))
-    //                {
-    //                    // , 쉼표 추가
-    //                    tempText += ",";
-    //                }
-    //                // tesultText에 tempText 추가
-    //                resultText += tempText;
-
-    //                // text에 추가된 텍스트 제거
-    //                text = RemoveSubstring(text, startIndex, length);
-
-    //                Debug.Log($"tempText = {tempText}");
-
-    //                Debug.Log($"text= {text}");
-
-    //            }
-    //        }
-
-    //    }
-
-    //    return resultText;
-    //}
-
-    // " 문자열의 갯수를 세는 함수
+    // "(QUOTATION_MARK) 문자열의 갯수를 세는 함수
     public static int CountQuotes(string input)
     {
         int count = 0;
@@ -210,16 +98,6 @@ public class JsonToCSVConverter
 
         return count;
     }
-
-    //// 문자열의 특정 범위를 삭제하는 함수
-    //private static string RemoveSubstring(string originalText, int startIndex,
-    //    int length)
-    //{
-    //    // 매개 변수로 받은 범위 내 텍스트 제거
-    //    string text = originalText.Remove(startIndex, length);
-
-    //    return text;
-    //}
 
     // 반복되는 특정 문자(")의 안에 있는 문자열들을
     // 찾아서 하나로 합친 후 리턴하는 함수
@@ -238,9 +116,10 @@ public class JsonToCSVConverter
             int targetOrder = (i + 1) * 2;
             if (targetOrder >= 1 && targetOrder <= elements.Length)
             {
-                // 찾은 텍스트를 " + elements + " 로 변환
-                text += QUOTATION_MARK + elements[targetOrder - 1]
-                    + QUOTATION_MARK;
+                // 찾은 텍스트를 text에 추가
+                // 따로 "를 추가할 필요가 없다.
+                // ex) "elements" 이런식으로 추가 하면 오류나기 때문
+                text += elements[targetOrder - 1];
             }
             else                             
             {
@@ -258,5 +137,4 @@ public class JsonToCSVConverter
 
         return text;
     }
-
 }
