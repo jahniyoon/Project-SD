@@ -18,6 +18,8 @@ public class TestLoad : MonoBehaviour
 
             gameObject.SetActive(false);
         }
+
+        int cost2 = (int)DataManager.GetData(20001, "Cost");
     }
 
 }

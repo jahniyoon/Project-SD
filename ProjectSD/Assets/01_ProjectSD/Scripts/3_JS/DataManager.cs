@@ -64,16 +64,25 @@ public static class DataManager
     // 기본 반환 값은 string이다.
     public static object GetData(int id, string category)
     {
-        // dataTable을 검색하는 함수 호출
-        object data = FindDataTable(id, category);
+        // GoogleSheetLoader에서 모든 데이터를
+        // 불러왔을 경우
+        if (GoogleSheetLoader.isDone)
+        {
+            // dataTable을 검색하는 함수 호출
+            object data = FindDataTable(id, category);
 
-        // 데이터 타입을 가져오는 함수 호출
-        string type = GetDataType((string)data);
+            // 데이터 타입을 가져오는 함수 호출
+            string type = GetDataType((string)data);
 
-        // 데이터 타입에 따라 형변환 하는 함수 호출
-        data = ConvertDataType(type, (string)data);
+            // 데이터 타입에 따라 형변환 하는 함수 호출
+            data = ConvertDataType(type, (string)data);
 
-        return data;
+            return data;
+        }
+
+        Debug.LogWarning("GetData(): GoogleSheetLoader에서 모든 데이터가" +
+            " 로딩되지 않았습니다. GoogleSheetLoader.isDone = false");
+        return null;
     }
 
     // 매개 변수에 id만 넣을 경우 Dictionary<string, string>로 반환한다.
