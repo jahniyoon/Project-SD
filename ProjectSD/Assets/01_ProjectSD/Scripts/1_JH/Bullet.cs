@@ -77,7 +77,6 @@ public class Bullet : MonoBehaviour
         }
         else if (other.CompareTag("Boss"))
         {
-            GameManager.instance.BossAttackGetGold();
             Debug.Log("보스를 맞췄다.");
             other.transform.root.GetComponent<Boss>().OnDamage(Mathf.FloorToInt(finalDamage));
             DamageEffect(other.tag);
@@ -85,7 +84,7 @@ public class Bullet : MonoBehaviour
             Destroy(bullet);
             //other.GetComponent<Boss>().OnDamage();
         }
-        else if (other.CompareTag("WeakPoint"))
+        else if (other.CompareTag("WeakPoint")) //보스에서 약점 데미지 처리
         {
             Debug.Log("약점을 맞췄다.");
             other.transform.GetComponent<BossHitPoint>().OnDamage(Mathf.FloorToInt(finalDamage));

@@ -3304,6 +3304,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6792690368123405344, guid: 81cd5298acc13c743be244dcbfff219b, type: 3}
   m_PrefabInstance: {fileID: 103123948}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &947208148 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6425741368421530390, guid: 358462ee285e64740adaeca6f4b1658a, type: 3}
+  m_PrefabInstance: {fileID: 890555257}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &954585960 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1699525906573052554, guid: 81cd5298acc13c743be244dcbfff219b, type: 3}
@@ -3438,17 +3449,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b85074a4a81990b4e87f05a71d198b70, type: 3}
---- !u!114 &956693136 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1557485238363001863, guid: b85074a4a81990b4e87f05a71d198b70, type: 3}
-  m_PrefabInstance: {fileID: 956693134}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &956693140 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7378178941472741502, guid: b85074a4a81990b4e87f05a71d198b70, type: 3}
@@ -3504,7 +3504,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PC: {fileID: 414766354}
-  hpSlider: {fileID: 956693136}
+  hpSlider: {fileID: 947208148}
   isGameOver: 0
   isVR: 0
   Golem: {fileID: 2025279985}
@@ -6126,7 +6126,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6450389267877338958, guid: 446112e7093205442bb21c13c9de521a, type: 3}
       propertyPath: m_Speed
-      value: 1
+      value: 0.55
       objectReference: {fileID: 0}
     - target: {fileID: 6450389267877338958, guid: 446112e7093205442bb21c13c9de521a, type: 3}
       propertyPath: m_StoppingDistance
