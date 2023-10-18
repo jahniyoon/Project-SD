@@ -16,7 +16,7 @@ public class Boss : MonoBehaviour
     public Transform boss;
     public NavMeshAgent agent;
     public GameObject bossBullet;
-    public Animator anim;
+    public Animation anim;
 
     public SkinnedMeshRenderer mesh;
 
@@ -31,11 +31,11 @@ public class Boss : MonoBehaviour
     [Header("투사체 생성 지점")]
     public Transform bulletPort;
 
+
     [Header("거리")]
     public float traceDist = 100.0f; //추적 거리
     public float attackDist = 1.0f; // 공격 사정거리
 
-    
 
     
     public enum State
@@ -72,8 +72,11 @@ public class Boss : MonoBehaviour
     {
         SetMaxHealth(hp);   // 생성되고나서 HP 슬라이더를 업데이트한다.
         target = GameObject.FindWithTag("Player").GetComponent<Transform>();
-        anim = GetComponent<Animator>();
+        anim = GetComponent<Animation>();
         agent = GetComponent<NavMeshAgent>();
+
+        anim.CrossFade("walk");
+        anim["walk"].speed = 0.15f;
 
         StartCoroutine(CheckMonsterState());
 
@@ -123,7 +126,6 @@ public class Boss : MonoBehaviour
 
             float distance = Vector3.Distance(target.position, boss.position);
 
-
             if (distance <= attackDist)
             {
                 state = State.ATTACK;
@@ -135,6 +137,7 @@ public class Boss : MonoBehaviour
             else if (hp <= 0)
             {
                 state = State.DIE;
+                GameManager.instance.GameClear();
             }
 
 
@@ -163,7 +166,8 @@ public class Boss : MonoBehaviour
                     agent.isStopped = true;
 
 
-                    anim.SetBool("IsWalk", false);
+                    //anim.SetBool("IsWalk", false);
+
                     break;
 
 
@@ -172,18 +176,21 @@ public class Boss : MonoBehaviour
                     agent.SetDestination(target.position);
                     agent.isStopped = false;
 
+                    anim.CrossFade("walk");
+                    anim["walk"].speed = 0.15f;
+
                     //임의의 시간 후 투사체
                     //StartCoroutine(SkillCounter());
 
 
-                    anim.SetBool("IsWalk", true);
+                    //anim.SetBool("IsWalk", true);
 
 
                     //anim.SetBool(hashAttack, false);
                     break;
 
 
-                case State.ATTACK:
+                case State.ATTACK:           
                     break;
            
 
@@ -192,7 +199,9 @@ public class Boss : MonoBehaviour
                     isDie = true;
                     //추적 중지
                     agent.isStopped = true;
-                    GameManager.instance.GameOver();
+                    anim.CrossFade("death", 0.25f);
+
+                    //GameManager.instance.GameOver();
                     //사망 애니메이션 실행
                     //anim.SetTrigger(hashDie);
 
@@ -269,11 +278,13 @@ public class Boss : MonoBehaviour
             if (state == State.TRACE)
             {
                 SkillAttack();
+                anim.CrossFade("attack5");
             }
 
             yield return new WaitForSeconds(5.0f);
+           
         }
-       
+
     }
 
     void SkillAttack()
