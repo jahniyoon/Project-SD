@@ -82,4 +82,52 @@ public class CSVReader
 
         return dataDictionary;
     }
+
+    // ReadCSVFile() 함수의 스프레드 시트 버전
+    public static Dictionary<string, List<string>> NewReadCSVFile(string csvData)
+    {
+        // csv 파일의 정보를 행과 열로 구분하여 저장할 딕셔너리
+        // 행은 키 값이 되고, 열은 키 값 내부의 값이 된다.
+        Dictionary<string, List<string>> dataDictionary =
+            new Dictionary<string, List<string>>();
+
+        string[] lines = csvData.Split('\n'); // 줄 바꿈으로 행 구분을 위해 추가
+
+        // lines의 길이가 1 이상일 경우
+        if (lines.Length > 0)
+        {
+            string[] headers = lines[0].Split(DELIMITER); // 문자열을 ',' 기준으로 자름
+
+            // CSV 파일의 첫 번째 라인(행)을 foreach로 순회
+            foreach (string header in headers)
+            {
+                // dataDictionary에 행 이름을 키 값으로 리스트 추가
+                // Trim() 함수를 사용하여 .csv 파일을 읽어올 때 생기는 공백을 제거
+                dataDictionary.Add(header.Trim(), new List<string>());
+            }
+
+            // 첫번째 행[0]을 헤더로 사용하고 두 번째[1] 부터 데이터 행으로 사용하기 위해
+            // index를 1 부터 시작
+
+            int count = lines.Length;
+            for (int i = 1; i < count; i++)
+            {
+                string line = lines[i];
+                // 엑셀로 작업할 경우 공백이 생겨 빈 데이터로
+                // 새로 줄이 생기는 현상이 있어
+                // 공백이 생길 경우 break 하도록 설정
+                if (line == "") { break; }
+
+                string[] values = line.Split(DELIMITER);
+
+                for (int j = 0; j < values.Length; j++)
+                {
+                    // 헤더(행) 리스트에 값 추가
+                    dataDictionary[headers[j].Trim()].Add(values[j]);
+                }
+            }
+        }
+
+        return dataDictionary;
+    }
 }
