@@ -26,8 +26,17 @@ public class BossBullet : MonoBehaviour
 
         rigid = GetComponent<Rigidbody>();
         mesh = GetComponent<MeshRenderer>();    // 지환 : 데미지 확인을 위한 메시
+        
+    }
+
+    public void Launch(Transform target)
+    {
+        this.target = target;
+        rigid = GetComponent<Rigidbody>();
+        mesh = GetComponent<MeshRenderer>();
         rigid.velocity = transform.forward * speed;
     }
+
 
     // Update is called once per frame
     void Update()

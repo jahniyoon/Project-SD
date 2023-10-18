@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Reflection;
+using System.Runtime.ConstrainedExecution;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -21,16 +22,19 @@ public class Boss : MonoBehaviour
     public GameObject[] weakPoint = default;
     public Slider bossHPSlider;
 
-    //csv
+    [Header ("CSV")]
     public float hp = default;
-    
     public float actTime = default;
+    public float weakPointRate = default;
 
+    [Header("투사체 생성 지점")]
     public Transform bulletPort;
 
+    [Header("거리")]
     public float traceDist = 100.0f; //추적 거리
-    public float attackDist = 3.0f; // 공격 사정거리
+    public float attackDist = 1.0f; // 공격 사정거리
 
+    
 
     
     public enum State
@@ -101,8 +105,8 @@ public class Boss : MonoBehaviour
         dataDictionary = CSVReader.ReadCSVFile("CSVFiles/Golem_Table"); //이름으로 가져옴
         DataManager.SetData(dataDictionary);
         hp = (int)DataManager.GetData(3001, "HP"); //이름으로 가져오는거라서 순서상관 X 0번째 행  //변수 선언은 해야함
-        //weakPoint = (float)DataManager.GetData(10000, "WeakpointRate");
-        actTime = (float)DataManager.GetData(3001   , "ActTime");
+        weakPointRate = (float)DataManager.GetData(3001, "WeakpointRate");
+        actTime = (float)DataManager.GetData(3001, "ActTime");
     }
 
     IEnumerator CheckMonsterState()
@@ -208,16 +212,14 @@ public class Boss : MonoBehaviour
         }
     }
 
-    //IEnumerator HitPoint()
-    //{
-        
-
-    //    //boxCollider.enabled = false;
-    //    //Debug.Log("비활성화");
-    //    yield return new WaitForSeconds(5.0f);
-    //    //boxCollider.enabled = true;
-    //    //Debug.Log("활성화");
-    //}
+    IEnumerator HitPoint()
+    {
+        //boxCollider.enabled = false;
+        //Debug.Log("비활성화");
+        yield return new WaitForSeconds(5.0f);
+        //boxCollider.enabled = true;
+        //Debug.Log("활성화");
+    }
 
 
     void OnTriggerEnter(Collider other)
@@ -226,13 +228,6 @@ public class Boss : MonoBehaviour
         {
             //TODO:졸개 몬스터 소환 로직
         }
-
-
-        //if(other.tag.Equals("Bullet"))
-        //{
-        //    Bullet bullet = other.GetComponent<Bullet>();
-        //    OnDamage(bullet.bulletDamage);
-        //}
 
         //if(other.tag.Equals("Bullet"))
         //{
@@ -245,7 +240,11 @@ public class Boss : MonoBehaviour
         hp -= damage;
         SetHealth(hp);
         StartCoroutine("DamageColor");
+
     }
+
+    
+
 
     IEnumerator DamageColor()
     {
@@ -257,17 +256,19 @@ public class Boss : MonoBehaviour
         //mesh.GetComponent<MeshRenderer>().material.color = Color.white;
 
     }
-
+    
     IEnumerator SkillCounter()
     {
         while(!isDie)
         {
-            yield return new WaitForSeconds(4.0f);
+            
 
             if (state == State.TRACE)
             {
                 SkillAttack();
             }
+
+            yield return new WaitForSeconds(5.0f);
         }
        
     }
@@ -275,9 +276,14 @@ public class Boss : MonoBehaviour
     void SkillAttack()
     {
         GameObject instantBullet = Instantiate(bossBullet, bulletPort.position, bulletPort.rotation);
+        BossBullet bulletScript = instantBullet.GetComponent<BossBullet>();
 
         bulletPort.transform.LookAt(target);
         instantBullet.transform.LookAt(target);
-        
+        bulletScript.Launch(target);
+
     }
+
+
+
 }
