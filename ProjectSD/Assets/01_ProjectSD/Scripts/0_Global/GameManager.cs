@@ -32,7 +32,6 @@ public class GameManager : MonoBehaviour
 
     [Header("Golem")]
     public GameObject Golem;
-    public Vector3 golemPosition;
 
     [Header("Panel")]
     public GameObject titlePanel;   // 타이틀 패널
@@ -103,9 +102,6 @@ public class GameManager : MonoBehaviour
     {
         // 플레이어를 세팅한다.
         SetPlayer(true);
-
-        // 골렘의 초기 위치 저장한다.
-        golemPosition = Golem.transform.position;
 
         DebugPC();  // PC로 플레이 할 경우의 세팅
     }       // Start()

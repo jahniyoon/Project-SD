@@ -28,7 +28,9 @@ public class Bullet : MonoBehaviour
     public float bulletLifeTime = 10f;            // 총알 유지시간
     public float bulletSize = 0.5f;
 
+    private TMP_Text bulletText;
 
+    public bool isCrit;
 
     // Start is called before the first frame update
     void Start()
@@ -52,6 +54,7 @@ public class Bullet : MonoBehaviour
 
         if(clit < critProbability)
         {
+            isCrit = true;
             bulletCollider.radius = 2f;
             mat.material.color = Color.red;
             finalDamage = bulletDamage * (critIncrease / 100);
@@ -67,7 +70,7 @@ public class Bullet : MonoBehaviour
             GameObject bossBullet = other.gameObject;
             bossBullet.GetComponent<BossBullet>().OnDamage(Mathf.FloorToInt(finalDamage));
 
-            DamageEffect(false);
+            DamageEffect(other.tag);
 
             GameObject bullet = this.transform.parent.gameObject;
             Destroy(bullet);
@@ -77,7 +80,7 @@ public class Bullet : MonoBehaviour
             GameManager.instance.BossAttackGetGold();
             Debug.Log("보스를 맞췄다.");
             other.transform.root.GetComponent<Boss>().OnDamage(Mathf.FloorToInt(finalDamage));
-            DamageEffect(false);
+            DamageEffect(other.tag);
             GameObject bullet = this.transform.parent.gameObject;
             Destroy(bullet);
             //other.GetComponent<Boss>().OnDamage();
@@ -86,7 +89,7 @@ public class Bullet : MonoBehaviour
         {
             Debug.Log("약점을 맞췄다.");
             other.transform.GetComponent<BossHitPoint>().OnDamage(Mathf.FloorToInt(finalDamage));
-            DamageEffect(false);
+            DamageEffect(other.tag);
             GameObject bullet = this.transform.parent.gameObject;
             Destroy(bullet);
 
@@ -108,7 +111,7 @@ public class Bullet : MonoBehaviour
                 OnDamage(Mathf.FloorToInt(finalDamage));
             }
 
-            DamageEffect(true);
+            DamageEffect(other.tag);
             GameObject bullet = this.transform.parent.gameObject;
             Destroy(bullet);
             //other.transform.root.GetComponent<Boss>().OnWeakPointDamage(Mathf.FloorToInt(finalDamage));
@@ -117,25 +120,37 @@ public class Bullet : MonoBehaviour
     }
 
 
-    public void DamageEffect(bool isEnemy)
+    public void DamageEffect(string tag)
     {
         Vector3 effectPos = this.transform.position;
-        if (!isEnemy)
-        {
-            effectPos.z -= 20f;
-        }
-        float distance =  Vector3.Distance(effectPos, GameManager.instance.PC.transform.position);
+        Vector3 vDist = effectPos - GameManager.instance.PC.transform.position; // 이펙트와 플레이어의 거리
+        Vector3 vDir = vDist.normalized;    // 이펙트와 플레이어의 방향
+
+        //float distance = Vector3.Distance(effectPos, GameManager.instance.PC.transform.position);
         GameObject damageFX =
-             Instantiate(damageEffect, effectPos, Quaternion.identity);
-        damageFX.transform.GetChild(0).GetChild(0).GetComponent<TMP_Text>().text = string.Format("{0}", finalDamage);
+             Instantiate(damageEffect, vDir * 10, Quaternion.identity);
+       
+        bulletText = damageFX.GetComponent<TextDisolve>().textObj;
+        bulletText.text = string.Format("{0}", finalDamage);
+        damageFX.GetComponent<TextDisolve>().colorName = "white";
+
+        // 약점을 맞췄을 경우
+        if (tag == "WeakPoint")
+        {
+            bulletText.text = string.Format("{0}", finalDamage * 1.5f);
+            damageFX.GetComponent<TextDisolve>().colorName = "yellow";
+        }
+        // 크리티컬일 경우
+        if (isCrit)
+        {
+            damageFX.GetComponent<TextDisolve>().colorName = "red";
+        }
 
         damageFX.transform.forward = Camera.main.transform.forward;
-        // 크로스헤어의 크기를 최소 기본 크기에서 거리에 따라 더 커지도록 한다.
-        damageFX.transform.localScale = Vector3.one * 0.02f * Mathf.Max(1, distance);
-
-        Destroy(damageFX, 0.5f);
+     
 
     }
+
 
     public void GetData()
     {
