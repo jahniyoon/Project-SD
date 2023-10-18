@@ -81,7 +81,7 @@ public class Bullet : MonoBehaviour
             Destroy(bullet);
             //other.GetComponent<Boss>().OnDamage();
         }
-        else if (other.CompareTag("WeakPoint"))
+        else if (other.CompareTag("WeakPoint")) //보스에서 약점 데미지 처리
         {
             Debug.Log("약점을 맞췄다.");
             other.transform.GetComponent<BossHitPoint>().OnDamage(Mathf.FloorToInt(finalDamage));

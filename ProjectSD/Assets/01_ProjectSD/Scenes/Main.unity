@@ -3361,7 +3361,7 @@ MonoBehaviour:
   gameOverPanel: {fileID: 1486348962}
   isGunUpgrade: 0
   isWeakpointUpgrade: 0
-  isPCMODE: 0
+  isPCMODE: 1
   isShopTest: 0
   secondsGold: 0
   bossAttackGold: 0
@@ -5413,6 +5413,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 887406766433006363, guid: 446112e7093205442bb21c13c9de521a, type: 3}
+      propertyPath: weakPointScale
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1193344229970642257, guid: 446112e7093205442bb21c13c9de521a, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.2
@@ -5536,6 +5540,10 @@ PrefabInstance:
     - target: {fileID: 6450389267877338958, guid: 446112e7093205442bb21c13c9de521a, type: 3}
       propertyPath: m_StoppingDistance
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6450389268672794524, guid: 446112e7093205442bb21c13c9de521a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.48
       objectReference: {fileID: 0}
     - target: {fileID: 8182860636591446185, guid: 446112e7093205442bb21c13c9de521a, type: 3}
       propertyPath: m_LocalScale.x
