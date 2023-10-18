@@ -21,7 +21,7 @@ public class Bullet : MonoBehaviour
     public float critProbability;   // 총알 치명타 확률
     public float finalDamage;               // 최종 데미지
 
-    public MeshRenderer mat;
+    //public MeshRenderer mat;
 
     [Header("Bullet Option")]
     public float bulletSpeed = 10f;               // 총알 속도  
@@ -56,7 +56,7 @@ public class Bullet : MonoBehaviour
         {
             isCrit = true;
             bulletCollider.radius = 2f;
-            mat.material.color = Color.red;
+            //mat.material.color = Color.red;
             finalDamage = bulletDamage * (critIncrease / 100);
         }
         else
@@ -72,16 +72,14 @@ public class Bullet : MonoBehaviour
 
             DamageEffect(other.tag);
 
-            GameObject bullet = this.transform.parent.gameObject;
-            Destroy(bullet);
+            //Destroy(bullet);
         }
         else if (other.CompareTag("Boss"))
         {
             Debug.Log("보스를 맞췄다.");
             other.transform.root.GetComponent<Boss>().OnDamage(Mathf.FloorToInt(finalDamage));
             DamageEffect(other.tag);
-            GameObject bullet = this.transform.parent.gameObject;
-            Destroy(bullet);
+           
             //other.GetComponent<Boss>().OnDamage();
         }
         else if (other.CompareTag("WeakPoint")) //보스에서 약점 데미지 처리
@@ -89,9 +87,7 @@ public class Bullet : MonoBehaviour
             Debug.Log("약점을 맞췄다.");
             other.transform.GetComponent<BossHitPoint>().OnDamage(Mathf.FloorToInt(finalDamage));
             DamageEffect(other.tag);
-            GameObject bullet = this.transform.parent.gameObject;
-            Destroy(bullet);
-
+           
             //other.transform.root.GetComponent<Boss>().OnWeakPointDamage(Mathf.FloorToInt(finalDamage));
 
         }
@@ -111,8 +107,7 @@ public class Bullet : MonoBehaviour
             }
 
             DamageEffect(other.tag);
-            GameObject bullet = this.transform.parent.gameObject;
-            Destroy(bullet);
+          
             //other.transform.root.GetComponent<Boss>().OnWeakPointDamage(Mathf.FloorToInt(finalDamage));
 
         }

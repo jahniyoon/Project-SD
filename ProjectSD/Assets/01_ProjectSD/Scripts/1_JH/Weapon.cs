@@ -15,6 +15,8 @@ public class Weapon : MonoBehaviour
 
     public float upgradeDuration;
 
+    public GameObject[] weapon;
+
     public MeshRenderer[] meshes;   // 디버그용 메시
 
 
@@ -40,8 +42,14 @@ public class Weapon : MonoBehaviour
     {
         pointUI.gameObject.SetActive(false);
         isUpgrade = false;
+
+        weapon[1].gameObject.SetActive(false);
+        firePoint = weapon[0].transform.GetChild(0).transform;
+
+
         GetData(isUpgrade);
         lastFireTime = 0;       // 시간 초기화
+
     }
 
     // Start is called before the first frame update
@@ -95,9 +103,9 @@ public class Weapon : MonoBehaviour
 
             GameObject bullet =
              Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-            bullet.transform.GetChild(0).GetComponent<Bullet>().isUpgrade = isUpgrade;
+            bullet.transform.GetComponent<Bullet>().isUpgrade = isUpgrade;
 
-            Destroy(bullet, bullet.transform.GetChild(0).GetComponent<Bullet>().bulletLifeTime);
+            Destroy(bullet, bullet.transform.GetComponent<Bullet>().bulletLifeTime);
         }
     }
 
@@ -108,11 +116,17 @@ public class Weapon : MonoBehaviour
             isUpgrade = true;
             GetData(isUpgrade);
 
-            int index = meshes.Length;
-            for (int i = 0; i < index; i++)
-            {
-                meshes[i].material.color = Color.red;
-            }
+            weapon[0].gameObject.SetActive(false);
+            weapon[1].gameObject.SetActive(true);
+
+            firePoint = weapon[1].transform.GetChild(0).transform;
+
+
+            //int index = meshes.Length;
+            //for (int i = 0; i < index; i++)
+            //{
+            //    meshes[i].material.color = Color.red;
+            //}
             Invoke("ResetUpgrade", upgradeDuration);
         }
     }
@@ -120,11 +134,17 @@ public class Weapon : MonoBehaviour
     public void ResetUpgrade()
     {
         GetData(!isUpgrade);
-        int index = meshes.Length;
-        for (int i = 0; i < index; i++)
-        {
-            meshes[i].material.color = Color.black;
-        }
+
+        weapon[0].gameObject.SetActive(true);
+        weapon[1].gameObject.SetActive(false);
+
+        firePoint = weapon[0].transform.GetChild(0).transform;
+
+        //int index = meshes.Length;
+        //for (int i = 0; i < index; i++)
+        //{
+        //    meshes[i].material.color = Color.black;
+        //}
         isUpgrade = false;
 
     }
