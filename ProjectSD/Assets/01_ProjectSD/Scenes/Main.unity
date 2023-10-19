@@ -3537,7 +3537,7 @@ MonoBehaviour:
   gameOverPanel: {fileID: 1486348962}
   isGunUpgrade: 0
   isWeakpointUpgrade: 0
-  isPCMODE: 0
+  isPCMODE: 1
   isShopTest: 0
   secondsGold: 0
   bossAttackGold: 0
@@ -6072,7 +6072,28 @@ PrefabInstance:
       propertyPath: m_Name
       value: GOLEM
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6450389267877338929, guid: 446112e7093205442bb21c13c9de521a, type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 2025279993}
+    - target: {fileID: 6450389267877338929, guid: 446112e7093205442bb21c13c9de521a, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 414766363}
+    - target: {fileID: 6450389267877338929, guid: 446112e7093205442bb21c13c9de521a, type: 3}
+      propertyPath: bossAnim.Walk
+      value: 
+      objectReference: {fileID: 7400000, guid: 43825289b9138234b85408286a9480b3, type: 3}
+    - target: {fileID: 6450389267877338929, guid: 446112e7093205442bb21c13c9de521a, type: 3}
+      propertyPath: bossAnim.idle
+      value: 
+      objectReference: {fileID: 7400000, guid: 7f5ed87d7b7616a4abb92cb580b96eec, type: 3}
+    - target: {fileID: 6450389267877338929, guid: 446112e7093205442bb21c13c9de521a, type: 3}
+      propertyPath: bossAnim.death
+      value: 
+      objectReference: {fileID: 7400000, guid: ce85e3134a7d40f4dae66880d4294843, type: 3}
+    m_RemovedComponents:
+    - {fileID: 1763707377839446351, guid: 446112e7093205442bb21c13c9de521a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 446112e7093205442bb21c13c9de521a, type: 3}
 --- !u!1 &1683929234 stripped
 GameObject:
@@ -6991,6 +7012,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6450389267869527342, guid: 446112e7093205442bb21c13c9de521a, type: 3}
   m_PrefabInstance: {fileID: 1658924655}
   m_PrefabAsset: {fileID: 0}
+--- !u!111 &2025279993
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025279985}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 7f5ed87d7b7616a4abb92cb580b96eec, type: 3}
+  m_Animations:
+  - {fileID: 7400000, guid: 7f5ed87d7b7616a4abb92cb580b96eec, type: 3}
+  - {fileID: 7400000, guid: 43825289b9138234b85408286a9480b3, type: 3}
+  - {fileID: 7400000, guid: ce85e3134a7d40f4dae66880d4294843, type: 3}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &2060998926 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3086394627402938219, guid: 358462ee285e64740adaeca6f4b1658a, type: 3}

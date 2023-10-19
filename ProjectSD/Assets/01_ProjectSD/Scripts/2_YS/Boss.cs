@@ -9,6 +9,13 @@ using UnityEngine.AI;
 using UnityEngine.UI;
 using static OVRPlugin;
 
+[System.Serializable]
+public class BossAnim
+{
+    public AnimationClip idle;
+    public AnimationClip Walk;  
+    public AnimationClip death;
+}
 
 public class Boss : MonoBehaviour
 {
@@ -16,7 +23,10 @@ public class Boss : MonoBehaviour
     public Transform boss;
     public NavMeshAgent agent;
     public GameObject bossBullet;
-    public Animator anim;
+
+    public BossAnim bossAnim;
+    public Animation anim;
+    //public AnimationClip[] animationClips;
 
     public SkinnedMeshRenderer mesh;
 
@@ -35,9 +45,13 @@ public class Boss : MonoBehaviour
     public float traceDist = 100.0f; //추적 거리
     public float attackDist = 1.0f; // 공격 사정거리
 
-    
+    public State state;
 
-    
+    private bool isDie = false;
+
+    private bool isAnim = false;
+
+
     public enum State
     {
         IDLE,
@@ -46,9 +60,7 @@ public class Boss : MonoBehaviour
         DIE
     }
 
-    public State state;
-
-    private bool isDie = false;
+    
 
     //임시 데미지 함수
     //public void OnDamage(float damage)
@@ -72,7 +84,9 @@ public class Boss : MonoBehaviour
     {
         SetMaxHealth(hp);   // 생성되고나서 HP 슬라이더를 업데이트한다.
         target = GameObject.FindWithTag("Player").GetComponent<Transform>();
-        anim = GetComponent<Animator>();
+        
+        anim = GetComponent<Animation>();
+        
         agent = GetComponent<NavMeshAgent>();
 
         StartCoroutine(CheckMonsterState());
@@ -88,6 +102,7 @@ public class Boss : MonoBehaviour
 
        
     }
+
 
     public void SetMaxHealth(float newHealth)
     {
@@ -127,6 +142,7 @@ public class Boss : MonoBehaviour
             if (distance <= attackDist)
             {
                 state = State.ATTACK;
+                //TODO:애니메이션 공격넣고 이쪽에서 GAMEOVER처리
             }
             else if (distance >= traceDist)     //추적 사정거리 외부에서 추적 시작
             {
@@ -158,28 +174,36 @@ public class Boss : MonoBehaviour
             {
 
                 case State.IDLE:
-
-                    
                     agent.isStopped = true;
+                    if (isAnim)
+                    {
+                        bossAnim.idle.wrapMode = WrapMode.Once;
+                    }
+                    else
+                    {
+                        bossAnim.idle.wrapMode = WrapMode.Loop;
+                    }
 
-
-                    anim.SetBool("IsWalk", false);
+                    anim.CrossFade(bossAnim.idle.name, 0.001f); 
+                    
                     break;
 
 
                 case State.TRACE:
-
                     agent.SetDestination(target.position);
                     agent.isStopped = false;
 
-                    //임의의 시간 후 투사체
-                    //StartCoroutine(SkillCounter());
+                    if (isAnim)
+                    {
+                        bossAnim.Walk.wrapMode = WrapMode.Once;
+                    }
+                    else
+                    {
+                        bossAnim.Walk.wrapMode = WrapMode.Loop;
+                    }
 
-
-                    anim.SetBool("IsWalk", true);
-
-
-                    //anim.SetBool(hashAttack, false);
+                    anim.CrossFade(bossAnim.Walk.name, 0.001f);
+                    
                     break;
 
 
@@ -190,14 +214,20 @@ public class Boss : MonoBehaviour
                 //사망
                 case State.DIE:
                     isDie = true;
-                    //추적 중지
+                    
                     agent.isStopped = true;
-                    GameManager.instance.GameOver();
-                    //사망 애니메이션 실행
-                    //anim.SetTrigger(hashDie);
 
-                    //몬스터의 Collider 컴포넌트 비활성화
-                    //GetComponent<BoxCollider>().enabled = false;
+                    if (isAnim)
+                    {
+                        bossAnim.death.wrapMode = WrapMode.Once;
+                    }
+                    else
+                    {
+                        bossAnim.death.wrapMode = WrapMode.Loop;
+                    }
+                    anim.CrossFade(bossAnim.death.name, 0.001f);
+
+                    GameManager.instance.GameOver();
 
                     break;
             }
