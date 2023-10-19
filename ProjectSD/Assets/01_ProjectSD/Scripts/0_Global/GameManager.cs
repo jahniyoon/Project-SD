@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     public GameObject titlePanel;   // 타이틀 패널
     public GameObject shopPanel;         // 상점
     public GameObject gameOverPanel;// 게임오버 패널
+    public GameObject gameClearPanel;
 
     [Header("Upgrade")]
     public bool isGunUpgrade;
@@ -201,6 +202,16 @@ public class GameManager : MonoBehaviour
 
             shopPanel.SetActive(false);
             gameOverPanel.SetActive(true);
+            SetPlayer(true);
+        }
+    }public void GameClear()
+    {
+        if (!isGameOver)
+        {
+            isGameOver = true;
+
+            shopPanel.SetActive(false);
+            gameClearPanel.SetActive(true);
             SetPlayer(true);
         }
     }

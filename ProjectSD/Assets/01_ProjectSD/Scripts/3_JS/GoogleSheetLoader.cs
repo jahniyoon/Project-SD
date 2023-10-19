@@ -54,7 +54,18 @@ public class GoogleSheetLoader : MonoBehaviour
         }
 
         // 모든 데이터를 데이터 매니저에
-        // 할당했다고 상태를 변경
+        // 할당했다고 상태를 변경하는 코루틴 호출
+        // 정확한 상태를 설정하기 위해 1초 대기
+        StartCoroutine(WaitForChangeState(1f));
+    }
+
+    // isDone의 상태를 변경하는 코루틴 함수
+    private IEnumerator WaitForChangeState(float t)
+    {
+        // 대기
+        yield return new WaitForSeconds(t);
+
+        // 로딩 완료 상태 변경
         isDone = true;
     }
 }

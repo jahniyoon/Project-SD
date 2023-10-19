@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerShop : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class PlayerShop : MonoBehaviour
     public bool isBtnEnable;
 
     public string btnName;
+
+    private ShopScroller shopScroller;  // 스크롤러 조절을 위한 Class를 담을변수
 
 
     #region Test변수
@@ -98,6 +101,7 @@ public class PlayerShop : MonoBehaviour
         {
 
             pShoter.rightGun.laserRenderer.SetPosition(0, pShoter.rightGun.firePoint.position);
+            //Debug.LogFormat("LaserRenderer -> {0}", pShoter.rightGun.laserRenderer);
 
             RaycastHit rayHit;
             if (Physics.Raycast(pShoter.rightGun.firePoint.position, pShoter.rightGun.firePoint.forward, out rayHit, Mathf.Infinity, buttonMask))
@@ -109,14 +113,14 @@ public class PlayerShop : MonoBehaviour
                     tempClass.IsRayHit = true;
 
                     if (input.select)
-                    {                        
+                    {
                         // LEGACY IF : if (tempClass.IsRayHit == true && tempClass.IsUseItem == false)
                         if (tempClass.IsRayHit == true)
                         {
                             //TEST
                             if (tempClass.NowItemValue < tempClass.maxItemValue)
                             {
-                                Debug.Log("아이템 갯수조건이 충족한가?");
+                                //Debug.Log("아이템 갯수조건이 충족한가?");
                                 tempClass.BuyItem();
                             }
                             //TEST
@@ -126,6 +130,37 @@ public class PlayerShop : MonoBehaviour
 
                 }       // if end : Ray맞은것이 ShoItemButton이라는 Script를 가지고 있다면
 
+                //Scrollbar
+                if (rayHit.transform.parent.parent.parent.GetComponent<ShopScroller>())
+                {
+                    // if : Ray를 맞은거의 부모의부모의부모가 ShopSroller를 가지고 있다면 들어옴
+
+
+                    if (input.rightShoot)
+                    {   
+                        // if : 오른쪽 컨트롤러의 발사 버튼을 눌렀다면
+
+                        // 컴포넌트를 가져옴
+                        shopScroller = rayHit.transform.parent.parent.parent.GetComponent<ShopScroller>();
+
+                        shopScroller.IsScroll = input.rightShoot;
+                        shopScroller.TransformInIt(pShoter.rightGun.firePoint);
+
+                    }   // if : 오른쪽 컨트롤러의 발사 버튼을 눌렀다면
+
+                    else if(!input.rightShoot)
+                    {
+                        if(shopScroller != null || shopScroller != default)
+                        {
+                            shopScroller.IsScroll = false;
+                            shopScroller = null;
+                        }   // if : ShopScroller가 비어있지않은 상태라면
+
+                    }   // if : 오른쪽 발사 버튼을 누른상태가 아니라면
+
+
+
+                }       // if end : ShopScroller를 가져올수 있다면
 
             }
             else
@@ -146,7 +181,7 @@ public class PlayerShop : MonoBehaviour
     public void PushButton(string btnName)
     {
 
-        Debug.LogFormat("함수로 받아온 매개변수 -> {0}", btnName);
+        //Debug.LogFormat("함수로 받아온 매개변수 -> {0}", btnName);
 
         if (btnName == null)    // 이름이 없으면 리턴
         {

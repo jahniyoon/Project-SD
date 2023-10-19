@@ -86,7 +86,7 @@ public class ShopItemButton : MonoBehaviour
         {
             if (isRayHit != value)
             {
-                Debug.LogFormat("RayHit 값바뀜");
+                //Debug.LogFormat("RayHit 값바뀜");
                 isRayHit = value;
                 buttonController();     // 버튼 색과 확대,축소등 관리해줄 함수
             }
