@@ -104,6 +104,7 @@ public class Weapon : MonoBehaviour
             GameObject bullet =
              Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
             bullet.transform.GetComponent<Bullet>().isUpgrade = isUpgrade;
+            AudioManager.instance.PlaySFX("Fire");
 
             Destroy(bullet, bullet.transform.GetComponent<Bullet>().bulletLifeTime);
         }

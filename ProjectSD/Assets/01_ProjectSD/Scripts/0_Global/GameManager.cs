@@ -199,7 +199,7 @@ public class GameManager : MonoBehaviour
             Golem.GetComponent<Boss>().agent.isStopped = true;
 
             isGameOver = true;
-
+            AudioManager.instance.PlayMusic("Lose");
             shopPanel.SetActive(false);
             gameOverPanel.SetActive(true);
             SetPlayer(true);
@@ -209,6 +209,7 @@ public class GameManager : MonoBehaviour
         if (!isGameOver)
         {
             isGameOver = true;
+            AudioManager.instance.PlayMusic("Win");
 
             shopPanel.SetActive(false);
             gameClearPanel.SetActive(true);
