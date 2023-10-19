@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemySpawn : MonoBehaviour
 {
-    [Header("Choi")]
+    [Header("EnemySpawn")]
     public Transform player;
     public Transform bossMonster;
     // 플레이어의 초기 포지션
@@ -47,7 +47,7 @@ public class EnemySpawn : MonoBehaviour
         //// DataManager에 Init 한다.
         //Dictionary<string, List<string>> enemyData =
         //    CSVReader.ReadCSVFile("CSVFiles/Enemy");
-        //DataManager.SetData(enemyData);
+        //DataManager.SetData(enemyData);  
 
         // 플레이어 / 보스의 초기 거리를 저장
         startDistance = Vector3.Distance(
@@ -95,6 +95,43 @@ public class EnemySpawn : MonoBehaviour
             type1Amounts.Add((int)DataManager.GetData(id, "Type1_Amount"));
             type2Amounts.Add((int)DataManager.GetData(id, "Type2_Amount"));
         }
+    }
+
+
+    // Enemy 인스턴스를 생성하는 함수
+    private void SpawnEnemyInstance(GameObject prefab,
+        Vector3 position, Quaternion rotate)
+    {
+        Instantiate(prefab, position, rotate);
+    }
+
+    // 생성시 부모 추가 오버로드
+    private void SpawnEnemyInstance(GameObject prefab,
+        Vector3 position, Quaternion rotate, GameObject parent)
+    {
+        Instantiate(prefab, position, rotate).
+            transform.SetParent(parent.transform);
+    }
+
+    // 부모를 생성하는 함수
+    private GameObject SpawnParentInstance(string name)
+    {
+        // 부모 생성
+        GameObject parent = new GameObject(name);
+
+        return parent;
+    }
+
+    // Enemys 프리팹 디렉토리 경로
+    private const string ENEMY_DIRECTORY = "Enemys/";
+    // 모델명으로 Resources 폴더에 있는 프리팹을
+    // 찾아서 반환하는 함수
+    private GameObject GetResourcesPrefab(string name)
+    {
+        GameObject prefab = 
+            Resources.Load<GameObject>(ENEMY_DIRECTORY + name);
+        
+        return prefab;
     }
 
     // 플레이어(a)와 보스(b)의 현재 거리를 계산하는 함수
