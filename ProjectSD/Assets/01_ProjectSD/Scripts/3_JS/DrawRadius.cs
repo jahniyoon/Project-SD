@@ -29,7 +29,7 @@ public class DrawRadius
             Vector3 point = new Vector3(x, playerPos.y, z + playerPosZ);
 
             // 각 꼭짓점의 위치 디버그 출력
-            Debug.Log("Point " + i + " position: " + point);
+            //Debug.Log("Point " + i + " position: " + point);
 
             // 반지름 포지션 추가
             circlePositions.Add(point);

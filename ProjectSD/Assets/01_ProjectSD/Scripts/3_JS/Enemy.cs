@@ -85,8 +85,8 @@ public class Enemy
         // 공격 범위를 폭발 범위로 조정
         SetBoxColliderSize(boxCollider, rangeEx);
 
-        // 3초 후에 Enemy 비활성화
-        EnemyManager.instance.ChangeActive(enemyObject, 0f, false);
+        // 0.1초 후에 Enemy 비활성화
+        EnemyManager.instance.ChangeActive(enemyObject, 0.1f, false);
     }
 
     // 오브젝트를 비활성화하는 함수
