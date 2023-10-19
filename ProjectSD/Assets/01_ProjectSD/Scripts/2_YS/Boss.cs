@@ -110,7 +110,7 @@ public class Boss : MonoBehaviour
         //dataDictionary = CSVReader.ReadCSVFile("CSVFiles/Golem_Table"); //이름으로 가져옴
         //DataManager.SetData(dataDictionary);
         hp = (int)DataManager.GetData(3001, "HP"); //이름으로 가져오는거라서 순서상관 X 0번째 행  //변수 선언은 해야함
-        weakPointRate = (float)DataManager.GetData(3001, "WeakpointRate");
+        //weakPointRate = (float)DataManager.GetData(3001, "WeakpointRate");
         actTime = (float)DataManager.GetData(3001, "ActTime");
     }
 
