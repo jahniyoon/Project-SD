@@ -274,12 +274,13 @@ public class GameManager : MonoBehaviour
 
     // Gold관련 CSV를 읽어와서 변수에 해당하는 값을 넣어주는 함수
     private void ReadGoldCSVFile()
-    {        
-        Dictionary<string, List<string>> goldCSV;
-        goldCSV = CSVReader.ReadCSVFile("CSVFiles/gold");
+    {
+        #region LEGACY
+        //Dictionary<string, List<string>> goldCSV;
+        //goldCSV = CSVReader.ReadCSVFile("CSVFiles/gold");
 
-        DataManager.SetData(goldCSV);
-
+        //DataManager.SetData(goldCSV);
+        #endregion LEGACY
         playerGold = (int)DataManager.GetData(9001, "Value");
         secondsGold = (int)DataManager.GetData(9002, "Value");
         bossAttackGold = (float)DataManager.GetData(9003, "Value");
@@ -287,6 +288,21 @@ public class GameManager : MonoBehaviour
 
 
     }       // ReadGoldCSVFile()
+
+    // 졸개를 잡았을때에 골드가 추가되는 함수
+    public void MinionKillGetGold()
+    {
+        playerGold += monsterKillGold;
+
+    }       // MinionKillGetGold()
+
+    // 보스를 맞추었을때에 골드가 추가되는 함수
+    public void HitBossGetGold()
+    {
+        playerGold += 1;    // 임시로 1로지정
+    }
+
+
 
     // 일정 시간이 된다면 골드를 올려주는 함수
     private void GetTimeGold()
@@ -309,6 +325,8 @@ public class GameManager : MonoBehaviour
         }
         else { /*PASS*/ }
     }       //ButtonsListMake()
+
+
 
 
 }       // ClassEnd
