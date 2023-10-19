@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/01_ProjectSD/Scenes/SG_ShopTestScene005.unity
     guid: 82b50e58e2eae3d4a9c24a233ad06cc3
+  - enabled: 1
+    path: Assets/01_ProjectSD/Scenes/JS_TestMain3.unity
+    guid: d6761c6c561f81e4b86140d4d18d12b0
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 27d9c5da8baa5c449bab43875d4f9a2f, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 5eb98af763a72b84aa0a02335aef409a, type: 2}

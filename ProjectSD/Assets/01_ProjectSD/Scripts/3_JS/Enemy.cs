@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy
+public class Enemy : MonoBehaviour
 {
     public int id;
     public string description;
@@ -17,11 +17,20 @@ public class Enemy
     public float rangeEx;
     public float scaleFactor;
     BoxCollider boxCollider;
+    public CapsuleCollider capsuleCollider;
     GameObject enemyObject;
 
-    // Initialize를 하는 생성자
-    public Enemy(int id, GameObject gameObject, float scaleFactor)
+    private void Start()
     {
+        capsuleCollider = gameObject.GetComponent<CapsuleCollider>();
+    }
+
+    // Initialize를 하는 생성자
+    public void Initalize(int id, GameObject gameObject, float scaleFactor)
+    {
+        // id 저장
+        this.id = id;
+
         // Enemy 오브젝트를 저장
         enemyObject = gameObject;
 
@@ -58,14 +67,9 @@ public class Enemy
         hp -= (int)damage;
 
         // hp가 0 이하인 경우 처리
-        if (hp <= 0)
-        {
-            isDead();
-        }
-
-         Debug.Log($"hp:{hp}");
-        // 죽음을 체크하는 함수 호출
         isDead();
+
+        Debug.Log($"hp:{hp}");
     }
 
     // 죽음을 체크하는 함수
@@ -83,20 +87,43 @@ public class Enemy
     {
         Debug.Log("죽는다.");
         // 공격 범위를 폭발 범위로 조정
-        SetBoxColliderSize(boxCollider, rangeEx);
+        //SetBoxColliderSize(boxCollider, rangeEx);
+
+        // 캡슐 콜라이더 비활성화
+        capsuleCollider.enabled = false;
 
         // 플레이어에게 골드를 주는 함수
         GameManager.instance.MinionKillGetGold();
 
-        // 3초 후에 Enemy 비활성화
-        EnemyManager.instance.ChangeActive(enemyObject, 0f, false);
+        // 폭발 인스턴스 생성
+        Transform transform = gameObject.transform;
+        CreateExplosion(FindExplosionPrefab(), transform.position, transform.rotation);
+
+        // 0초 후에 Enemy 비활성화
+        gameObject.SetActive(false);
+
+        capsuleCollider.enabled = true;
+        //EnemyManager.instance.ChangeActive(enemyObject, 0f, false);
+    }
+
+    // 기본 디렉토리
+    private const string DIRECTORY = "Prefabs/";
+    // 폭발 Prefab을 찾는 함수
+    private GameObject FindExplosionPrefab()
+    {
+        // ID로 Prefab 검색 후 할당
+        string prefabName = (string)DataManager.GetData(id, "Explosion_Prefab");
+        GameObject prefab = Resources.Load<GameObject>(DIRECTORY + prefabName);
+
+        // 반환
+        return prefab;
     }
 
     // 오브젝트를 비활성화하는 함수
     public void ChangeActiveFalse()
     {
         // Enemy 활성화 상태 변경
-        enemyObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     // 공격 범위 조정을 위해
@@ -106,10 +133,24 @@ public class Enemy
         // 공격 범위를 설정한다.
         float scale = size * scaleFactor;
         // 박스 콜라이더 크기 조절
-        boxCollider = enemyObject.GetComponent<BoxCollider>();
+        boxCollider = gameObject.GetComponent<BoxCollider>();
         boxCollider.size = new Vector3(scale, scale, scale);
 
         // 박스 콜라이더 활성화
         boxCollider.enabled = true;
+    }
+
+    // 외부 메서드 호출
+    // 폭발 파티클 인스턴스를 생성하는 함수
+    private void CreateExplosion(GameObject prefab,
+        Vector3 position, Quaternion rotate)
+    {
+        position.y += 1f;
+        // 폭발 파티클 인스턴스 생성
+        GameObject explosion = 
+            GameObject.Instantiate(prefab, position, rotate);
+
+        // 폭발 파티클에 아이디 할당
+        explosion.GetComponent<ExplosionHandler>().id = id;
     }
 }

@@ -123,13 +123,13 @@ public class EnemySpawn : MonoBehaviour
     }
 
     // Enemys 프리팹 디렉토리 경로
-    private const string ENEMY_DIRECTORY = "Enemys/";
+    private const string DIRECTORY = "Prefabs/";
     // 모델명으로 Resources 폴더에 있는 프리팹을
     // 찾아서 반환하는 함수
     private GameObject GetResourcesPrefab(string name)
     {
         GameObject prefab = 
-            Resources.Load<GameObject>(ENEMY_DIRECTORY + name);
+            Resources.Load<GameObject>(DIRECTORY + name);
         
         return prefab;
     }
