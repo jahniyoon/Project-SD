@@ -3963,7 +3963,7 @@ MonoBehaviour:
   gameClearPanel: {fileID: 1260219968}
   isGunUpgrade: 0
   isWeakpointUpgrade: 0
-  isPCMODE: 1
+  isPCMODE: 0
   isShopTest: 0
   secondsGold: 0
   bossAttackGold: 0
