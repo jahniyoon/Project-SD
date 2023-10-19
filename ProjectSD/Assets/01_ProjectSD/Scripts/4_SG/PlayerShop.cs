@@ -143,7 +143,7 @@ public class PlayerShop : MonoBehaviour
                         // 컴포넌트를 가져옴
                         shopScroller = rayHit.transform.parent.parent.parent.GetComponent<ShopScroller>();
 
-                        shopScroller.IsScroll = input.rightShoot;
+                        shopScroller.IsScroll = true;
                         shopScroller.TransformInIt(pShoter.rightGun.firePoint);
 
                     }   // if : 오른쪽 컨트롤러의 발사 버튼을 눌렀다면
@@ -156,7 +156,7 @@ public class PlayerShop : MonoBehaviour
                             shopScroller = null;
                         }   // if : ShopScroller가 비어있지않은 상태라면
 
-                    }   // if : 오른쪽 발사 버튼을 누른상태가 아니라면
+                    }   // if : 오른쪽손 발사 버튼을 누른상태가 아니라면
 
 
 

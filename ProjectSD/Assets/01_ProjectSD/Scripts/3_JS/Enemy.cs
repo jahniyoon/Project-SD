@@ -85,6 +85,9 @@ public class Enemy
         // 공격 범위를 폭발 범위로 조정
         SetBoxColliderSize(boxCollider, rangeEx);
 
+        // 플레이어에게 골드를 주는 함수
+        GameManager.instance.MinionKillGetGold();
+
         // 3초 후에 Enemy 비활성화
         EnemyManager.instance.ChangeActive(enemyObject, 0f, false);
     }

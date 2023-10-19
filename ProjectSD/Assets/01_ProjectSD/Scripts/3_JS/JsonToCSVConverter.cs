@@ -58,7 +58,7 @@ public class JsonToCsvConverter
                 // 패턴에 일치하는 문자열을 찾았을 경우
                 if (match.Success)
                 {
-                    Debug.Log("Match True");
+                    //Debug.Log("Match True");
 
                     // match를 string으로 형변환
                     string text = match.ToString();

@@ -150,8 +150,8 @@ public class ShopItemButton : MonoBehaviour
 
     private void ItemIDInIt()       // CSV속 아이템 ID를 매핑해주는 함수
     {
-        upgradeGunID = 8001;
-        upgradeWaekPointID = 8002;
+        upgradeGunID = 8010;
+        upgradeWaekPointID = 8020;
     }
 
 
