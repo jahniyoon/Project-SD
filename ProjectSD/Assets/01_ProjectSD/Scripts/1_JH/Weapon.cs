@@ -144,7 +144,7 @@ public class Weapon : MonoBehaviour
         if (isUpgrade)
         {
             index += 1;
-            upgradeDuration = (float)DataManager.GetData(7020, "ActTime");
+            upgradeDuration = (float)DataManager.GetData(7010, "ActTime");
         }
        
         weaponID = (int)DataManager.GetData(index, "ID");

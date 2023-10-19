@@ -16,7 +16,7 @@ public class BossHitPoint : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        GetData();
         //Debug.Log("히트포인트 동작");
         sphereCollider = GetComponent<SphereCollider>();
         meshRenderers = GetComponentsInChildren<MeshRenderer>();
@@ -88,4 +88,13 @@ public class BossHitPoint : MonoBehaviour
     }
     //사이즈 조절 관련(아직 어떻게 조절할지 조건을 모르겠어서 보류)
     //boxCollider.size = new Vector3(3.0f, 3.0f, 3.0f);
+
+    public void GetData()
+    {
+        critical = (float)DataManager.GetData(3001, "WeakpointRate");   // 크리티컬 증가율
+        disableTime = (float)DataManager.GetData(3001, "ActTime");      // 비활성화된 약점 재생성 시간
+
+        weakPointScale = (float)DataManager.GetData(7020, "Value1");    // 커지는 배율
+        upgradeTime = (float)DataManager.GetData(7020, "ActTime");      // 업그레이드 유지 시간
+    }
 }
