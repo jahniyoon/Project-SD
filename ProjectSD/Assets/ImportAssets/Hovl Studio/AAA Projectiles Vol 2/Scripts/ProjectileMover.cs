@@ -18,7 +18,7 @@ public class ProjectileMover : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         if (flash != null)
         {
-            Debug.Log("생성되나?");
+            //Debug.Log("생성되나?");
             var flashInstance = Instantiate(flash, transform.position, Quaternion.identity);
             flashInstance.transform.forward = gameObject.transform.forward;
             var flashPs = flashInstance.GetComponent<ParticleSystem>();

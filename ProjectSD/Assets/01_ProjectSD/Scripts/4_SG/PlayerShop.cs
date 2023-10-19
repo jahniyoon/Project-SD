@@ -26,9 +26,16 @@ public class PlayerShop : MonoBehaviour
     public LayerMask buttonMask;
     private ShopItemButton tempClass;       // Ray를 쏘는것에서 HitInfo로 Class를 끌어올 변수
 
+
+    private Transform cameraRig;            // OVRCameraRig Trasform을 담아둘 변수
     #endregion Test변수
 
-    // Start is called before the first frame update
+
+    private void Awake()
+    {
+        SerchOVRCameraRig();
+    }
+
     void Start()
     {
 
@@ -144,7 +151,7 @@ public class PlayerShop : MonoBehaviour
                         shopScroller = rayHit.transform.parent.parent.parent.GetComponent<ShopScroller>();
 
                         shopScroller.IsScroll = true;
-                        shopScroller.TransformInIt(pShoter.rightGun.firePoint);
+                        shopScroller.TransformInIt(cameraRig);
 
                     }   // if : 오른쪽 컨트롤러의 발사 버튼을 눌렀다면
 
@@ -197,6 +204,16 @@ public class PlayerShop : MonoBehaviour
                 state = State.Close;
             }
         }
-    }
+    }       // PushButton
 
-}
+
+    // 상점 회전을할때에 Transform보내주기 위해 Awake단계이서 미리 찾아둠
+    private void SerchOVRCameraRig()
+    {
+        cameraRig = this.transform.GetChild(0).GetChild(0);
+
+    }       // SerchOVRCameraRig()
+
+
+
+}       // ClassEnd
