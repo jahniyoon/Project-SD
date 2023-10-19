@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/01_ProjectSD/Scenes/SG_ShopTestScene005.unity
     guid: 82b50e58e2eae3d4a9c24a233ad06cc3
-  - enabled: 1
+  - enabled: 0
     path: Assets/01_ProjectSD/Scenes/JS_TestMain3.unity
     guid: d6761c6c561f81e4b86140d4d18d12b0
   m_configObjects:
