@@ -294,7 +294,7 @@ public class Boss : MonoBehaviour
 
         bulletPort.transform.LookAt(target);
         instantBullet.transform.LookAt(target);
-        bulletScript.Launch(target);
+        //bulletScript.Launch(target);
 
     }
 

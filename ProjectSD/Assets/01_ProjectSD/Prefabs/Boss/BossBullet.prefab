@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 8255814611675511854, guid: 523ab95688cff794b9f3d193fcbc45fb, type: 3}
-  hp: 10
+  hp: 0
   lifeTime: 0
   damage: 0
-  speed: 20
+  speed: 0

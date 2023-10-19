@@ -23,14 +23,16 @@ public class BossBullet : MonoBehaviour
     void Start()
     {
         GetData();
-
         rigid = GetComponent<Rigidbody>();
-        mesh = GetComponent<MeshRenderer>();    // 지환 : 데미지 확인을 위한 메시
-        
+        mesh = GetComponent<MeshRenderer>();
+        rigid.velocity = transform.forward * speed;
+
+
     }
 
     public void Launch(Transform target)
     {
+        Debug.Log("런치 되나?");
         this.target = target;
         rigid = GetComponent<Rigidbody>();
         mesh = GetComponent<MeshRenderer>();
