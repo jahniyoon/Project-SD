@@ -13,6 +13,7 @@ public class Bullet : MonoBehaviour
     public int weaponID;
     public bool isUpgrade;
     public GameObject damageEffect;
+    public GameObject hitEffect;
 
 
     [Header("Bullet Damage")]
@@ -70,6 +71,7 @@ public class Bullet : MonoBehaviour
             bossBullet.GetComponent<BossBullet>().OnDamage(Mathf.FloorToInt(finalDamage));
             DamageEffect(other.tag);
             bulletCollider.enabled = false;
+
             //Destroy(bullet);
         }
         else if (other.CompareTag("Boss"))
@@ -78,6 +80,7 @@ public class Bullet : MonoBehaviour
             GameManager.instance.HitBossGetGold();
             other.transform.root.GetComponent<Boss>().OnDamage(Mathf.FloorToInt(finalDamage));
             DamageEffect(other.tag);
+
             bulletCollider.enabled = false;
 
 
@@ -112,9 +115,16 @@ public class Bullet : MonoBehaviour
             DamageEffect(other.tag);
             bulletCollider.enabled = false;
 
+
             //other.transform.root.GetComponent<Boss>().OnWeakPointDamage(Mathf.FloorToInt(finalDamage));
         }
 
+
+
+        if (other.gameObject.layer == 7)
+        {
+            hitEffect.transform.gameObject.SetActive(true);
+        }
     }
 
 
@@ -123,6 +133,10 @@ public class Bullet : MonoBehaviour
         Vector3 effectPos = this.transform.position;
         Vector3 vDist = effectPos - GameManager.instance.PC.transform.position; // 이펙트와 플레이어의 거리
         Vector3 vDir = vDist.normalized;    // 이펙트와 플레이어의 방향
+
+        hitEffect.transform.position = effectPos;
+        hitEffect.transform.gameObject.SetActive(true);
+
 
         //float distance = Vector3.Distance(effectPos, GameManager.instance.PC.transform.position);
         GameObject damageFX =
