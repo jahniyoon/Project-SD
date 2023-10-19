@@ -44,11 +44,13 @@ public class ItemButtonInstance : MonoBehaviour
     private void AwakeInIt()
     {
         Dictionary<string, List<string>> buttonCSV;
+        #region CSVFile읽어오는것
         // TODO : 여기서 CSV를 읽어서 열의 갯수를 채크   
-        buttonCSV = CSVReader.ReadCSVFile("CSVFiles/Shop/Shop");
-        Debug.LogFormat("buttonCSV -> {0}", buttonCSV);
-        DataManager.SetData(buttonCSV);
-        Debug.Log("SetData 이후로 내려오나?");
+        //buttonCSV = CSVReader.ReadCSVFile("CSVFiles/Shop/Shop");
+        //Debug.LogFormat("buttonCSV -> {0}", buttonCSV);
+        //DataManager.SetData(buttonCSV);
+        //Debug.Log("SetData 이후로 내려오나?");
+        #endregion CSVFile읽어오는것
         childCount = DataManager.GetCount(8001);     // ID 수치 변경시 매개변수값 변경       
         buttonSclae = new Vector3(1f, 2f, 1f);
 

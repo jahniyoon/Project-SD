@@ -13,7 +13,7 @@ public class ShopItemButton : MonoBehaviour
     public int buttonNum;
 
     [Header("CSV_Value")]
-    
+
     public int maxItemValue;        // 구매할수 있는 최대치
     public int price;               // 아이템의 가격
     public float coolTime;            // 구매의 쿨타임
@@ -51,7 +51,7 @@ public class ShopItemButton : MonoBehaviour
                 UpdateItemCountText();
             }
         }
-    }       
+    }
 
 
     private Coroutine buyCooltimeCoroutine;     // Start 코루틴 해줄 변수
@@ -117,8 +117,8 @@ public class ShopItemButton : MonoBehaviour
 
     private void Awake()
     {
-        ItemIDInIt();
         GameManagerInIt();          // 게임메니저 인스턴스하는 함수
+        ItemIDInIt();
         ImageComponentInIt();       // 이미지 컴포넌트 넣어주는 함수
         GetChildTextObj();          // Text들을 찾아서 바로바로 넣어주는 함수
         Vector3InIt();              // 아이템 UI 확대 축소를 위한 Vector3 변수에 값을 기입해주는 함수
@@ -152,7 +152,7 @@ public class ShopItemButton : MonoBehaviour
     {
         upgradeGunID = 8001;
         upgradeWaekPointID = 8002;
-    }       
+    }
 
 
     private void CSVReadInIt()      // CSV파일을 Read해와서 변수에 필요한 값을 넣어주는 함수
@@ -162,10 +162,10 @@ public class ShopItemButton : MonoBehaviour
         {
             //Debug.LogFormat("ButtonNum = {0} 가 첫번째 아이템으로 들어옴 ", buttonNum);
             nowItemValue = 0;
-            maxItemValue = (int)DataManager.GetData(upgradeGunID,"Max");
-            price = (int)DataManager.GetData(upgradeGunID,"Gold");
-            coolTime = (int)DataManager.GetData(upgradeGunID,"Time");
-            description = (string)DataManager.GetData(upgradeGunID,"Description");
+            maxItemValue = (int)DataManager.GetData(upgradeGunID, "Max");
+            price = (int)DataManager.GetData(upgradeGunID, "Gold");
+            coolTime = (int)DataManager.GetData(upgradeGunID, "Time");
+            description = (string)DataManager.GetData(upgradeGunID, "Description");
         }
 
         else if (buttonNum == (int)itemTag.UpgradeWeakPoint) // 두번째 아이템
@@ -258,7 +258,7 @@ public class ShopItemButton : MonoBehaviour
     {
         //Debug.LogWarning("ㅎ한글은 나오나?");
         descriptionText.text = description; // 아이템 설명 업데이트
-        
+
     }
 
     //-------------------------------------------- Ray가 닿았을때를 위한 함수들 --------------------------
@@ -302,7 +302,7 @@ public class ShopItemButton : MonoBehaviour
         {
             ChangeDefaultColor();
         }
-        else if(IsUseItem == true)
+        else if (IsUseItem == true)
         {
             ChangeBuyItemColor();
         }
@@ -353,7 +353,7 @@ public class ShopItemButton : MonoBehaviour
         {
             gameManager.UpgradeGun();
         }
-        else if(buttonNum == (int)itemTag.UpgradeWeakPoint)
+        else if (buttonNum == (int)itemTag.UpgradeWeakPoint)
         {
             gameManager.UpgradeWeakPoint();
         }
