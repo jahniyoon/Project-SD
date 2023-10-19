@@ -11,9 +11,10 @@ public class GoogleSheetLoader : MonoBehaviour
     // API 접근 KEY
     private const string apiKey = "AIzaSyCXNUN-D43FJGsu37TjJxRUDWD7wcF98CU";
     // 불러올 문서의 시트 이름 배열
+    // 불러올 시트 이름을 넣어주세요!!!
     private string[] sheetNames =
     {
-        "Minion_Table"
+        "Minion_Table", "Minion_Spawn_Table"
     };
     // 코루틴에서 데이터를 반환하고
     // 반환된 데이터를 저장하기 위한 콜백 변수
