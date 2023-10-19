@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.10064494, g: 0.07367198, b: 0.13477609, a: 1}
+  m_IndirectSpecularColor: {r: 0.10064437, g: 0.07366231, b: 0.13478462, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3963,7 +3963,7 @@ MonoBehaviour:
   gameClearPanel: {fileID: 1260219968}
   isGunUpgrade: 0
   isWeakpointUpgrade: 0
-  isPCMODE: 1
+  isPCMODE: 0
   isShopTest: 0
   secondsGold: 0
   bossAttackGold: 0
@@ -5515,8 +5515,24 @@ PrefabInstance:
       value: BloodScreen
       objectReference: {fileID: 0}
     - target: {fileID: 7439355367473334744, guid: 523ab95688cff794b9f3d193fcbc45fb, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7439355367473334744, guid: 523ab95688cff794b9f3d193fcbc45fb, type: 3}
       propertyPath: m_RaycastTarget
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7637513874934558549, guid: 523ab95688cff794b9f3d193fcbc45fb, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1354138726}
+    - target: {fileID: 7637513874934558549, guid: 523ab95688cff794b9f3d193fcbc45fb, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7637513874934558549, guid: 523ab95688cff794b9f3d193fcbc45fb, type: 3}
+      propertyPath: m_PlaneDistance
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 8255814611675511845, guid: 523ab95688cff794b9f3d193fcbc45fb, type: 3}
       propertyPath: m_Name
@@ -5583,6 +5599,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!20 &1354138726 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 2321548706929297265, guid: 523ab95688cff794b9f3d193fcbc45fb, type: 3}
+  m_PrefabInstance: {fileID: 1354138724}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1354675155
 GameObject:
   m_ObjectHideFlags: 0

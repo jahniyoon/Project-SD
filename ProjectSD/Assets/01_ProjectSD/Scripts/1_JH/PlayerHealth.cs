@@ -72,11 +72,11 @@ public class PlayerHealth : MonoBehaviour
     {
         // 체력이 낮을 경우 더 붉어지게 하기 위한 값
         // 체력이 100이면 변함없음
-        float newHealth = (-1 * _health + 100);
+        float newHealth = (-1 * _health + 250);
 
         bloodScreenValue += 200 + newHealth;
-        if (1000f < bloodScreenValue)
-        { bloodScreenValue = 1000f; }
+        if (2000 < bloodScreenValue)
+        { bloodScreenValue = 2000; }
     }
 
 }
