@@ -72,7 +72,7 @@ public class ItemButtonInstance : MonoBehaviour
 
     private void InItButtonNum()        // 버튼들의 고유번호를 넣어주는 함수
     {
-        Debug.Log(buttons.Length);
+        //Debug.Log(buttons.Length);
         for(int i = 0; i < buttons.Length; i++)
         {
             buttons[i].buttonNum = i;

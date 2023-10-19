@@ -18,6 +18,7 @@ public class ProjectileMover : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         if (flash != null)
         {
+
             var flashInstance = Instantiate(flash, transform.position, Quaternion.identity);
             flashInstance.transform.forward = gameObject.transform.forward;
             var flashPs = flashInstance.GetComponent<ParticleSystem>();
