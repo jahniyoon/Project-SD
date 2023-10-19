@@ -10,9 +10,9 @@ public class BossBullet : MonoBehaviour
     public Transform target;
     private Rigidbody rigid;
     private MeshRenderer mesh;
-    
 
-    //csv
+
+    [Header("CSV")]
     public float hp = default;
     public float lifeTime = default;  //destroy할때 사라지는 시간?
     public float damage = default;

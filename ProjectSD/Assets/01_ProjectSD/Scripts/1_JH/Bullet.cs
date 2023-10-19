@@ -121,10 +121,10 @@ public class Bullet : MonoBehaviour
 
 
 
-        if (other.gameObject.layer == 7)
-        {
-            hitEffect.transform.gameObject.SetActive(true);
-        }
+        //if (other.gameObject.layer == 7)
+        //{
+        //    hitEffect.transform.gameObject.SetActive(true);
+        //}
     }
 
 
