@@ -36,17 +36,18 @@ public class EnemySpawn : MonoBehaviour
 
     private void Awake()
     {
-        // Enemy_Spawn CSV파일을 불러온 후
-        // DataManager에 Init 한다.
-        Dictionary<string, List<string>> spawnData = 
-            CSVReader.ReadCSVFile("CSVFiles/Minion_Spawn_Table");
-        DataManager.SetData(spawnData);
+        // LEGACY:
+        //// Enemy_Spawn CSV파일을 불러온 후
+        //// DataManager에 Init 한다.
+        //Dictionary<string, List<string>> spawnData = 
+        //    CSVReader.ReadCSVFile("CSVFiles/Minion_Spawn_Table");
+        //DataManager.SetData(spawnData);
 
-        // Enemy CSV파일을 불러온 후
-        // DataManager에 Init 한다.
-        Dictionary<string, List<string>> enemyData =
-            CSVReader.ReadCSVFile("CSVFiles/Enemy");
-        DataManager.SetData(enemyData);
+        //// Enemy CSV파일을 불러온 후
+        //// DataManager에 Init 한다.
+        //Dictionary<string, List<string>> enemyData =
+        //    CSVReader.ReadCSVFile("CSVFiles/Enemy");
+        //DataManager.SetData(enemyData);
 
         // 플레이어 / 보스의 초기 거리를 저장
         startDistance = Vector3.Distance(
