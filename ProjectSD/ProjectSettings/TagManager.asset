@@ -12,6 +12,7 @@ TagManager:
   - BossBullet
   - WeakPoint
   - Enemy
+  - Explosion
   layers:
   - Default
   - TransparentFX
