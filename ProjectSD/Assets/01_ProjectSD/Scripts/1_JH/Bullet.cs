@@ -10,7 +10,7 @@ public class Bullet : MonoBehaviour
     private Rigidbody rigid = default;
     private SphereCollider bulletCollider;
 
-    public float weaponID;
+    public int weaponID;
     public bool isUpgrade;
     public GameObject damageEffect;
 
@@ -56,7 +56,6 @@ public class Bullet : MonoBehaviour
         {
             isCrit = true;
             bulletCollider.radius = 2f;
-            //mat.material.color = Color.red;
             finalDamage = bulletDamage * (critIncrease / 100);
         }
         else
@@ -152,19 +151,25 @@ public class Bullet : MonoBehaviour
 
     public void GetData()
     {
-        int index = 0;
+        int index = 2001;
         if(isUpgrade)    // 2000이면 강화무기
         { 
-            index = 1; 
+            index += 1; 
         }
 
-        Dictionary<string, List<string>> dataDictionary = default;
-        dataDictionary = CSVReader.ReadCSVFile("CSVFiles/Projectile_Table");
+        //Dictionary<string, List<string>> dataDictionary = default;
+        //dataDictionary = CSVReader.ReadCSVFile("CSVFiles/Projectile_Table");
+        //bulletDamage = float.Parse(dataDictionary["Att"][index]);
+        //critIncrease = float.Parse(dataDictionary["Critical_Rate"][index]);
+        //critProbability = float.Parse(dataDictionary["Critical_Chance"][index]);
+        //bulletSpeed = float.Parse(dataDictionary["Vlocity"][index]);
+        //bulletLifeTime = float.Parse(dataDictionary["LifeTime"][index]);
 
-        bulletDamage = float.Parse(dataDictionary["Att"][index]);
-        critIncrease = float.Parse(dataDictionary["Critical_Rate"][index]);
-        critProbability = float.Parse(dataDictionary["Critical_Chance"][index]);
-        bulletSpeed = float.Parse(dataDictionary["Vlocity"][index]);
-        bulletLifeTime = float.Parse(dataDictionary["LifeTime"][index]);
+        bulletDamage = (float)DataManager.GetData(index, "Att");
+        critIncrease = (int)DataManager.GetData(index, "Critical_Rate");
+        critProbability = (float)DataManager.GetData(index, "Critical_Chance");
+        bulletSpeed = (int)DataManager.GetData(index, "Velocity");
+        bulletLifeTime = (int)DataManager.GetData(index, "LifeTime");
+        
     }
 }

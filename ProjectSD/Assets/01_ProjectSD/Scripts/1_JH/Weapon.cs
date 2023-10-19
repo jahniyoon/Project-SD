@@ -121,12 +121,6 @@ public class Weapon : MonoBehaviour
 
             firePoint = weapon[1].transform.GetChild(0).transform;
 
-
-            //int index = meshes.Length;
-            //for (int i = 0; i < index; i++)
-            //{
-            //    meshes[i].material.color = Color.red;
-            //}
             Invoke("ResetUpgrade", upgradeDuration);
         }
     }
@@ -140,31 +134,21 @@ public class Weapon : MonoBehaviour
 
         firePoint = weapon[0].transform.GetChild(0).transform;
 
-        //int index = meshes.Length;
-        //for (int i = 0; i < index; i++)
-        //{
-        //    meshes[i].material.color = Color.black;
-        //}
         isUpgrade = false;
 
     }
 
     public void GetData(bool isUpgrade)
     {
-        int index = 0;
+        int index = 1001;
         if (isUpgrade)
         {
-            index = 1;
-            Dictionary<string, List<string>> upgradeDataDictionary = default;
-            upgradeDataDictionary = CSVReader.ReadCSVFile("CSVFiles/Unit_Weapon_Upgrade_Table");
-            upgradeDuration = float.Parse(upgradeDataDictionary["ActTime"][0]);
+            index += 1;
+            upgradeDuration = (float)DataManager.GetData(7020, "ActTime");
         }
-        Dictionary<string, List<string>> dataDictionary = default;
-        dataDictionary = CSVReader.ReadCSVFile("CSVFiles/Weapon_Table");
-        weaponID = int.Parse(dataDictionary["ID"][index]);
+       
+        weaponID = (int)DataManager.GetData(index, "ID");
+        fireRate = (float)DataManager.GetData(index, "Shot_Delay");
 
-        fireRate = float.Parse(dataDictionary["Shot_Delay"][index]);
-
-      
     }
 }
