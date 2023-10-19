@@ -14,7 +14,7 @@ public class GoogleSheetLoader : MonoBehaviour
     // 불러올 시트 이름을 넣어주세요!!!
     private string[] sheetNames =
     {
-        "Minion_Table", "Minion_Spawn_Table"
+        "Minion_Table", "Minion_Spawn_Table", "PC_Table", "Weapon_Table", "Projectile_Table", "Shop_Item_Table", "Golem_Table", "Golem_Projectile_Table", "Golem_Weak_Table"
     };
     // 코루틴에서 데이터를 반환하고
     // 반환된 데이터를 저장하기 위한 콜백 변수
