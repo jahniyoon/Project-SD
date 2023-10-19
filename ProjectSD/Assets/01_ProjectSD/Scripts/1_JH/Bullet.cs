@@ -75,6 +75,7 @@ public class Bullet : MonoBehaviour
         else if (other.CompareTag("Boss"))
         {
             Debug.Log("보스를 맞췄다.");
+            GameManager.instance.HitBossGetGold();
             other.transform.root.GetComponent<Boss>().OnDamage(Mathf.FloorToInt(finalDamage));
             DamageEffect(other.tag);
             bulletCollider.enabled = false;
