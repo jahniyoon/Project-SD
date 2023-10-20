@@ -102,7 +102,6 @@ public class Enemy : MonoBehaviour
         // 공격 범위를 폭발 범위로 조정
         //SetBoxColliderSize(boxCollider, rangeEx);
 
-        // 임시로 예외처리
         // 스피어 콜라이더 비활성화
         //sphereCollider.enabled = false;
 
