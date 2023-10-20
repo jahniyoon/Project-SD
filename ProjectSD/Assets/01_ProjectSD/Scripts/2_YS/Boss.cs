@@ -27,6 +27,7 @@ public class Boss : MonoBehaviour
     public float hp = default;
     public float actTime = default;
     public float weakPointRate = default;
+    public float speed;
 
     [Header("투사체 생성 지점")]
     public Transform bulletPort;
@@ -74,6 +75,7 @@ public class Boss : MonoBehaviour
         target = GameObject.FindWithTag("Player").GetComponent<Transform>();
         anim = GetComponent<Animation>();
         agent = GetComponent<NavMeshAgent>();
+        agent.speed = speed;
 
         anim.CrossFade("walk");
         anim["walk"].speed = 0.15f;
@@ -112,6 +114,8 @@ public class Boss : MonoBehaviour
         hp = (int)DataManager.GetData(3001, "HP"); //이름으로 가져오는거라서 순서상관 X 0번째 행  //변수 선언은 해야함
         //weakPointRate = (float)DataManager.GetData(3001, "WeakpointRate");
         actTime = (float)DataManager.GetData(3001, "ActTime");
+        speed = (float)DataManager.GetData(3001, "MoveSpeed");
+        
     }
 
     IEnumerator CheckMonsterState()

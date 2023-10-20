@@ -12,6 +12,7 @@ public class FireBomb : MonoBehaviour
     public float velocity;    // 속도
     public float lifeTime;    // 유닛 비활성화 시간
 
+    public GameObject fireFXPrefab;
 
 
     // Start is called before the first frame update
@@ -27,7 +28,21 @@ public class FireBomb : MonoBehaviour
     {
 
     }
+    public void OnTriggerStay(Collider other)
+    {
+        if(other.gameObject.layer == 7)    // 바닥일 경우
+        {
+            Expolsion();
+        }
+    }
 
+    public void Expolsion()
+    {
+        GameObject FireFX = Instantiate(fireFXPrefab, transform.position, Quaternion.identity);
+
+        Destroy(gameObject);
+
+    }
 
     public void GetData()
     {

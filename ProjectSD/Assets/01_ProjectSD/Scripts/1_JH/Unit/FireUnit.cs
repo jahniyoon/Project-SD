@@ -47,7 +47,6 @@ public class FireUnit : MonoBehaviour
         {
             if (Time.time >= lastFireTime + shotDelay)  // 시간이 마지막 시간과 딜레이시간을 더한 값보다 클 경우
             {
-                Debug.Log("발사한다.");
                 lastFireTime = Time.time;   // 마지막 시간 업데이트 후
                 Shoot();    // 발사
             }
@@ -64,7 +63,7 @@ public class FireUnit : MonoBehaviour
     public Vector3 calculateForce()
     {
         firePosition.LookAt(GameManager.instance.Golem.transform);  // 발사방향은 골렘을 향하게 변경
-        return transform.forward * power;
+        return firePosition.forward * power;
     }
 
     public void GetData()
