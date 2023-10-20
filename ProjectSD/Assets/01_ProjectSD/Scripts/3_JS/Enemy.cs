@@ -26,13 +26,13 @@ public class Enemy : MonoBehaviour
     public float rangeEx;
     public float scaleFactor;
     BoxCollider boxCollider;
-    public CapsuleCollider capsuleCollider;
+    public SphereCollider sphereCollider;
     GameObject enemyObject;
     NavMoveable navMoveable;
 
     private void Start()
     {
-        capsuleCollider = gameObject.GetComponent<CapsuleCollider>();
+        sphereCollider = gameObject.GetComponent<SphereCollider>();
         navMoveable = gameObject.GetComponent<NavMoveable>();
         //OnSlow(5f);
         //OnStun(100f);
@@ -102,8 +102,9 @@ public class Enemy : MonoBehaviour
         // 공격 범위를 폭발 범위로 조정
         //SetBoxColliderSize(boxCollider, rangeEx);
 
-        // 캡슐 콜라이더 비활성화
-        capsuleCollider.enabled = false;
+        // 임시로 예외처리
+        // 스피어 콜라이더 비활성화
+        //sphereCollider.enabled = false;
 
         // 플레이어에게 골드를 주는 함수
         GameManager.instance.MinionKillGetGold();
