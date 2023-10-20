@@ -18,7 +18,7 @@ public class GoogleSheetLoader : MonoBehaviour
         "PC_Table", "Weapon_Table", "Unit_Weapon_Upgrade_Table", "Projectile_Table",
          "Shop_Item_Table", "Gold_Table",
          "Golem_Table", "Golem_Projectile_Table", "Golem_Weak_Table",
-         "Unit_FireBomb", "Collision_Table"
+         "Unit_FireBomb", "Collision_Table", "Unit_Trap"
     };
     // 코루틴에서 데이터를 반환하고
     // 반환된 데이터를 저장하기 위한 콜백 변수
