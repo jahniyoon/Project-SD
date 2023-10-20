@@ -48,21 +48,21 @@ public class ExplosionHandler : MonoBehaviour
     // 공격 대상에 RigidBody가 있어야 검출 가능
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"검출: {other.name}");
+        //Debug.Log($"검출: {other.name}");
         // 태그가 플레이어일 경우
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Player 폭발");
+            //Debug.Log("Player 폭발");
             // 데미지 처리
             other.GetComponent<PlayerHealth>().OnDamage(damage);
         }
         // 태그가 Enemy일 경우
         else if (other.CompareTag("Enemy"))
         {
-            Debug.Log("Enemy 폭발");
+            //Debug.Log("Enemy 폭발");
 
             // 데미지 처리
-            Debug.Log($"FF Name:{other.name} {other.GetComponent<Enemy>()}");
+            //Debug.Log($"FF Name:{other.name} {other.GetComponent<Enemy>()}");
             other.GetComponent<Enemy>().OnDamage(damage);
         }
     }

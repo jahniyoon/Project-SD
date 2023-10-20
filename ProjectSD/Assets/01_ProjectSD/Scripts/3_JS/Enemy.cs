@@ -82,7 +82,7 @@ public class Enemy : MonoBehaviour
         // hp가 0 이하인 경우 처리
         isDead();
 
-        Debug.Log($"hp:{hp}");
+        //Debug.Log($"hp:{hp}");
     }
 
     // 죽음을 체크하는 함수
@@ -230,5 +230,8 @@ public class Enemy : MonoBehaviour
 
         // 폭발 파티클에 아이디 할당
         explosion.GetComponent<ExplosionHandler>().id = id;
+
+        // 폭발 효과음 출력
+        AudioManager.instance.PlaySFX("Explosion");
     }
 }

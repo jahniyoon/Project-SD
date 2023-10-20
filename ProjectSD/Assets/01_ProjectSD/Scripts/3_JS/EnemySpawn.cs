@@ -174,7 +174,7 @@ public class EnemySpawn : MonoBehaviour
 
         // 최대 크기 반지름을 생성(ex:90)
         radius = startDistance * spawnLocations1[index];
-        Debug.Log($"max radius:{radius}");
+        //Debug.Log($"max radius:{radius}");
         DrawRadius drawMaxRadius = new DrawRadius(radius, playerPos);
 
         // 각 반지름의 스폰 포지션을 받아옴
