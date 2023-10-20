@@ -101,6 +101,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        AudioManager.instance.PlayMusic("Battle");
+
         // 플레이어를 세팅한다.
         SetPlayer(true);
 
