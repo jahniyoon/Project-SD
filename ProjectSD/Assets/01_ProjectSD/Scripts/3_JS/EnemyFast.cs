@@ -28,13 +28,13 @@ public class EnemyFast : MonoBehaviour
     // 공격용 콜라이더 함수
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"공격범위 내 감지{other.name}");
+        //Debug.Log($"공격범위 내 감지{other.name}");
         if (other.tag.Equals("Player"))
         {
             //Debug.Log("플레이어 공격");
             //other.GetComponent<PlayerHealth>().OnDamage(enemy.damage);
 
-            Debug.Log("플레이어에게 자폭 공격");
+            //Debug.Log("플레이어에게 자폭 공격");
             enemy.OnDead();
         }
     }
