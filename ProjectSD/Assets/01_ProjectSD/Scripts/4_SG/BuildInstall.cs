@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using static UnityEngine.ParticleSystem;
@@ -172,6 +173,11 @@ public class BuildInstall : MonoBehaviour
                 }
                 else
                 {
+                    // 플레이어 총알이나 보스 총알이면 예외처리
+                    if(hit.collider.gameObject.GetComponent<ProjectileMover>() != null || hit.collider.gameObject.CompareTag("BossBullet"))
+                    {
+                        return;
+                    }
                     //Debug.Log("else 들어옴");
                     // Debug.LogFormat("Trans = null?  -> {0}", tempTrans == null);
                     tempTrans = hit.transform.position;
