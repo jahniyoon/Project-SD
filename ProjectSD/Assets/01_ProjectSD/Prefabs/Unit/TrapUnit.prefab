@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7745260653036785157}
   m_Layer: 0
   m_Name: TrapUnit
-  m_TagString: Untagged
+  m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52,6 +52,7 @@ MonoBehaviour:
   stunTime: 0
   triggerSize: 0
   trapSize: 0
+  trapObj: {fileID: 0}
 --- !u!65 &7745260653036785157
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -13,6 +13,8 @@ TagManager:
   - WeakPoint
   - Enemy
   - Explosion
+  - Fire
+  - Unit
   layers:
   - Default
   - TransparentFX
