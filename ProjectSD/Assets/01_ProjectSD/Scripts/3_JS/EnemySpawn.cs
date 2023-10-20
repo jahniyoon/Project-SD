@@ -97,7 +97,6 @@ public class EnemySpawn : MonoBehaviour
         }
     }
 
-
     // Enemy 인스턴스를 생성하는 함수
     private void SpawnEnemyInstance(GameObject prefab,
         Vector3 position, Quaternion rotate)
@@ -124,10 +123,11 @@ public class EnemySpawn : MonoBehaviour
 
     // Enemys 프리팹 디렉토리 경로
     private const string DIRECTORY = "Prefabs/";
-    // 모델명으로 Resources 폴더에 있는 프리팹을
+    // id로 Resources 폴더에 있는 프리팹을
     // 찾아서 반환하는 함수
-    private GameObject GetResourcesPrefab(string name)
+    private GameObject GetResourcesPrefab(int id)
     {
+        string name = (string)DataManager.GetData(id, "Model_Info");
         GameObject prefab = 
             Resources.Load<GameObject>(DIRECTORY + name);
         
@@ -189,22 +189,55 @@ public class EnemySpawn : MonoBehaviour
         //    testObj_1[i].transform.position = spawnMaxPositions[i];
         //}
 
-        // [0]번 범위 내에서 랜덤 포지션 배치
-        for (int i = 0; i < testMonster.Length; i++)
+        // Enemy_Spawn_Table에 있는 Enemy들을 생성하는 함수 호출
+        SpawnEnemys(spawnCount, spawnMinPositions, spawnMaxPositions);
+    }
+
+    // 오리지널: 180도 / 30 = 6
+    private const int SPAWN_AREA = 6;
+    // Enemy_Spawn_Table에 있는 Enemy들을 생성하는 함수
+    private void SpawnEnemys(int index, List<Vector3> spawnMinPositions,
+        List<Vector3> spawnMaxPositions)
+    {
+        GameObject parent = SpawnParentInstance("Enemy_SpawnPhase_" + index);
+        // 하드코딩으로 스폰조건 변경
+        // 기존 180도 범위에서 120도로 조정
+        // count만큼 순회
+        int count = SPAWN_AREA;
+        // 위의 하드코딩으로 120도로 범위를 조절하기 위해
+        // 시작 i 값을 1로 하고 count -1를 하였다.
+        for (int i = 1; i < count - 1; i++)
         {
-            int posIndex = i / 10;
-            int posIndex2 = (i / 10) + 1;
+            int posIndex = i;
+            int posIndex2 = i + 1;
             Vector3 point0Min = spawnMinPositions[posIndex];
             Vector3 point0Max = spawnMinPositions[posIndex2];
             Vector3 point1Min = spawnMaxPositions[posIndex];
             Vector3 point1Max = spawnMaxPositions[posIndex2];
 
-            // 활성화 상태로 변경
-            testMonster[i].SetActive(true);
+            int countType1 = type1Amounts[index];
+            for (int j = 0; j < countType1; j++)
+            {
+                // Minion_Type1에 있는 아이디를 가져옴
+                int id = minionTypes1[index];
 
-            // 포지션 변경
-            testMonster[i].transform.position =
-                GetRandomPositionInAreas(point0Min, point0Max, point1Min, point1Max);
+                // Enemy 인스턴스를 생성하는 함수 호출
+                SpawnEnemyInstance(GetResourcesPrefab(id),
+                    GetRandomPositionInAreas(point0Min, point0Max, point1Min, point1Max), 
+                    Quaternion.identity, parent);
+            }
+
+            int countType2 = type2Amounts[index];
+            for (int k = 0; k < countType2; k++)
+            {
+                // Minion_Type2에 있는 아이디를 가져옴
+                int id = minionTypes2[index];
+
+                // Enemy 인스턴스를 생성하는 함수 호출
+                SpawnEnemyInstance(GetResourcesPrefab(id),
+                    GetRandomPositionInAreas(point0Min, point0Max, point1Min, point1Max),
+                    Quaternion.identity, parent);
+            }
         }
     }
 

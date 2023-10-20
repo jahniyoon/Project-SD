@@ -5,6 +5,15 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public enum EnemyState
+    {
+        Default,
+        Slow,
+        Stun
+    }
+
+    [Header("Enemy")]
+    public EnemyState enemyState;
     public int id;
     public string description;
     public string modelInfo;
@@ -19,10 +28,14 @@ public class Enemy : MonoBehaviour
     BoxCollider boxCollider;
     public CapsuleCollider capsuleCollider;
     GameObject enemyObject;
+    NavMoveable navMoveable;
 
     private void Start()
     {
         capsuleCollider = gameObject.GetComponent<CapsuleCollider>();
+        navMoveable = gameObject.GetComponent<NavMoveable>();
+        //OnSlow(5f);
+        //OnStun(100f);
     }
 
     // Initialize를 하는 생성자
@@ -99,11 +112,76 @@ public class Enemy : MonoBehaviour
         Transform transform = gameObject.transform;
         CreateExplosion(FindExplosionPrefab(), transform.position, transform.rotation);
 
-        // 0초 후에 Enemy 비활성화
-        gameObject.SetActive(false);
+        // Enemy 삭제
+        Destroy(gameObject);
 
-        capsuleCollider.enabled = true;
+        //capsuleCollider.enabled = true;
         //EnemyManager.instance.ChangeActive(enemyObject, 0f, false);
+    }
+
+    // 슬로우 배율 (speed * 슬로우 배율)
+    private const float SLOW = 0.1f;
+    // 슬로우 디버프를 주는 함수
+    // t만큼 슬로우를 지속한다.
+    public void OnSlow(float t)
+    {
+        // enemyState가 슬로우 상태가 아닐 경우
+        if (enemyState != EnemyState.Slow)
+        {
+            // 슬로우 상태로 변경
+            enemyState = EnemyState.Slow;
+
+            // 속도를 조정 (speed * 슬로우 배율)
+            navMoveable.ChangeSpeed(speed * SLOW);
+
+            // 일정 시간 후에 슬로우 해제
+            StartCoroutine(DisableSlow(t));
+        }
+    }
+
+    // 슬로우 디버프를 주는 함수
+    // t만큼 슬로우를 지속한다.
+    public void OnStun(float t)
+    {
+        // enemyState가 스턴 상태가 아닐 경우
+        if (enemyState != EnemyState.Stun)
+        {
+            // 스턴 상태로 변경
+            enemyState = EnemyState.Stun;
+
+            // 스턴 함수를 호출 (isStun = true)
+            navMoveable.ToggleMoveable(true);
+
+            // 일정 시간 후에 스턴 해제
+            StartCoroutine(DisableStun(t));
+        }
+
+    }
+
+    // 일정 시간후에 슬로우 디버프를 해제하는 코루틴 함수
+    private IEnumerator DisableSlow(float t)
+    {
+        // 대기
+        yield return new WaitForSeconds(t);
+
+        // 상태 변경
+        enemyState = EnemyState.Default;
+
+        // 슬로우 해제
+        navMoveable.ChangeSpeed(speed);
+    }
+
+    // 일정 시간 후에 스턴 디버프를 해제하는 코루틴 함수
+    private IEnumerator DisableStun(float t)
+    {
+        // 대기
+        yield return new WaitForSeconds(t);
+
+        // 상태 변경
+        enemyState = EnemyState.Default;
+
+        // 스턴 해제
+        navMoveable.ToggleMoveable(false);
     }
 
     // 기본 디렉토리

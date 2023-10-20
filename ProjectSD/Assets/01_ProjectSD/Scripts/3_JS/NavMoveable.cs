@@ -8,20 +8,18 @@ public class NavMoveable : MonoBehaviour
 
     // 에이전트의 목적지
     [SerializeField]
-    Transform target;
+    public Transform target;
 
     public float speed = 5f;
     private bool isStop = false;
 
-    private void Awake()
+    private void Start()
     {
         // 게임이 시작되면 게임 오브젝트에 부착된 NavMeshAgent 컴포넌트를 가져와서 저장
         agent = GetComponent<NavMeshAgent>();
-    }
 
-    private void Start()
-    {
         agent.speed = speed;
+        //agent.ResetPath();
     }
 
     void FixedUpdate()
@@ -31,16 +29,33 @@ public class NavMoveable : MonoBehaviour
             return;
         }
 
-        if (GameManager.instance.isGameOver)
+        // agent가 NavMesh 상에 위치 할 경우
+        if (agent.isOnNavMesh)
         {
-            // 에이전트 정지
-            agent.isStopped = true;
-            isStop = true;
+            if (GameManager.instance.isGameOver)
+            {
+                // 에이전트 정지
+                agent.isStopped = true;
+                isStop = true;
+            }
+            else
+            {
+                // 에이전트에게 목적지를 알려주는 함수
+                agent.SetDestination(target.position);
+            }
         }
-        else
-        {
-            // 에이전트에게 목적지를 알려주는 함수
-            agent.SetDestination(target.position);
-        }
+    }
+
+    // agent의 스피드를 변경하는 함수
+    public void ChangeSpeed(float value)
+    {
+        speed = value;
+        agent.speed = speed;
+    }
+
+    // agent의 이동 여부를 토글하는 함수
+    public void ToggleMoveable(bool isMove)
+    {
+        agent.isStopped = isMove;
     }
 }
