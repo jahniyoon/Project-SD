@@ -23,15 +23,18 @@ public class ShopItemButton : MonoBehaviour
 
     public int upgradeGunID;        // 가독성을위해 CSV아이템 ID 매핑
     public int upgradeWaekPointID;
+    public int trapID;
 
     [Header("TEST_Parameter")]
-    public PlayerShop pSC;
+    BuildInstall buildInstall;      // 설치형 아이템 구매시 저 스크립트에서 Ray를 쏘며 설치할예정
 
     private enum itemTag            // 가독성을 위해 만든 Enum 아이템 구매할때조건으로 사용
     {
         UpgradeGun,                 // 0
-        UpgradeWeakPoint            // 1
+        UpgradeWeakPoint,           // 1
+        Trap                        // 2
     }
+
 
     [Header("NonTag")]
     private float nowCoolTime;       // 쿨타임이 현재 얼마나 흘렀는지 알려줄 변수
@@ -76,7 +79,6 @@ public class ShopItemButton : MonoBehaviour
         }
     }       // IsUseItem 프로퍼티 End
 
-
     private bool isRayHit;           // 자신이 레이를 맞았는지 판단할 Bool 변수
     public bool IsRayHit
     {
@@ -92,10 +94,9 @@ public class ShopItemButton : MonoBehaviour
             }
         }
     }
-
-
     public bool isExpansionIng;     // 현재 스케일 값이 변경되고 있는지
 
+    private bool isCoolTime;        // 현재 아이템이 쿨타임 상태인지 체크하는변수
 
     private Transform countTextObj; // 자식오브젝트로 있는 텍스트 오브젝트를 가져올 변수
 
@@ -114,11 +115,15 @@ public class ShopItemButton : MonoBehaviour
     private Color32 choiceColor;    // 아이템을 Ray로 맞추었을때에 바뀔 색
     private Color32 buyColor;       // 아이템 쿨타임이 돌고있을때에 바뀔 색
 
+    private Ray ray;                // 설치형 아이템 구매시 쏠 레이
+    private RaycastHit hitInfo;     // 레이 맞은것을 판별할 hitInfo
+
 
     private void Awake()
     {
         GameManagerInIt();          // 게임메니저 인스턴스하는 함수
-        ItemIDInIt();
+        ItemIDInIt();               // 매핑할 아이템 아이디 넣어주는 함수
+        FirstInIt();                // 초기값이 정해져있는것들넣어주는 함수
         ImageComponentInIt();       // 이미지 컴포넌트 넣어주는 함수
         GetChildTextObj();          // Text들을 찾아서 바로바로 넣어주는 함수
         Vector3InIt();              // 아이템 UI 확대 축소를 위한 Vector3 변수에 값을 기입해주는 함수
@@ -128,16 +133,18 @@ public class ShopItemButton : MonoBehaviour
 
     void Start()
     {
-        //Debug.LogFormat("ID In?  WINum -> {0} , WPINum - > {1}",upgradeGunID,upgradeWaekPointID);
-        //Debug.LogFormat("ItemTag : WPTag -> {0}, WPITag -> {1}", itemTag.UpgradeGun, itemTag.UpgradeWeakPoint);
         CSVReadInIt();              // 필요한 변수를 ButtonCount에 따라서 기입해주는 함수
         UpdateItemCountText();      // 현재 아이템 갯수와 최대 아이템 갯수 텍스트를 업데이트 하는 함수
         FirstTextInIt();            // 처음 모든 Text에 CSV의 값을 넣어주는 함수
         ListInIt();                 // static List 에 자신스크립트를 넣어주는 함수
     }
 
+    private void Update()
+    {
 
+    }       // Update()
 
+    #region InIts
     private void GameManagerInIt()      // 게임 메니저를 넣어줌 PlayerGold 처리를 위해
     {
         gameManager = FindAnyObjectByType<GameManager>();
@@ -152,15 +159,21 @@ public class ShopItemButton : MonoBehaviour
     {
         upgradeGunID = 8010;
         upgradeWaekPointID = 8020;
+        trapID = 8030;
+
     }
+
+    private void FirstInIt()
+    {
+        isCoolTime = false;
+    }       // 처음에 들어가야할 값을 넣어줌
 
 
     private void CSVReadInIt()      // CSV파일을 Read해와서 변수에 필요한 값을 넣어주는 함수
     {
-        //Debug.LogFormat("ButtonNum -> {0}", buttonNum);
-        if (buttonNum == (int)itemTag.UpgradeGun)      // 첫번째 아이템
+
+        if (buttonNum == (int)itemTag.UpgradeGun)      // 무기강화
         {
-            //Debug.LogFormat("ButtonNum = {0} 가 첫번째 아이템으로 들어옴 ", buttonNum);
             nowItemValue = 0;
             maxItemValue = (int)DataManager.GetData(upgradeGunID, "Max");
             price = (int)DataManager.GetData(upgradeGunID, "Gold");
@@ -168,16 +181,28 @@ public class ShopItemButton : MonoBehaviour
             description = (string)DataManager.GetData(upgradeGunID, "Description");
         }
 
-        else if (buttonNum == (int)itemTag.UpgradeWeakPoint) // 두번째 아이템
+        else if (buttonNum == (int)itemTag.UpgradeWeakPoint) // 약점강화
         {
-            //Debug.LogFormat("ButtonNum = {0} 가 두번째 아이템으로 들어옴 ", buttonNum);
             nowItemValue = 0;
             maxItemValue = (int)DataManager.GetData(upgradeWaekPointID, "Max");
             price = (int)DataManager.GetData(upgradeWaekPointID, "Gold");
             coolTime = (int)DataManager.GetData(upgradeWaekPointID, "Time");
             description = (string)DataManager.GetData(upgradeWaekPointID, "Description");
         }
+        else if (buttonNum == (int)itemTag.Trap)            // 덫
+        {
+            nowItemValue = 0;
+            maxItemValue = (int)DataManager.GetData(trapID, "Max");
+            price = (int)DataManager.GetData(trapID, "Gold");
+            coolTime = (int)DataManager.GetData(trapID, "Time");
+            description = (string)DataManager.GetData(trapID, "Description");
+        }
 
+    }       // CSVReadInIt()
+
+    private void SerchBuildInstallClass()       // 플레이어 아이템 건설 해주는 컴포넌트 가져오는 함수
+    {
+        buildInstall = GameObject.Find("Player").GetComponent<BuildInstall>();
     }
 
     // ----------------------------------------- 이미지 관련 함수 -------------------------------------------
@@ -226,6 +251,7 @@ public class ShopItemButton : MonoBehaviour
 
     }       // GetChildTextObj()
 
+    #endregion InIts
 
     // 처음에 자신에게 맞는 텍스트를 업데이트 해주는 함수
     private void FirstTextInIt()
@@ -256,9 +282,7 @@ public class ShopItemButton : MonoBehaviour
     }
     public void UpdateDescriptionText()
     {
-        //Debug.LogWarning("ㅎ한글은 나오나?");
         descriptionText.text = description; // 아이템 설명 업데이트
-
     }
 
     //-------------------------------------------- Ray가 닿았을때를 위한 함수들 --------------------------
@@ -316,7 +340,6 @@ public class ShopItemButton : MonoBehaviour
     {
         thisBackGroundImage.color = choiceColor;
     }
-
     private void ChangeDefaultColor()    // Ray가 밖으로 나가면 원래색으로 바꾸어줄 함수
     {
         thisBackGroundImage.color = defaultColor;
@@ -337,18 +360,27 @@ public class ShopItemButton : MonoBehaviour
 
     private void GoldCalculation()      // 플레이어 골드 차감
     {
-        if (gameManager.PlayerGold >= price)
-        {   //if : 플레이어소지골드가 가격과 같거나 골드가 더많을때에
-            gameManager.PlayerGold -= price;
-            IsUseItem = true;
-            UseItemEffect();
+        if(isCoolTime == false)
+        {   // if : 아이템이 쿨타임상태가 아닐떄에
+            if (gameManager.PlayerGold >= price)
+            {   // if : 플레이어소지골드가 가격과 같거나 골드가 더많을때에
+                if (NowItemValue < maxItemValue)
+                {   // if : 현재 아이템갯수가 아이템 최대치보다 작을때만 구매
+
+                    gameManager.PlayerGold -= price;
+                    IsUseItem = true;
+                    UseItemEffect();
+                }
+
+            }
+            else { Debug.Log("가격부족!"); }
         }
-        else { Debug.Log("가격부족!"); }
+
     }       // GoldCalculation()
 
     private void UseItemEffect()        // 아이템 효과 적용
     {
-        // TODO : 아이템 효과를 적용하는 것을 만들어야함
+
         if (buttonNum == (int)itemTag.UpgradeGun)
         {
             gameManager.UpgradeGun();
@@ -357,12 +389,19 @@ public class ShopItemButton : MonoBehaviour
         {
             gameManager.UpgradeWeakPoint();
         }
+        else if(buttonNum == (int)itemTag.Trap)
+        {
+            SerchBuildInstallClass();       // 건설 컴포넌트 가져오기
+            buildInstall.IsBuild = true;
+            buildInstall.buildNum = (int)itemTag.Trap;
+        }
     }       // UseItemEffect()
 
 
     private IEnumerator BuyCoolTime()   // 구매 쿨타임
     {
         NowItemValue++; // 현재 아이템 갯수 증가
+        isCoolTime = true;
 
         ColorController();      // 쿨타임 돌떄에 색을 바꾸어줌
         while (nowCoolTime < coolTime)
@@ -370,7 +409,7 @@ public class ShopItemButton : MonoBehaviour
             nowCoolTime += Time.deltaTime;
             yield return null;
         }
-
+        isCoolTime = false;
         nowCoolTime = 0f;
         IsUseItem = false;
 
