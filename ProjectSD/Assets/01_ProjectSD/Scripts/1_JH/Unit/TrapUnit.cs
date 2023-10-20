@@ -23,21 +23,23 @@ public class TrapUnit : MonoBehaviour
         GetData();
         trapTrigger = GetComponent<BoxCollider>();
         trapTrigger.size = new Vector3(triggerSize, 1, 1); // 트리거 사이즈를 정해준다.
+        trapObj.gameObject.transform.localScale = new Vector3(triggerSize, 1, 1);
         Destroy(gameObject, unitLifeTime); // 유닛 지속 시간 이후 소멸
     }
 
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy"))    // 보스 태그를 만났을 때
+        if (other.CompareTag("Enemy"))    // 적 태그를 만날 경우
         {
-            OnTrap();
+            trapTrigger.enabled = false;    // 콜라이더 꺼주고
+            OnTrap();                       // 트랩 켜주기
         }
     }
 
     public void OnTrap()
     {
-
+        trapObj.gameObject.SetActive(true);
     }
 
     public void GetData()
