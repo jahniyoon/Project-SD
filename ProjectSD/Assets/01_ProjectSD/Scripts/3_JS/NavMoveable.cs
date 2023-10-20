@@ -13,17 +13,10 @@ public class NavMoveable : MonoBehaviour
     public float speed = 5f;
     private bool isStop = false;
 
-    [Header("GooRooGi")]
-    public float rollForce = 100.0f; // 구르기 힘 세기
-    private Rigidbody rb;
-
-
     private void Start()
     {
         // 게임이 시작되면 게임 오브젝트에 부착된 NavMeshAgent 컴포넌트를 가져와서 저장
         agent = GetComponent<NavMeshAgent>();
-
-        rb = GetComponent<Rigidbody>();
 
         agent.speed = speed;
         //agent.ResetPath();
@@ -50,16 +43,6 @@ public class NavMoveable : MonoBehaviour
                 // 에이전트에게 목적지를 알려주는 함수
                 agent.SetDestination(target.position);
             }
-        }
-    }
-
-    private void Update()
-    {
-        if (agent.velocity.magnitude > 0.1f)
-        {
-            // 네비게이션 방향으로 구르기 힘을 적용
-            Vector3 rollDirection = agent.velocity.normalized;
-            rb.AddForce(rollDirection * rollForce);
         }
     }
 
