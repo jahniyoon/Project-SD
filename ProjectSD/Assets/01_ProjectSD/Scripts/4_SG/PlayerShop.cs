@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerShop : MonoBehaviour
 {
-    private PlayerInputs input;
+    private BuildRemove buildRemove;        // 아이템 제거해주는 GetComponent해올거임
+    private PlayerInputs input;             // 플레이어의 입력값조건을 위한 클레스참조
     public enum State
     {
         Close, // 상점 닫은 상태
@@ -43,6 +44,7 @@ public class PlayerShop : MonoBehaviour
 
         input = GetComponent<PlayerInputs>();
         pShoter = GetComponent<PlayerShooter>();
+        buildRemove = GetComponent<BuildRemove>();
         // 상점과 버튼은 비활성화
         state = State.Close;
         shopUI = GameManager.instance.shopPanel;
@@ -123,14 +125,12 @@ public class PlayerShop : MonoBehaviour
                     {
                         // LEGACY IF : if (tempClass.IsRayHit == true && tempClass.IsUseItem == false)
                         if (tempClass.IsRayHit == true)
-                        {
-                            //TEST
+                        {                            
                             if (tempClass.NowItemValue < tempClass.maxItemValue)
                             {
                                 //Debug.Log("아이템 갯수조건이 충족한가?");
                                 tempClass.BuyItem();
-                            }
-                            //TEST
+                            }                            
                         }
                         input.select = false;       // 입력을 해제한다.
                     }       // if end : 선택 버튼을 눌렀을 경우
@@ -177,6 +177,24 @@ public class PlayerShop : MonoBehaviour
                     GameManager.buttonsList[i].IsRayHit = false;
                 }
 
+            }
+
+            if (input.deleteUnit)
+            {       // if : 상점이 열려있을때에 제거 버튼을 누른다면
+                // TODO : 유닛 제거 Part 시작
+                if(buildRemove.IsUnitRemove == true)
+                {
+                    // TODO : 제거 Ray그만쏘기
+                    buildRemove.IsUnitRemove = false;
+
+                }
+                else if(buildRemove.IsUnitRemove == false)
+                {                    
+                    // TODO : 제거 Ray쏘기시작
+                    buildRemove.IsUnitRemove = true;
+                }
+                input.deleteUnit = false;
+                Debug.LogFormat("제거상태 -> {0}", buildRemove.IsUnitRemove);
             }
 
         }       // if : 상점이 열려 있을때에

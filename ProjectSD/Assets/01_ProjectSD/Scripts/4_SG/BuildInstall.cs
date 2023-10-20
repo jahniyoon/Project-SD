@@ -154,6 +154,7 @@ public class BuildInstall : MonoBehaviour
                             //Debug.LogError("!정상제작됨?!");
                             ParticleOff();
                         }
+                        input.select = false;
                     }
                 }
                 else if (hit.collider.gameObject.CompareTag("Boss") || hit.collider.gameObject.CompareTag("Finish"))
