@@ -89,7 +89,7 @@ public class BossBullet : MonoBehaviour
         // 체력이 0이되면 파괴
         if(hp <= 0)
         {
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
     }
 
