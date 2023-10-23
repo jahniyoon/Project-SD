@@ -135,7 +135,7 @@ public class Bullet : MonoBehaviour
             Instantiate(hitEffect, effectPosition, this.transform.rotation);
             Destroy(hitParticle, 5f);
             Debug.Log("뭐때문에 생성될까 :" + other.gameObject.name);
-
+            this.gameObject.SetActive(false);
         }
     }
 
