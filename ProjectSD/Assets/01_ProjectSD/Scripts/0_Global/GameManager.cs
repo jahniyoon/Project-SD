@@ -82,7 +82,13 @@ public class GameManager : MonoBehaviour
     #endregion 이벤트 관련
 
     #region 상점 관련
+    // 버튼들을 관리해줄 StaticList
     public static List<ShopItemButton> buttonsList;
+    
+    // 현재 적용중인 아이템 남은 시간 체크를 위한 bool변수
+    public bool isWeaponDuration = false;
+    public bool isWeakPointDuration = false;
+
     #endregion 상점 관련
 
 

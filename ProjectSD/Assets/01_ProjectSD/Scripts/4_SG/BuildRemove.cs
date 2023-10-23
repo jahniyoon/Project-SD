@@ -46,10 +46,10 @@ public class BuildRemove : MonoBehaviour
             pShooter.rightGun.laserRenderer.SetPosition(0, pShooter.rightGun.firePoint.position);
             if (Physics.Raycast(pShooter.rightGun.firePoint.position, pShooter.rightGun.firePoint.forward, out hitInfo, Mathf.Infinity, ~terrainMask))
             {
-                Debug.LogFormat("Hit Name -> {0}", hitInfo.collider.gameObject.name);
+                //Debug.LogFormat("Hit Name -> {0}", hitInfo.collider.gameObject.name);
                 if (hitInfo.collider.gameObject.CompareTag("Unit"))
                 {       // 유닛을 감지했을떄에
-                    Debug.LogFormat("Unit Name -> {0}", hitInfo.collider.gameObject.name);
+                    //Debug.LogFormat("Unit Name -> {0}", hitInfo.collider.gameObject.name);
                     if (input.select)
                     {
                         Debug.Log("제거시작 들어옴");

@@ -1,3 +1,4 @@
+using Newtonsoft.Json.Bson;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -27,6 +28,13 @@ public class ShopItemButton : MonoBehaviour
 
     [Header("TEST_Parameter")]
     BuildInstall buildInstall;      // 설치형 아이템 구매시 저 스크립트에서 Ray를 쏘며 설치할예정
+
+    private Vector3 defaultV3;      // 원본 백터값
+    private Vector3 nowV3;          // 현재 백터값
+    private Vector3 expansionV3;    // 확대될 백터값 
+
+
+    private Coroutine sclaeCoroutine;   // 코루틴 캐싱
 
     private enum itemTag            // 가독성을 위해 만든 Enum 아이템 구매할때조건으로 사용
     {
@@ -100,6 +108,8 @@ public class ShopItemButton : MonoBehaviour
 
     private Transform countTextObj; // 자식오브젝트로 있는 텍스트 오브젝트를 가져올 변수
 
+    private RectTransform rect;
+
     private TextMeshProUGUI itemCountText;      // 아이템 현재갯수,최대 갯수를 표기해줄 텍스트
     private TextMeshProUGUI priceText;          // 가격텍스트
     private TextMeshProUGUI cooltimeText;       // 아이템 쿨타임 텍스트
@@ -107,9 +117,6 @@ public class ShopItemButton : MonoBehaviour
 
     private Image itemSprite;       // 아이템 이미지가 들어갈 변수
     private Image thisBackGroundImage;  // 컴포넌트를 가지고 있는 Button 자신의 이미지 변수
-
-    public Vector3 defaultScale;    // 원래의 스케일값
-    public Vector3 expansionScale;  // Player가 레이를 맞추었을때에 커질만큼의 값
 
     private Color32 defaultColor;   // 기본색
     private Color32 choiceColor;    // 아이템을 Ray로 맞추었을때에 바뀔 색
@@ -290,30 +297,55 @@ public class ShopItemButton : MonoBehaviour
     private void buttonController()     // 자신이 레이의 맞은 상태인지 아닌지에 따라서 버튼의 색,확대등을 컨트롤 해줄함수
     {
         ColorController();
+        ScaleController();
     }
 
-    // { 확대,축소
-    // 23.10.16 스케일 조절 추후에 다시 할것 
+    
+    // 확대 축소의 필요한 Vector3값과 확대시켜줄 Rect가져오기
     private void Vector3InIt()      // 백터 변수에 넣어줄 값
     {
-        defaultScale = this.transform.localScale;
+        defaultV3 = this.transform.localScale;
+        nowV3 = defaultV3;
+        expansionV3 = defaultV3 * 1.2f;
+        rect = this.GetComponent<RectTransform>();
 
-        expansionScale = new Vector3(1.2f, 2.4f, 1.2f);
     }       // Vector3InIt()
 
-
-    public IEnumerator ButtonExpansion()        // TODO : 확대 Clamp,Lerp 를 사용할 코루틴
+    // { 확대
+    public IEnumerator ButtonExpansion()
     {
-        //Mathf.Clamp
+        float timeElapsed = 0f;     // 경과시간
+        float duration = 0.3f;     //  원하는 시간 
 
-
-        while (false)
+        while (timeElapsed < duration)
         {
-
+            timeElapsed += Time.deltaTime;
+            float time = Mathf.Clamp01(timeElapsed / duration);
+            nowV3 = Vector3.Lerp(nowV3, expansionV3, time);
+            rect.localScale = nowV3;
+            yield return null;
         }
-        yield return null;
+
     }
-    // } 확대,축소
+    // } 확대
+
+    // { 축소
+    public IEnumerator ButtonShrink()
+    {
+        float timeElapsed = 0f;     // 경과시간
+        float duration = 0.3f;     //  원하는 시간 
+        
+        while (timeElapsed < duration)
+        {
+            timeElapsed += Time.deltaTime;
+            float time = Mathf.Clamp01(timeElapsed / duration);
+            nowV3 = Vector3.Lerp(nowV3, defaultV3, time);
+            rect.localScale = nowV3;
+            yield return null;
+        }        
+    }
+    // } 축소
+
 
 
     public void ColorController()       // isRayHit의 bool값을 따라서 색을 변경해줄 함수
@@ -334,7 +366,6 @@ public class ShopItemButton : MonoBehaviour
 
     }      // ColorController()
 
-
     // { 색변경
     private void ChangeChoiceColor()     // Ray가 닿으면 색을 바꾸어줄 함수
     {
@@ -348,9 +379,21 @@ public class ShopItemButton : MonoBehaviour
     {
         thisBackGroundImage.color = buyColor;
     }
-
-
     // } 색변경
+
+    public void ScaleController()       // isRayHit의 bool 값에 따라서 버튼 크기를 변경해줄 함수
+    {
+        if(isRayHit == true)
+        {   // 확대 시작
+            sclaeCoroutine = StartCoroutine(ButtonExpansion());
+        }
+        else if(isRayHit == false)
+        {
+            sclaeCoroutine = StartCoroutine(ButtonShrink());
+        }
+    }       // ScaleController()
+
+
 
     // ------------------------------------- 아이템 구매,구매후 효과 함수 -------------------------------------
     public void BuyItem()   // 아이템 구매
@@ -360,7 +403,7 @@ public class ShopItemButton : MonoBehaviour
 
     private void GoldCalculation()      // 플레이어 골드 차감
     {
-        if(isCoolTime == false)
+        if (isCoolTime == false)
         {   // if : 아이템이 쿨타임상태가 아닐떄에
             if (gameManager.PlayerGold >= price)
             {   // if : 플레이어소지골드가 가격과 같거나 골드가 더많을때에
@@ -383,13 +426,15 @@ public class ShopItemButton : MonoBehaviour
 
         if (buttonNum == (int)itemTag.UpgradeGun)
         {
+            GameManager.instance.isWeaponDuration = true;
             gameManager.UpgradeGun();
         }
         else if (buttonNum == (int)itemTag.UpgradeWeakPoint)
         {
+            GameManager.instance.isWeakPointDuration = true;
             gameManager.UpgradeWeakPoint();
         }
-        else if(buttonNum == (int)itemTag.Trap)
+        else if (buttonNum == (int)itemTag.Trap)
         {
             SerchBuildInstallClass();       // 건설 컴포넌트 가져오기
             buildInstall.IsBuild = true;

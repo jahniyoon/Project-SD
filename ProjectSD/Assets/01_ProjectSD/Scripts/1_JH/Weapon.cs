@@ -104,7 +104,7 @@ public class Weapon : MonoBehaviour
              Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
             bullet.transform.GetComponent<Bullet>().isUpgrade = isUpgrade;
             AudioManager.instance.PlaySFX("Fire");
-            Debug.Log("발사중인가?");
+            //Debug.Log("발사중인가?");
             Destroy(bullet, bullet.transform.GetComponent<Bullet>().bulletLifeTime);
         }
     }
