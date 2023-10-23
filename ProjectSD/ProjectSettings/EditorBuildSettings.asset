@@ -20,10 +20,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/01_ProjectSD/Scenes/JS_TestMain3.unity
     guid: d6761c6c561f81e4b86140d4d18d12b0
-  - enabled: 1
+  - enabled: 0
     path: Assets/01_ProjectSD/Scenes/JS_TestMain4.unity
     guid: bd332ca1d21936f48912582559092c31
-  - enabled: 1
+  - enabled: 0
     path: Assets/01_ProjectSD/Scenes/SG_ShopTestScene006.unity
     guid: b4038cc6d4939904ca176a16c40bf18a
   m_configObjects:

@@ -34,12 +34,14 @@ public class PlayerShooter : MonoBehaviour
         if(input.rightShoot)
         {
             rightGun.Shoot();
-            ARAVRInput.PlayVibration(0.06f, 1f, 1f, ARAVRInput.Controller.RTouch);
+            //ARAVRInput.PlayVibration(0.06f, 1f, 1f, ARAVRInput.Controller.RTouch);
+            VibrationManager.instance.TriggerVibration(40, 2, 255, OVRInput.Controller.RTouch);
         }
         if (input.leftShoot)
         {
             leftGun.Shoot();
-            ARAVRInput.PlayVibration(0.06f, 1f, 1f, ARAVRInput.Controller.LTouch);
+            //ARAVRInput.PlayVibration(0.06f, 1f, 1f, ARAVRInput.Controller.LTouch);
+            VibrationManager.instance.TriggerVibration(40, 2, 255, OVRInput.Controller.LTouch);
 
         }
     }
