@@ -31,6 +31,8 @@ public class BuildInstall : MonoBehaviour
     [SerializeField]
     private GameObject[] trapPrefabs;       // 설치시 Instantiate할 원본 Prefab
 
+    private int trapPrice;                  // 트랩의 가격
+    private int fireBombPrice;              // 불폭탄의 가격
 
     private bool isBuild;         // 건설상태인지 확인하는 bool 변수
     public bool IsBuild
@@ -55,6 +57,11 @@ public class BuildInstall : MonoBehaviour
     }       // 프로퍼티
 
     public int buildNum;         // 아이템 구매 눌렀을때에 그것이 Trab류 라면 어떤것인지 구별해줄 변수
+    private enum buildItemNum
+    {
+        trap = 2,
+        fireBomb
+    }
 
     #region Rays
     private Ray ray;                // 쏠Ray
@@ -73,7 +80,7 @@ public class BuildInstall : MonoBehaviour
 
     void Start()
     {
-
+        PriceInIt();        // 설치시 가격차감에 필요한 값들 가져오기
     }
 
 
@@ -153,6 +160,14 @@ public class BuildInstall : MonoBehaviour
 
                         if (Physics.Raycast(buildV3, Vector3.down, out buildHit, Mathf.Infinity))
                         {
+                            if(buildNum == (int)buildItemNum.trap)
+                            {       // 가격차감
+                                GameManager.instance.PlayerGold -= trapPrice;
+                            }
+                            else if(buildNum == (int)buildItemNum.fireBomb)
+                            {       // 가격차감
+                                GameManager.instance.PlayerGold -= fireBombPrice;
+                            }
                             buildPoint = buildHit.point;
                             //Debug.LogFormat("V3 수정전 값 -> {0}", buildPoint);
                             BuildVector3Check(ref buildPoint);  // 설치 위치 조건체크와 설정
@@ -228,7 +243,11 @@ public class BuildInstall : MonoBehaviour
 
     }       // AwakeInIt()
 
-
+    private void PriceInIt()
+    {
+        trapPrice = (int)DataManager.GetData(8030, "Gold");
+        fireBombPrice = (int)DataManager.GetData(8040, "Gold");
+    }       // PriceInIt()
 
     private void ParticleOn()       // 파티클 효과 키기
     {
