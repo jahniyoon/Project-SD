@@ -5624,6 +5624,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: a24915a3687eaa848b5e3ed656cf8043, type: 3}
   - name: Explosion
     clip: {fileID: 8300000, guid: cdcccb5cf20dccb4982ff903ab45413b, type: 3}
+  - name: FireBomb
+    clip: {fileID: 8300000, guid: 81696d6b34324ba44840ec7a0d586775, type: 3}
   musicSource: {fileID: 1392351129}
   sfxSource: {fileID: 1392351129}
 --- !u!4 &1392351131

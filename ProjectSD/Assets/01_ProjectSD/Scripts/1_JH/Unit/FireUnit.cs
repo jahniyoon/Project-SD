@@ -56,6 +56,8 @@ public class FireUnit : MonoBehaviour
     // 발사
     public void Shoot()
     {
+        AudioManager.instance.PlaySFX("FireBomb");
+
         GameObject ball = Instantiate(FireBombPrefab, firePosition.position, Quaternion.identity);
         ball.GetComponent<Rigidbody>().AddForce(calculateForce(), ForceMode.Impulse);
     }
