@@ -26,7 +26,6 @@ public class ShopGoldUI : MonoBehaviour
     
     void Update()
     {
-        
     }
 
     private void AwakeInIt()
@@ -49,6 +48,13 @@ public class ShopGoldUI : MonoBehaviour
 
     public void GoldTextUpdate()
     {
+
+        // 상점패널이 꺼져 있을 경우
+        if (gameManager.shopPanel.activeSelf == false)
+        {
+            // 골드만 수정
+            goldText.text = gameManager.PlayerGold.ToString();
+        }
         float currentGold = int.Parse(goldText.text);
         float targetGold = gameManager.PlayerGold;
         float gapNum = Math.Abs(targetGold - currentGold);

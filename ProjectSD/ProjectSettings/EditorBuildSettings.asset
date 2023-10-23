@@ -20,12 +20,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/01_ProjectSD/Scenes/JS_TestMain3.unity
     guid: d6761c6c561f81e4b86140d4d18d12b0
-  - enabled: 1
+  - enabled: 0
     path: Assets/01_ProjectSD/Scenes/JS_TestMain4.unity
     guid: bd332ca1d21936f48912582559092c31
   - enabled: 1
-    path: Assets/01_ProjectSD/Scenes/JH_UnitTest.unity
-    guid: 7018261aff9e3cc419f7f04adde7bb30
+    path: Assets/01_ProjectSD/Scenes/JS_TestMain5.unity
+    guid: 1a67de95e6e7cfa44aafca6eca425dd7
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 27d9c5da8baa5c449bab43875d4f9a2f, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 5eb98af763a72b84aa0a02335aef409a, type: 2}
