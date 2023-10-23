@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Windows;
 
 public class Bullet : MonoBehaviour
 {
@@ -65,7 +61,7 @@ public class Bullet : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("Player") && !other.CompareTag("Bullet") && !other.CompareTag("Unit"))
+        if (!other.CompareTag("Player") && !other.CompareTag("Bullet") && !other.CompareTag("Unit") && !other.CompareTag("Explosion"))
         {
             Vector3 effectPosition = this.transform.position;
 
