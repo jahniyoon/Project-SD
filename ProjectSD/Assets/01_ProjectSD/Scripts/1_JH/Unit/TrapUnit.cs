@@ -16,6 +16,9 @@ public class TrapUnit : MonoBehaviour
     public float trapSize;      // 방벽 사이즈
 
     public GameObject trapObj;  // 트랩 오브젝트
+    public GameObject trapUnitObj;
+    public Animator trapAnim;   // 트랩 애니메이션
+    private bool isTrapOn;
 
     // Start is called before the first frame update
     void Start()
@@ -23,24 +26,29 @@ public class TrapUnit : MonoBehaviour
         GetData();
         trapTrigger = GetComponent<BoxCollider>();
         trapTrigger.size = new Vector3(triggerSize, 1, 1); // 트리거 사이즈를 정해준다.
-        trapObj.gameObject.transform.localScale = new Vector3(triggerSize, 1, 1);
-        Destroy(gameObject, unitLifeTime); // 유닛 지속 시간 이후 소멸
+        trapObj.gameObject.transform.localScale = new Vector3(triggerSize/2, 1, 1);
+        trapObj.GetComponent<Trap>().stunTime = stunTime;
+
+        trapAnim = trapObj.GetComponent<Animator>();
+
+        Invoke("TrapUnitDisable", unitLifeTime);    // 일정 시간 뒤에 유닛은 사라지고
+        Destroy(gameObject, unitLifeTime + trapLifeTime); // 유닛 지속 시간 이후 소멸
     }
 
-
+    public void TrapUnitDisable()
+    {
+        trapUnitObj.gameObject.SetActive(false);
+    }
     public void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy"))    // 적 태그를 만날 경우
+        if (other.CompareTag("Enemy") && !isTrapOn)    // 적 태그를 만날 경우
         {
+            isTrapOn = true;
             trapTrigger.enabled = false;    // 콜라이더 꺼주고
-            OnTrap();                       // 트랩 켜주기
+            trapAnim.SetTrigger("TrapOn");
         }
     }
 
-    public void OnTrap()
-    {
-        trapObj.gameObject.SetActive(true);
-    }
 
     public void GetData()
     {

@@ -24,6 +24,7 @@ public class Weapon : MonoBehaviour
     public Transform firePoint;
     public GameObject hitPoint;
     public LineRenderer laserRenderer;
+    public Material[] materials;
 
     Vector3 originScale = Vector3.one * 0.02f;
     public Transform pointUI;
@@ -32,21 +33,23 @@ public class Weapon : MonoBehaviour
     [Header("Bullet")]
     public GameObject bulletPrefab;
     public float bulletID;
+    public GameObject[] bullets;
 
     [Header("Shop")]
     public bool isBtnEnable;
     public string btnName;
 
+    public bool isRight;
     public void OnEnable()
     {
         pointUI.gameObject.SetActive(false);
         isUpgrade = false;
+        bulletPrefab = bullets[0];
 
         weapon[1].gameObject.SetActive(false);
         firePoint = weapon[0].transform.GetChild(0).transform;
-
-
         GetData(isUpgrade);
+
         lastFireTime = 0;       // 시간 초기화
 
     }
@@ -55,6 +58,8 @@ public class Weapon : MonoBehaviour
     void Start()
     {
         laserRenderer = GetComponent<LineRenderer>();
+        laserRenderer.material = materials[0];
+
     }
 
     // Update is called once per frame
@@ -103,8 +108,14 @@ public class Weapon : MonoBehaviour
             GameObject bullet =
              Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
             bullet.transform.GetComponent<Bullet>().isUpgrade = isUpgrade;
-            AudioManager.instance.PlaySFX("Fire");
-            Debug.Log("발사중인가?");
+            if (isRight)
+            {
+                AudioManager.instance.PlaySFX("Fire1");
+            }
+            else 
+            {
+                AudioManager.instance.PlaySFX("Fire2");
+            }
             Destroy(bullet, bullet.transform.GetComponent<Bullet>().bulletLifeTime);
         }
     }
@@ -119,7 +130,11 @@ public class Weapon : MonoBehaviour
             weapon[0].gameObject.SetActive(false);
             weapon[1].gameObject.SetActive(true);
 
+            bulletPrefab = bullets[1];
+
             firePoint = weapon[1].transform.GetChild(0).transform;
+            laserRenderer.material = materials[1];
+
 
             Invoke("ResetUpgrade", upgradeDuration);
         }
@@ -132,7 +147,11 @@ public class Weapon : MonoBehaviour
         weapon[0].gameObject.SetActive(true);
         weapon[1].gameObject.SetActive(false);
 
+        bulletPrefab = bullets[0];
+
         firePoint = weapon[0].transform.GetChild(0).transform;
+        laserRenderer.material = materials[0];
+
 
         isUpgrade = false;
 

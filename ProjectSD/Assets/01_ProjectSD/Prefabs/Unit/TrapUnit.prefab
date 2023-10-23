@@ -54,6 +54,7 @@ MonoBehaviour:
   triggerSize: 0
   trapSize: 0
   trapObj: {fileID: 8037592939056474129}
+  trapAnim: {fileID: 0}
 --- !u!65 &7745260653036785157
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5321,14 +5322,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5724436923809403148, guid: 65bd098dfba704e40bdf33c0582299f1, type: 3}
       propertyPath: m_LocalScale.x
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5724436923809403148, guid: 65bd098dfba704e40bdf33c0582299f1, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5724436923809403148, guid: 65bd098dfba704e40bdf33c0582299f1, type: 3}
-      propertyPath: m_LocalScale.z
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5724436923809403148, guid: 65bd098dfba704e40bdf33c0582299f1, type: 3}
@@ -5345,11 +5338,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5724436923809403148, guid: 65bd098dfba704e40bdf33c0582299f1, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 5724436923809403148, guid: 65bd098dfba704e40bdf33c0582299f1, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -1
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 5724436923809403148, guid: 65bd098dfba704e40bdf33c0582299f1, type: 3}
       propertyPath: m_LocalRotation.y
@@ -5361,7 +5354,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5724436923809403148, guid: 65bd098dfba704e40bdf33c0582299f1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -180
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 5724436923809403148, guid: 65bd098dfba704e40bdf33c0582299f1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -5375,10 +5368,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Trap
       objectReference: {fileID: 0}
-    - target: {fileID: 5724436923809623370, guid: 65bd098dfba704e40bdf33c0582299f1, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65bd098dfba704e40bdf33c0582299f1, type: 3}
 --- !u!4 &8037592939056157783 stripped
@@ -5391,24 +5380,3 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5724436923809623370, guid: 65bd098dfba704e40bdf33c0582299f1, type: 3}
   m_PrefabInstance: {fileID: 2376226308690232667}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &5375647151252062615
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8037592939056474129}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 275b270ec114fc248ba65b229413847c, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
