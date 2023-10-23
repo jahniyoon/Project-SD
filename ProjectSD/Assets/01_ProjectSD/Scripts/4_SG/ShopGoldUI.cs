@@ -26,7 +26,6 @@ public class ShopGoldUI : MonoBehaviour
     
     void Update()
     {
-        Debug.Log($"active = {gameObject.activeSelf}");
     }
 
     private void AwakeInIt()
