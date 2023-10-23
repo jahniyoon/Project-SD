@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 1668988363893751146}
   - component: {fileID: 8956575827033951153}
   - component: {fileID: 1065273139060206421}
+  - component: {fileID: -973316963398651384}
   m_Layer: 0
   m_Name: TX_Minion_Normal
   m_TagString: Enemy
@@ -144,6 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 8255814611675511854, guid: 523ab95688cff794b9f3d193fcbc45fb, type: 3}
   speed: 5
+  rotationSpeed: 360
 --- !u!195 &1668988363893751146
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -179,7 +181,7 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &1065273139060206421
@@ -207,3 +209,16 @@ MonoBehaviour:
   rangeEx: 0
   scaleFactor: 0
   sphereCollider: {fileID: 0}
+--- !u!114 &-973316963398651384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6843472775705730965}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 680f7a552ee8712499655f31da5b5374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 360
