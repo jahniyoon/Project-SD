@@ -54,6 +54,8 @@ public class ShopGoldUI : MonoBehaviour
         {
             // 골드만 수정
             goldText.text = gameManager.PlayerGold.ToString();
+
+            return;
         }
         float currentGold = int.Parse(goldText.text);
         float targetGold = gameManager.PlayerGold;
