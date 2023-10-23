@@ -54,6 +54,7 @@ MonoBehaviour:
   triggerSize: 0
   trapSize: 0
   trapObj: {fileID: 8037592939056474129}
+  trapUnitObj: {fileID: 4575992981135460218}
   trapAnim: {fileID: 0}
 --- !u!65 &7745260653036785157
 BoxCollider:

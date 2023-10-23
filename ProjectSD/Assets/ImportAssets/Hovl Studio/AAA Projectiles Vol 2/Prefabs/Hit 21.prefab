@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 199593828875550396}
   m_Layer: 0
   m_Name: Lightning
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4960,7 +4960,7 @@ GameObject:
   - component: {fileID: 199429019171299536}
   m_Layer: 0
   m_Name: SubSmoke
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9854,7 +9854,7 @@ GameObject:
   - component: {fileID: 199026521598108060}
   m_Layer: 0
   m_Name: Hit 21
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14743,7 +14743,7 @@ GameObject:
   - component: {fileID: 199179080742392608}
   m_Layer: 0
   m_Name: Fire
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19634,7 +19634,7 @@ GameObject:
   - component: {fileID: 199664460886295194}
   m_Layer: 0
   m_Name: ShockWave
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24516,7 +24516,7 @@ GameObject:
   - component: {fileID: 199604879393742410}
   m_Layer: 0
   m_Name: SideAura
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29407,7 +29407,7 @@ GameObject:
   - component: {fileID: 199182041869680498}
   m_Layer: 0
   m_Name: Sparks
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34289,7 +34289,7 @@ GameObject:
   - component: {fileID: 199370096976367504}
   m_Layer: 0
   m_Name: Dust
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
