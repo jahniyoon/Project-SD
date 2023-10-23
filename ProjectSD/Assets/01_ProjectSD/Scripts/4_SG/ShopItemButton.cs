@@ -25,6 +25,7 @@ public class ShopItemButton : MonoBehaviour
     public int upgradeGunID;        // 가독성을위해 CSV아이템 ID 매핑
     public int upgradeWaekPointID;
     public int trapID;
+    public int fireBombID;
 
     [Header("TEST_Parameter")]
     BuildInstall buildInstall;      // 설치형 아이템 구매시 저 스크립트에서 Ray를 쏘며 설치할예정
@@ -40,7 +41,8 @@ public class ShopItemButton : MonoBehaviour
     {
         UpgradeGun,                 // 0
         UpgradeWeakPoint,           // 1
-        Trap                        // 2
+        Trap,                       // 2
+        FireBomb                    // 3
     }
 
 
@@ -167,6 +169,7 @@ public class ShopItemButton : MonoBehaviour
         upgradeGunID = 8010;
         upgradeWaekPointID = 8020;
         trapID = 8030;
+        fireBombID = 8040;
 
     }
 
@@ -203,6 +206,15 @@ public class ShopItemButton : MonoBehaviour
             price = (int)DataManager.GetData(trapID, "Gold");
             coolTime = (int)DataManager.GetData(trapID, "Time");
             description = (string)DataManager.GetData(trapID, "Description");
+        }
+
+        else if (buttonNum == (int)itemTag.FireBomb)        // 불폭탄
+        {
+            nowItemValue = 0;
+            maxItemValue = (int)DataManager.GetData(fireBombID, "Max");
+            price = (int)DataManager.GetData(fireBombID, "Gold");
+            coolTime = (int)DataManager.GetData(fireBombID, "Time");
+            description = (string)DataManager.GetData(fireBombID, "Description");
         }
 
     }       // CSVReadInIt()
@@ -300,7 +312,7 @@ public class ShopItemButton : MonoBehaviour
         ScaleController();
     }
 
-    
+
     // 확대 축소의 필요한 Vector3값과 확대시켜줄 Rect가져오기
     private void Vector3InIt()      // 백터 변수에 넣어줄 값
     {
@@ -334,7 +346,7 @@ public class ShopItemButton : MonoBehaviour
     {
         float timeElapsed = 0f;     // 경과시간
         float duration = 0.3f;     //  원하는 시간 
-        
+
         while (timeElapsed < duration)
         {
             timeElapsed += Time.deltaTime;
@@ -342,7 +354,7 @@ public class ShopItemButton : MonoBehaviour
             nowV3 = Vector3.Lerp(nowV3, defaultV3, time);
             rect.localScale = nowV3;
             yield return null;
-        }        
+        }
     }
     // } 축소
 
@@ -383,11 +395,11 @@ public class ShopItemButton : MonoBehaviour
 
     public void ScaleController()       // isRayHit의 bool 값에 따라서 버튼 크기를 변경해줄 함수
     {
-        if(isRayHit == true)
+        if (isRayHit == true)
         {   // 확대 시작
             sclaeCoroutine = StartCoroutine(ButtonExpansion());
         }
-        else if(isRayHit == false)
+        else if (isRayHit == false)
         {
             sclaeCoroutine = StartCoroutine(ButtonShrink());
         }
@@ -408,9 +420,8 @@ public class ShopItemButton : MonoBehaviour
             if (gameManager.PlayerGold >= price)
             {   // if : 플레이어소지골드가 가격과 같거나 골드가 더많을때에
                 if (NowItemValue < maxItemValue)
-                {   // if : 현재 아이템갯수가 아이템 최대치보다 작을때만 구매
-
-                    gameManager.PlayerGold -= price;
+                {   // if : 현재 아이템갯수가 아이템 최대치보다 작을때만 구매                               
+                    //gameManager.PlayerGold -= price; //LEGACY 사용템은 효과 적용될때에 설치템은 설치후로 변경
                     IsUseItem = true;
                     UseItemEffect();
                 }
@@ -426,11 +437,13 @@ public class ShopItemButton : MonoBehaviour
 
         if (buttonNum == (int)itemTag.UpgradeGun)
         {
+            gameManager.PlayerGold -= price;
             GameManager.instance.isWeaponDuration = true;
             gameManager.UpgradeGun();
         }
         else if (buttonNum == (int)itemTag.UpgradeWeakPoint)
         {
+            gameManager.PlayerGold -= price;
             GameManager.instance.isWeakPointDuration = true;
             gameManager.UpgradeWeakPoint();
         }
@@ -439,6 +452,12 @@ public class ShopItemButton : MonoBehaviour
             SerchBuildInstallClass();       // 건설 컴포넌트 가져오기
             buildInstall.IsBuild = true;
             buildInstall.buildNum = (int)itemTag.Trap;
+        }
+        else if (buttonNum == (int)itemTag.FireBomb)
+        {
+            SerchBuildInstallClass();       // 건설 컴포넌트 가져오기
+            buildInstall.IsBuild = true;
+            buildInstall.buildNum = (int)itemTag.FireBomb;
         }
     }       // UseItemEffect()
 
@@ -457,7 +476,7 @@ public class ShopItemButton : MonoBehaviour
         isCoolTime = false;
         nowCoolTime = 0f;
         IsUseItem = false;
-
+        //Debug.LogFormat("쿨타임이 잘끝나나? name -> {0}", this.transform.name);
         ColorController();      // 쿨타임이 끝날때에 색을 바꾸어줌
 
         NowItemValue--; // 현재 아이템 갯수 감소
