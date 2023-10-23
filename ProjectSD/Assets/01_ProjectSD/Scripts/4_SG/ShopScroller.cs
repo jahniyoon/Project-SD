@@ -23,7 +23,7 @@ public class ShopScroller : MonoBehaviour
     private float calculatedValue;  // pointDistace * calculatedValue = initValue
     private float initValue;        // 계산한 값을 넣어주어서 Scrollbar.value + initValue 시킬예정
 
-
+    private Slider slider;
 
     private bool isScroll;          // 스크롤을위해 상점에서 공격버튼을 눌렀는지 확인할 Bool변수
     public bool IsScroll

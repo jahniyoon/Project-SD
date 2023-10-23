@@ -26,6 +26,7 @@ public class BuildInstall : MonoBehaviour
 
     private Vector3 buildV3;                // Build시 위에서 아래로 쏴줄 Vector3
     private Vector3 tempTrans;              // 만약 Ray가 닿지않을경우 파티클의 위치로 지정해줄 임시Transform
+    private Vector3 buildPoint;             // Instantitate할 위치값
     private GameObject buildClone;          // Instantiate할 GameObj
     [SerializeField]
     private GameObject[] trapPrefabs;       // 설치시 Instantiate할 원본 Prefab
@@ -148,17 +149,24 @@ public class BuildInstall : MonoBehaviour
                         BuildItem();
                         buildV3 = hit.point;
                         buildV3.y = buildV3.y + 30;
+                        //Debug.LogFormat("디버그가 여긴 찍히나?");
+
                         if (Physics.Raycast(buildV3, Vector3.down, out buildHit, Mathf.Infinity))
                         {
-                            buildClone = Instantiate(trapPrefabs[buildNum - 2], buildHit.point, Quaternion.identity);
+                            buildPoint = buildHit.point;
+                            //Debug.LogFormat("V3 수정전 값 -> {0}", buildPoint);
+                            BuildVector3Check(ref buildPoint);  // 설치 위치 조건체크와 설정
+                            //Debug.LogFormat("V3 수정후 값 -> {0}", buildPoint);
+                            buildClone = Instantiate(trapPrefabs[buildNum - 2], buildPoint, Quaternion.identity);
                             //Debug.LogError("!정상제작됨?!");
                             ParticleOff();
                         }
+                        input.select = false;
                     }
                 }
                 else if (hit.collider.gameObject.CompareTag("Boss") || hit.collider.gameObject.CompareTag("Finish"))
                 {
-                    Debug.Log("보스인식");
+                    //Debug.Log("보스인식");
                     mainModule.startColor = noBuildColor;
                     tempTrans = hit.transform.position;
                     particleTras.position = hit.point;
@@ -166,7 +174,7 @@ public class BuildInstall : MonoBehaviour
                 }
                 else if (hit.collider.gameObject.CompareTag("Enemy"))
                 {
-                    Debug.Log("졸개인식");
+                   //Debug.Log("졸개인식");
                     mainModule.startColor = noBuildColor;
                     tempTrans = hit.transform.position;
                     particleTras.position = hit.point;
@@ -237,5 +245,32 @@ public class BuildInstall : MonoBehaviour
         // TODO : 가능하다면 파티클이 되돌아간뒤에 제작되도록
     }       // BuildItem()
 
+    // 설치할때에 BuildVector3가 설치 최소 위치와 최대 위치의 조건을 충족하는지 확인
+    private Vector3 BuildVector3Check(ref Vector3 _BuildPoint)
+    {
+        // { Z축 최소치 최대치 비충족시 조건에 맞게 설정
+        if(_BuildPoint.z < 9.9)
+        {
+            _BuildPoint.z = 10f;
+        }
+        else if(_BuildPoint.z > 70f)
+        {
+            _BuildPoint.z = 70f;
+        }
+        // } Z축 최소치 최대치 비충족시 조건에 맞게 설정
+
+        // { Y축 최소치 최대치 비충족시 조건에 맞게 설정
+        if (_BuildPoint.y > 1.2f || _BuildPoint.y < 1.2f)
+        {
+            _BuildPoint.y = 1.2f;
+        }
+        else { /*PASS*/ }
+        // { Y축 최소치 최대치 비충족시 조건에 맞게 설정
+       
+        return _BuildPoint;
+
+    }       // BuildVector3Check(Vector3)
+
 
 }       // ClassEnd
+
