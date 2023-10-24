@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class FireFX : MonoBehaviour
@@ -23,6 +24,9 @@ public class FireFX : MonoBehaviour
     private bool isSpeedDown = false;
 
     private float originalSpeed;
+    public GameObject damageEffect;
+    private TMP_Text bulletText;
+
 
     // Start is called before the first frame update
     void Start()
@@ -67,6 +71,31 @@ public class FireFX : MonoBehaviour
             StartCoroutine(SpeedDown(bossComponent));
 
         }
+    }
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemy"))    // 적 태그를 만날 경우
+        {
+            other.gameObject.GetComponent<Enemy>().OnFire(damageDelay, damage);    //  불을 켠다.
+        }
+    }
+
+    public void DamageEffect(string tag)
+    {
+        Vector3 effectPos = this.transform.position;
+        Vector3 vDist = effectPos - GameManager.instance.PC.transform.position; // 이펙트와 플레이어의 거리
+        Vector3 vDir = vDist.normalized;    // 이펙트와 플레이어의 방향
+        Vector3 damageFXPos = vDir * 10;
+        damageFXPos.y += GameManager.instance.playerHeight;
+        GameObject damageFX =
+             Instantiate(damageEffect, damageFXPos, Quaternion.identity);
+        bulletText = damageFX.GetComponent<TextDisolve>().textObj;
+        bulletText.text = string.Format("{0}", damage);
+        damageFX.GetComponent<TextDisolve>().colorName = "red";
+
+        damageFX.transform.forward = Camera.main.transform.forward;
+
+
     }
 
     IEnumerator FireCounter(Boss bossComponent)

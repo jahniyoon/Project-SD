@@ -38134,6 +38134,7 @@ MonoBehaviour:
   damage: 0
   damageDelay: 0
   speedReduce: 0
+  damageEffect: {fileID: 2147918905323947473, guid: 66a853dc1183b114b9b71045d0b4b992, type: 3}
 --- !u!1 &728260088316492508
 GameObject:
   m_ObjectHideFlags: 0

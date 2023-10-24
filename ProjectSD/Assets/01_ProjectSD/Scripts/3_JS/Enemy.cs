@@ -165,7 +165,7 @@ public class Enemy : MonoBehaviour
     }
 
     // 불 장판에 닿았을 경우 처리하는 함수
-    private void OnFire(float t, float damage)
+    public void OnFire(float t, float damage)
     {
         // enemyState가 파이어 상태가 아닐 경우
         if (enemyState != EnemyState.Fire)
