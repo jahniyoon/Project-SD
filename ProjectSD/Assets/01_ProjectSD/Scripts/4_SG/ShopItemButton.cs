@@ -27,9 +27,9 @@ public class ShopItemButton : MonoBehaviour
     public int trapID;
     public int fireBombID;
 
-    [Header("TEST_Parameter")]
-    BuildInstall buildInstall;      // 설치형 아이템 구매시 저 스크립트에서 Ray를 쏘며 설치할예정
-
+    //[Header("TEST_Parameter")]
+    private BuildInstall buildInstall;      // 설치형 아이템 구매시 저 스크립트에서 Ray를 쏘며 설치할예정
+    private ShopItemImageInIt shopSpriteClass;      // 상점 아이템 스프라이트와 구별할 Enum이 들어가있는 클래스
     private Vector3 defaultV3;      // 원본 백터값
     private Vector3 nowV3;          // 현재 백터값
     private Vector3 expansionV3;    // 확대될 백터값 
@@ -117,7 +117,7 @@ public class ShopItemButton : MonoBehaviour
     private TextMeshProUGUI cooltimeText;       // 아이템 쿨타임 텍스트
     private TextMeshProUGUI descriptionText;    // 아이템 설명 텍스트
 
-    private Image itemSprite;       // 아이템 이미지가 들어갈 변수
+    private Image itemSprite;       // 아이템 스프라이트가 들어갈 변수
     private Image thisBackGroundImage;  // 컴포넌트를 가지고 있는 Button 자신의 이미지 변수
 
     private Color32 defaultColor;   // 기본색
@@ -138,15 +138,19 @@ public class ShopItemButton : MonoBehaviour
         Vector3InIt();              // 아이템 UI 확대 축소를 위한 Vector3 변수에 값을 기입해주는 함수
         //ColorInIt();                // 그리드 상점일때에 컬러기입 처음 컬러값 new 할당해주는 함수
         ScrollerColorInIt();        // 스크롤러 상점일때에 컬러기입
-    }
+    }       // Awake()
 
     void Start()
     {
+        InItSprite();
         CSVReadInIt();              // 필요한 변수를 ButtonCount에 따라서 기입해주는 함수
         UpdateItemCountText();      // 현재 아이템 갯수와 최대 아이템 갯수 텍스트를 업데이트 하는 함수
         FirstTextInIt();            // 처음 모든 Text에 CSV의 값을 넣어주는 함수
         ListInIt();                 // static List 에 자신스크립트를 넣어주는 함수
-    }
+        SetColorInitialization();    // 처음시작시 상점의 색이 Ray맞은 색으로 되기에 만든함수
+      
+
+    }       // Start()
 
     private void Update()
     {
@@ -176,6 +180,7 @@ public class ShopItemButton : MonoBehaviour
     private void FirstInIt()
     {
         isCoolTime = false;
+        shopSpriteClass = this.transform.GetComponent<ShopItemImageInIt>();
     }       // 처음에 들어가야할 값을 넣어줌
 
 
@@ -232,6 +237,7 @@ public class ShopItemButton : MonoBehaviour
 
         // 스크롤러일때에
         thisBackGroundImage = transform.GetChild(7).GetComponent<Image>();
+        itemSprite = transform.GetChild(0).GetComponent<Image>();
     }       // ImageComponentInIt()
 
     private void ColorInIt()        // 컬러값 넣어주는 함수
@@ -247,6 +253,34 @@ public class ShopItemButton : MonoBehaviour
         choiceColor = new Color32(200, 200, 200, 50);
         buyColor = new Color32(80, 20, 30, 50);
     }
+
+    private void InItSprite()       // 아이템의 스프라이트를 넣는 함수
+    {
+        // 버튼의 번호와 Enum의 번호를 동일시 해놓았기 떄문에 한번 번호 확인후 스프라이트 넣기
+        if ((int)ShopItemImageInIt.imageNum.UpgradeGun == buttonNum)
+        {
+            itemSprite.sprite = shopSpriteClass.itemSprite[buttonNum];
+        }
+        else if ((int)ShopItemImageInIt.imageNum.UpgradeWeakPoint == buttonNum)
+        {
+            itemSprite.sprite = shopSpriteClass.itemSprite[buttonNum];
+        }
+        else if ((int)ShopItemImageInIt.imageNum.Trap == buttonNum)
+        {
+            itemSprite.sprite = shopSpriteClass.itemSprite[buttonNum];
+        }
+        else if ((int)ShopItemImageInIt.imageNum.FireBomb == buttonNum)
+        {
+            itemSprite.sprite = shopSpriteClass.itemSprite[buttonNum];
+        }
+        else { /*PASS*/ }        
+
+    }       // InItSprite()
+
+    public void SetColorInitialization()
+    {
+        IsRayHit = false;
+    }       // SetColorInitialization()
 
     // ------------------------------------------ 텍스트 관련 함수 ------------------------------------------
 
