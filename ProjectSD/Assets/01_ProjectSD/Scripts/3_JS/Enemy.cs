@@ -9,7 +9,8 @@ public class Enemy : MonoBehaviour
     {
         Default,
         Slow,
-        Stun
+        Stun,
+        Fire
     }
 
     [Header("Enemy")]
@@ -163,6 +164,20 @@ public class Enemy : MonoBehaviour
 
     }
 
+    // 불 장판에 닿았을 경우 처리하는 함수
+    private void OnFire(float t)
+    {
+        // enemyState가 파이어 상태가 아닐 경우
+        if (enemyState != EnemyState.Fire)
+        {
+            // Fire 상태로 변경
+            enemyState = EnemyState.Fire;
+
+            // 일정 시간 후에 Fire 상태 해제
+            StartCoroutine(DisableFire(t));
+        }
+    }
+
     // 스턴 파티클을 생성하는 함수
     private void CreateStunParticle()
     {
@@ -198,6 +213,16 @@ public class Enemy : MonoBehaviour
 
         // 스턴 파티클 삭제
         Destroy(stunParticle);
+    }
+
+    // 일정 시간 후에 스턴 디버프를 해제하는 코루틴 함수
+    private IEnumerator DisableFire(float t)
+    {
+        // 대기
+        yield return new WaitForSeconds(t);
+
+        // 상태 변경
+        enemyState = EnemyState.Default;
     }
 
     // 기본 디렉토리
