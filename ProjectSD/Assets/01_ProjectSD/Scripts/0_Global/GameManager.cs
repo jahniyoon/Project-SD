@@ -47,6 +47,8 @@ public class GameManager : MonoBehaviour
     public bool isPCMODE;   // PC 모드로 테스트 할 경우 (VR 아닐 때)
     public bool isShopTest;
 
+    [Header("Intro")]
+    public IntroControl introControl;
 
 
 
@@ -128,7 +130,8 @@ public class GameManager : MonoBehaviour
         // 게임오버 테스트
         if (Input.GetKeyDown(KeyCode.F2))
         {
-            GameStart();
+            //GameStart();
+            StartIntro();
         }
 
     }       // Update()
@@ -189,6 +192,12 @@ public class GameManager : MonoBehaviour
        
     }
 
+    public void StartIntro()
+    {
+        // 인트로 재생
+        introControl.PlayIntro();
+    }
+
     public void GameStart()
     {
         Debug.Log("게임 시작");
@@ -247,7 +256,8 @@ public class GameManager : MonoBehaviour
     {
         if (isShopTest)
         {
-            GameStart();
+            //GameStart();
+            StartIntro();
         }
     }
     #endregion
