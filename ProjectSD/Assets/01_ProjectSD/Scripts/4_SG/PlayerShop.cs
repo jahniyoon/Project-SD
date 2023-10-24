@@ -9,8 +9,8 @@ public class PlayerShop : MonoBehaviour
     private PlayerInputs input;             // 플레이어의 입력값조건을 위한 클레스참조
     public enum State
     {
-        Close, // 상점 닫은 상태
-        Open // 상점 오픈 상태
+        Close,  // 상점 닫은 상태
+        Open    // 상점 오픈 상태
     }
     public State state { get; private set; }
 

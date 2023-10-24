@@ -280,6 +280,7 @@ public class ShopItemButton : MonoBehaviour
     public void SetColorInitialization()
     {
         IsRayHit = false;
+        ChangeDefaultColor();
     }       // SetColorInitialization()
 
     // ------------------------------------------ 텍스트 관련 함수 ------------------------------------------

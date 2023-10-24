@@ -5,7 +5,6 @@ using UnityEngine;
 public class ItemButtonInstance : MonoBehaviour
 {
 
-
     //! 상점에서 살수있는 아이템의 열값을 구해서 열의 갯수에 따라서 상점의 버튼을 생성시키는 클레스
     //! Grid가 가지고 있어야함
 
@@ -27,7 +26,6 @@ public class ItemButtonInstance : MonoBehaviour
         AwakeInIt();                // Awake 단계에서 할 작업
         ButtonInstantitate();       // 버튼을 인스턴트해주는 함수
 
-
     }
 
     private void Start()
@@ -35,7 +33,6 @@ public class ItemButtonInstance : MonoBehaviour
         // TODO : 자식오브젝트로 묶어놓은 버튼들을 배열속에 집어넣기
         buttons = GetComponentsInChildren<ShopItemButton>();   
         InItButtonNum();            // 버튼의 고유번호를 넣어주는 함수
-
 
     }
 
@@ -54,8 +51,7 @@ public class ItemButtonInstance : MonoBehaviour
         childCount = DataManager.GetCount(8010);     // ID 수치 변경시 매개변수값 변경       
         buttonSclae = new Vector3(1f, 2f, 1f);
 
-        
-    }
+    }       // AwakeInIt()
 
     private void ButtonInstantitate()       // 버튼을 인스턴트해주는 함수
     {        
@@ -74,7 +70,7 @@ public class ItemButtonInstance : MonoBehaviour
             //rect.anchoredPosition3D = shopRect.anchoredPosition3D;     // AnchoredPosition3D 로 인스턴트 후 포지션 이상한것을 해결
             rect.rotation = shopRect.rotation;     // AnchoredPosition3D 로 인스턴트 후 포지션 이상한것을 해결
         }
-    }
+    }       // ButtonInstantitate()
 
     private void InItButtonNum()        // 버튼들의 고유번호를 넣어주는 함수
     {
@@ -84,13 +80,8 @@ public class ItemButtonInstance : MonoBehaviour
             buttons[i].buttonNum = i;
             //Debug.Log(buttons[i].buttonNum);
         }
-    }
+    }       // InItButtonNum()
 
-    private void ItemInIt()         // 아이템에 대한 정보를 넣어줄 함수 
-    {
-        //자식으로 있는 버튼의 함수를 Call하는 방식채택
-
-    }
 
 
 
