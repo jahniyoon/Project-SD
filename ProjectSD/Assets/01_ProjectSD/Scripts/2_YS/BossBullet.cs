@@ -14,7 +14,7 @@ public class BossBullet : MonoBehaviour
 
     [Header("CSV")]
     public float hp = default;
-    public float lifeTime = default;  //destroy할때 사라지는 시간?
+    public float lifeTime = default;  //투사체 활성화 시간
     public float damage = default;
     public float speed = default;
 
@@ -26,7 +26,7 @@ public class BossBullet : MonoBehaviour
         rigid = GetComponent<Rigidbody>();
         mesh = GetComponent<MeshRenderer>();
         rigid.velocity = transform.forward * speed;
-
+        AudioManager.instance.PlaySFX("Boss_Flying");
 
     }
 
@@ -36,7 +36,9 @@ public class BossBullet : MonoBehaviour
         this.target = target;
         rigid = GetComponent<Rigidbody>();
         mesh = GetComponent<MeshRenderer>();
+
         rigid.velocity = transform.forward * speed;
+        AudioManager.instance.PlayLoopSound("Boss_Flying");
     }
 
 
@@ -48,9 +50,9 @@ public class BossBullet : MonoBehaviour
 
     public void DestroyBullet()
     {
-        if(GameManager.instance.isGameOver)
+        if (GameManager.instance.isGameOver)
         {
-            Destroy(gameObject);    
+            Destroy(gameObject);
         }
     }
 
@@ -74,9 +76,11 @@ public class BossBullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag.Equals("Player"))
+        if (other.tag.Equals("Player"))
         {
-            other.GetComponent<PlayerHealth>().OnDamage(damage);            
+            other.GetComponent<PlayerHealth>().OnDamage(damage);
+            AudioManager.instance.PlaySFX("Boss_Hit");
+            Destroy(this.gameObject);
         }
     }
 
@@ -87,7 +91,7 @@ public class BossBullet : MonoBehaviour
         StartCoroutine("DamageColor");
 
         // 체력이 0이되면 파괴
-        if(hp <= 0)
+        if (hp <= 0)
         {
             Destroy(gameObject);
         }

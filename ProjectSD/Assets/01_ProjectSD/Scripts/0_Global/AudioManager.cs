@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
     public Sound[] musicSounds, sfxSounds;
     public AudioSource musicSource, sfxSource;
 
+    public Sound[] loopSounds;
 
     private void Awake()
     {
@@ -61,6 +62,25 @@ public class AudioManager : MonoBehaviour
         }
 
     }
+
+    public void PlayLoopSound(string name)
+    {
+        Sound sound = Array.Find(loopSounds, x => x.name == name);
+
+        if (sound == null)
+        {
+            Debug.Log("SFX Not Found");
+        }
+
+        else
+        {
+            sfxSource.clip = sound.clip;
+            sfxSource.loop = true; // 루프 설정
+            sfxSource.Play(); // 루프로 재생 시작
+        }
+
+    }
+
 
     public void MusicVolume(float volume)
     {

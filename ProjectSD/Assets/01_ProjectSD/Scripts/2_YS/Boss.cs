@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Reflection;
 using System.Runtime.ConstrainedExecution;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -23,22 +24,24 @@ public class Boss : MonoBehaviour
     public GameObject[] weakPoint = default;
     public Slider bossHPSlider;
 
-    [Header ("CSV")]
+    [Header("CSV")]
     public float hp = default;
     public float actTime = default;
     public float weakPointRate = default;
-    public float speed;
+    public float coolTime = default;
+    public float traceDist = 100.0f;
+    public float speed = default;
 
     [Header("투사체 생성 지점")]
     public Transform bulletPort;
 
 
     [Header("거리")]
-    public float traceDist = 100.0f; //추적 거리
+
     public float attackDist = 1.0f; // 공격 사정거리
 
 
-    
+
     public enum State
     {
         IDLE,
@@ -67,10 +70,15 @@ public class Boss : MonoBehaviour
     void Start()
     {
         GetData();
+
     }
 
     public void GameStart()
     {
+        if (!gameObject.activeInHierarchy)
+        {
+            gameObject.SetActive(true);
+        }
         SetMaxHealth(hp);   // 생성되고나서 HP 슬라이더를 업데이트한다.
         target = GameObject.FindWithTag("Player").GetComponent<Transform>();
         anim = GetComponent<Animation>();
@@ -91,7 +99,7 @@ public class Boss : MonoBehaviour
     void Update()
     {
 
-       
+
     }
 
     public void SetMaxHealth(float newHealth)
@@ -100,7 +108,7 @@ public class Boss : MonoBehaviour
         bossHPSlider.value = newHealth;
     }
     public void SetHealth(float newHealth)
-    { 
+    {
         bossHPSlider.value = newHealth;
     }
 
@@ -112,10 +120,9 @@ public class Boss : MonoBehaviour
         //dataDictionary = CSVReader.ReadCSVFile("CSVFiles/Golem_Table"); //이름으로 가져옴
         //DataManager.SetData(dataDictionary);
         hp = (float)DataManager.GetData(3001, "HP"); //이름으로 가져오는거라서 순서상관 X 0번째 행  //변수 선언은 해야함
-        //weakPointRate = (float)DataManager.GetData(3001, "WeakpointRate");
-        actTime = (float)DataManager.GetData(3001, "ActTime");
         speed = (float)DataManager.GetData(3001, "MoveSpeed");
-        
+        coolTime = (float)DataManager.GetData(3001, "Cooltime");
+        //traceDist = (float)DataManager.GetData(3001, "CheckRange");
     }
 
     IEnumerator CheckMonsterState()
@@ -166,7 +173,7 @@ public class Boss : MonoBehaviour
 
                 case State.IDLE:
 
-                    
+
                     agent.isStopped = true;
 
 
@@ -183,6 +190,7 @@ public class Boss : MonoBehaviour
                     anim.CrossFade("walk");
                     anim["walk"].speed = 0.15f;
 
+
                     //임의의 시간 후 투사체
                     //StartCoroutine(SkillCounter());
 
@@ -194,9 +202,9 @@ public class Boss : MonoBehaviour
                     break;
 
 
-                case State.ATTACK:           
+                case State.ATTACK:
                     break;
-           
+
 
                 //사망
                 case State.DIE:
@@ -220,7 +228,7 @@ public class Boss : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        
+
         if (state == State.TRACE)
         {
             Gizmos.color = Color.red;
@@ -240,7 +248,7 @@ public class Boss : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.tag.Equals("Enemy"))
+        if (other.tag.Equals("Enemy"))
         {
             //TODO:졸개 몬스터 소환 로직
         }
@@ -259,12 +267,12 @@ public class Boss : MonoBehaviour
 
     }
 
-    
+
 
 
     IEnumerator DamageColor()
     {
-        mesh.materials[0].color = Color.red;
+        mesh.materials[0].color = Color.yellow;
         //mesh.GetComponent<MeshRenderer>().material.color = Color.red;
         yield return new WaitForSeconds(0.25f);
         mesh.materials[0].color = Color.white;
@@ -272,12 +280,12 @@ public class Boss : MonoBehaviour
         //mesh.GetComponent<MeshRenderer>().material.color = Color.white;
 
     }
-    
+
     IEnumerator SkillCounter()
     {
-        while(!isDie)
+        while (!isDie)
         {
-            
+
 
             if (state == State.TRACE)
             {
@@ -285,8 +293,8 @@ public class Boss : MonoBehaviour
                 anim.CrossFade("attack5");
             }
 
-            yield return new WaitForSeconds(5.0f);
-           
+            yield return new WaitForSeconds(coolTime);
+
         }
 
     }
@@ -299,6 +307,7 @@ public class Boss : MonoBehaviour
         bulletPort.transform.LookAt(target);
         instantBullet.transform.LookAt(target);
         //bulletScript.Launch(target);
+        AudioManager.instance.PlaySFX("Boss_Fire");
 
     }
 
