@@ -53,17 +53,17 @@ public class IntroControl : MonoBehaviour
 
     private void Update()
     {
-        if (introPhase == 2)
-        {
-            introPhase = 0;
+        //if (introPhase == 2)
+        //{
+        //    introPhase = 0;
 
-            // 3.0초간 화면 하얀색으로 변경
-            introScreen.DOColor(Color.white, 3.0f);
+        //    //// 3.0초간 화면 하얀색으로 변경
+        //    //introScreen.DOColor(Color.white, 3.0f);
 
-            // 텍스트 색상 검은색으로 변경
-            introTexts[0].DOColor(Color.white, 0f);
-            introTexts[1].DOColor(Color.black, 0f);
-        }
+        //    // 텍스트 색상 검은색으로 변경
+        //    //introTexts[0].DOColor(Color.white, 0f);
+        //    //introTexts[1].DOColor(Color.black, 0f);
+        //}
 
         if (introPhase == 4)
         {

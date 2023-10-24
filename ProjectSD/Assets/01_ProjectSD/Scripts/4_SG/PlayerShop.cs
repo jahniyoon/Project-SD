@@ -21,6 +21,7 @@ public class PlayerShop : MonoBehaviour
 
     private ShopScroller shopScroller;  // 스크롤러 조절을 위한 Class를 담을변수
 
+    private Vector3 defaultShopPos; // 상점 pos를 저장할 변수
 
     #region Test변수
     public PlayerShooter pShoter;
@@ -49,6 +50,9 @@ public class PlayerShop : MonoBehaviour
         state = State.Close;
         shopUI = GameManager.instance.shopPanel;
         isBtnEnable = false;
+
+        // 상점 초기 pos 저장
+        defaultShopPos = shopUI.transform.position;
     }
 
     void Update()
@@ -76,12 +80,16 @@ public class PlayerShop : MonoBehaviour
         {
             if (state == State.Close)   // 닫혀있는 상태
             {
-                shopUI.gameObject.SetActive(true);      // 상점 UI 열기
+                //shopUI.gameObject.SetActive(true);      // 상점 UI 열기
+                Vector3 tempShopPos = defaultShopPos;
+                tempShopPos.y = 10000f; // 상점 위치를 위로 올려 숨김
+                shopUI.transform.position = tempShopPos;
                 state = State.Open;                     // 열림 상태로 전환
             }
             else if (state == State.Open)   // 열려있는 상태
             {
-                shopUI.gameObject.SetActive(false);     // 상점 UI 닫기
+                //shopUI.gameObject.SetActive(false);     // 상점 UI 닫기
+                shopUI.transform.position = defaultShopPos; // 상점 위치를 원래 위치로 변경
                 state = State.Close;                    // 닫힘 상태로 전환
             }
             input.shop = false; // 입력을 해제한다.
