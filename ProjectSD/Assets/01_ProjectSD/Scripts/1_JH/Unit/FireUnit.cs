@@ -24,6 +24,9 @@ public class FireUnit : MonoBehaviour
 
     public float lastFireTime;     // 마지막 발사시간
 
+    private const int FIREUNITINDEX = 3;
+    bool fireReady;
+
 
 
     // Start is called before the first frame update
@@ -35,16 +38,24 @@ public class FireUnit : MonoBehaviour
         rangeCollider = GetComponent<SphereCollider>();
         rangeCollider.radius = range;   // 콜라이더의 반경 설정
 
+        Invoke("ReadyCheck", 3f);
+        
+
         Destroy(gameObject, actTime); //일정시간 뒤에 제거
     }
 
-    private void Update()
+    public void ReadyCheck()
     {
 
+       fireReady= true;
+    }
+    private void OnDestroy()
+    {       // Destroy되는 순간 호출
+        GameManager.buttonsList[FIREUNITINDEX].NowItemValue -= 1;
     }
     public void OnTriggerStay(Collider other)
     {
-        if(other.CompareTag("Finish"))    // 보스 태그를 만났을 때
+        if(other.CompareTag("Finish") && fireReady)    // 보스 태그를 만났을 때
         {
             if (Time.time >= lastFireTime + shotDelay)  // 시간이 마지막 시간과 딜레이시간을 더한 값보다 클 경우
             {
@@ -65,10 +76,10 @@ public class FireUnit : MonoBehaviour
     // 힘 계산하기
     public Vector3 calculateForce()
     {
-        //Vector3 targetPos = GameManager.instance.Golem.transform;
-        //targetPos.y
+        Vector3 targetPos = GameManager.instance.Golem.transform.position;
+        targetPos.y += 25f;
         //firePosition.LookAt();  // 발사방향은 골렘을 향하게 변경
-        firePosition.LookAt(GameManager.instance.Golem.transform);  // 발사방향은 골렘을 향하게 변경
+        firePosition.LookAt(targetPos);  // 발사방향은 골렘을 향하게 변경
         return firePosition.forward * power;
     }
 

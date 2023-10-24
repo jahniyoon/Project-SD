@@ -40,6 +40,8 @@ public class Weapon : MonoBehaviour
     public string btnName;
 
     public bool isRight;
+
+    private int upgradeWeaponIndex = 0;       // 업그레이드 효과 끝난후 갯수 -해줄 Index
     public void OnEnable()
     {
         pointUI.gameObject.SetActive(false);
@@ -118,7 +120,7 @@ public class Weapon : MonoBehaviour
                     AudioManager.instance.PlaySFX("UpFire1");
 
             }
-            else 
+            else
             {
                 if (!isUpgrade)
                 {
@@ -133,7 +135,7 @@ public class Weapon : MonoBehaviour
 
     public void WeaponUpgrade()
     {
-        if(!isUpgrade)
+        if (!isUpgrade)
         {
             isUpgrade = true;
             GetData(isUpgrade);
@@ -165,6 +167,10 @@ public class Weapon : MonoBehaviour
 
 
         isUpgrade = false;
+        if (GameManager.buttonsList[upgradeWeaponIndex].NowItemValue != 0)
+        {
+            GameManager.buttonsList[upgradeWeaponIndex].NowItemValue -= 1;
+        }
 
     }
 
@@ -176,7 +182,7 @@ public class Weapon : MonoBehaviour
             index += 1;
             upgradeDuration = (float)DataManager.GetData(7010, "ActTime");
         }
-       
+
         weaponID = (int)DataManager.GetData(index, "ID");
         fireRate = (float)DataManager.GetData(index, "Shot_Delay");
 

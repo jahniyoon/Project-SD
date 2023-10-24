@@ -34,7 +34,7 @@ public class IntroControl : MonoBehaviour
     // 플레이어 초기 포지션 y 위치
     private float defaultPosY;
     // 인트로 재생시 플레이어 포지션 y 위치
-    private float introPosY = 8.0f;
+    private float introPosY = 18.0f;
 
     public void PlayIntro()
     {

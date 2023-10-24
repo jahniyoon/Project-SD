@@ -138,7 +138,7 @@ public class BuildInstall : MonoBehaviour
             if (Physics.Raycast(pShooter.rightGun.firePoint.position, pShooter.rightGun.firePoint.forward, out hit, Mathf.Infinity))
             {
                 // UI레이어는 예외처리
-                if (hit.collider.gameObject.layer != 5 && hit.collider.gameObject.layer != 8 && !hit.collider.gameObject.CompareTag("Bullet"))
+                if (hit.collider.gameObject.layer != 5 && hit.collider.gameObject.layer != 8 && !hit.collider.gameObject.CompareTag("Bullet") && !hit.collider.gameObject.CompareTag("Explosion") && !hit.collider.gameObject.CompareTag("Stun") && !hit.collider.gameObject.CompareTag("Fire"))
                 {
 
                     //Debug.LogFormat("Point -> {0}   PCPos -> {1} ", hit.point, buildParticle.transform.position);

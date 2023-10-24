@@ -61,7 +61,7 @@ public class Bullet : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("Player") && !other.CompareTag("Bullet") && !other.CompareTag("Unit") && !other.CompareTag("Explosion"))
+        if (!other.CompareTag("Player") && !other.CompareTag("Bullet") && !other.CompareTag("Unit") && !other.CompareTag("Explosion") && !other.CompareTag("Stun") && !other.CompareTag("Fire"))
         {
             Vector3 effectPosition = this.transform.position;
 
