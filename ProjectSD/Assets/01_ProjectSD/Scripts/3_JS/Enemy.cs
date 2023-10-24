@@ -30,12 +30,14 @@ public class Enemy : MonoBehaviour
     GameObject enemyObject;
     NavMoveable navMoveable;
 
+    private GameObject stunParticle;
+
     private void Start()
     {
         sphereCollider = gameObject.GetComponent<SphereCollider>();
         navMoveable = gameObject.GetComponent<NavMoveable>();
         //OnSlow(5f);
-        //OnStun(100f);
+        OnStun(10f);
     }
 
     // Initialize를 하는 생성자
@@ -152,10 +154,21 @@ public class Enemy : MonoBehaviour
             // 스턴 함수를 호출 (isStun = true)
             navMoveable.ToggleMoveable(true);
 
+            // 스턴 파티클 생성 함수 호출
+            CreateStunParticle();
+
             // 일정 시간 후에 스턴 해제
             StartCoroutine(DisableStun(t));
         }
 
+    }
+
+    // 스턴 파티클을 생성하는 함수
+    private void CreateStunParticle()
+    {
+        // 스턴 파티클 인스턴스 생성
+        stunParticle = Instantiate(
+            Resources.Load<GameObject>("Prefabs/Stun_1"), gameObject.transform);
     }
 
     // 일정 시간후에 슬로우 디버프를 해제하는 코루틴 함수
@@ -182,6 +195,9 @@ public class Enemy : MonoBehaviour
 
         // 스턴 해제
         navMoveable.ToggleMoveable(false);
+
+        // 스턴 파티클 삭제
+        Destroy(stunParticle);
     }
 
     // 기본 디렉토리

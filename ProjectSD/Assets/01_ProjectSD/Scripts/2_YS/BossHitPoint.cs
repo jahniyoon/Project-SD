@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class BossHitPoint : MonoBehaviour
 {
-    
-    public float critical = 1.5f;
+
+
     private SphereCollider sphereCollider;
-    public float weakPointScale = 1.5f;
+
     private MeshRenderer[] meshRenderers;
 
-    public float disableTime = 5.0f;   // 한대 맞았을 때 꺼지는 시간 넣을 변수
+
     public float upgradeTime = 5.0f;   // 업그레이드 했을 때 지속되는 시간 변수
+
+
+    [Header("CSV")]
+    public float critical = default; //약점배율
+    public float disableTime = default;   // 한대 맞았을 때 꺼지는 시간 넣을 변수
+    public float weakPointScale = default;
 
     // Start is called before the first frame update
     void Start()
@@ -20,19 +26,27 @@ public class BossHitPoint : MonoBehaviour
         //Debug.Log("히트포인트 동작");
         sphereCollider = GetComponent<SphereCollider>();
         meshRenderers = GetComponentsInChildren<MeshRenderer>();
-       
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+
+    public void GetData()
+    {
+        critical = (float)DataManager.GetData(3001, "WeakpointRate");
+        disableTime = (float)DataManager.GetData(3001, "ActTime");
+        weakPointScale = (float)DataManager.GetData(7020, "Value1");
+        upgradeTime = (float)DataManager.GetData(7020, "ActTime");
     }
 
     IEnumerator HitPoint()
     {
         sphereCollider.enabled = false;
-        
+
         foreach (MeshRenderer meshRenderer in meshRenderers)
         {
             meshRenderer.enabled = false;
@@ -76,7 +90,7 @@ public class BossHitPoint : MonoBehaviour
 
     public void UpgraedWeakPoint()
     {
-        float upgradeScale = 1f * weakPointScale;
+        float upgradeScale = 0.2f * weakPointScale;
         this.transform.localScale = new Vector3(upgradeScale, upgradeScale, upgradeScale);
 
         Invoke("ResetWeakPoint", upgradeTime);
@@ -84,17 +98,10 @@ public class BossHitPoint : MonoBehaviour
 
     public void ResetWeakPoint()
     {
-        this.transform.localScale = new Vector3(1f, 1f, 1f);
+        this.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
     }
     //사이즈 조절 관련(아직 어떻게 조절할지 조건을 모르겠어서 보류)
     //boxCollider.size = new Vector3(3.0f, 3.0f, 3.0f);
 
-    public void GetData()
-    {
-        critical = (float)DataManager.GetData(3001, "WeakpointRate");   // 크리티컬 증가율
-        disableTime = (float)DataManager.GetData(3001, "ActTime");      // 비활성화된 약점 재생성 시간
 
-        weakPointScale = (float)DataManager.GetData(7020, "Value1");    // 커지는 배율
-        upgradeTime = (float)DataManager.GetData(7020, "ActTime");      // 업그레이드 유지 시간
-    }
 }

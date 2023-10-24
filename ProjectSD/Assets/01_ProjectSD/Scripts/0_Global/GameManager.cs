@@ -143,6 +143,12 @@ public class GameManager : MonoBehaviour
             //GameStart();
             StartIntro();
         }
+        // 바로 시작
+        if (Input.GetKeyDown(KeyCode.F3))
+        {
+            titlePanel.SetActive(false);
+            GameStart();
+        }
 
     }       // Update()
 
@@ -219,6 +225,9 @@ public class GameManager : MonoBehaviour
         
 
         SetPlayer(false);
+
+        // 돌펜스 보이스 효과음 재생
+        AudioManager.instance.PlaySFX("Voice");
     }
     public void GameOver()
     {
