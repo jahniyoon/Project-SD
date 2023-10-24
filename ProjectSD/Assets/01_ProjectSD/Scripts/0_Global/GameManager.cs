@@ -41,6 +41,8 @@ public class GameManager : MonoBehaviour
     public GameObject gameOverPanel;// 게임오버 패널
     public GameObject gameClearPanel;
 
+    public Slider bossDistance;
+
     [Header("Upgrade")]
     public bool isGunUpgrade;
     public bool isWeakpointUpgrade;
@@ -113,7 +115,9 @@ public class GameManager : MonoBehaviour
 
         // 플레이어를 세팅한다.
         SetPlayer(true);
+        SetBossDistance(100);
         panels.transform.position = new Vector3(0, 29.5f + playerHeight, 0.57f);
+
 
         DebugPC();  // PC로 플레이 할 경우의 세팅
     }       // Start()
@@ -122,6 +126,9 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         GetTimeGold();      // 일정시간이 된다면 골드를 올려주는 함수
+
+        SetBossSlider();
+
 
         // 게임오버 테스트
         if (Input.GetKeyDown(KeyCode.F1))
@@ -282,6 +289,24 @@ public class GameManager : MonoBehaviour
         hpSlider.value = newHealth;
     }
 
+    public void SetBossDistance(float newDistance)
+    {
+        bossDistance.maxValue = newDistance;
+        bossDistance.value = newDistance;
+    }
+    public void SetDistance(float newDistance)
+    {
+        bossDistance.value = newDistance;
+    }
+
+    public void SetBossSlider()
+    {
+
+        if (!isGameOver)
+        {
+            SetDistance(Golem.transform.position.z);
+        }
+    }
     #endregion
 
     // Gold관련 CSV를 읽어와서 변수에 해당하는 값을 넣어주는 함수

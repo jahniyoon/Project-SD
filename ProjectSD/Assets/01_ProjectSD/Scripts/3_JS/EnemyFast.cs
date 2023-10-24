@@ -32,7 +32,7 @@ public class EnemyFast : MonoBehaviour
         if (other.tag.Equals("Player"))
         {
             //Debug.Log("플레이어 공격");
-            //other.GetComponent<PlayerHealth>().OnDamage(enemy.damage);
+            other.GetComponent<PlayerHealth>().OnDamage(enemy.damage);
 
             //Debug.Log("플레이어에게 자폭 공격");
             enemy.OnDead();
