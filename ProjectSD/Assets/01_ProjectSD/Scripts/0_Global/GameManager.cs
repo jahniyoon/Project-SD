@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -42,6 +43,7 @@ public class GameManager : MonoBehaviour
     public GameObject gameClearPanel;
 
     public Slider bossDistance;
+    public TMP_Text distanceText;
 
     [Header("Upgrade")]
     public bool isGunUpgrade;
@@ -325,6 +327,7 @@ public class GameManager : MonoBehaviour
         if (!isGameOver)
         {
             SetDistance(Golem.transform.position.z);
+            distanceText.text = string.Format("{0}m", Mathf.FloorToInt(Golem.transform.position.z));
         }
     }
     #endregion

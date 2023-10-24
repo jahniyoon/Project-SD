@@ -26,7 +26,7 @@ public class TrapUnit : MonoBehaviour
         GetData();
         trapTrigger = GetComponent<BoxCollider>();
         trapTrigger.size = new Vector3(triggerSize, 1, 1); // 트리거 사이즈를 정해준다.
-        trapObj.gameObject.transform.localScale = new Vector3(triggerSize/2, 1, 1);
+        trapObj.gameObject.transform.localScale = new Vector3(triggerSize/2, 1, triggerSize/2);
         trapObj.GetComponent<Trap>().stunTime = stunTime;
 
         trapAnim = trapObj.GetComponent<Animator>();

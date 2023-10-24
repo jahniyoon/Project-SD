@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Google.GData.Documents;
 using System.Collections;
 using System.Collections.Generic;
@@ -64,6 +65,9 @@ public class FireUnit : MonoBehaviour
     // 힘 계산하기
     public Vector3 calculateForce()
     {
+        //Vector3 targetPos = GameManager.instance.Golem.transform;
+        //targetPos.y
+        //firePosition.LookAt();  // 발사방향은 골렘을 향하게 변경
         firePosition.LookAt(GameManager.instance.Golem.transform);  // 발사방향은 골렘을 향하게 변경
         return firePosition.forward * power;
     }
@@ -76,5 +80,6 @@ public class FireUnit : MonoBehaviour
         range = (float)DataManager.GetData(ID, "Range_Rac");
         shotDelay = (float)DataManager.GetData(ID, "ShotDelay");
         actTime = (float)DataManager.GetData(ID, "ActTime");
+        power = (float)DataManager.GetData(ID, "Power");
     }
 }

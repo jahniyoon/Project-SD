@@ -53571,7 +53571,7 @@ MonoBehaviour:
   shotDelay: 0
   actTime: 0
   FireBombPrefab: {fileID: 7103181031501347406, guid: 3bd3f9c517058d3408629b247f1a2217, type: 3}
-  power: 10
+  power: 100
   firePosition: {fileID: 9135640597564047906}
   lastFireTime: 0
 --- !u!135 &3599021987824195887
