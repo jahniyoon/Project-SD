@@ -34,6 +34,10 @@ public class BuildInstall : MonoBehaviour
     private int trapPrice;                  // 트랩의 가격
     private int fireBombPrice;              // 불폭탄의 가격
 
+    public RectTransform shopPanelTrans;    // 상점의 페널을 담아둘 변수
+    private Vector3 defualtV3;              // 원래의 상점 포지션
+    private Vector3 disappearV3;            // 설치시 이동할 포지션
+
     private bool isBuild;         // 건설상태인지 확인하는 bool 변수
     public bool IsBuild
     {
@@ -47,10 +51,12 @@ public class BuildInstall : MonoBehaviour
                 if (isBuild == true)
                 {
                     ParticleOn();
+                    RectDisappear();
                 }
                 else if (isBuild == false)
                 {
                     ParticleOff();
+                    ReturnRect();
                 }
             }
         }
@@ -81,6 +87,7 @@ public class BuildInstall : MonoBehaviour
     void Start()
     {
         PriceInIt();        // 설치시 가격차감에 필요한 값들 가져오기
+        Vector3InIt();
     }
 
 
@@ -294,6 +301,21 @@ public class BuildInstall : MonoBehaviour
 
     }       // BuildVector3Check(Vector3)
 
+    private void Vector3InIt()
+    {
+        defualtV3 = shopPanelTrans.anchoredPosition3D;
+        disappearV3 = new Vector3(-5555f, -5555f, -5555f);
+    }
+
+    private void RectDisappear()
+    {
+        shopPanelTrans.anchoredPosition3D = disappearV3;
+    }       // RectDisappear()
+
+    private void ReturnRect()
+    {
+        shopPanelTrans.anchoredPosition3D = defualtV3;
+    }
 
 }       // ClassEnd
 

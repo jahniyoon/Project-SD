@@ -4352,7 +4352,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5747379966581833356, guid: 358462ee285e64740adaeca6f4b1658a, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.00037944317
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7088064602695073778, guid: 358462ee285e64740adaeca6f4b1658a, type: 3}
       propertyPath: m_AnchorMax.x
@@ -6835,6 +6835,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -14.07
       objectReference: {fileID: 0}
+    - target: {fileID: 7728414104036939564, guid: 523ab95688cff794b9f3d193fcbc45fb, type: 3}
+      propertyPath: shopPanelTrans
+      value: 
+      objectReference: {fileID: 890555258}
     - target: {fileID: 8255814611675511845, guid: 523ab95688cff794b9f3d193fcbc45fb, type: 3}
       propertyPath: m_Name
       value: Player
