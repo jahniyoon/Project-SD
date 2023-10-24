@@ -32,6 +32,9 @@ public class Boss : MonoBehaviour
     public float traceDist = 100.0f;
     public float speed = default;
 
+    public float speedReduce = default;
+
+
     [Header("투사체 생성 지점")]
     public Transform bulletPort;
 
@@ -53,6 +56,11 @@ public class Boss : MonoBehaviour
     public State state;
 
     private bool isDie = false;
+
+    private bool isSpeedDown = false;
+
+    private float timer = 0f;
+    private float interval = 1.0f;
 
     //임시 데미지 함수
     //public void OnDamage(float damage)
@@ -123,6 +131,8 @@ public class Boss : MonoBehaviour
         speed = (float)DataManager.GetData(3001, "MoveSpeed");
         coolTime = (float)DataManager.GetData(3001, "Cooltime");
         //traceDist = (float)DataManager.GetData(3001, "CheckRange");
+
+        speedReduce = (float)DataManager.GetData(7041, "Speed_Reduce");
     }
 
     IEnumerator CheckMonsterState()
@@ -149,6 +159,7 @@ public class Boss : MonoBehaviour
             {
                 state = State.DIE;
                 GameManager.instance.GameClear();
+                StopAllCoroutines();
             }
 
 
@@ -309,6 +320,46 @@ public class Boss : MonoBehaviour
         //bulletScript.Launch(target);
         AudioManager.instance.PlaySFX("Boss_Fire");
 
+    }
+
+    // 현재 호출이 안됨
+    private Coroutine myCoroutine;
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.CompareTag("Fire") && myCoroutine == default)
+        {
+            myCoroutine = StartCoroutine(Slow());
+        }
+    }
+
+    public void RunSlowCoroutine()
+    {
+        if (myCoroutine == null)
+        {
+            Debug.Log("Call SlowCoroutine");
+            myCoroutine = StartCoroutine(Slow());
+        }
+    }
+
+    IEnumerator Slow()
+    {
+        Debug.Log("Slow Call");
+        //FireFX fire = GetComponent<FireFX>();
+        
+        // 스피드 다운 상태
+        isSpeedDown = true;
+        speed *= (1 - speedReduce);
+        Debug.Log("Boss speed: " + speed);
+
+        // 대기
+        yield return new WaitForSeconds(1.0f);
+
+        // 스피드 복구
+        speed /= (1 - speedReduce); // 이전 속도로 되돌리기 위해 나누기 연산을 사용합니다.
+        Debug.Log("Boss speed: " + speed);
+        isSpeedDown = false;
+
+        myCoroutine = null;
     }
 
 
