@@ -813,7 +813,7 @@ PlayerSettings:
   webGLDecompressionFallback: 0
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Standalone: PC
+    Standalone: Oculus
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
