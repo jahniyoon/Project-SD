@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour
         sphereCollider = gameObject.GetComponent<SphereCollider>();
         navMoveable = gameObject.GetComponent<NavMoveable>();
         //OnSlow(5f);
-        OnStun(10f);
+        //OnStun(10f);
     }
 
     // Initialize를 하는 생성자
