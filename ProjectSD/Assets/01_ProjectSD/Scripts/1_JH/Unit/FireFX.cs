@@ -65,10 +65,13 @@ public class FireFX : MonoBehaviour
     {
         if (other.CompareTag("Boss"))
         {
+            Debug.Log("FireFx Collider True");
             Boss bossComponent = other.GetComponentInParent<Boss>();
             
             StartCoroutine(FireCounter(bossComponent));
-            StartCoroutine(SpeedDown(bossComponent));
+
+            bossComponent.RunSlowCoroutine();
+            //StartCoroutine(SpeedDown(bossComponent));
 
         }
     }
@@ -109,19 +112,19 @@ public class FireFX : MonoBehaviour
         isCoroutine = false;
     }
 
-    IEnumerator SpeedDown(Boss bossComponent)
-    {
-        if (isSpeedDown) yield break;
+    //IEnumerator SpeedDown(Boss bossComponent)
+    //{
+    //    if (isSpeedDown) yield break;
 
-        isSpeedDown = true;
-        float originalSpeed = bossComponent.speed;
-        bossComponent.speed *= (1 - speedReduce);
-        Debug.Log("Boss speed: " + bossComponent.speed);
-        yield return new WaitForSeconds(damageDelay);
-        bossComponent.speed = originalSpeed; // 이전 속도로 되돌리기 위해 나누기 연산을 사용합니다.
-        Debug.Log("Boss speed: " + bossComponent.speed);
-        isSpeedDown = false;
-    }
+    //    isSpeedDown = true;
+    //    float originalSpeed = bossComponent.speed;
+    //    bossComponent.speed *= (1 - speedReduce);
+    //    Debug.Log("Boss speed: " + bossComponent.speed);
+    //    yield return new WaitForSeconds(damageDelay);
+    //    bossComponent.speed = originalSpeed; // 이전 속도로 되돌리기 위해 나누기 연산을 사용합니다.
+    //    Debug.Log("Boss speed: " + bossComponent.speed);
+    //    isSpeedDown = false;
+    //}
 
 }
 
