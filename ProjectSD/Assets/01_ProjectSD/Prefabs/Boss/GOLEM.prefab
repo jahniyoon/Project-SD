@@ -658,6 +658,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1213608870101626006}
   - component: {fileID: 1213608870101626005}
+  - component: {fileID: 1308431944836105758}
   m_Layer: 0
   m_Name: GameOverBox
   m_TagString: Finish
@@ -693,6 +694,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.2, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &1308431944836105758
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213608870101626007}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &1213608870385038358
 GameObject:
   m_ObjectHideFlags: 0
@@ -954,7 +971,7 @@ GameObject:
   - component: {fileID: 6450389267869596780}
   m_Layer: 0
   m_Name: GOLEM_ Spine1
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -989,7 +1006,7 @@ GameObject:
   - component: {fileID: 6450389267869538110}
   m_Layer: 0
   m_Name: GOLEM_ Head
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1053,9 +1070,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6450389267869507426}
+  - component: {fileID: 8850574098559989767}
+  - component: {fileID: 533875934}
   m_Layer: 0
   m_Name: GOLEM_ L Foot
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1077,6 +1096,35 @@ Transform:
   m_Father: {fileID: 6450389267869507066}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8850574098559989767
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6450389267869621762}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.63, y: 1, z: 1}
+  m_Center: {x: -0.1, y: 0, z: 0}
+--- !u!54 &533875934
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6450389267869621762}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &6450389267869781052
 GameObject:
   m_ObjectHideFlags: 0
@@ -1088,7 +1136,7 @@ GameObject:
   - component: {fileID: 6450389267869507066}
   m_Layer: 0
   m_Name: GOLEM_ L Calf
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1152,7 +1200,7 @@ GameObject:
   - component: {fileID: 6450389267869533852}
   m_Layer: 0
   m_Name: GOLEM_ L Thigh
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1254,19 +1302,24 @@ MonoBehaviour:
   anim: {fileID: 0}
   mesh: {fileID: 6450389267873003540}
   weakPoint:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 3052112904686397192}
+  - {fileID: 3480180962186315913}
+  - {fileID: 6152368095400766874}
+  - {fileID: 4805789689061308258}
+  - {fileID: 6892073425828958079}
+  - {fileID: 7092948136694292481}
+  - {fileID: 2015868324958265727}
+  - {fileID: 5534509879500241720}
+  - {fileID: 2161551787651692741}
+  - {fileID: 4677395455197161394}
   bossHPSlider: {fileID: 1399892133657434420}
   hp: 0
   actTime: 0
   weakPointRate: 0
+  coolTime: 0
+  traceDist: 100
   speed: 0
   bulletPort: {fileID: 6450389268672794524}
-  traceDist: 100
   attackDist: 1
   state: 0
 --- !u!111 &2005060415037258072
@@ -1334,7 +1387,7 @@ GameObject:
   - component: {fileID: 6450389267869580168}
   m_Layer: 0
   m_Name: GOLEM_ L Clavicle
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1367,7 +1420,7 @@ GameObject:
   - component: {fileID: 6450389267869591286}
   m_Layer: 0
   m_Name: GOLEM_ L UpperArm
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1495,7 +1548,7 @@ GameObject:
   - component: {fileID: 6450389267873003540}
   m_Layer: 0
   m_Name: GOLEM
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1643,7 +1696,7 @@ GameObject:
   - component: {fileID: 6450389267869502534}
   m_Layer: 0
   m_Name: GOLEM_ Pelvis
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1711,7 +1764,7 @@ GameObject:
   - component: {fileID: 6450389267869518298}
   m_Layer: 0
   m_Name: GOLEM_
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1807,7 +1860,7 @@ GameObject:
   - component: {fileID: 6450389267869543674}
   m_Layer: 0
   m_Name: GOLEM_ Neck
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1842,7 +1895,7 @@ GameObject:
   - component: {fileID: 6450389267869594814}
   m_Layer: 0
   m_Name: GOLEM_ R Clavicle
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2071,7 +2124,7 @@ GameObject:
   - component: {fileID: 6450389267869556826}
   m_Layer: 0
   m_Name: GOLEM_ R Calf
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2104,7 +2157,7 @@ GameObject:
   - component: {fileID: 6450389267869571980}
   m_Layer: 0
   m_Name: GOLEM_ R Thigh
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2138,7 +2191,7 @@ GameObject:
   - component: {fileID: 6450389267869579338}
   m_Layer: 0
   m_Name: GOLEM_ Queue de cheval 1
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2201,7 +2254,7 @@ GameObject:
   - component: {fileID: 6450389267869588724}
   m_Layer: 0
   m_Name: GOLEM_ R UpperArm
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2235,7 +2288,7 @@ GameObject:
   - component: {fileID: 6450389267869555130}
   m_Layer: 0
   m_Name: GOLEM_ Spine
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2265,9 +2318,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6450389267869596238}
+  - component: {fileID: 2292976186004865291}
+  - component: {fileID: 533875935}
   m_Layer: 0
   m_Name: GOLEM_ R Foot
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2290,6 +2345,35 @@ Transform:
   m_Father: {fileID: 6450389267869556826}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2292976186004865291
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6450389267869858972}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.63, y: 1, z: 1}
+  m_Center: {x: -0.1, y: 0, z: 0}
+--- !u!54 &533875935
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6450389267869858972}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &6450389268672794523
 GameObject:
   m_ObjectHideFlags: 0
@@ -2603,6 +2687,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
+--- !u!1 &3480180962186315913 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4276921355692550885, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
+  m_PrefabInstance: {fileID: 799032096959455852}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3480180962186571003 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4276921355692297879, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
@@ -2670,6 +2759,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4276921355692297879, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
   m_PrefabInstance: {fileID: 1225513272323722733}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3052112904686397192 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4276921355692550885, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
+  m_PrefabInstance: {fileID: 1225513272323722733}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2351829943548070810
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2723,10 +2817,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4276921355692550885, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
       propertyPath: m_Name
-      value: WeakPoint
+      value: WeakPoint (6)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
+--- !u!1 &2015868324958265727 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4276921355692550885, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
+  m_PrefabInstance: {fileID: 2351829943548070810}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2015868324958504205 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4276921355692297879, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
@@ -2785,13 +2884,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4276921355692550885, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
       propertyPath: m_Name
-      value: WeakPoint
+      value: WeakPoint (8)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
 --- !u!4 &2161551787651407031 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4276921355692297879, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
+  m_PrefabInstance: {fileID: 2784898808511779360}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2161551787651692741 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4276921355692550885, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
   m_PrefabInstance: {fileID: 2784898808511779360}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6428215086115490532
@@ -2847,13 +2951,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4276921355692550885, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
       propertyPath: m_Name
-      value: WeakPoint
+      value: WeakPoint (5)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
 --- !u!4 &7092948136694039667 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4276921355692297879, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
+  m_PrefabInstance: {fileID: 6428215086115490532}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7092948136694292481 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4276921355692550885, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
   m_PrefabInstance: {fileID: 6428215086115490532}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7277602677925078426
@@ -2909,10 +3018,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4276921355692550885, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
       propertyPath: m_Name
-      value: WeakPoint
+      value: WeakPoint (4)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
+--- !u!1 &6892073425828958079 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4276921355692550885, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
+  m_PrefabInstance: {fileID: 7277602677925078426}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6892073425829210893 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4276921355692297879, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
@@ -2971,13 +3085,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4276921355692550885, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
       propertyPath: m_Name
-      value: WeakPoint
+      value: WeakPoint (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
 --- !u!4 &6152368095400511976 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4276921355692297879, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
+  m_PrefabInstance: {fileID: 7943003389612853119}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6152368095400766874 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4276921355692550885, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
   m_PrefabInstance: {fileID: 7943003389612853119}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8616558413915509213
@@ -3033,10 +3152,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4276921355692550885, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
       propertyPath: m_Name
-      value: WeakPoint
+      value: WeakPoint (7)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
+--- !u!1 &5534509879500241720 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4276921355692550885, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
+  m_PrefabInstance: {fileID: 8616558413915509213}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5534509879500480330 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4276921355692297879, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
@@ -3095,10 +3219,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4276921355692550885, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
       propertyPath: m_Name
-      value: WeakPoint
+      value: WeakPoint (3)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
+--- !u!1 &4805789689061308258 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4276921355692550885, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
+  m_PrefabInstance: {fileID: 8785173851889589639}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4805789689061544720 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4276921355692297879, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
@@ -3157,12 +3286,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4276921355692550885, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
       propertyPath: m_Name
-      value: WeakPoint
+      value: WeakPoint (9)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
 --- !u!4 &4677395455196906432 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4276921355692297879, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
+  m_PrefabInstance: {fileID: 8913713495205973335}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4677395455197161394 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4276921355692550885, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
   m_PrefabInstance: {fileID: 8913713495205973335}
   m_PrefabAsset: {fileID: 0}

@@ -90,7 +90,7 @@ public class BossHitPoint : MonoBehaviour
 
     public void UpgraedWeakPoint()
     {
-        float upgradeScale = 0.2f * weakPointScale;
+        float upgradeScale = 1f * weakPointScale;
         this.transform.localScale = new Vector3(upgradeScale, upgradeScale, upgradeScale);
 
         Invoke("ResetWeakPoint", upgradeTime);
@@ -98,7 +98,7 @@ public class BossHitPoint : MonoBehaviour
 
     public void ResetWeakPoint()
     {
-        this.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+        this.transform.localScale = new Vector3(1f, 1f, 1f);
     }
     //사이즈 조절 관련(아직 어떻게 조절할지 조건을 모르겠어서 보류)
     //boxCollider.size = new Vector3(3.0f, 3.0f, 3.0f);

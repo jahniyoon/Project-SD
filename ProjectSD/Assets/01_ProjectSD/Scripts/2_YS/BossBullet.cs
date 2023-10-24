@@ -30,16 +30,16 @@ public class BossBullet : MonoBehaviour
 
     }
 
-    public void Launch(Transform target)
-    {
-        Debug.Log("런치 되나?");
-        this.target = target;
-        rigid = GetComponent<Rigidbody>();
-        mesh = GetComponent<MeshRenderer>();
+    //public void Launch(Transform target)
+    //{
+    //    Debug.Log("런치 되나?");
+    //    this.target = target;
+    //    rigid = GetComponent<Rigidbody>();
+    //    mesh = GetComponent<MeshRenderer>();
 
-        rigid.velocity = transform.forward * speed;
-        AudioManager.instance.PlayLoopSound("Boss_Flying");
-    }
+    //    rigid.velocity = transform.forward * speed;
+    //    AudioManager.instance.PlayLoopSound("Boss_Flying");
+    //}
 
 
     // Update is called once per frame
