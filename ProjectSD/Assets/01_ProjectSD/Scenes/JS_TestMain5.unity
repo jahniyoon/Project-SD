@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.10064437, g: 0.07366231, b: 0.13478462, a: 1}
+  m_IndirectSpecularColor: {r: 0.10064494, g: 0.07367198, b: 0.13477609, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3639,11 +3639,14 @@ MonoBehaviour:
   hpSlider: {fileID: 2106690715}
   isGameOver: 0
   isVR: 0
+  playerHeight: 0
   Golem: {fileID: 1065078602}
+  panels: {fileID: 37817076}
   titlePanel: {fileID: 1911326488}
   shopPanel: {fileID: 1290735128}
   gameOverPanel: {fileID: 1486348962}
   gameClearPanel: {fileID: 1260219968}
+  bossDistance: {fileID: 2106690715}
   isGunUpgrade: 0
   isWeakpointUpgrade: 0
   isPCMODE: 1

@@ -204,14 +204,15 @@ public class GameManager : MonoBehaviour
 
     public void StartIntro()
     {
-        // 인트로 재생
+        titlePanel.SetActive(false);
+        // 인트로 
         introControl.PlayIntro();
     }
 
     public void GameStart()
     {
         Debug.Log("게임 시작");
-        titlePanel.SetActive(false);
+        //titlePanel.SetActive(false);
         shopPanel.SetActive(true);
 
         Golem.GetComponent<Boss>().GameStart();
