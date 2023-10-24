@@ -165,13 +165,15 @@ public class Enemy : MonoBehaviour
     }
 
     // 불 장판에 닿았을 경우 처리하는 함수
-    private void OnFire(float t)
+    private void OnFire(float t, float damage)
     {
         // enemyState가 파이어 상태가 아닐 경우
         if (enemyState != EnemyState.Fire)
         {
             // Fire 상태로 변경
             enemyState = EnemyState.Fire;
+
+            OnDamage(damage);
 
             // 일정 시간 후에 Fire 상태 해제
             StartCoroutine(DisableFire(t));
