@@ -123,6 +123,7 @@ public class ShopItemButton : MonoBehaviour
     private Color32 defaultColor;   // 기본색
     private Color32 choiceColor;    // 아이템을 Ray로 맞추었을때에 바뀔 색
     private Color32 buyColor;       // 아이템 쿨타임이 돌고있을때에 바뀔 색
+    private Color32 noMoneyColor;   // 아이템 구매금액보다 현재 금액이 낮을경우나올 색
 
     private Ray ray;                // 설치형 아이템 구매시 쏠 레이
     private RaycastHit hitInfo;     // 레이 맞은것을 판별할 hitInfo
@@ -148,7 +149,7 @@ public class ShopItemButton : MonoBehaviour
         FirstTextInIt();            // 처음 모든 Text에 CSV의 값을 넣어주는 함수
         ListInIt();                 // static List 에 자신스크립트를 넣어주는 함수
         SetColorInitialization();    // 처음시작시 상점의 색이 Ray맞은 색으로 되기에 만든함수
-      
+
 
     }       // Start()
 
@@ -252,6 +253,7 @@ public class ShopItemButton : MonoBehaviour
         defaultColor = new Color32(255, 255, 255, 0);
         choiceColor = new Color32(200, 200, 200, 50);
         buyColor = new Color32(80, 20, 30, 50);
+        noMoneyColor = new Color32(255, 0, 0, 50);
     }
 
     private void InItSprite()       // 아이템의 스프라이트를 넣는 함수
@@ -273,7 +275,7 @@ public class ShopItemButton : MonoBehaviour
         {
             itemSprite.sprite = shopSpriteClass.itemSprite[buttonNum];
         }
-        else { /*PASS*/ }        
+        else { /*PASS*/ }
 
     }       // InItSprite()
 
@@ -397,7 +399,11 @@ public class ShopItemButton : MonoBehaviour
 
     public void ColorController()       // isRayHit의 bool값을 따라서 색을 변경해줄 함수
     {
-        if (isRayHit == true && IsUseItem == false)
+        if (GameManager.instance.PlayerGold < price)
+        {
+            ChangeNoMoneyColor();
+        }
+        else if (isRayHit == true && IsUseItem == false)
         {
             ChangeChoiceColor();
         }
@@ -409,6 +415,7 @@ public class ShopItemButton : MonoBehaviour
         {
             ChangeBuyItemColor();
         }
+
 
 
     }      // ColorController()
@@ -425,6 +432,10 @@ public class ShopItemButton : MonoBehaviour
     private void ChangeBuyItemColor()
     {
         thisBackGroundImage.color = buyColor;
+    }
+    private void ChangeNoMoneyColor()
+    {
+        thisBackGroundImage.color = noMoneyColor;
     }
     // } 색변경
 
@@ -514,7 +525,7 @@ public class ShopItemButton : MonoBehaviour
         //Debug.LogFormat("쿨타임이 잘끝나나? name -> {0}", this.transform.name);
         ColorController();      // 쿨타임이 끝날때에 색을 바꾸어줌
 
-        NowItemValue--; // 현재 아이템 갯수 감소
+        //NowItemValue--; // 현재 아이템 갯수 감소      LEGACY : 아이템 효과 종료될때에 -로 수정
     }       // BuyCoolTime()
 
 

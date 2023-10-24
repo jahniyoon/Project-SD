@@ -20,6 +20,8 @@ public class TrapUnit : MonoBehaviour
     public Animator trapAnim;   // 트랩 애니메이션
     private bool isTrapOn;
 
+    private const int TRAPINDEX = 2;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +39,7 @@ public class TrapUnit : MonoBehaviour
 
     public void TrapUnitDisable()
     {
+        GameManager.buttonsList[TRAPINDEX].NowItemValue -= 1;
         trapUnitObj.gameObject.SetActive(false);
     }
     public void OnTriggerEnter(Collider other)

@@ -19,6 +19,9 @@ public class BossHitPoint : MonoBehaviour
     public float disableTime = default;   // 한대 맞았을 때 꺼지는 시간 넣을 변수
     public float weakPointScale = default;
 
+
+    private const int WEAKPOINTINDEX = 1;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -99,6 +102,7 @@ public class BossHitPoint : MonoBehaviour
     public void ResetWeakPoint()
     {
         this.transform.localScale = new Vector3(1f, 1f, 1f);
+        GameManager.buttonsList[WEAKPOINTINDEX].NowItemValue -= 1;
     }
     //사이즈 조절 관련(아직 어떻게 조절할지 조건을 모르겠어서 보류)
     //boxCollider.size = new Vector3(3.0f, 3.0f, 3.0f);

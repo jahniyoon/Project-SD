@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.10064494, g: 0.07367198, b: 0.13477609, a: 1}
+  m_IndirectSpecularColor: {r: 0.100646876, g: 0.07367326, b: 0.13477811, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1145,10 +1145,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57607d5ee6c70ce41ba5ccc79a0066c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  critical: 1.5
-  weakPointScale: 1.5
-  disableTime: 5
   upgradeTime: 5
+  critical: 1.5
+  disableTime: 5
+  weakPointScale: 1.5
 --- !u!1 &211717115
 GameObject:
   m_ObjectHideFlags: 0
@@ -1860,10 +1860,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57607d5ee6c70ce41ba5ccc79a0066c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  critical: 1.5
-  weakPointScale: 1.5
-  disableTime: 5
   upgradeTime: 5
+  critical: 1.5
+  disableTime: 5
+  weakPointScale: 1.5
 --- !u!1 &363751266
 GameObject:
   m_ObjectHideFlags: 0
@@ -2278,10 +2278,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57607d5ee6c70ce41ba5ccc79a0066c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  critical: 1.5
-  weakPointScale: 1.5
-  disableTime: 5
   upgradeTime: 5
+  critical: 1.5
+  disableTime: 5
+  weakPointScale: 1.5
 --- !u!1 &474010107
 GameObject:
   m_ObjectHideFlags: 0
@@ -4222,6 +4222,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1157609738}
     m_Modifications:
+    - target: {fileID: 395725435, guid: 358462ee285e64740adaeca6f4b1658a, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 395725435, guid: 358462ee285e64740adaeca6f4b1658a, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 395725435, guid: 358462ee285e64740adaeca6f4b1658a, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 489162390, guid: 358462ee285e64740adaeca6f4b1658a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -4270,9 +4282,53 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -38
       objectReference: {fileID: 0}
+    - target: {fileID: 1464020334, guid: 358462ee285e64740adaeca6f4b1658a, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1464020334, guid: 358462ee285e64740adaeca6f4b1658a, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1464020334, guid: 358462ee285e64740adaeca6f4b1658a, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1464020334, guid: 358462ee285e64740adaeca6f4b1658a, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1736529832, guid: 358462ee285e64740adaeca6f4b1658a, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1736529832, guid: 358462ee285e64740adaeca6f4b1658a, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1736529832, guid: 358462ee285e64740adaeca6f4b1658a, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2145248716, guid: 358462ee285e64740adaeca6f4b1658a, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2145248716, guid: 358462ee285e64740adaeca6f4b1658a, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2145248716, guid: 358462ee285e64740adaeca6f4b1658a, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2145248716, guid: 358462ee285e64740adaeca6f4b1658a, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5747379965973850483, guid: 358462ee285e64740adaeca6f4b1658a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 292.50003
+      value: 292.49988
       objectReference: {fileID: 0}
     - target: {fileID: 5747379966140530658, guid: 358462ee285e64740adaeca6f4b1658a, type: 3}
       propertyPath: m_AnchorMax.x
@@ -4296,7 +4352,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5747379966581833356, guid: 358462ee285e64740adaeca6f4b1658a, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.00037944317
       objectReference: {fileID: 0}
     - target: {fileID: 7088064602695073778, guid: 358462ee285e64740adaeca6f4b1658a, type: 3}
       propertyPath: m_AnchorMax.x
@@ -4739,10 +4795,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57607d5ee6c70ce41ba5ccc79a0066c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  critical: 1.5
-  weakPointScale: 1.5
-  disableTime: 5
   upgradeTime: 5
+  critical: 1.5
+  disableTime: 5
+  weakPointScale: 1.5
 --- !u!1 &1007366601
 GameObject:
   m_ObjectHideFlags: 0
@@ -5188,10 +5244,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57607d5ee6c70ce41ba5ccc79a0066c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  critical: 1.5
-  weakPointScale: 1.5
-  disableTime: 5
   upgradeTime: 5
+  critical: 1.5
+  disableTime: 5
+  weakPointScale: 1.5
 --- !u!114 &1065078614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5204,10 +5260,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57607d5ee6c70ce41ba5ccc79a0066c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  critical: 1.5
-  weakPointScale: 1.5
-  disableTime: 5
   upgradeTime: 5
+  critical: 1.5
+  disableTime: 5
+  weakPointScale: 1.5
 --- !u!114 &1065078615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5220,10 +5276,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57607d5ee6c70ce41ba5ccc79a0066c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  critical: 1.5
-  weakPointScale: 1.5
-  disableTime: 5
   upgradeTime: 5
+  critical: 1.5
+  disableTime: 5
+  weakPointScale: 1.5
 --- !u!114 &1065078616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5236,10 +5292,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57607d5ee6c70ce41ba5ccc79a0066c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  critical: 1.5
-  weakPointScale: 1.5
-  disableTime: 5
   upgradeTime: 5
+  critical: 1.5
+  disableTime: 5
+  weakPointScale: 1.5
 --- !u!114 &1065078617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5252,10 +5308,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57607d5ee6c70ce41ba5ccc79a0066c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  critical: 1.5
-  weakPointScale: 1.5
-  disableTime: 5
   upgradeTime: 5
+  critical: 1.5
+  disableTime: 5
+  weakPointScale: 1.5
 --- !u!1 &1065945174
 GameObject:
   m_ObjectHideFlags: 0
@@ -6624,10 +6680,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57607d5ee6c70ce41ba5ccc79a0066c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  critical: 1.5
-  weakPointScale: 1.5
-  disableTime: 5
   upgradeTime: 5
+  critical: 1.5
+  disableTime: 5
+  weakPointScale: 1.5
 --- !u!1 &1341809325
 GameObject:
   m_ObjectHideFlags: 0
@@ -7497,6 +7553,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: e70eb034c8ae4fe42b00d809716998e4, type: 3}
   musicSource: {fileID: 1392351129}
   sfxSource: {fileID: 1392351129}
+  loopSounds: []
 --- !u!4 &1392351131
 Transform:
   m_ObjectHideFlags: 0
@@ -9708,10 +9765,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57607d5ee6c70ce41ba5ccc79a0066c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  critical: 1.5
-  weakPointScale: 1.5
-  disableTime: 5
   upgradeTime: 5
+  critical: 1.5
+  disableTime: 5
+  weakPointScale: 1.5
 --- !u!1 &2016920508
 GameObject:
   m_ObjectHideFlags: 0

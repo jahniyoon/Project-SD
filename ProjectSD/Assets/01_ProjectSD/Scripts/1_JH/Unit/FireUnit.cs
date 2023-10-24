@@ -23,6 +23,8 @@ public class FireUnit : MonoBehaviour
 
     public float lastFireTime;     // 마지막 발사시간
 
+    private const int FIREUNITINDEX = 3;
+
 
 
     // Start is called before the first frame update
@@ -40,6 +42,11 @@ public class FireUnit : MonoBehaviour
     private void Update()
     {
 
+    }
+
+    private void OnDestroy()
+    {       // Destroy되는 순간 호출
+        GameManager.buttonsList[FIREUNITINDEX].NowItemValue -= 1;
     }
     public void OnTriggerStay(Collider other)
     {

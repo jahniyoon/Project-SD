@@ -74,6 +74,7 @@ public class GameManager : MonoBehaviour
             {
                 playerGold = value;
                 playerGoldUpdateEvent?.Invoke();     // 골드가 올라올떄마다 이벤트 구독해놓은 얘들을 Invoke()
+                ColorUpdate();
             }
         }
     }
@@ -386,6 +387,13 @@ public class GameManager : MonoBehaviour
         else { /*PASS*/ }
     }       //ButtonsListMake()
 
+    private void ColorUpdate()
+    {
+        for(int i = 0; i < buttonsList.Count; i++)
+        {
+            buttonsList[i].ColorController();
+        }
+    }       // ColorUpdate()
 
 
 
