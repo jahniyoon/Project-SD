@@ -44,7 +44,7 @@ public class TrapUnit : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy") && !isTrapOn)    // 적 태그를 만날 경우
+        if (other.CompareTag("Finish") && !isTrapOn || other.CompareTag("Enemy") && !isTrapOn)    // 적 태그를 만날 경우
         {
             isTrapOn = true;
             trapTrigger.enabled = false;    // 콜라이더 꺼주고
