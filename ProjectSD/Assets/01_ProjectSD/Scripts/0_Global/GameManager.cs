@@ -339,8 +339,11 @@ public class GameManager : MonoBehaviour
         //DataManager.SetData(goldCSV);
         #endregion LEGACY
         playerGold = (int)DataManager.GetData(9001, "Value");
+        //Debug.LogFormat("PCGold -> {0}", playerGold);
         secondsGold = (int)DataManager.GetData(9002, "Value");
+        //Debug.LogFormat("secondsGold -> {0}", secondsGold);
         bossAttackGold = (float)DataManager.GetData(9003, "Value");
+        //Debug.LogFormat("bossAttackGold -> {0}", bossAttackGold);
         monsterKillGold = (int)DataManager.GetData(9004, "Value");
 
 
@@ -356,7 +359,7 @@ public class GameManager : MonoBehaviour
     // 보스를 맞추었을때에 골드가 추가되는 함수
     public void HitBossGetGold()
     {
-        playerGold += 1;    // 임시로 1로지정
+        playerGold += (int)bossAttackGold;    // 임시로 1로지정
     }
 
 
