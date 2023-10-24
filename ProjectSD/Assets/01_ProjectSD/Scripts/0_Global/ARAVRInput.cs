@@ -67,9 +67,9 @@ public static class ARAVRInput
 #endif
     }
 
-    // ¿ŞÂÊ ÄÁÆ®·Ñ·¯
+    // ì™¼ìª½ ì»¨íŠ¸ë¡¤ëŸ¬
     static Transform lHand;
-    // ¾À¿¡ µî·ÏµÈ ¿ŞÂÊ ÄÁÆ®·Ñ·¯¸¦ Ã£¾Æ ¹İÈ¯
+    // ì”¬ì— ë“±ë¡ëœ ì™¼ìª½ ì»¨íŠ¸ë¡¤ëŸ¬ë¥¼ ì°¾ì•„ ë°˜í™˜
     public static Transform LHand
     {
         get
@@ -77,11 +77,11 @@ public static class ARAVRInput
             if (lHand == null)
             {
 #if PC
-                // LHand¶ó´Â ÀÌ¸§À¸·Î °ÔÀÓ ¿ÀºêÁ§Æ®¸¦ ¸¸µç´Ù.
+                // LHandë¼ëŠ” ì´ë¦„ìœ¼ë¡œ ê²Œì„ ì˜¤ë¸Œì íŠ¸ë¥¼ ë§Œë“ ë‹¤.
                 GameObject handObj = new GameObject("LHand");
-                // ¸¸µé¾îÁø °´Ã¼ÀÇ Æ®·£½ºÆûÀ» lHand¿¡ ÇÒ´ç
+                // ë§Œë“¤ì–´ì§„ ê°ì²´ì˜ íŠ¸ëœìŠ¤í¼ì„ lHandì— í• ë‹¹
                 lHand = handObj.transform;
-                // ÄÁÆ®·Ñ·¯¸¦ Ä«¸Ş¶óÀÇ ÀÚ½Ä °´Ã¼·Î µî·Ï
+                // ì»¨íŠ¸ë¡¤ëŸ¬ë¥¼ ì¹´ë©”ë¼ì˜ ìì‹ ê°ì²´ë¡œ ë“±ë¡
                 lHand.parent = Camera.main.transform;
 #elif Oculus
                 lHand = GameObject.Find("LeftControllerAnchor").transform;
@@ -92,23 +92,23 @@ public static class ARAVRInput
             return lHand;
         }
     }
-    // ¿À¸¥ÂÊ ÄÁÆ®·Ñ·¯
+    // ì˜¤ë¥¸ìª½ ì»¨íŠ¸ë¡¤ëŸ¬
 
     static Transform rHand;
-    // ¾À¿¡ µî·ÏµÈ ¿À¸¥ÂÊ ÄÁÆ®·Ñ·¯ Ã£¾Æ ¹İÈ¯
+    // ì”¬ì— ë“±ë¡ëœ ì˜¤ë¥¸ìª½ ì»¨íŠ¸ë¡¤ëŸ¬ ì°¾ì•„ ë°˜í™˜
     public static Transform RHand
     {
         get
         {
-            // ¸¸¾à rHand¿¡ °ªÀÌ ¾øÀ»°æ¿ì
+            // ë§Œì•½ rHandì— ê°’ì´ ì—†ì„ê²½ìš°
             if (rHand == null)
             {
 #if PC
-                // RHand ÀÌ¸§À¸·Î °ÔÀÓ ¿ÀºêÁ§Æ®¸¦ ¸¸µç´Ù.
+                // RHand ì´ë¦„ìœ¼ë¡œ ê²Œì„ ì˜¤ë¸Œì íŠ¸ë¥¼ ë§Œë“ ë‹¤.
                 GameObject handObj = new GameObject("RHand");
-                // ¸¸µé¾îÁø °´Ã¼ÀÇ Æ®·»½ºÆûÀ» rHand¿¡ ÇÒ´ç
+                // ë§Œë“¤ì–´ì§„ ê°ì²´ì˜ íŠ¸ë ŒìŠ¤í¼ì„ rHandì— í• ë‹¹
                 rHand = handObj.transform;
-                // ÄÁÆ®·Ñ·¯¸¦ Ä«¸Ş¶óÀÇ ÀÚ½Ä °´Ã¼·Î µî·Ï
+                // ì»¨íŠ¸ë¡¤ëŸ¬ë¥¼ ì¹´ë©”ë¼ì˜ ìì‹ ê°ì²´ë¡œ ë“±ë¡
                 rHand.parent = Camera.main.transform;
 #endif
             }
@@ -121,11 +121,11 @@ public static class ARAVRInput
         get
         {
 #if PC
-            // ¸¶¿ì½ºÀÇ ½ºÅ©¸° ÁÂÇ¥ ¾ò¾î¿À±â
+            // ë§ˆìš°ìŠ¤ì˜ ìŠ¤í¬ë¦° ì¢Œí‘œ ì–»ì–´ì˜¤ê¸°
             Vector3 pos = Input.mousePosition;
-            // z °ªÀº 0.7m·Î ¼³Á¤
+            // z ê°’ì€ 0.7më¡œ ì„¤ì •
             pos.z = 0.7f;
-            // ½ºÅ©¸° ÁÂÇ¥¸¦ ¿ùµå ÁÂÇ¥·Î º¯È¯
+            // ìŠ¤í¬ë¦° ì¢Œí‘œë¥¼ ì›”ë“œ ì¢Œí‘œë¡œ ë³€í™˜
             pos = Camera.main.ScreenToWorldPoint(pos);
 
             RHand.position = pos;
@@ -224,11 +224,11 @@ public static class ARAVRInput
     }
 #endif
 
-    // ÄÁÆ®·Ñ·¯ÀÇ Æ¯Á¤ ¹öÆ°À» ´©¸£°í ÀÖ´Â µ¿¾È true¸¦ ¹İÈ¯
+    // ì»¨íŠ¸ë¡¤ëŸ¬ì˜ íŠ¹ì • ë²„íŠ¼ì„ ëˆ„ë¥´ê³  ìˆëŠ” ë™ì•ˆ trueë¥¼ ë°˜í™˜
     public static bool Get(Button virtualMask, Controller hand = Controller.RTouch)
     {
 #if PC
-        // virtualMask¿¡ µé¾î¿Â °ªÀ» ButtonTarget Å¸ÀÔÀ¸·Î º¯È¯ÇØ Àü´ŞÇÑ´Ù.
+        // virtualMaskì— ë“¤ì–´ì˜¨ ê°’ì„ ButtonTarget íƒ€ì…ìœ¼ë¡œ ë³€í™˜í•´ ì „ë‹¬í•œë‹¤.
         return Input.GetButton(((ButtonTarget)virtualMask).ToString());
 #elif Oculus
         return OVRInput.Get((OVRInput.Button)virtualMask, (OVRInput.Controller)hand);
@@ -238,7 +238,7 @@ public static class ARAVRInput
 #endif
     }
 
-    // ÄÁÆ®·Ñ·¯ÀÇ Æ¯Á¤ ¹öÆ°À» ´­·¶À» ¶§ true¸¦ ¹İÈ¯
+    // ì»¨íŠ¸ë¡¤ëŸ¬ì˜ íŠ¹ì • ë²„íŠ¼ì„ ëˆŒë €ì„ ë•Œ trueë¥¼ ë°˜í™˜
     public static bool GetDown(Button virtualMask, Controller hand = Controller.RTouch)
     {
 #if PC
@@ -251,7 +251,7 @@ public static class ARAVRInput
 #endif
     }
 
-    // ÄÁÆ®·Ñ·¯ÀÇ Æ¯Á¤ ¹öÆ°À» ´­·¶´Ù ¶¼¾úÀ» ¶§ true¸¦ ¹İÈ¯
+    // ì»¨íŠ¸ë¡¤ëŸ¬ì˜ íŠ¹ì • ë²„íŠ¼ì„ ëˆŒë €ë‹¤ ë–¼ì—ˆì„ ë•Œ trueë¥¼ ë°˜í™˜
     public static bool GetUp(Button virtualMask, Controller hand = Controller.RTouch)
     {
 #if PC
@@ -264,8 +264,8 @@ public static class ARAVRInput
 #endif
     }
 
-    // ÄÁÆ®·Ñ·¯ÀÇ Axis ÀÔ·ÂÀ» ¹İÈ¯
-    // axis: Horizontal, Vertical °ªÀ» °®´Â´Ù.
+    // ì»¨íŠ¸ë¡¤ëŸ¬ì˜ Axis ì…ë ¥ì„ ë°˜í™˜
+    // axis: Horizontal, Vertical ê°’ì„ ê°–ëŠ”ë‹¤.
     public static float GetAxis(string axis, Controller hand = Controller.LTouch)
     {
 #if PC
@@ -292,7 +292,7 @@ else
     }
 
 
-    // ÄÁÆ®·Ñ·¯¿¡ Áøµ¿ È£ÃâÇÏ±â
+    // ì»¨íŠ¸ë¡¤ëŸ¬ì— ì§„ë™ í˜¸ì¶œí•˜ê¸°
     public static void PlayVibration(Controller hand)
     {
 #if Oculus
@@ -311,7 +311,7 @@ else
             coroutineObj.AddComponent<CoroutineInstance>();
         }
 
-        // ÀÌ¹Ì ÇÃ·¹ÀÌÁßÀÎ Áøµ¿ ÄÚ·çÆ¾Àº Á¤Áö
+        // ì´ë¯¸ í”Œë ˆì´ì¤‘ì¸ ì§„ë™ ì½”ë£¨í‹´ì€ ì •ì§€
         CoroutineInstance.coroutineInstance.StopAllCoroutines();
         CoroutineInstance.coroutineInstance.StartCoroutine(VibrationCoroutine(duration, frequency, amplitude, hand));
 #elif Vive
@@ -320,7 +320,7 @@ else
     }
 
 
-    // Ä«¸Ş¶ó°¡ ¹Ù¶óº¸´Â ¹æÇâÀ» ±âÁØÀ¸·Î ¼¾ÅÍ¸¦ Àâ´Â´Ù.
+    // ì¹´ë©”ë¼ê°€ ë°”ë¼ë³´ëŠ” ë°©í–¥ì„ ê¸°ì¤€ìœ¼ë¡œ ì„¼í„°ë¥¼ ì¡ëŠ”ë‹¤.
     public static void Recenter()
     {
 #if Oculus
@@ -337,7 +337,7 @@ else
 #endif
     }
 
-    // ¿øÇÏ´Â ¹æÇâÀ¸·Î Å¸±êÀÇ ¼¾ÅÍ¸¦ ¼³Á¤
+    // ì›í•˜ëŠ” ë°©í–¥ìœ¼ë¡œ íƒ€ê¹ƒì˜ ì„¼í„°ë¥¼ ì„¤ì •
     public static void Recenter(Transform target, Vector3 direction)
     {
         target.forward = target.rotation * direction;
@@ -350,13 +350,13 @@ else
     static Vector3 originScale = Vector3.one * 0.005f;
 #endif
 
-    // ±¤¼± ·¹ÀÌ°¡ ´ê´Â °÷¿¡ Å©·Î½ºÇì¾î¸¦ À§Ä¡½ÃÅ°°í ½Í´Ù.
+    // ê´‘ì„  ë ˆì´ê°€ ë‹¿ëŠ” ê³³ì— í¬ë¡œìŠ¤í—¤ì–´ë¥¼ ìœ„ì¹˜ì‹œí‚¤ê³  ì‹¶ë‹¤.
     public static void DrawCrosshair(Transform crosshair, bool isHand = true, Controller hand = Controller.RTouch)
     {
 
         Ray ray;
 
-        // ÄÁÆ®·Ñ·¯ÀÇ À§Ä¡¿Í ¹æÇâÀ» ÀÌ¿ëÇØ ·¹ÀÌ Á¦ÀÛ
+        // ì»¨íŠ¸ë¡¤ëŸ¬ì˜ ìœ„ì¹˜ì™€ ë°©í–¥ì„ ì´ìš©í•´ ë ˆì´ ì œì‘
         if (isHand)
         {
 #if PC
@@ -374,20 +374,20 @@ else
         }
         else
         {
-            // Ä«¸Ş¶ó¸¦ ±âÁØÀ¸·Î È­¸éÀÇ Á¤Áß¾ÓÀ¸·Î ·¹ÀÌ¸¦ Á¦ÀÛ
+            // ì¹´ë©”ë¼ë¥¼ ê¸°ì¤€ìœ¼ë¡œ í™”ë©´ì˜ ì •ì¤‘ì•™ìœ¼ë¡œ ë ˆì´ë¥¼ ì œì‘
             ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
         }
 
-        // ´«¿¡ ¾È º¸ÀÌ´Â PlaneÀ» ¸¸µç´Ù.
+        // ëˆˆì— ì•ˆ ë³´ì´ëŠ” Planeì„ ë§Œë“ ë‹¤.
         Plane plane = new Plane(Vector3.up, 0);
         float distance = 0;
-        // planeÀ» ÀÌ¿ëÇØ ray¸¦ ½ğ´Ù.
+        // planeì„ ì´ìš©í•´ rayë¥¼ ìœë‹¤.
         if (plane.Raycast(ray, out distance))
         {
-            // ·¹ÀÌÀÇ GetPoint ÇÔ¼ö¸¦ ÀÌ¿ëÇØ Ãæµ¹ ÁöÁ¡ÀÇ À§Ä¡¸¦ °¡Á®¿Â´Ù.
+            // ë ˆì´ì˜ GetPoint í•¨ìˆ˜ë¥¼ ì´ìš©í•´ ì¶©ëŒ ì§€ì ì˜ ìœ„ì¹˜ë¥¼ ê°€ì ¸ì˜¨ë‹¤.
             crosshair.position = ray.GetPoint(distance);
             crosshair.forward = -Camera.main.transform.forward;
-            // Å©·Î½ºÇì¾îÀÇ Å©±â¸¦ ÃÖ¼Ò ±âº» Å©±â¿¡¼­ °Å¸®¿¡ µû¶ó ´õ Ä¿Áöµµ·Ï ÇÑ´Ù.
+            // í¬ë¡œìŠ¤í—¤ì–´ì˜ í¬ê¸°ë¥¼ ìµœì†Œ ê¸°ë³¸ í¬ê¸°ì—ì„œ ê±°ë¦¬ì— ë”°ë¼ ë” ì»¤ì§€ë„ë¡ í•œë‹¤.
             crosshair.localScale = originScale * Mathf.Max(1, distance);
         }
         else
@@ -419,7 +419,7 @@ else
 #endif
 }
 
-// ARAVRInput Å¬·¡½º¿¡¼­ »ç¿ëÇÒ ÄÚ·çÆ¾ °´Ã¼
+// ARAVRInput í´ë˜ìŠ¤ì—ì„œ ì‚¬ìš©í•  ì½”ë£¨í‹´ ê°ì²´
 class CoroutineInstance : MonoBehaviour
 {
     public static CoroutineInstance coroutineInstance = null;

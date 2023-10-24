@@ -166,7 +166,9 @@ public class BuildInstall : MonoBehaviour
                             IsBuild = false;
                             BuildItem();
                             buildV3 = hit.point;
+                            Debug.Log("설치한 포지션은" + buildV3);
                             buildV3.y = buildV3.y + 30;
+
 
                             if (Physics.Raycast(buildV3, Vector3.down, out buildHit, Mathf.Infinity))
                             {
@@ -290,13 +292,16 @@ public class BuildInstall : MonoBehaviour
         // } Z축 최소치 최대치 비충족시 조건에 맞게 설정
 
         // { Y축 최소치 최대치 비충족시 조건에 맞게 설정
-        if (_BuildPoint.y > 1.2f || _BuildPoint.y < 1.2f)
-        {
-            _BuildPoint.y = 1.2f;
-        }
-        else { /*PASS*/ }
+        //if (_BuildPoint.y > 1.2f || _BuildPoint.y < 1.2f)
+        //{
+        //    _BuildPoint.y = 1.2f;
+        //}
+        //else { /*PASS*/ }
         // { Y축 최소치 최대치 비충족시 조건에 맞게 설정
-       
+
+        FixPosition(ref _BuildPoint); // 바뀐 포지션에서 레이를 다시 쏴준다.
+        Debug.Log("체크1");
+
         return _BuildPoint;
 
     }       // BuildVector3Check(Vector3)
@@ -315,6 +320,20 @@ public class BuildInstall : MonoBehaviour
     private void ReturnRect()
     {
         shopPanelTrans.anchoredPosition3D = defualtV3;
+    }
+
+    // 지환 : 다시 한 번 위에서 레이를 쏴줘서 빌드 포지션을 수정시켜주는 메서드
+    private Vector3 FixPosition(ref Vector3 newPosition)
+    {
+            Debug.Log("체크2");
+        newPosition.y += 30f;   // 새로운 포지션의 위에서
+        // 레이를 아래로 쏜다.
+        if (Physics.Raycast(newPosition, Vector3.down, out buildHit, Mathf.Infinity))
+        {
+            newPosition = buildHit.point;
+            Debug.Log("충돌한 포인트는" + newPosition);
+        }
+        return newPosition;
     }
 
 }       // ClassEnd

@@ -129,28 +129,6 @@
                 },
                 {
                     "name": "",
-                    "id": "dbe5335c-8c32-4078-96bf-ea759d206b29",
-                    "path": "<Mouse>/middleButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ShopButton",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "441ba46d-61d9-4167-82ad-b8710a9f8f55",
-                    "path": "<XRController>{LeftHand}/secondaryButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ShopButton",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "7a375c33-a43d-41c9-9d2b-be8f1ab7c149",
                     "path": "<Keyboard>/space",
                     "interactions": "",
@@ -201,6 +179,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Delete",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dbe5335c-8c32-4078-96bf-ea759d206b29",
+                    "path": "<Mouse>/middleButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShopButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "441ba46d-61d9-4167-82ad-b8710a9f8f55",
+                    "path": "<XRController>{RightHand}/gripPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShopButton",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
