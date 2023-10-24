@@ -29,11 +29,13 @@ public class GameManager : MonoBehaviour
     public Slider hpSlider;
     public bool isGameOver;         // 게임오버 상태
     public bool isVR;
+    public float playerHeight;
 
     [Header("Golem")]
     public GameObject Golem;
 
     [Header("Panel")]
+    public GameObject panels;
     public GameObject titlePanel;   // 타이틀 패널
     public GameObject shopPanel;         // 상점
     public GameObject gameOverPanel;// 게임오버 패널
@@ -111,6 +113,7 @@ public class GameManager : MonoBehaviour
 
         // 플레이어를 세팅한다.
         SetPlayer(true);
+        panels.transform.position = new Vector3(0, 29.5f + playerHeight, 0.57f);
 
         DebugPC();  // PC로 플레이 할 경우의 세팅
     }       // Start()

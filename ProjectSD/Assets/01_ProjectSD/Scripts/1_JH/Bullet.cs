@@ -141,9 +141,10 @@ public class Bullet : MonoBehaviour
         Vector3 effectPos = this.transform.position;
         Vector3 vDist = effectPos - GameManager.instance.PC.transform.position; // 이펙트와 플레이어의 거리
         Vector3 vDir = vDist.normalized;    // 이펙트와 플레이어의 방향
-
+        Vector3 damageFXPos = vDir * 10;
+        damageFXPos.y += GameManager.instance.playerHeight;
         GameObject damageFX =
-             Instantiate(damageEffect, vDir * 10, Quaternion.identity);
+             Instantiate(damageEffect, damageFXPos, Quaternion.identity);
         bulletText = damageFX.GetComponent<TextDisolve>().textObj;
         bulletText.text = string.Format("{0}", finalDamage);
         damageFX.GetComponent<TextDisolve>().colorName = "white";
