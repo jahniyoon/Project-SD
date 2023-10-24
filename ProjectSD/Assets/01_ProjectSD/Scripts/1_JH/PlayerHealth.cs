@@ -12,18 +12,23 @@ public class PlayerHealth : MonoBehaviour
     public float startHealth;
     public Image bloodScreen;
     public float bloodScreenValue;
-
+    public float playerHeight;
     public void OnEnable()
     {
         GetData();
         GameManager.instance.SetMaxHealth(startHealth);
         GameManager.instance.SetPlayer(true);
         health = startHealth;
+        this.transform.position = new Vector3(0, playerHeight, 0);
+        GameManager.instance.playerHeight = playerHeight;
     }
     private void Start()
     {
         shooter=GetComponent<PlayerShooter>();
-        playerController = gameObject.GetComponent<CharacterController>();  
+        playerController = gameObject.GetComponent<CharacterController>();
+        Vector3 ccPos = Vector3.zero;
+        ccPos.y = playerHeight * -1f;
+        playerController.center = ccPos;
     }
     private void Update()
     {
@@ -46,6 +51,7 @@ public class PlayerHealth : MonoBehaviour
     public void GetData()
     {
         startHealth = (int)DataManager.GetData(1, "HP");
+        playerHeight = (float)DataManager.GetData(1, "Height");
     }
     public void OnTriggerEnter(Collider other)
     {

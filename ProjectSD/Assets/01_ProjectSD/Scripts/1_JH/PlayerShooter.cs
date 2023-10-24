@@ -31,20 +31,21 @@ public class PlayerShooter : MonoBehaviour
     // 사격 관련
     public void Fire()
     {
-        if(input.rightShoot)
+        if (input.rightShoot)
         {
             rightGun.Shoot();
-            ARAVRInput.PlayVibration(0.06f, 1f, 1f, ARAVRInput.Controller.RTouch);
+#if Oculus
+            ARAVRInput.PlayVibration(0.05f, 500f, 100f, ARAVRInput.Controller.RTouch);
+#endif
         }
         if (input.leftShoot)
         {
             leftGun.Shoot();
-            ARAVRInput.PlayVibration(0.06f, 1f, 1f, ARAVRInput.Controller.LTouch);
-
+#if Oculus
+            ARAVRInput.PlayVibration(0.05f, 500f, 100f, ARAVRInput.Controller.LTouch);
+#endif
         }
     }
-
-
 
 public void ButtonCheck()
     {

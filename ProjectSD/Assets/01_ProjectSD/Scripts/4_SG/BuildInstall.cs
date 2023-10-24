@@ -137,76 +137,81 @@ public class BuildInstall : MonoBehaviour
 
             if (Physics.Raycast(pShooter.rightGun.firePoint.position, pShooter.rightGun.firePoint.forward, out hit, Mathf.Infinity))
             {
-                //Debug.LogFormat("Point -> {0}   PCPos -> {1} ", hit.point, buildParticle.transform.position);
-                //Debug.LogFormat("HitName -> {0}", hit.collider.name);
-                //Debug.LogFormat("HitTag -> {0}", hit.collider.tag);
-                //Debug.LogFormat("layer -> {0}", hit.collider.gameObject.layer);
-                //if (hit.collider.gameObject.layer == terrainLayerMask)
-                if (hit.collider.gameObject.layer == 7)
-                {       // if : Terrain이 맞았을 경우
-                    //Debug.Log("땅바닥인식");
-                    mainModule.startColor = yesBuildColor;
-                    tempTrans = hit.transform.position;
-                    particleTras.position = hit.point;
+                // UI레이어는 예외처리
+                if (hit.collider.gameObject.layer != 5 && hit.collider.gameObject.layer != 8)
+                {
 
-                    if (input.select)
-                    {       // 선텍버튼 누를시
-                        //Debug.LogError("!선택버튼누름!");
-                        IsBuild = false;
-                        BuildItem();
-                        buildV3 = hit.point;
-                        buildV3.y = buildV3.y + 30;
-                        //Debug.LogFormat("디버그가 여긴 찍히나?");
+                    //Debug.LogFormat("Point -> {0}   PCPos -> {1} ", hit.point, buildParticle.transform.position);
+                    //Debug.LogFormat("HitName -> {0}", hit.collider.name);
+                    //Debug.LogFormat("HitTag -> {0}", hit.collider.tag);
+                    //Debug.LogFormat("layer -> {0}", hit.collider.gameObject.layer);
+                    //if (hit.collider.gameObject.layer == terrainLayerMask)
+                    if (hit.collider.gameObject.layer == 7)
+                    {       // if : Terrain이 맞았을 경우
+                            //Debug.Log("땅바닥인식");
+                        mainModule.startColor = yesBuildColor;
+                        tempTrans = hit.transform.position;
+                        particleTras.position = hit.point;
 
-                        if (Physics.Raycast(buildV3, Vector3.down, out buildHit, Mathf.Infinity))
-                        {
-                            if(buildNum == (int)buildItemNum.trap)
-                            {       // 가격차감
-                                GameManager.instance.PlayerGold -= trapPrice;
+                        if (input.select)
+                        {       // 선텍버튼 누를시
+                                //Debug.LogError("!선택버튼누름!");
+                            IsBuild = false;
+                            BuildItem();
+                            buildV3 = hit.point;
+                            buildV3.y = buildV3.y + 30;
+                            //Debug.LogFormat("디버그가 여긴 찍히나?");
+
+                            if (Physics.Raycast(buildV3, Vector3.down, out buildHit, Mathf.Infinity))
+                            {
+                                if (buildNum == (int)buildItemNum.trap)
+                                {       // 가격차감
+                                    GameManager.instance.PlayerGold -= trapPrice;
+                                }
+                                else if (buildNum == (int)buildItemNum.fireBomb)
+                                {       // 가격차감
+                                    GameManager.instance.PlayerGold -= fireBombPrice;
+                                }
+                                buildPoint = buildHit.point;
+                                //Debug.LogFormat("V3 수정전 값 -> {0}", buildPoint);
+                                BuildVector3Check(ref buildPoint);  // 설치 위치 조건체크와 설정
+                                                                    //Debug.LogFormat("V3 수정후 값 -> {0}", buildPoint);
+                                buildClone = Instantiate(trapPrefabs[buildNum - 2], buildPoint, Quaternion.identity);
+                                //Debug.LogError("!정상제작됨?!");
+                                ParticleOff();
                             }
-                            else if(buildNum == (int)buildItemNum.fireBomb)
-                            {       // 가격차감
-                                GameManager.instance.PlayerGold -= fireBombPrice;
-                            }
-                            buildPoint = buildHit.point;
-                            //Debug.LogFormat("V3 수정전 값 -> {0}", buildPoint);
-                            BuildVector3Check(ref buildPoint);  // 설치 위치 조건체크와 설정
-                            //Debug.LogFormat("V3 수정후 값 -> {0}", buildPoint);
-                            buildClone = Instantiate(trapPrefabs[buildNum - 2], buildPoint, Quaternion.identity);
-                            //Debug.LogError("!정상제작됨?!");
-                            ParticleOff();
+                            input.select = false;
                         }
-                        input.select = false;
                     }
-                }
-                else if (hit.collider.gameObject.CompareTag("Boss") || hit.collider.gameObject.CompareTag("Finish"))
-                {
-                    //Debug.Log("보스인식");
-                    mainModule.startColor = noBuildColor;
-                    tempTrans = hit.transform.position;
-                    particleTras.position = hit.point;
-
-                }
-                else if (hit.collider.gameObject.CompareTag("Enemy"))
-                {
-                   //Debug.Log("졸개인식");
-                    mainModule.startColor = noBuildColor;
-                    tempTrans = hit.transform.position;
-                    particleTras.position = hit.point;
-                }
-                else
-                {
-                    // 플레이어 총알이나 보스 총알이면 예외처리
-                    if(hit.collider.gameObject.GetComponent<ProjectileMover>() != null || hit.collider.gameObject.CompareTag("BossBullet"))
+                    else if (hit.collider.gameObject.CompareTag("Boss") || hit.collider.gameObject.CompareTag("Finish"))
                     {
-                        return;
+                        //Debug.Log("보스인식");
+                        mainModule.startColor = noBuildColor;
+                        tempTrans = hit.transform.position;
+                        particleTras.position = hit.point;
+
                     }
-                    //Debug.Log("else 들어옴");
-                    // Debug.LogFormat("Trans = null?  -> {0}", tempTrans == null);
-                    tempTrans = hit.transform.position;
-                    particleTras.position = hit.point;
-                }
-            }       // if : RayCast()
+                    else if (hit.collider.gameObject.CompareTag("Enemy"))
+                    {
+                        //Debug.Log("졸개인식");
+                        mainModule.startColor = noBuildColor;
+                        tempTrans = hit.transform.position;
+                        particleTras.position = hit.point;
+                    }
+                    else
+                    {
+                        // 플레이어 총알이나 보스 총알이면 예외처리
+                        if (hit.collider.gameObject.GetComponent<ProjectileMover>() != null || hit.collider.gameObject.CompareTag("BossBullet"))
+                        {
+                            return;
+                        }
+                        //Debug.Log("else 들어옴");
+                        // Debug.LogFormat("Trans = null?  -> {0}", tempTrans == null);
+                        tempTrans = hit.transform.position;
+                        particleTras.position = hit.point;
+                    }
+                }       // if : RayCast()
+            }   // 예외처리
         }       // RayEnd
 
 

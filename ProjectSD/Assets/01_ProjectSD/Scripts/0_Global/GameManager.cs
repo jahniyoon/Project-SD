@@ -29,15 +29,19 @@ public class GameManager : MonoBehaviour
     public Slider hpSlider;
     public bool isGameOver;         // 게임오버 상태
     public bool isVR;
+    public float playerHeight;
 
     [Header("Golem")]
     public GameObject Golem;
 
     [Header("Panel")]
+    public GameObject panels;
     public GameObject titlePanel;   // 타이틀 패널
     public GameObject shopPanel;         // 상점
     public GameObject gameOverPanel;// 게임오버 패널
     public GameObject gameClearPanel;
+
+    public Slider bossDistance;
 
     [Header("Upgrade")]
     public bool isGunUpgrade;
@@ -47,6 +51,8 @@ public class GameManager : MonoBehaviour
     public bool isPCMODE;   // PC 모드로 테스트 할 경우 (VR 아닐 때)
     public bool isShopTest;
 
+    [Header("Intro")]
+    public IntroControl introControl;
 
 
 
@@ -111,6 +117,9 @@ public class GameManager : MonoBehaviour
 
         // 플레이어를 세팅한다.
         SetPlayer(true);
+        SetBossDistance(100);
+        panels.transform.position = new Vector3(0, 29.5f + playerHeight, 0.57f);
+
 
         DebugPC();  // PC로 플레이 할 경우의 세팅
     }       // Start()
@@ -120,6 +129,9 @@ public class GameManager : MonoBehaviour
     {
         GetTimeGold();      // 일정시간이 된다면 골드를 올려주는 함수
 
+        SetBossSlider();
+
+
         // 게임오버 테스트
         if (Input.GetKeyDown(KeyCode.F1))
         {
@@ -128,7 +140,8 @@ public class GameManager : MonoBehaviour
         // 게임오버 테스트
         if (Input.GetKeyDown(KeyCode.F2))
         {
-            GameStart();
+            //GameStart();
+            StartIntro();
         }
 
     }       // Update()
@@ -189,10 +202,17 @@ public class GameManager : MonoBehaviour
        
     }
 
+    public void StartIntro()
+    {
+        titlePanel.SetActive(false);
+        // 인트로 
+        introControl.PlayIntro();
+    }
+
     public void GameStart()
     {
         Debug.Log("게임 시작");
-        titlePanel.SetActive(false);
+        //titlePanel.SetActive(false);
         shopPanel.SetActive(true);
 
         Golem.GetComponent<Boss>().GameStart();
@@ -247,7 +267,8 @@ public class GameManager : MonoBehaviour
     {
         if (isShopTest)
         {
-            GameStart();
+            //GameStart();
+            StartIntro();
         }
     }
     #endregion
@@ -279,6 +300,24 @@ public class GameManager : MonoBehaviour
         hpSlider.value = newHealth;
     }
 
+    public void SetBossDistance(float newDistance)
+    {
+        bossDistance.maxValue = newDistance;
+        bossDistance.value = newDistance;
+    }
+    public void SetDistance(float newDistance)
+    {
+        bossDistance.value = newDistance;
+    }
+
+    public void SetBossSlider()
+    {
+
+        if (!isGameOver)
+        {
+            SetDistance(Golem.transform.position.z);
+        }
+    }
     #endregion
 
     // Gold관련 CSV를 읽어와서 변수에 해당하는 값을 넣어주는 함수

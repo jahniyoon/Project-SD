@@ -65,7 +65,13 @@ public class ItemButtonInstance : MonoBehaviour
             prefabClone.transform.SetParent(this.transform);
             prefabClone.transform.localScale = buttonSclae;
             rect = prefabClone.GetComponent<RectTransform>();
-            rect.anchoredPosition3D = shopRect.anchoredPosition3D;     // AnchoredPosition3D 로 인스턴트 후 포지션 이상한것을 해결
+
+            Vector3 buttonPos = shopRect.anchoredPosition3D;    // 지환 : 기존 상점 포지션을 가져와서
+            buttonPos.z = 0f;                                   // z는 0으로 바꿔주고
+                                                                // 버튼포지션을 지정
+            rect.anchoredPosition3D = buttonPos;
+
+            //rect.anchoredPosition3D = shopRect.anchoredPosition3D;     // AnchoredPosition3D 로 인스턴트 후 포지션 이상한것을 해결
             rect.rotation = shopRect.rotation;     // AnchoredPosition3D 로 인스턴트 후 포지션 이상한것을 해결
         }
     }

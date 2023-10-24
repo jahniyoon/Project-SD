@@ -110,11 +110,22 @@ public class Weapon : MonoBehaviour
             bullet.transform.GetComponent<Bullet>().isUpgrade = isUpgrade;
             if (isRight)
             {
-                AudioManager.instance.PlaySFX("Fire1");
+                if (!isUpgrade)
+                {
+                    AudioManager.instance.PlaySFX("Fire1");
+                }
+                else
+                    AudioManager.instance.PlaySFX("UpFire1");
+
             }
             else 
             {
-                AudioManager.instance.PlaySFX("Fire2");
+                if (!isUpgrade)
+                {
+                    AudioManager.instance.PlaySFX("Fire2");
+                }
+                else
+                    AudioManager.instance.PlaySFX("UpFire2");
             }
             Destroy(bullet, bullet.transform.GetComponent<Bullet>().bulletLifeTime);
         }

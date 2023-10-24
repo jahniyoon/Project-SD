@@ -137,6 +137,8 @@ PlayerSettings:
   bundleVersion: 0.1
   preloadedAssets:
   - {fileID: 11400000, guid: b398bc45416f017408dc71138bde771e, type: 2}
+  - {fileID: -7888990489376497332, guid: 5eb98af763a72b84aa0a02335aef409a, type: 2}
+  - {fileID: 11400000, guid: 27d9c5da8baa5c449bab43875d4f9a2f, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -811,7 +813,7 @@ PlayerSettings:
   webGLDecompressionFallback: 0
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Standalone: PC
+    Standalone: Oculus
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
