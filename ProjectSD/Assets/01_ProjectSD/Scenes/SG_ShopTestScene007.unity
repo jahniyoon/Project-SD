@@ -1145,10 +1145,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57607d5ee6c70ce41ba5ccc79a0066c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  critical: 1.5
-  weakPointScale: 1.5
-  disableTime: 5
   upgradeTime: 5
+  critical: 1.5
+  disableTime: 5
+  weakPointScale: 1.5
 --- !u!1 &211717115
 GameObject:
   m_ObjectHideFlags: 0
@@ -1860,10 +1860,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57607d5ee6c70ce41ba5ccc79a0066c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  critical: 1.5
-  weakPointScale: 1.5
-  disableTime: 5
   upgradeTime: 5
+  critical: 1.5
+  disableTime: 5
+  weakPointScale: 1.5
 --- !u!1 &363751266
 GameObject:
   m_ObjectHideFlags: 0
@@ -2278,10 +2278,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57607d5ee6c70ce41ba5ccc79a0066c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  critical: 1.5
-  weakPointScale: 1.5
-  disableTime: 5
   upgradeTime: 5
+  critical: 1.5
+  disableTime: 5
+  weakPointScale: 1.5
 --- !u!1 &474010107
 GameObject:
   m_ObjectHideFlags: 0
@@ -4410,6 +4410,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7885626275212194702, guid: 358462ee285e64740adaeca6f4b1658a, type: 3}
   m_PrefabInstance: {fileID: 890555257}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &890555260 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7885626275108783665, guid: 358462ee285e64740adaeca6f4b1658a, type: 3}
+  m_PrefabInstance: {fileID: 890555257}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &898199166 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2532735194569883898, guid: 9e79f0d07765b0240943ad7ded0e4e0c, type: 3}
@@ -4739,10 +4750,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57607d5ee6c70ce41ba5ccc79a0066c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  critical: 1.5
-  weakPointScale: 1.5
-  disableTime: 5
   upgradeTime: 5
+  critical: 1.5
+  disableTime: 5
+  weakPointScale: 1.5
 --- !u!1 &1007366601
 GameObject:
   m_ObjectHideFlags: 0
@@ -4875,6 +4886,7 @@ MonoBehaviour:
   gameOverPanel: {fileID: 1486348962}
   gameClearPanel: {fileID: 1260219968}
   bossDistance: {fileID: 251389643}
+  distanceText: {fileID: 890555260}
   isGunUpgrade: 0
   isWeakpointUpgrade: 0
   isPCMODE: 1
@@ -5188,10 +5200,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57607d5ee6c70ce41ba5ccc79a0066c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  critical: 1.5
-  weakPointScale: 1.5
-  disableTime: 5
   upgradeTime: 5
+  critical: 1.5
+  disableTime: 5
+  weakPointScale: 1.5
 --- !u!114 &1065078614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5204,10 +5216,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57607d5ee6c70ce41ba5ccc79a0066c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  critical: 1.5
-  weakPointScale: 1.5
-  disableTime: 5
   upgradeTime: 5
+  critical: 1.5
+  disableTime: 5
+  weakPointScale: 1.5
 --- !u!114 &1065078615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5220,10 +5232,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57607d5ee6c70ce41ba5ccc79a0066c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  critical: 1.5
-  weakPointScale: 1.5
-  disableTime: 5
   upgradeTime: 5
+  critical: 1.5
+  disableTime: 5
+  weakPointScale: 1.5
 --- !u!114 &1065078616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5236,10 +5248,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57607d5ee6c70ce41ba5ccc79a0066c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  critical: 1.5
-  weakPointScale: 1.5
-  disableTime: 5
   upgradeTime: 5
+  critical: 1.5
+  disableTime: 5
+  weakPointScale: 1.5
 --- !u!114 &1065078617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5252,10 +5264,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57607d5ee6c70ce41ba5ccc79a0066c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  critical: 1.5
-  weakPointScale: 1.5
-  disableTime: 5
   upgradeTime: 5
+  critical: 1.5
+  disableTime: 5
+  weakPointScale: 1.5
 --- !u!1 &1065945174
 GameObject:
   m_ObjectHideFlags: 0
@@ -6624,10 +6636,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57607d5ee6c70ce41ba5ccc79a0066c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  critical: 1.5
-  weakPointScale: 1.5
-  disableTime: 5
   upgradeTime: 5
+  critical: 1.5
+  disableTime: 5
+  weakPointScale: 1.5
 --- !u!1 &1341809325
 GameObject:
   m_ObjectHideFlags: 0
@@ -7497,6 +7509,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: e70eb034c8ae4fe42b00d809716998e4, type: 3}
   musicSource: {fileID: 1392351129}
   sfxSource: {fileID: 1392351129}
+  loopSounds: []
 --- !u!4 &1392351131
 Transform:
   m_ObjectHideFlags: 0
@@ -9708,10 +9721,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57607d5ee6c70ce41ba5ccc79a0066c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  critical: 1.5
-  weakPointScale: 1.5
-  disableTime: 5
   upgradeTime: 5
+  critical: 1.5
+  disableTime: 5
+  weakPointScale: 1.5
 --- !u!1 &2016920508
 GameObject:
   m_ObjectHideFlags: 0
