@@ -38,7 +38,12 @@ public class PlayerHealth : MonoBehaviour
     {
         health -= damage;
         bloodScreenValue += 80;
-        if(bloodScreenValue >= 500)
+
+        OVRInput.SetControllerVibration(1f, 1f, OVRInput.Controller.LTouch);
+        OVRInput.SetControllerVibration(1f, 1f, OVRInput.Controller.RTouch);
+
+
+        if (bloodScreenValue >= 500)
         {
             bloodScreenValue = 500;
         }

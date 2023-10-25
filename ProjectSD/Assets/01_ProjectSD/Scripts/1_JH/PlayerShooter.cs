@@ -35,8 +35,8 @@ public class PlayerShooter : MonoBehaviour
         {
             rightGun.Shoot();
 #if Oculus
-            ARAVRInput.PlayVibration(0.1f, 500f, 100f, ARAVRInput.Controller.RTouch);
-            //OVRInput.SetControllerVibration(1f, 1f, OVRInput.Controller.RTouch);
+            //ARAVRInput.PlayVibration(0.1f, 500f, 100f, ARAVRInput.Controller.RTouch);
+            OVRInput.SetControllerVibration(1f, 1f, OVRInput.Controller.RTouch);
 
 #endif
         }
@@ -44,7 +44,9 @@ public class PlayerShooter : MonoBehaviour
         {
             leftGun.Shoot();
 #if Oculus
-            ARAVRInput.PlayVibration(0.1f, 500f, 100f, ARAVRInput.Controller.LTouch);
+            //ARAVRInput.PlayVibration(0.1f, 500f, 100f, ARAVRInput.Controller.LTouch);
+            OVRInput.SetControllerVibration(1f, 1f, OVRInput.Controller.LTouch);
+
 #endif
         }
     }
