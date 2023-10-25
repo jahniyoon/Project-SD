@@ -107,7 +107,7 @@ public class FireFX : MonoBehaviour
 
         isCoroutine = true;
         bossComponent.OnDamage(damage);
-
+        bossComponent.DamageEffect(damage);
         yield return new WaitForSeconds(damageDelay);
         isCoroutine = false;
     }

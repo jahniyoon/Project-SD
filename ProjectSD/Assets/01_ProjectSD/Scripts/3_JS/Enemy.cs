@@ -142,8 +142,8 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    // 슬로우 디버프를 주는 함수
-    // t만큼 슬로우를 지속한다.
+    // 스턴 디버프를 주는 함수
+    // t만큼 스턴을 지속한다.
     public void OnStun(float t)
     {
         // enemyState가 스턴 상태가 아닐 경우
@@ -161,7 +161,6 @@ public class Enemy : MonoBehaviour
             // 일정 시간 후에 스턴 해제
             StartCoroutine(DisableStun(t));
         }
-
     }
 
     // 불 장판에 닿았을 경우 처리하는 함수
