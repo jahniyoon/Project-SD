@@ -1,13 +1,16 @@
+using Google.GData.Client;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Reflection;
 using System.Runtime.ConstrainedExecution;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using static Enemy;
 using static OVRPlugin;
 
 
@@ -43,14 +46,20 @@ public class Boss : MonoBehaviour
 
     public float attackDist = 1.0f; // 공격 사정거리
 
+    private GameObject stunParticle;
 
+
+    [Header("데미지 이펙트")]
+    public GameObject damageEffect;
+    private TMP_Text bulletText;
 
     public enum State
     {
         IDLE,
         TRACE,
         ATTACK,
-        DIE
+        DIE,
+        STUN
     }
 
     public State state;
@@ -78,7 +87,6 @@ public class Boss : MonoBehaviour
     void Start()
     {
         GetData();
-
     }
 
     public void GameStart()
@@ -283,7 +291,7 @@ public class Boss : MonoBehaviour
 
     IEnumerator DamageColor()
     {
-        mesh.materials[0].color = Color.yellow;
+        mesh.materials[0].color = Color.red;
         //mesh.GetComponent<MeshRenderer>().material.color = Color.red;
         yield return new WaitForSeconds(0.25f);
         mesh.materials[0].color = Color.white;
@@ -329,6 +337,7 @@ public class Boss : MonoBehaviour
         if(other.CompareTag("Fire") && myCoroutine == default)
         {
             myCoroutine = StartCoroutine(Slow());
+
         }
     }
 
@@ -338,6 +347,8 @@ public class Boss : MonoBehaviour
         {
             Debug.Log("Call SlowCoroutine");
             myCoroutine = StartCoroutine(Slow());
+            StartCoroutine("DamageColor");
+
         }
     }
 
@@ -348,20 +359,93 @@ public class Boss : MonoBehaviour
         
         // 스피드 다운 상태
         isSpeedDown = true;
-        speed *= (1 - speedReduce);
+        //speed *= (1 - speedReduce);
         Debug.Log("Boss speed: " + speed);
+        agent.speed *= (1- speedReduce);
 
         // 대기
         yield return new WaitForSeconds(1.0f);
 
         // 스피드 복구
-        speed /= (1 - speedReduce); // 이전 속도로 되돌리기 위해 나누기 연산을 사용합니다.
+        //speed /= (1 - speedReduce); // 이전 속도로 되돌리기 위해 나누기 연산을 사용합니다.
         Debug.Log("Boss speed: " + speed);
+        agent.speed = speed;
+
         isSpeedDown = false;
 
         myCoroutine = null;
     }
 
+    // 스턴 디버프를 주는 함수
+    // t만큼 스턴을 지속한다.
+    public void OnStun(float t)
+    {
+        Debug.Log("스턴이 켜졌다.");
+        // enemyState가 스턴 상태가 아닐 경우
+        if (state != State.STUN)
+        {
+            // 스턴 상태로 변경
+            state = State.STUN;
 
+            // 에이전트 네비게이션 정지
+            agent.isStopped = true;
+
+            // 애니메이션 idle로 변경
+            anim.CrossFade("idle");
+
+            // 스턴 파티클 생성 함수 호출
+            CreateStunParticle();
+
+            // 일정 시간 후에 스턴 해제
+            StartCoroutine(DisableStun(t));
+        }
+    }
+
+    // 스턴 파티클을 생성하는 함수
+    private void CreateStunParticle()
+    {
+        // 스턴 파티클 인스턴스 생성
+        stunParticle = Instantiate(
+            Resources.Load<GameObject>("Prefabs/Stun_1"), gameObject.transform);
+
+    }
+
+    // 일정 시간 후에 스턴 디버프를 해제하는 코루틴 함수
+    private IEnumerator DisableStun(float t)
+    {
+        // 대기
+        yield return new WaitForSeconds(t);
+
+        // 상태 변경
+        state = State.STUN;
+
+        // 에이전트 네비게이션 정지 해제
+        agent.isStopped = false;
+
+        // 애니메이션 Walk로 변경
+        anim.CrossFade("walk");
+        anim["walk"].speed = 0.15f;
+
+        // 스턴 파티클 삭제
+        Destroy(stunParticle);
+    }
+
+    public void DamageEffect(float damage)
+    {
+        Vector3 effectPos = this.transform.position;
+        Vector3 vDist = effectPos - GameManager.instance.PC.transform.position; // 이펙트와 플레이어의 거리
+        Vector3 vDir = vDist.normalized;    // 이펙트와 플레이어의 방향
+        Vector3 damageFXPos = vDir * 10;
+        damageFXPos.y += GameManager.instance.playerHeight;
+
+        GameObject damageFX =
+             Instantiate(damageEffect, damageFXPos, Quaternion.identity);
+        bulletText = damageFX.GetComponent<TextDisolve>().textObj;
+        bulletText.text = string.Format("{0}", damage);
+        damageFX.GetComponent<TextDisolve>().colorName = "red";
+        damageFX.transform.forward = Camera.main.transform.forward;
+
+
+    }
 
 }

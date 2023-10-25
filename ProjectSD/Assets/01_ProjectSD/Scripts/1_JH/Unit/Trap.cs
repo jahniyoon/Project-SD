@@ -20,6 +20,11 @@ public class Trap : MonoBehaviour
         {
             other.gameObject.GetComponent<Enemy>().OnStun(stunTime);    // 스턴을 켠다.
         }
+
+        if (other.CompareTag("Finish"))    // 보스 태그를 만날 경우
+        {
+            other.gameObject.GetComponentInParent<Boss>().OnStun(stunTime);    // 스턴을 켠다.
+        }
     }
 
 
