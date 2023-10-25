@@ -19,13 +19,17 @@ public class ShopItemButton : MonoBehaviour
     public int price;               // 아이템의 가격
     public float coolTime;            // 구매의 쿨타임
     public string description;      // 아이템 설명
+    public float unitTime;          // 유닛의 지속시간
 
+    private bool isUnitTimeGet = false;     // 유닛이라면 유닛의 지속시간을 얻어왔는지 체크할 bool 변수
     [Header("CSV_ITEM_ID")]
 
     public int upgradeGunID;        // 가독성을위해 CSV아이템 ID 매핑
     public int upgradeWaekPointID;
     public int trapID;
+    public int trapUnitTimeID;
     public int fireBombID;
+    public int fireUnitTimeID;
 
     //[Header("TEST_Parameter")]
     private BuildInstall buildInstall;      // 설치형 아이템 구매시 저 스크립트에서 Ray를 쏘며 설치할예정
@@ -178,7 +182,9 @@ public class ShopItemButton : MonoBehaviour
         upgradeGunID = 8010;
         upgradeWaekPointID = 8020;
         trapID = 8030;
+        trapUnitTimeID = 7030;
         fireBombID = 8040;
+        fireUnitTimeID = 7040;
 
     }
 
@@ -216,6 +222,8 @@ public class ShopItemButton : MonoBehaviour
             price = (int)DataManager.GetData(trapID, "Gold");
             coolTime = (int)DataManager.GetData(trapID, "Time");
             description = (string)DataManager.GetData(trapID, "Description");
+            unitTime = (float)DataManager.GetData(trapUnitTimeID, "Value1");
+            isUnitTimeGet = true;
         }
 
         else if (buttonNum == (int)itemTag.FireBomb)        // 불폭탄
@@ -225,6 +233,8 @@ public class ShopItemButton : MonoBehaviour
             price = (int)DataManager.GetData(fireBombID, "Gold");
             coolTime = (int)DataManager.GetData(fireBombID, "Time");
             description = (string)DataManager.GetData(fireBombID, "Description");
+            unitTime = (float)DataManager.GetData(7040, "ActTime"); // 화염병 지속시간
+            isUnitTimeGet = true;
         }
 
     }       // CSVReadInIt()
@@ -333,7 +343,16 @@ public class ShopItemButton : MonoBehaviour
 
     public void UpdateItemCoolTime()        // 쿨타임 텍스트 업데이트
     {
-        cooltimeText.text = coolTime.ToString();
+        if (isUnitTimeGet == false)
+        {
+            // 유닛의 지속시간을 얻어오지 않은 경우 유닛의 쿨타임 표기
+            cooltimeText.text = coolTime.ToString();
+        }
+        else
+        {
+            // 유닛의 지속시간을 얻어온 경우 유닛의 지속시간 표기
+            cooltimeText.text = unitTime.ToString();
+        }
     }
 
     public void UpdatePriceText()       // 가격 텍스트 업데이트
@@ -403,7 +422,7 @@ public class ShopItemButton : MonoBehaviour
 
     public void ColorController()       // isRayHit의 bool값을 따라서 색을 변경해줄 함수
     {
-        if(NowItemValue == maxItemValue)
+        if (NowItemValue == maxItemValue)
         {
             ChangeNoMoneyColor();
         }
