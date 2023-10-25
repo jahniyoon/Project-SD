@@ -23,10 +23,10 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1
+  m_AmbientIntensity: 0.71
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: a1ac7a7f04e997646becb5d9e2b3538f, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: cf09bdd74268f184498d51e302193dbf, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.100646876, g: 0.07367326, b: 0.13477811, a: 1}
+  m_IndirectSpecularColor: {r: 0.09703885, g: 0.046296515, b: 0.0460646, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1745,7 +1745,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.6698113, g: 0.43916875, b: 0.6616632, a: 1}
+  m_Color: {r: 0.764151, g: 0.36405307, b: 0.36405307, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -6518,42 +6518,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6450389267641417701}
     m_Modifications:
-    - target: {fileID: 1453410759138169119, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1453745763129414733, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1453819972427843419, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1453924220895796261, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1453940252931016847, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454192549138363779, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454218090637921591, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454339385239566877, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454410587846186187, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4276921355692297879, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -6598,29 +6562,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4276921355692481297, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4276921355692550885, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
       propertyPath: m_Name
       value: WeakPoint (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4276921355692550885, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4276921355692560061, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4276921355692591511, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5505237303038233551, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
@@ -6712,7 +6656,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1213608868523631448}
   - component: {fileID: 2017186333274593157}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: WeakPoint_Head
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -6729,7 +6673,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1213608868861336761}
   - component: {fileID: 263778470370317015}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: WeakPoint_R Finger
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -6790,7 +6734,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1213608868966146694}
   - component: {fileID: 1213608868966146695}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: WeakPoint_Spine1
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -6807,7 +6751,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1213608868976774605}
   - component: {fileID: 1714784005263146051}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: WeakPoint_L Thigh
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -6854,7 +6798,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1213608869283012824}
   - component: {fileID: 844666780834852865}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: WeakPoint_Hand
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -6871,7 +6815,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1213608869353959083}
   - component: {fileID: 5175715467077876676}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: WeakPoint_L Calf
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -6916,7 +6860,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1213608869583535605}
   - component: {fileID: 1213608869583535602}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: WeakPoint_R Foot
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -6963,7 +6907,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1213608869604150802}
   - component: {fileID: 2998219375167122185}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: WeakPoint_UpperArm
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -6981,7 +6925,7 @@ GameObject:
   - component: {fileID: 1213608869858804813}
   - component: {fileID: 1213608869858804814}
   - component: {fileID: 1308431944926883525}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: GameOverBox
   m_TagString: Finish
   m_Icon: {fileID: 0}
@@ -7041,7 +6985,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1213608869944366584}
   - component: {fileID: 3974390589139840424}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: WeakPoint_R Hand
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -7086,7 +7030,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1213608870010557862}
   - component: {fileID: 1213608870010557863}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: WeakPoint_Neck
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -7103,7 +7047,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1213608870028854391}
   - component: {fileID: 648502920001933261}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: WeakPoint_RupperArm
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -7148,7 +7092,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1213608870118602065}
   - component: {fileID: 1213608870118602062}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: WeakPoint_L Foot
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -7195,7 +7139,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1213608870141304010}
   - component: {fileID: 1420797365760635458}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: WeakPoint_R Calf
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -7227,7 +7171,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1213608870541731092}
   - component: {fileID: 1908862861003269290}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: WeakPoint_R Thigh
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -7241,42 +7185,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6450389267641463855}
     m_Modifications:
-    - target: {fileID: 1453410759138169119, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1453745763129414733, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1453819972427843419, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1453924220895796261, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1453940252931016847, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454192549138363779, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454218090637921591, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454339385239566877, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454410587846186187, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4276921355692297879, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -7321,29 +7229,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4276921355692481297, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4276921355692550885, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
       propertyPath: m_Name
       value: WeakPoint
-      objectReference: {fileID: 0}
-    - target: {fileID: 4276921355692550885, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4276921355692560061, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4276921355692591511, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5505237303038233551, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
@@ -8213,42 +8101,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6450389267641417701}
     m_Modifications:
-    - target: {fileID: 1453410759138169119, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1453745763129414733, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1453819972427843419, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1453924220895796261, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1453940252931016847, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454192549138363779, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454218090637921591, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454339385239566877, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454410587846186187, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4276921355692297879, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -8293,29 +8145,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4276921355692481297, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4276921355692550885, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
       propertyPath: m_Name
       value: WeakPoint (6)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4276921355692550885, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4276921355692560061, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4276921355692591511, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5505237303038233551, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
@@ -8366,42 +8198,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6450389267641499767}
     m_Modifications:
-    - target: {fileID: 1453410759138169119, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1453745763129414733, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1453819972427843419, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1453924220895796261, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1453940252931016847, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454192549138363779, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454218090637921591, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454339385239566877, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454410587846186187, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4276921355692297879, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -8446,29 +8242,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4276921355692481297, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4276921355692550885, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
       propertyPath: m_Name
       value: WeakPoint (8)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4276921355692550885, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4276921355692560061, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4276921355692591511, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5505237303038233551, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
@@ -8631,7 +8407,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8284798814785074767}
   - component: {fileID: 3486627324016600466}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: WeakPoint_Finger11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8682,42 +8458,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6450389267641447255}
     m_Modifications:
-    - target: {fileID: 1453410759138169119, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1453745763129414733, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1453819972427843419, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1453924220895796261, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1453940252931016847, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454192549138363779, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454218090637921591, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454339385239566877, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454410587846186187, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4276921355692297879, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -8762,29 +8502,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4276921355692481297, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4276921355692550885, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
       propertyPath: m_Name
       value: WeakPoint (5)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4276921355692550885, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4276921355692560061, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4276921355692591511, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5505237303038233551, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
@@ -9541,7 +9261,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6450389267641417701}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: GOLEM_ Head
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -9557,7 +9277,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6450389267641455799}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: GOLEM_ Spine1
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -9573,7 +9293,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6450389267641500757}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: GOLEM_ L Finger01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9591,7 +9311,7 @@ GameObject:
   - component: {fileID: 6450389267641513913}
   - component: {fileID: 8850574098718904540}
   - component: {fileID: 290153477}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: GOLEM_ L Foot
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -9607,7 +9327,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6450389267641415019}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: GOLEM_ L Forearm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9623,7 +9343,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6450389267641525083}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: GOLEM_ R Finger01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9639,7 +9359,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6450389267641403121}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: GOLEM_ R Finger11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9674,7 +9394,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6450389267641436273}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: GOLEM_ L Finger11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9690,7 +9410,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6450389267641413191}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: GOLEM_ L Thigh
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -9706,7 +9426,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6450389267641439059}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: GOLEM_ L Clavicle
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -9722,7 +9442,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6450389267641454125}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: GOLEM_ L UpperArm
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -9738,7 +9458,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6450389267641402401}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: GOLEM_ Neck
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -9754,7 +9474,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6450389267641457765}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: GOLEM_ R Clavicle
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -9770,7 +9490,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6450389267641499767}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: GOLEM_ L Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9803,7 +9523,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6450389267641418173}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: GOLEM_ R Finger0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9819,7 +9539,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6450389267641509021}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: GOLEM_ Pelvis
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -9835,7 +9555,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6450389267641405459}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: GOLEM_ L Finger21
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9851,7 +9571,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6450389267641421001}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: GOLEM_ L Finger0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9867,7 +9587,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6450389267641498251}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: GOLEM_ R Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9883,7 +9603,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6450389267641524481}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: GOLEM_
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -9899,7 +9619,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6450389267641520205}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: GOLEM_ L Finger1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9915,7 +9635,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6450389267641430137}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: GOLEM_ R Finger1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9931,7 +9651,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6450389267641509577}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: GOLEM_ L Finger2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9947,7 +9667,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6450389267641408831}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: GOLEM_ R Finger2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9963,7 +9683,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6450389267641405919}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: GOLEM_ R Finger21
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9979,7 +9699,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6450389267641418361}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: GOLEM_ R Forearm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9995,7 +9715,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6450389267641463855}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: GOLEM_ R UpperArm
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -10013,7 +9733,7 @@ GameObject:
   - component: {fileID: 6450389267641455253}
   - component: {fileID: 2292976186115566032}
   - component: {fileID: 290153476}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: GOLEM_ R Foot
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -10029,7 +9749,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6450389267641430369}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: GOLEM_ Spine
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -10045,7 +9765,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6450389267641419905}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: GOLEM_ R Calf
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -10061,7 +9781,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6450389267641447255}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: GOLEM_ R Thigh
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -10077,7 +9797,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6450389267641438353}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: GOLEM_ Queue de cheval 1
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -10093,7 +9813,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6450389267641513249}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: GOLEM_ L Calf
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -10110,7 +9830,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6450389268444669767}
   - component: {fileID: 6450389268444669766}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: BulletPort
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10203,42 +9923,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3237914399107343953}
     m_Modifications:
-    - target: {fileID: 1453410759138169119, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1453745763129414733, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1453819972427843419, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1453924220895796261, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1453940252931016847, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454192549138363779, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454218090637921591, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454339385239566877, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454410587846186187, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4276921355692297879, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -10283,29 +9967,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4276921355692481297, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4276921355692550885, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
       propertyPath: m_Name
       value: WeakPoint (4)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4276921355692550885, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4276921355692560061, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4276921355692591511, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5505237303038233551, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
@@ -10340,42 +10004,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6450389267641455799}
     m_Modifications:
-    - target: {fileID: 1453410759138169119, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1453745763129414733, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1453819972427843419, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1453924220895796261, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1453940252931016847, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454192549138363779, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454218090637921591, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454339385239566877, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454410587846186187, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4276921355692297879, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -10420,29 +10048,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4276921355692481297, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4276921355692550885, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
       propertyPath: m_Name
       value: WeakPoint (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4276921355692550885, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4276921355692560061, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4276921355692591511, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5505237303038233551, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
@@ -10474,7 +10082,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3237914399107343953}
   - component: {fileID: 7441991712277724848}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: WeakPoint_Spine1 (1)
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -10503,42 +10111,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1213608868966146694}
     m_Modifications:
-    - target: {fileID: 1453410759138169119, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1453745763129414733, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1453819972427843419, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1453924220895796261, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1453940252931016847, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454192549138363779, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454218090637921591, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454339385239566877, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454410587846186187, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4276921355692297879, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -10583,29 +10155,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4276921355692481297, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4276921355692550885, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
       propertyPath: m_Name
       value: WeakPoint (7)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4276921355692550885, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4276921355692560061, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4276921355692591511, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5505237303038233551, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
@@ -10643,42 +10195,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6450389267641413191}
     m_Modifications:
-    - target: {fileID: 1453410759138169119, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1453745763129414733, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1453819972427843419, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1453924220895796261, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1453940252931016847, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454192549138363779, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454218090637921591, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454339385239566877, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454410587846186187, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4276921355692297879, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -10723,29 +10239,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4276921355692481297, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4276921355692550885, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
       propertyPath: m_Name
       value: WeakPoint (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4276921355692550885, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4276921355692560061, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4276921355692591511, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5505237303038233551, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
@@ -10779,42 +10275,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6450389267641439059}
     m_Modifications:
-    - target: {fileID: 1453410759138169119, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1453745763129414733, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1453819972427843419, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1453924220895796261, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1453940252931016847, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454192549138363779, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454218090637921591, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454339385239566877, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454410587846186187, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4276921355692297879, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -10859,29 +10319,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4276921355692481297, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4276921355692550885, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
       propertyPath: m_Name
       value: WeakPoint (9)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4276921355692550885, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4276921355692560061, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4276921355692591511, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5505237303038233551, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
-      propertyPath: m_Layer
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c78fc184eef00d14b9a54d0f760f50cd, type: 3}
