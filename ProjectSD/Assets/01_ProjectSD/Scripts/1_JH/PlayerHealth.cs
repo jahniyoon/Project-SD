@@ -60,10 +60,10 @@ public class PlayerHealth : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Finish"))
-        {
-            GameManager.instance.GameOver();
-        }
+        //if(other.CompareTag("Finish"))
+        //{
+        //    GameManager.instance.GameOver();
+        //}
     }
 
     // 스크린 데미지 업데이트

@@ -165,9 +165,9 @@ public class Boss : MonoBehaviour
             }
             else if (hp <= 0)
             {
-                state = State.DIE;
-                GameManager.instance.GameClear();
-                StopAllCoroutines();
+                //state = State.DIE;
+                //GameManager.instance.GameClear();
+                //StopAllCoroutines();
             }
 
 
@@ -227,10 +227,10 @@ public class Boss : MonoBehaviour
 
                 //사망
                 case State.DIE:
-                    isDie = true;
-                    //추적 중지
-                    agent.isStopped = true;
-                    anim.CrossFade("death", 0.25f);
+                    //isDie = true;
+                    ////추적 중지
+                    //agent.isStopped = true;
+                    //anim.CrossFade("death", 0.25f);
 
                     //GameManager.instance.GameOver();
                     //사망 애니메이션 실행
@@ -284,6 +284,17 @@ public class Boss : MonoBehaviour
         SetHealth(hp);
         StartCoroutine("DamageColor");
 
+        if (hp <= 0)
+        {
+            isDie = true;
+            state = State.DIE;
+            //추적 중지
+            agent.isStopped = true;
+            anim.CrossFade("death", 0.25f);
+            GameManager.instance.GameClear();
+            StopAllCoroutines();
+
+        }
     }
 
 

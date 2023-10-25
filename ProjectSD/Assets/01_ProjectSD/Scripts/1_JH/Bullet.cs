@@ -152,7 +152,9 @@ public class Bullet : MonoBehaviour
         // 약점을 맞췄을 경우
         if (tag == "WeakPoint")
         {
-            bulletText.text = string.Format("{0}", finalDamage * 1.5f);
+            float critical = (float)DataManager.GetData(3001, "WeakpointRate");
+
+            bulletText.text = string.Format("{0}", finalDamage * critical);
             damageFX.GetComponent<TextDisolve>().colorName = "yellow";
         }
         // 크리티컬일 경우

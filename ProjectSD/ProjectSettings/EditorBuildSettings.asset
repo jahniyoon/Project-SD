@@ -23,7 +23,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/01_ProjectSD/Scenes/JS_TestMain5.unity
     guid: 1a67de95e6e7cfa44aafca6eca425dd7
-  - enabled: 1
+  - enabled: 0
     path: Assets/01_ProjectSD/Scenes/SG_ShopTestScene007.unity
     guid: 1e0c3692323d15449bbe4527218b8cfa
   m_configObjects:

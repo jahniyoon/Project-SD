@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
@@ -327,8 +328,14 @@ public class GameManager : MonoBehaviour
 
         if (!isGameOver)
         {
-            SetDistance(Golem.transform.position.z);
-            distanceText.text = string.Format("{0}m", Mathf.FloorToInt(Golem.transform.position.z));
+            SetDistance(Golem.transform.position.z-10f);
+            int distance = Mathf.FloorToInt(Golem.transform.position.z - 10f);
+            distanceText.text = string.Format("{0}m", distance);
+
+            if(distance <= 0)
+            {
+                GameOver();
+            }
         }
     }
     #endregion
