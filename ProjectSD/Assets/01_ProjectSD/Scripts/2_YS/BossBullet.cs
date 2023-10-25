@@ -81,10 +81,15 @@ public class BossBullet : MonoBehaviour
         if (other.tag.Equals("Player"))
         {
             other.GetComponent<PlayerHealth>().OnDamage(damage);
+
             AudioManager.instance.PlaySFX("Boss_Hit");
             Instantiate(meteor, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
+
+
+        
+
     }
 
     // 보스 총알이 데미지를 입는 함수
@@ -97,7 +102,7 @@ public class BossBullet : MonoBehaviour
         if (hp <= 0)
         {
             Instantiate(meteor, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
     }
 
