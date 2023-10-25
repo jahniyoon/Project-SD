@@ -101,8 +101,8 @@ public class Boss : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.speed = speed;
 
-        anim.CrossFade("walk");
-        anim["walk"].speed = 0.15f;
+        anim.CrossFade("GolemWalk");
+        anim["GolemWalk"].speed = 0.15f;
 
         StartCoroutine(CheckMonsterState());
 
@@ -159,7 +159,7 @@ public class Boss : MonoBehaviour
             {
                 state = State.ATTACK;
             }
-            else if (distance >= traceDist)     //추적 사정거리 외부에서 추적 시작
+            else if (distance >= traceDist && state != State.STUN)     //추적 사정거리 외부에서 추적 시작
             {
                 state = State.TRACE;
             }
@@ -206,8 +206,8 @@ public class Boss : MonoBehaviour
                     agent.SetDestination(target.position);
                     agent.isStopped = false;
 
-                    anim.CrossFade("walk");
-                    anim["walk"].speed = 0.15f;
+                    anim.CrossFade("GolemWalk");
+                    anim["GolemWalk"].speed = 0.15f;
 
                     //AudioManager.instance.PlayLoopSound("walk_Boss");
                     //AudioManager.instance.SoundPitchPlay("walk_Boss", 0.15f);  //낮출수록 소리 늦어짐
@@ -430,7 +430,7 @@ public class Boss : MonoBehaviour
         yield return new WaitForSeconds(t);
 
         // 상태 변경
-        state = State.STUN;
+        state = State.TRACE;
 
         // 에이전트 네비게이션 정지 해제
         agent.isStopped = false;
@@ -438,8 +438,8 @@ public class Boss : MonoBehaviour
         //state = State.TRACE;
 
         // 애니메이션 Walk로 변경
-        anim.CrossFade("walk");
-        anim["walk"].speed = 0.15f;
+        anim.CrossFade("GolemWalk");
+        anim["GolemWalk"].speed = 0.15f;
 
         // 스턴 파티클 삭제
         Destroy(stunParticle);
