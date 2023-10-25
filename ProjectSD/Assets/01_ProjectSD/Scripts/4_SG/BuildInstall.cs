@@ -281,7 +281,7 @@ public class BuildInstall : MonoBehaviour
     private Vector3 BuildVector3Check(ref Vector3 _BuildPoint)
     {
         // { Z축 최소치 최대치 비충족시 조건에 맞게 설정
-        if(_BuildPoint.z < 9.9)
+        if(_BuildPoint.z < 9.9f)
         {
             _BuildPoint.z = 10f;
         }
@@ -291,6 +291,18 @@ public class BuildInstall : MonoBehaviour
         }
         // } Z축 최소치 최대치 비충족시 조건에 맞게 설정
 
+        // { X축 최소치 최대치 비충족시 조건에 맞게 설정
+        if(_BuildPoint.x < -65f)
+        {
+            _BuildPoint.x = -65f;
+        }
+        else if(_BuildPoint.x > 75f)
+        {
+            _BuildPoint.x = 75f;
+        }
+        // } X축 최소치 최대치 비충족시 조건에 맞게 설정
+        Debug.LogFormat("JH검수 전 Pos -> {0}", _BuildPoint);
+        #region LEGACY
         // { Y축 최소치 최대치 비충족시 조건에 맞게 설정
         //if (_BuildPoint.y > 1.2f || _BuildPoint.y < 1.2f)
         //{
@@ -298,10 +310,9 @@ public class BuildInstall : MonoBehaviour
         //}
         //else { /*PASS*/ }
         // { Y축 최소치 최대치 비충족시 조건에 맞게 설정
-
-        FixPosition(ref _BuildPoint); // 바뀐 포지션에서 레이를 다시 쏴준다.
-        Debug.Log("체크1");
-
+        #endregion LEGACY
+        FixPosition(ref _BuildPoint); // 바뀐 포지션에서 레이를 다시 쏴준다.     
+        Debug.LogFormat("JH검수 후 Pos -> {0}", _BuildPoint);
         return _BuildPoint;
 
     }       // BuildVector3Check(Vector3)
@@ -334,6 +345,8 @@ public class BuildInstall : MonoBehaviour
         }
         return newPosition;
     }
+
+
 
 }       // ClassEnd
 
