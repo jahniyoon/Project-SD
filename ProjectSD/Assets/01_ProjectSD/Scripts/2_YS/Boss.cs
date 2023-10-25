@@ -210,7 +210,7 @@ public class Boss : MonoBehaviour
                     anim["walk"].speed = 0.15f;
 
                     //AudioManager.instance.PlayLoopSound("walk_Boss");
-                    //AudioManager.instance.SetSoundPitch("walk_Boss", 0.15f);  //낮출수록 소리 늦어짐
+                    //AudioManager.instance.SoundPitchPlay("walk_Boss", 0.15f);  //낮출수록 소리 늦어짐
 
                     //임의의 시간 후 투사체
                     //StartCoroutine(SkillCounter());
@@ -434,6 +434,8 @@ public class Boss : MonoBehaviour
 
         // 에이전트 네비게이션 정지 해제
         agent.isStopped = false;
+
+        //state = State.TRACE;
 
         // 애니메이션 Walk로 변경
         anim.CrossFade("walk");
