@@ -209,6 +209,8 @@ public class Boss : MonoBehaviour
                     anim.CrossFade("walk");
                     anim["walk"].speed = 0.15f;
 
+                    //AudioManager.instance.PlayLoopSound("walk_Boss");
+                    //AudioManager.instance.SetSoundPitch("walk_Boss", 0.15f);  //낮출수록 소리 늦어짐
 
                     //임의의 시간 후 투사체
                     //StartCoroutine(SkillCounter());
