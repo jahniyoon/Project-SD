@@ -233,10 +233,16 @@ public class EnemySpawn : MonoBehaviour
                 // Minion_Type2에 있는 아이디를 가져옴
                 int id = minionTypes2[index];
 
+                // 포지션 설정
+                Vector3 pos = GetRandomPositionInAreas(point0Min, point0Max, point1Min, point1Max);
+
+                // 포지션 y 값을 레이에 닿은 바닥의 높이로 설정
+                Vector3 rayPos = FixPosition(pos);
+                pos.y = rayPos.y;
+                Debug.Log($"rayPosY[{i}]: {rayPos.y}");
+
                 // Enemy 인스턴스를 생성하는 함수 호출
-                SpawnEnemyInstance(GetResourcesPrefab(id),
-                    GetRandomPositionInAreas(point0Min, point0Max, point1Min, point1Max),
-                    Quaternion.identity, parent);
+                SpawnEnemyInstance(GetResourcesPrefab(id), pos, Quaternion.identity, parent);
             }
         }
     }
@@ -265,5 +271,18 @@ public class EnemySpawn : MonoBehaviour
 
         // 계산된 랜덤 포지션 반환
         return randomPos;
+    }
+
+    // 지환 : 다시 한 번 위에서 레이를 쏴줘서 빌드 포지션을 수정시켜주는 메서드
+    private Vector3 FixPosition(Vector3 newPosition)
+    {
+        RaycastHit hitInfo;
+        newPosition.y += 30f;   // 새로운 포지션의 30 위에서
+        // 레이를 아래로 쏜다. 터레인일 경우,
+        if (Physics.Raycast(newPosition, Vector3.down, out hitInfo, 100, 1 << LayerMask.NameToLayer("Terrain")))
+        {
+            newPosition = hitInfo.point;
+        }
+        return newPosition;
     }
 }
