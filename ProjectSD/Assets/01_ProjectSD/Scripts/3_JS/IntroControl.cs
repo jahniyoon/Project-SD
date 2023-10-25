@@ -13,19 +13,21 @@ public class IntroControl : MonoBehaviour
     public TextMeshProUGUI[] introTexts;
     private string[] dialogues =
     {
-        "평화롭던 어느 날… 세계수를 노리고 거대 골렘이 \n 다가오기 시작했다.",
-        "골렘을 막을 수 있는 이는 단 한 사람.",
-        "그는 바로...",
-        "돌펜스! 돌펜스!",
+        "평화롭던 어느 날…",
+        "세계수를 노리고 거대 골렘이 다가오기 시작했다.",
+        "골렘을 막을 수 있는 유일한 이는 바로.",
+        "“대마법사 돌펜스”",
+        "위대한 대마법사 돌펜스여,", // 여기서 보이스 출력
+        "골렘을 막고 세계를 구하여라!",
         ""
     };
     private float[] delays =
     {
-        4.0f, 7.0f, 4.0f, 4.0f, 2.0f
+        2.0f, 1.0f, 3.0f, 2.5f, 2.5f, 2.0f, 2.0f
     };
     private float[] textDelays =
     {
-        7.0f, 4.0f, 4.0f, 2.0f, 2.0f
+        0.5f, 2.5f, 2.0f, 1.0f, 1.5f, 1.5f, 1.0f
     };
     private int introPhase;
 
@@ -53,19 +55,17 @@ public class IntroControl : MonoBehaviour
 
     private void Update()
     {
-        //if (introPhase == 2)
-        //{
-        //    introPhase = 0;
-
-        //    //// 3.0초간 화면 하얀색으로 변경
-        //    //introScreen.DOColor(Color.white, 3.0f);
-
-        //    // 텍스트 색상 검은색으로 변경
-        //    //introTexts[0].DOColor(Color.white, 0f);
-        //    //introTexts[1].DOColor(Color.black, 0f);
-        //}
-
+        // 보이스 재생
         if (introPhase == 4)
+        {
+            introPhase = 0;
+
+            // 돌펜스 보이스 효과음 재생
+            AudioManager.instance.PlaySFX("Voice");
+        }
+
+        // 인트로 종료
+        if (introPhase == 6)
         {
             introPhase = 0;
 
@@ -105,7 +105,7 @@ public class IntroControl : MonoBehaviour
             for (int j = 0; j < introTexts.Length; j++)
             {
 
-                introTexts[j].text = "";
+                introTexts[j].text = default;
                 // t.Length 범위를 벗어나지 않는 선에서 i+1을 함
                 //Mathf.Clamp(i + 1, 1, t.Length);
                 //Mathf.Min(i + 1, t.Length);
