@@ -162,28 +162,6 @@
                 },
                 {
                     "name": "",
-                    "id": "2cf14b19-29ff-49ce-bb45-a1460eaea8a0",
-                    "path": "<XRController>{RightHand}/secondaryButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Delete",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "468506a2-68c8-4d3a-a1fb-38300823e228",
-                    "path": "<XRController>{LeftHand}/secondaryButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Delete",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "dbe5335c-8c32-4078-96bf-ea759d206b29",
                     "path": "<Mouse>/middleButton",
                     "interactions": "",
@@ -196,7 +174,18 @@
                 {
                     "name": "",
                     "id": "441ba46d-61d9-4167-82ad-b8710a9f8f55",
-                    "path": "<XRController>{RightHand}/gripPressed",
+                    "path": "<OculusTouchController>{LeftHand}/secondaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShopButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "969387c8-c77a-413e-9055-b1e106b4a7e5",
+                    "path": "<OculusTouchController>{RightHand}/secondaryButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

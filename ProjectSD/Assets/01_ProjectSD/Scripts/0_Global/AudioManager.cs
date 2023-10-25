@@ -13,6 +13,9 @@ public class AudioManager : MonoBehaviour
 
     public Sound[] loopSounds;
 
+    public bool canPlay = true;
+    public float delay;
+
     private void Awake()
     {
         if (instance == null)
@@ -58,9 +61,24 @@ public class AudioManager : MonoBehaviour
 
         else
         {
-            sfxSource.PlayOneShot(sound.clip);
+            PlayOneShot(sound);
         }
 
+    }
+    public void PlayOneShot(Sound sound)
+    {
+        if(canPlay)
+        {
+            canPlay = false;
+            sfxSource.PlayOneShot(sound.clip);
+
+            StartCoroutine(ResetSound());
+        }
+    }
+    IEnumerator ResetSound()
+    {
+        yield return new WaitForSeconds(delay);
+        canPlay = true;
     }
 
     public void PlayLoopSound(string name)

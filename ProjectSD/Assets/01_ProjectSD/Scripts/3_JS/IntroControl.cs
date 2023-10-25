@@ -13,19 +13,26 @@ public class IntroControl : MonoBehaviour
     public TextMeshProUGUI[] introTexts;
     private string[] dialogues =
     {
-        "평화롭던 어느 날… 세계수를 노리고 거대 골렘이 \n 다가오기 시작했다.",
-        "골렘을 막을 수 있는 이는 단 한 사람.",
-        "그는 바로...",
-        "돌펜스! 돌펜스!",
+        "평화롭던 어느 날…",
+        "세계수를 노리고 거대 골렘이 다가오기 시작했다.",
+        "골렘을 막을 수 있는 유일한 이는 바로.",
+        "“대마법사 돌펜스”",
+        "위대한",
+        " 대마법사 ",
+        "돌펜스여,\n", // 여기서 보이스 출력
+        "골렘을 ",
+        "막고 ",  // 텍스트 합침
+        "세계를 ",
+        "구하여라!", // 텍스트 합침
         ""
     };
     private float[] delays =
     {
-        4.0f, 7.0f, 4.0f, 4.0f, 2.0f
+        1.5f, 3.5f, 3.0f, 2.5f, 2.1f, 0.9f, 0.9f, 0.8f, 0.7f, 0.7f, 0.8f, 1.0f
     };
     private float[] textDelays =
     {
-        7.0f, 4.0f, 4.0f, 2.0f, 2.0f
+        1.0f, 3.0f, 2.5f, 2.0f, 1.5f, 0.8f, 0.9f, 0.8f, 0.7f, 0.7f, 0.8f, 1.0f
     };
     private int introPhase;
 
@@ -53,35 +60,33 @@ public class IntroControl : MonoBehaviour
 
     private void Update()
     {
-        //if (introPhase == 2)
-        //{
-        //    introPhase = 0;
-
-        //    //// 3.0초간 화면 하얀색으로 변경
-        //    //introScreen.DOColor(Color.white, 3.0f);
-
-        //    // 텍스트 색상 검은색으로 변경
-        //    //introTexts[0].DOColor(Color.white, 0f);
-        //    //introTexts[1].DOColor(Color.black, 0f);
-        //}
-
+        // 보이스 재생
         if (introPhase == 4)
         {
             introPhase = 0;
 
+            // 돌펜스 보이스 효과음 재생
+            AudioManager.instance.PlaySFX("Voice");
+        }
+
+        // 인트로 종료
+        if (introPhase == (delays.Length - 1))
+        {
+            introPhase = 0;
+
             // 3.0초간 인트로 스크린 페이드 아웃
-            introScreen.DOFade(0f, 3.0f);
+            introScreen.DOFade(0f, 2.0f);
 
             Action myAction = () => GameManager.instance.GameStart();
             Action myAction2 = () => MovePositionY(defaultPosY, player.position);
             Action myAction3 = () => Destroy(gameObject);
 
-            // 3.0초 뒤에 게임 스타트
-            StartCoroutine(WaitForRunFunction(3.0f, myAction));
-            // 3.0초 뒤에 플레이어 y 위치 이동
-            StartCoroutine(WaitForRunFunction(3.0f, myAction2));
-            // 4.0초 뒤에 게임 오브젝트 삭제
-            StartCoroutine(WaitForRunFunction(4.0f, myAction3));
+            // 2.0초 뒤에 게임 스타트
+            StartCoroutine(WaitForRunFunction(2.0f, myAction));
+            // 2.0초 뒤에 플레이어 y 위치 이동
+            StartCoroutine(WaitForRunFunction(2.0f, myAction2));
+            // 3.0초 뒤에 게임 오브젝트 삭제
+            StartCoroutine(WaitForRunFunction(3.0f, myAction3));
         }
     }
 
@@ -105,11 +110,14 @@ public class IntroControl : MonoBehaviour
             for (int j = 0; j < introTexts.Length; j++)
             {
 
-                introTexts[j].text = "";
+                if (!(i >= 5) || (i == (t.Length - 1)))
+                {
+                    introTexts[j].text = default;
+                }    
                 // t.Length 범위를 벗어나지 않는 선에서 i+1을 함
                 //Mathf.Clamp(i + 1, 1, t.Length);
                 //Mathf.Min(i + 1, t.Length);
-                introTexts[j].DOText(dialogues[i], textDelays[i]);
+                introTexts[j].DOText(introTexts[j].text + dialogues[i], textDelays[i]);
                 introPhase = i;
             }
         }
