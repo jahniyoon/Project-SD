@@ -176,6 +176,10 @@ public class ShopItemButton : MonoBehaviour
     {
         GameManager.buttonsList.Add(this);
     }
+    private void OnDestroy()
+    {       // 자신이 삭제될때에 List에 자신을 제거
+        GameManager.buttonsList.Remove(this);
+    }
 
     private void ItemIDInIt()       // CSV속 아이템 ID를 매핑해주는 함수
     {

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.09703885, g: 0.046296515, b: 0.0460646, a: 1}
+  m_IndirectSpecularColor: {r: 0.097039245, g: 0.046296615, b: 0.046064667, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3299,7 +3299,7 @@ MonoBehaviour:
   distanceText: {fileID: 949633715}
   isGunUpgrade: 0
   isWeakpointUpgrade: 0
-  isPCMODE: 0
+  isPCMODE: 1
   isShopTest: 0
   introControl: {fileID: 1493332713}
   secondsGold: 0
