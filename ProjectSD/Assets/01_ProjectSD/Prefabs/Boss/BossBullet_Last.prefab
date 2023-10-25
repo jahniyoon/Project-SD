@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6583335502972562218}
   m_Layer: 0
   m_Name: BossBullet_LAST
-  m_TagString: Untagged
+  m_TagString: BossBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -82,7 +82,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.74
+  m_Radius: 0.9
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &2312643673659441467
 Rigidbody:
@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ff4c2d5589f3e54eaca088e69f3352a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target: {fileID: 8255814611675511854, guid: 523ab95688cff794b9f3d193fcbc45fb, type: 3}
   meteor: {fileID: 115799000778089452, guid: 6ab7f04a9cd1dfe47bbfe786f5c22d32, type: 3}
   hp: 0
   lifeTime: 0
@@ -414,11 +414,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2747276009303717629, guid: c23d529ed6d663a4d830d0c69c51f590, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.25
+      value: 0.14
       objectReference: {fileID: 0}
     - target: {fileID: 2747276009303717629, guid: c23d529ed6d663a4d830d0c69c51f590, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.03
+      value: 0.31
       objectReference: {fileID: 0}
     - target: {fileID: 2747276009303717629, guid: c23d529ed6d663a4d830d0c69c51f590, type: 3}
       propertyPath: m_LocalRotation.w

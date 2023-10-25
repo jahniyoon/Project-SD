@@ -9,7 +9,6 @@ public class BossBullet : MonoBehaviour
 {
     public Transform target;
     private Rigidbody rigid;
-    private MeshRenderer mesh;
 
     public GameObject meteor;
 
@@ -26,7 +25,7 @@ public class BossBullet : MonoBehaviour
     {
         GetData();
         rigid = GetComponent<Rigidbody>();
-        mesh = GetComponent<MeshRenderer>();
+        
         rigid.velocity = transform.forward * speed;
         AudioManager.instance.PlaySFX("Boss_Flying");
 
@@ -81,32 +80,30 @@ public class BossBullet : MonoBehaviour
         if (other.tag.Equals("Player"))
         {
             other.GetComponent<PlayerHealth>().OnDamage(damage);
+
             AudioManager.instance.PlaySFX("Boss_Hit");
             Instantiate(meteor, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
+
+
+        
+
     }
 
     // 보스 총알이 데미지를 입는 함수
     public void OnDamage(int damage)
     {
         hp -= damage;
-        StartCoroutine("DamageColor");
 
         // 체력이 0이되면 파괴
         if (hp <= 0)
         {
             Instantiate(meteor, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
     }
 
-    IEnumerator DamageColor()
-    {
-        mesh.GetComponent<MeshRenderer>().material.color = Color.red;
-        yield return new WaitForSeconds(0.25f);
-        mesh.GetComponent<MeshRenderer>().material.color = Color.white;
-
-    }
+    
 
 }
