@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/01_ProjectSD/Scenes/TestLoadingScene.unity
     guid: 7591500f0bd14ec43a0f43b708bbd95d
   - enabled: 1
+    path: Assets/01_ProjectSD/Scenes/SceneManagement.unity
+    guid: 01dc330db47f7564c92938ab9c0e4201
+  - enabled: 1
     path: Assets/01_ProjectSD/Scenes/Main.unity
     guid: f87be3bf9968cce42b8fcff1531e8d40
   - enabled: 0

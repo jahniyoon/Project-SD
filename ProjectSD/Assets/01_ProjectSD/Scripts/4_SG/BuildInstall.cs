@@ -325,13 +325,12 @@ public class BuildInstall : MonoBehaviour
     // 지환 : 다시 한 번 위에서 레이를 쏴줘서 빌드 포지션을 수정시켜주는 메서드
     private Vector3 FixPosition(ref Vector3 newPosition)
     {
-            Debug.Log("체크2");
-        newPosition.y += 30f;   // 새로운 포지션의 위에서
-        // 레이를 아래로 쏜다.
+           
+        newPosition.y += 30f;   // 새로운 포지션의 30 위에서
+        // 레이를 아래로 쏜다. 터레인일 경우,
         if (Physics.Raycast(newPosition, Vector3.down, out buildHit, 100, 1 << LayerMask.NameToLayer("Terrain")))
         {
             newPosition = buildHit.point;
-            Debug.Log("충돌한 포인트는" + newPosition);
         }
         return newPosition;
     }

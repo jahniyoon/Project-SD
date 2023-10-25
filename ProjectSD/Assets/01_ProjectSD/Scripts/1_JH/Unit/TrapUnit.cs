@@ -34,7 +34,7 @@ public class TrapUnit : MonoBehaviour
         trapAnim = trapObj.GetComponent<Animator>();
 
         Invoke("TrapUnitDisable", unitLifeTime);    // 일정 시간 뒤에 유닛은 사라지고
-        Destroy(gameObject, unitLifeTime + trapLifeTime); // 유닛 지속 시간 이후 소멸
+        Destroy(gameObject, unitLifeTime + trapLifeTime);
     }
 
     public void TrapUnitDisable()
@@ -46,9 +46,12 @@ public class TrapUnit : MonoBehaviour
     {
         if (other.CompareTag("Finish") && !isTrapOn || other.CompareTag("Enemy") && !isTrapOn)    // 적 태그를 만날 경우
         {
+            trapUnitObj.gameObject.SetActive(false);
+
             isTrapOn = true;
             trapTrigger.enabled = false;    // 콜라이더 꺼주고
             trapAnim.SetTrigger("TrapOn");
+            Destroy(trapObj, trapLifeTime);
         }
     }
 
