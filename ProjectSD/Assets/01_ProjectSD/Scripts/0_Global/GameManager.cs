@@ -262,8 +262,8 @@ public class GameManager : MonoBehaviour
     public void Retry()
     {
         // 현재 씬의 이름을 가져와서 로드
-        //string currentSceneName = SceneManager.GetActiveScene().name;
-        SceneManager.LoadScene("SceneManagement");
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene("currentSceneName");
         //Golem.transform.position = golemPosition;
         //PC.SetActive(false);
         //PC.SetActive(true);
