@@ -399,7 +399,11 @@ public class ShopItemButton : MonoBehaviour
 
     public void ColorController()       // isRayHit의 bool값을 따라서 색을 변경해줄 함수
     {
-        if (GameManager.instance.PlayerGold < price)
+        if(NowItemValue == maxItemValue)
+        {
+            ChangeNoMoneyColor();
+        }
+        else if (GameManager.instance.PlayerGold < price)
         {
             ChangeNoMoneyColor();
         }
