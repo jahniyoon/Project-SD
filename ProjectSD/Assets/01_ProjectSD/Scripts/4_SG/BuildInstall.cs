@@ -328,7 +328,7 @@ public class BuildInstall : MonoBehaviour
             Debug.Log("체크2");
         newPosition.y += 30f;   // 새로운 포지션의 위에서
         // 레이를 아래로 쏜다.
-        if (Physics.Raycast(newPosition, Vector3.down, out buildHit, Mathf.Infinity))
+        if (Physics.Raycast(newPosition, Vector3.down, out buildHit, 100, 1 << LayerMask.NameToLayer("Terrain")))
         {
             newPosition = buildHit.point;
             Debug.Log("충돌한 포인트는" + newPosition);
