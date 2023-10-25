@@ -3109,7 +3109,7 @@ MonoBehaviour:
   distanceText: {fileID: 949633715}
   isGunUpgrade: 0
   isWeakpointUpgrade: 0
-  isPCMODE: 1
+  isPCMODE: 0
   isShopTest: 0
   introControl: {fileID: 1493332713}
   secondsGold: 0

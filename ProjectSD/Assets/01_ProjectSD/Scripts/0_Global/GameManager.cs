@@ -230,8 +230,8 @@ public class GameManager : MonoBehaviour
 
         SetPlayer(false);
 
-        // 돌펜스 보이스 효과음 재생
-        AudioManager.instance.PlaySFX("Voice");
+        //// 돌펜스 보이스 효과음 재생
+        //AudioManager.instance.PlaySFX("Voice");
     }
     public void GameOver()
     {
