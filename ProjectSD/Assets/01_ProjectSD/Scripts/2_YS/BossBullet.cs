@@ -11,6 +11,8 @@ public class BossBullet : MonoBehaviour
     private Rigidbody rigid;
     private MeshRenderer mesh;
 
+    public GameObject meteor;
+
 
     [Header("CSV")]
     public float hp = default;
@@ -80,6 +82,7 @@ public class BossBullet : MonoBehaviour
         {
             other.GetComponent<PlayerHealth>().OnDamage(damage);
             AudioManager.instance.PlaySFX("Boss_Hit");
+            Instantiate(meteor, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
     }
@@ -93,6 +96,7 @@ public class BossBullet : MonoBehaviour
         // 체력이 0이되면 파괴
         if (hp <= 0)
         {
+            Instantiate(meteor, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }

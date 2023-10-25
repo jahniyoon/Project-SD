@@ -10,14 +10,14 @@ public class BossHitPoint : MonoBehaviour
 
     private MeshRenderer[] meshRenderers;
 
-
-    public float upgradeTime = 5.0f;   // 업그레이드 했을 때 지속되는 시간 변수
-
+    public GameObject weakPrefab;
+    
 
     [Header("CSV")]
     public float critical = default; //약점배율
     public float disableTime = default;   // 한대 맞았을 때 꺼지는 시간 넣을 변수
     public float weakPointScale = default;
+    public float upgradeTime = default;                        
 
 
     private const int WEAKPOINTINDEX = 1;
@@ -76,6 +76,8 @@ public class BossHitPoint : MonoBehaviour
         //boss.hp -= (int)(damage * 1.5f);
         //Debug.Log(boss.hp);
         transform.root.GetComponent<Boss>().OnDamage(damage * critical);
+        Instantiate(weakPrefab, transform.position, Quaternion.identity);
+        AudioManager.instance.PlaySFX("Boss_WeakHit");
         StartCoroutine(HitPoint());
 
     }
