@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     public bool isGameOver;         // 게임오버 상태
     public bool isVR;
     public float playerHeight;
+    public bool isGameStart;
 
     [Header("Golem")]
     public GameObject Golem;
@@ -153,6 +154,24 @@ public class GameManager : MonoBehaviour
             titlePanel.SetActive(false);
             GameStart();
         }
+        if (Input.GetKeyDown(KeyCode.F4) && !isPCMODE)
+        {
+            isPCMODE = true;
+            SetPlayer(true);
+        }
+
+        if (Input.GetKeyDown(KeyCode.F9))
+        {
+            Time.timeScale += 1;
+        }
+        if (Input.GetKeyDown(KeyCode.F10))
+        {
+            Time.timeScale = 1;
+        }
+        if (Input.GetKeyDown(KeyCode.F11))
+        {
+            PC.gameObject.GetComponent<PlayerHealth>().health = 99999;
+        }
 
     }       // Update()
 
@@ -222,6 +241,7 @@ public class GameManager : MonoBehaviour
     public void GameStart()
     {
         Debug.Log("게임 시작");
+        isGameStart = true;
         //titlePanel.SetActive(false);
         shopPanel.SetActive(true);
 
@@ -378,15 +398,18 @@ public class GameManager : MonoBehaviour
     // 일정 시간이 된다면 골드를 올려주는 함수
     private void GetTimeGold()
     {
-        getGoldTime += Time.deltaTime;
-        if (getGoldTime >= 1)
+        if (isGameStart)
         {
-            PlayerGold += secondsGold;
+            getGoldTime += Time.deltaTime;
+            if (getGoldTime >= 1)
+            {
+                PlayerGold += secondsGold;
 
-            getGoldTime = 0;
-        }
-        else { /*PASS*/ }
-    }       // GetTimeGold()
+                getGoldTime = 0;
+            }
+            else { /*PASS*/ }
+        }       // GetTimeGold()
+    }
 
     public void ButtonsListMake()       // 버튼 확대를 위해 버튼들을 static List선언
     {

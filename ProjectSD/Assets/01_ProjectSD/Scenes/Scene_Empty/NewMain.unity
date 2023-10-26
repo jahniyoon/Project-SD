@@ -302,7 +302,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 18080964397476881, guid: 6f8bace23876a074ca3cc1e76f74fe96, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2026250792155139495, guid: 6f8bace23876a074ca3cc1e76f74fe96, type: 3}
       propertyPath: m_RootOrder
@@ -25030,11 +25030,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 517964676619106123, guid: feab91a9e63b625428788f26f473e083, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.4
       objectReference: {fileID: 0}
     - target: {fileID: 517964676619106123, guid: feab91a9e63b625428788f26f473e083, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 517964676619106123, guid: feab91a9e63b625428788f26f473e083, type: 3}
       propertyPath: m_LocalPosition.z
@@ -25067,6 +25067,22 @@ PrefabInstance:
     - target: {fileID: 517964676619106123, guid: feab91a9e63b625428788f26f473e083, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 517964676627957035, guid: feab91a9e63b625428788f26f473e083, type: 3}
+      propertyPath: m_Height
+      value: 0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 517964676627957035, guid: feab91a9e63b625428788f26f473e083, type: 3}
+      propertyPath: m_Radius
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 517964676627957035, guid: feab91a9e63b625428788f26f473e083, type: 3}
+      propertyPath: m_AngularSpeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 517964676627957035, guid: feab91a9e63b625428788f26f473e083, type: 3}
+      propertyPath: m_WalkableMask
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 517964676630438513, guid: feab91a9e63b625428788f26f473e083, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -25489,6 +25505,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 8c37a7c72ac4a0643a8a03ae5c205a5a, type: 3}
   - name: Boss_WeakHit
     clip: {fileID: 8300000, guid: 5f2ee57e284711b4ba947a6a5c709eb9, type: 3}
+  - name: SpawnSound
+    clip: {fileID: 8300000, guid: 5f2ee57e284711b4ba947a6a5c709eb9, type: 3}
   musicSource: {fileID: 704536357}
   sfxSource: {fileID: 704536357}
   loopSounds: []
@@ -25537,7 +25555,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.3012615, b: 0.23113209, a: 1}
+  m_Color: {r: 0.6792453, g: 0.16422069, b: 0.11213954, a: 1}
   m_Intensity: 1.49
   m_Range: 10
   m_SpotAngle: 30
@@ -51849,6 +51867,7 @@ MonoBehaviour:
   isGameOver: 0
   isVR: 0
   playerHeight: 0
+  isGameStart: 0
   Golem: {fileID: 598039341}
   panels: {fileID: 1908372210}
   titlePanel: {fileID: 1571540087}
@@ -72138,6 +72157,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1926623616552158096, guid: f8e4ed5f108f01d4f8a3113e26ddb3a1, type: 3}
+      propertyPath: burstsPower
+      value: 3.8
+      objectReference: {fileID: 0}
     - target: {fileID: 1926623616552158096, guid: f8e4ed5f108f01d4f8a3113e26ddb3a1, type: 3}
       propertyPath: renderDistance
       value: 30

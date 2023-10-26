@@ -239,6 +239,9 @@ public class EnemySpawn : MonoBehaviour
                     Quaternion.identity, parent);
             }
         }
+
+        // enemy 생성 후 소리 출력
+        AudioManager.instance.PlaySFX("Spawn");
     }
 
     // 매개변수로 받은 4개의 포지션(점) 범위 내에서 x좌표에 따라

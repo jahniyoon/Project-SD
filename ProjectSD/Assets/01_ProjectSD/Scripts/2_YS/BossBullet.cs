@@ -10,7 +10,10 @@ public class BossBullet : MonoBehaviour
     public Transform target;
     private Rigidbody rigid;
 
-    public GameObject meteor;
+    [Header("GameObject")]
+    public GameObject bulletObj; // 투사체
+    public GameObject fireFX;    // 불 효과
+    public GameObject meteor;    // 충돌효과
 
 
     [Header("CSV")]
@@ -25,10 +28,22 @@ public class BossBullet : MonoBehaviour
     {
         GetData();
         rigid = GetComponent<Rigidbody>();
-        
-        rigid.velocity = transform.forward * speed;
-        AudioManager.instance.PlaySFX("Boss_Flying");
+       
 
+
+        Invoke("FireReady", 3f);
+    }
+
+    public void FireReady()
+    {
+        //fireFX.transform.LookAt(GameManager.instance.PC.transform);
+        fireFX.transform.LookAt(2 * fireFX.transform.position - GameManager.instance.PC.transform.position);
+        bulletObj.gameObject.SetActive(true); // 투사체 켜고
+        //fireFX.transform.rotation = Quaternion.Euler(-158.9f, 0, 0);    // 각도 바꿔주고
+
+
+        rigid.velocity = transform.forward * speed; // 총알 발사
+        AudioManager.instance.PlaySFX("Boss_Flying");
     }
 
     //public void Launch(Transform target)

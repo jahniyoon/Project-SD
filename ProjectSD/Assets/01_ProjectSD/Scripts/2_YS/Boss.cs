@@ -100,6 +100,7 @@ public class Boss : MonoBehaviour
         anim = GetComponent<Animation>();
         agent = GetComponent<NavMeshAgent>();
         agent.speed = speed;
+        Invoke("SetRadius", 3f);
 
         anim.CrossFade("GolemWalk");
         anim["GolemWalk"].speed = 0.15f;
@@ -109,6 +110,12 @@ public class Boss : MonoBehaviour
         StartCoroutine(MonsterAction());
 
         StartCoroutine(SkillCounter());
+    }
+
+    public void SetRadius()
+    {
+        agent.radius = 0.01f;
+
     }
 
     // Update is called once per frame
@@ -322,7 +329,7 @@ public class Boss : MonoBehaviour
             if (state == State.TRACE)
             {
                 SkillAttack();
-                anim.CrossFade("attack5");
+                //anim.CrossFade("attack5");
             }
 
             yield return new WaitForSeconds(coolTime);

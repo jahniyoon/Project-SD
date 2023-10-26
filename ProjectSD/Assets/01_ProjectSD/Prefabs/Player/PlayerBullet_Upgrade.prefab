@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7499969845033851087}
   - component: {fileID: 7728801930703279531}
   - component: {fileID: 7498670554028162891}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Splash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4854,7 +4854,7 @@ GameObject:
   - component: {fileID: 7644632956492998777}
   - component: {fileID: 7725379823234603351}
   - component: {fileID: -7235729985312844819}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PlayerBullet_Upgrade
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -9854,7 +9854,7 @@ GameObject:
   - component: {fileID: 7693770676150711025}
   - component: {fileID: 7499685928054667659}
   - component: {fileID: 7498539783227779961}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14678,7 +14678,7 @@ GameObject:
   - component: {fileID: 7699864178132787567}
   - component: {fileID: 7524309967768892979}
   - component: {fileID: 7500681230242880119}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Black
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19560,7 +19560,7 @@ GameObject:
   - component: {fileID: 7693796590720567719}
   - component: {fileID: 7499635747495618551}
   - component: {fileID: 7498965745470336115}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24402,7 +24402,7 @@ GameObject:
   - component: {fileID: 7693291496990449789}
   - component: {fileID: 7499889669731325885}
   - component: {fileID: 7499022741044675255}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Spiral
   m_TagString: Untagged
   m_Icon: {fileID: 0}

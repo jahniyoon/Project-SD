@@ -33,11 +33,14 @@ public class NavMoveable : MonoBehaviour
             return;
         }
 
-        // 공이 멈춰있지 않을 경우
-        if (agent.isStopped == false)
+        if (agent.enabled == true)
         {
-            // 공 회전 함수 호출
-            RollingBall();
+            // 공이 멈춰있지 않을 경우
+            if (agent.isStopped == false)
+            {
+                // 공 회전 함수 호출
+                RollingBall();
+            }         
         }
     }
 

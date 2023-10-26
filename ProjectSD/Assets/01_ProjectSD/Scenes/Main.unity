@@ -2576,6 +2576,7 @@ MonoBehaviour:
   isGameOver: 0
   isVR: 0
   playerHeight: 0
+  isGameStart: 0
   Golem: {fileID: 2040070406}
   panels: {fileID: 1157609737}
   titlePanel: {fileID: 1911326488}
@@ -2586,7 +2587,7 @@ MonoBehaviour:
   distanceText: {fileID: 949633715}
   isGunUpgrade: 0
   isWeakpointUpgrade: 0
-  isPCMODE: 0
+  isPCMODE: 1
   isShopTest: 0
   introControl: {fileID: 1493332713}
   secondsGold: 0
@@ -3682,6 +3683,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 8c37a7c72ac4a0643a8a03ae5c205a5a, type: 3}
   - name: Boss_WeakHit
     clip: {fileID: 8300000, guid: 5f2ee57e284711b4ba947a6a5c709eb9, type: 3}
+  - name: Spawn
+    clip: {fileID: 8300000, guid: da93dd8773611c64cb7452fac582313b, type: 3}
   musicSource: {fileID: 1392351129}
   sfxSource: {fileID: 1392351129}
   loopSounds: []
