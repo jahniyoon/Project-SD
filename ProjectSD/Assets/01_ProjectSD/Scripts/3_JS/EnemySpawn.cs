@@ -223,7 +223,7 @@ public class EnemySpawn : MonoBehaviour
 
                 // Enemy 인스턴스를 생성하는 함수 호출
                 SpawnEnemyInstance(GetResourcesPrefab(id),
-                    GetRandomPositionInAreas(point0Min, point0Max, point1Min, point1Max), 
+                    GetRandomPositionInAreas(point0Min, point0Max, point1Min, point1Max),
                     Quaternion.identity, parent);
             }
 
@@ -241,7 +241,9 @@ public class EnemySpawn : MonoBehaviour
         }
 
         // enemy 생성 후 소리 출력
-        AudioManager.instance.PlaySFX("Spawn");
+        AudioManager.instance.PlaySFX("SpawnSound");
+
+        Debug.Log("적들 생성");
     }
 
     // 매개변수로 받은 4개의 포지션(점) 범위 내에서 x좌표에 따라

@@ -299,9 +299,10 @@ public class Boss : MonoBehaviour
             state = State.DIE;
             //추적 중지
             agent.isStopped = true;
-            anim.CrossFade("death", 0.25f);
+            anim.CrossFade("newDeath", 0.25f);
             GameManager.instance.GameClear();
             StopAllCoroutines();
+            Destroy(gameObject, 4f);
 
         }
     }
