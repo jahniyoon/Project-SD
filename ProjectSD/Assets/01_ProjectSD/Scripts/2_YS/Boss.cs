@@ -286,7 +286,7 @@ public class Boss : MonoBehaviour
         SetHealth(hp);
         StartCoroutine("DamageColor");
 
-        if (hp <= 0)
+        if (hp <= 0 && !isDie)
         {
             isDie = true;
             state = State.DIE;
