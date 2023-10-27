@@ -112,6 +112,13 @@ public class Boss : MonoBehaviour
         StartCoroutine(SkillCounter());
     }
 
+    public void GameOver()
+    {
+        state = State.DIE;
+        anim.CrossFade("roar");
+        anim["roar"].speed = 0.5f;
+    }
+
     public void SetRadius()
     {
         agent.radius = 0.01f;
@@ -152,7 +159,7 @@ public class Boss : MonoBehaviour
 
     IEnumerator CheckMonsterState()
     {
-        while (!isDie)
+        while (!isDie && !GameManager.instance.isGameOver)
         {
             yield return new WaitForSeconds(0.1f);
 

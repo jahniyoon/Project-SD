@@ -258,6 +258,7 @@ public class GameManager : MonoBehaviour
         if (!isGameOver)
         {
             Golem.GetComponent<Boss>().agent.isStopped = true;
+            Golem.GetComponent<Boss>().GameOver();
 
             isGameOver = true;
             AudioManager.instance.PlayMusic("Lose");

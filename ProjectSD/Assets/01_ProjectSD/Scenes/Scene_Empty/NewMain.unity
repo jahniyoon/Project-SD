@@ -109,7 +109,7 @@ NavMeshSettings:
     agentRadius: 0.5
     agentHeight: 2
     agentSlope: 45
-    agentClimb: 0.4
+    agentClimb: 1.95
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 2
@@ -621,6 +621,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 517964676619106123, guid: feab91a9e63b625428788f26f473e083, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 517964676627957035, guid: feab91a9e63b625428788f26f473e083, type: 3}
+      propertyPath: avoidancePriority
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 517964676627957035, guid: feab91a9e63b625428788f26f473e083, type: 3}
+      propertyPath: m_ObstacleAvoidanceType
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2210531378572268701, guid: feab91a9e63b625428788f26f473e083, type: 3}
